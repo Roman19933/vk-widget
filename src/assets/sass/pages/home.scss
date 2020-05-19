@@ -1,0 +1,92 @@
+.home {
+    &__wrapper {
+        margin-top: 36px;
+    }
+    &-block {
+        padding-right: 40px;
+        padding-left: 9px;
+        margin-bottom: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        &__title {
+            display: flex;
+            align-items: center;
+        }
+        &__icon {
+            margin-right: 19px;
+        }
+        &__events {
+            display: flex;
+            align-items: center;
+            button {
+                background-color: transparent;
+                border: none;
+            }
+        }
+        &__switch,  &__user, &__edit, &__look, &__delete {
+            margin-right: 18px;
+            position: relative;
+            &:hover {
+                .popover {
+                    display: flex;
+                }
+            }
+        }
+        &__user, &__edit, &__look, &__delete {
+            .popover {
+               right: 25px;
+            }
+        }
+        &__user {
+            margin-right: 26px;
+        }
+        &__edit {
+            margin-right: 21px;
+        }
+        &__look {
+            margin-right: 22px;
+            .popover {
+                min-width: 145px;
+            }
+        }
+        &__delete {
+            margin-right: 0;
+            .popover {
+                min-width: 145px;
+            }
+        }
+    }
+}
+.popover {
+    min-width: 178px;
+    position: absolute;
+    right: 50px;
+    display: none;
+    box-shadow: 0 2px 5px rgba(10, 10, 10, 0.4);
+    border-radius: 2px;
+    background-color: #21203d;
+    padding: 13px 18px;
+    font-size: 13px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 999;
+    &__wrapper {
+        position: relative;
+        span {
+            display: block;
+            color: white;
+            font-family: 'RobotoRegular';
+            line-height: 18px;
+        }
+    }
+    &::before {
+        top: 50%;
+        transform: translateY(-50%);
+        right: -12px;
+        position: absolute;
+        content: '';
+        border: 5px solid transparent;
+        border-left: 7px solid #21203d;
+    }
+}

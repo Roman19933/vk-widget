@@ -17,7 +17,7 @@ module.exports = {
     ]
   },
   css: [
-    '~/assets/sass/common.sass'
+    '~/assets/sass/style.scss'
   ],
   /**
    * Modules

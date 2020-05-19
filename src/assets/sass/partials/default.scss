@@ -1,0 +1,310 @@
+h1 {
+    margin: 0;
+    padding: 0;
+}
+h1, h2, h3, h4 {
+    line-height: 1;
+}
+p {
+    margin: 0;
+    padding: 0;
+}
+ul {
+    margin: 0;
+    padding: 0;
+}
+input,textarea {
+    font-size: 13px;
+    color: white;
+    font-family: 'RobotoLight';
+    border-radius: 5px;
+    border: 1px solid #8e8fbb;
+    background-color: #2f304d;
+    height: 32px;
+    padding: 10px;
+    transition: .3s;
+    &::placeholder {
+        color: #a2a2ad;
+    }
+    &:focus {
+        border: 1px solid #ffc25e;
+    }
+}
+img {
+    max-width: 100%;
+    width: auto;
+    height: auto;
+}
+button, a, input, textarea {
+    text-decoration: none;
+    &:focus, &:active {
+        outline: none;
+    }
+}
+button {
+    padding: 0;
+    &:hover {
+        cursor: pointer;
+    }
+}
+a {
+    color:#fff;
+    &:hover {
+        text-decoration: none;
+        color:#fff;
+        cursor: pointer;
+    }
+}
+* {
+    box-sizing: border-box;
+}
+body {
+    background-color: #21203d;
+    color: white;
+    font-family: 'RobotoRegular';
+    font-size: 14px;
+    position: relative;
+    &.modal {
+        overflow: hidden;
+    }
+}
+.main-menu {
+    margin-right: 15px;
+    width: 215px;
+    min-width: 215px;
+    padding: 27px 0 30px 0;
+    background-color: #3a3b5e;
+    color: white;
+    &__title {
+        padding: 0 15px;
+        font-size: 13px;
+        text-transform: uppercase;
+        color: #8e8fbb;
+        margin-bottom: 24px;
+        font-family: 'RobotoMedium';
+    }
+    &__item {
+
+        opacity: 0.7;
+        font-size: 13px;
+        font-family: 'RobotoLight';
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        &.active {
+            opacity: 1;
+            background-color: #474873;
+            .main-menu__link-text {
+                font-family: 'RobotoRegular';
+                color: #ffc25e;
+            }
+        }
+        &.show {
+            opacity: 1;
+            .main-menu__link-text {
+                font-family: 'RobotoRegular';
+                color: #ffc25e;
+            }
+            .main-menu__subitems {
+                display: block;
+            }
+            .main-menu__arrow {
+                transform: rotate(0);
+                display: none;
+                &_inner {
+                    display: block;
+                }
+            }
+        }
+    }
+    &__subitems {
+        width: 100%;
+        display: none;
+    }
+    &__subitem {
+        padding: 15px 11px 16px 63px;
+        opacity: 0.7;
+        font-size: 13px;
+        font-family: 'RobotoLight';
+        &.active {
+            opacity: 1;
+            background-color: #474873;
+            .main-menu__sublink {
+                font-family: 'RobotoRegular';
+                color: #ffc25e;
+            }
+        }
+    }
+    &__link {
+        padding: 15px 11px 14px 19px;
+        display: flex;
+        align-items: center;
+    }
+    &__arrow {
+        margin-right: 11px;
+        margin-left: auto;
+        transform: rotate(-90deg);
+        &_inner {
+            display: none;
+        }
+    }
+    &__icon {
+        margin-right: 10px;
+    }
+}
+.vidget-page {
+    display: flex;
+    padding: 15px;
+    min-height: calc(100vh - 59px);
+    &__wrapper {
+        width: 100%;
+        padding: 27px 15px;
+        background-color: #3a3b5e;
+    }
+    &__head {
+        display: flex;
+        justify-content: space-between;
+    }
+    &__title {
+        font-size: 13px;
+        text-transform: uppercase;
+        color: #8e8fbb;
+        font-family: 'RobotoMedium';
+    }
+    &__add {
+        margin-top: -3px;
+    }
+}
+.gen-btn {
+    width: 164px;
+    height: 32px;
+    border-radius: 5px;
+    background-color: #f53180;
+    letter-spacing: 0.7px;
+    color: #ffffff;
+    font-family: 'RobotoBold';
+    font-size: 14px;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+    &:hover {
+        background-color: #dc2a72;
+    }
+    &.bgnone {
+        background: none;
+        color: #a2a2ad;
+    }
+}
+.hidden {
+    position: absolute !important;
+    top: -9999px !important;
+    left: -9999px !important;
+}
+.switch {
+    background-color: #2f304d;
+    width: 40px;
+    height: 18px;
+    display: inline-block;
+    border-radius: 9px;
+    cursor: pointer;
+}
+
+.switch::before {
+    content: "";
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    background-color: #a2a2ad;
+    border-radius: 50%;
+    position: relative;
+    left: 2px;
+    transition: left 0.5s;
+    top: 2px;
+}
+
+.switchcheckbox:checked + label::before {
+    left: 23px;
+}
+
+.radio {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    &__custom {
+        width: 20px;
+        height: 20px;
+        border: 2px solid #a2a2ad;
+        border-radius: 100%;
+        position: relative;
+        transition: .3s;
+    }
+    &__text {
+        margin-left: 5px;
+        color: #a2a2ad;
+    }
+    &__input {
+        display: none;
+    }
+}
+.radio__input:checked + .radio__custom {
+    border: 2px solid #ffc25ead;
+}
+.radio__input:checked + .radio__custom:before {
+    content:'';
+    width: 10px;
+    height: 10px;
+    border-radius: 100%;
+    background-color: #ffc25e;
+    position: absolute;
+    top:3px;
+    left:3px;
+}
+
+label {
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+	.checkbox {
+		display: none;
+	}
+	.checkbox-custom {
+        position: relative;
+        margin-right: 9px;
+        min-width: 23px;
+        width: 23px;
+        height: 23px;
+        border-radius: 5px;
+        border: 1px solid #8e8fbb;
+        background-color: transparent;
+	}
+	.checkbox-custom,
+	.label {
+        vertical-align: middle;
+        color: #a2a2ad;
+        font-size: 12px;
+        line-height: 12px;
+        font-family: 'RobotoLight';
+		a {
+			color: #ffc25e;
+			text-decoration: underline;
+		}
+    }
+    .checkbox:checked + .checkbox-custom {
+        background-color: #21203d;
+    }
+	.checkbox:checked + .checkbox-custom::before {
+		display: block;
+		position: absolute;
+        content: '';
+        width: 11px;
+        height: 9px;
+        background-image: url('/img/tarif-ok-yellow.png');
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		z-index: 2;
+	}
+}
