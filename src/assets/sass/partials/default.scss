@@ -3,7 +3,8 @@ h1 {
     padding: 0;
 }
 h1, h2, h3, h4 {
-    line-height: 1;
+    font-weight: normal;
+    margin: 0;
 }
 p {
     margin: 0;
@@ -12,6 +13,9 @@ p {
 ul {
     margin: 0;
     padding: 0;
+  li {
+    list-style: none;
+  }
 }
 input,textarea {
     font-size: 13px;
@@ -64,6 +68,8 @@ body {
     font-family: 'RobotoRegular';
     font-size: 14px;
     position: relative;
+    margin: 0;
+    line-height: 1;
     &.modal {
         overflow: hidden;
     }
