@@ -6,7 +6,23 @@
         <h1 class="vidget-page__title">Мои виджеты</h1>
         <button class="vidget-page__add gen-btn">Создать виджет</button>
       </div>
-      <div class="home">
+      <div
+        class="vidget-none"
+        v-if="widgetNone"
+      >
+        <div class="vidget-none__wrapper">
+          <img src="img/PIT.svg" alt="" class="vidget-none__img">
+          <p class="vidget-none__text">
+            Дружище, у тебя еще нет виджетов.
+            Не пора ли их создать?
+          </p>
+          <a href="#" class="vidget-none__link gen-btn">Создать виджет</a>
+        </div>
+      </div>
+      <div
+        class="home"
+        v-else
+      >
         <div class="home__wrapper">
           <ul class="home__blocks">
             <li class="home-block">
@@ -197,6 +213,11 @@
 import AppNavigationMenu from "@/components/AppNavigationMenu.vue";
 
 export default {
+  data() {
+    return {
+      widgetNone: false
+    }
+  },
   components: {
     AppNavigationMenu
   }
