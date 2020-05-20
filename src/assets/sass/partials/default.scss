@@ -98,7 +98,7 @@ body {
         align-items: center;
         justify-content: space-between;
         flex-wrap: wrap;
-        &.active {
+        &.active, &.nuxt-link-active {
             opacity: 1;
             background-color: #474873;
             .main-menu__link-text {
@@ -129,11 +129,12 @@ body {
         display: none;
     }
     &__subitem {
+        display: block;
         padding: 15px 11px 16px 63px;
         opacity: 0.7;
         font-size: 13px;
         font-family: 'RobotoLight';
-        &.active {
+        &.active, &.nuxt-link-active {
             opacity: 1;
             background-color: #474873;
             .main-menu__sublink {
