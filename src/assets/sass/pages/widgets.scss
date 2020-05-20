@@ -82,14 +82,58 @@
                                 font-size: 13px;
                             }
                         }
-                        .select {
+                        // .select {
+                            // width: 100%;
+                            // height: 100%;
+                            // border-radius: 5px;
+                            // border: 1px solid #8e8fbb;
+                            // background-color: #2f304d;
+                            // color: #a2a2ad;
+                            // outline: none;
+                        // }
+                        .v-select {
                             width: 100%;
                             height: 100%;
                             border-radius: 5px;
+                            // border-top-left-radius:5px;
+                            // border-top-right-radius:5px;
                             border: 1px solid #8e8fbb;
                             background-color: #2f304d;
-                            color: #a2a2ad;
+                            // color: #a2a2ad;
                             outline: none;
+                        }
+                        .vs__open-indicator, .vs__clear {
+                            fill:#a2a2ad;
+                        }
+                        .vs__dropdown-menu {
+                            border: 1px solid #8e8fbb;
+                            background-color: #2f304d;
+                            border-top:none;
+                            // width: calc(101% - 1px);
+                            min-width: calc(100% + 2px);
+                            top: calc(100% - 3px);
+                            left: -1px;
+                            .vs__dropdown-option {
+                                padding-left: 9px;
+                                color: #a2a2ad;
+                                &.vs__dropdown-option--selected, &:hover {
+                                    color:#fff;
+                                    background: rgba(71, 72, 115,.5);
+                                }
+                            }
+                        }
+                        .vs__dropdown-toggle {
+                            padding: 0;
+                            height: 100%;
+                        }
+                        .vs__selected {
+                            color: #a2a2ad;
+                            margin-top: 0;
+                            height: 100%;
+                        }
+                        .vs__search {
+                            margin:0;
+                            height: 100%;
                         }
                     }
                 }
