@@ -178,27 +178,41 @@
 
 <script>
 export default {
-  props: {
-    formData: {
-      type: Object
-    }
-  },
+  // props: {
+  //   formData: {
+  //     type: Object
+  //   }
+  // },
   data() {
     return {
       sexData: ["мужской", "женский", "любой"],
       ageData: [15, 25, 28, "любой"],
       statusData: ["женат", "не женат", "любой"],
       cityData: ["Москва", "Санкт-Петербург", "Казань"],
-      deviceData: ["телефон", "планшет", "любой"]
-      // formData: {
-      //   sex: [],
-      //   age: { from: "", to: "" },
-      //   bdate: [],
-      //   relation: [],
-      //   city: [],
-      //   devices: []
-      // }
+      deviceData: ["телефон", "планшет", "любой"],
+      formData: {
+        // sex: [],
+        age: { from: "", to: "" }
+        // bdate: [],
+        // relation: [],
+        // city: [],
+        // devices: [],
+        // userSurname: [],
+        // userName: [],
+        // userInterests: [],
+        // relationGroups: [],
+        // users: [],
+        // groups_exclude: [],
+        // groups: []
+      }
     };
+  },
+  watch: {
+    formData(val) {
+      // handler(val) {
+      console.log(val);
+      // }
+    }
   }
 };
 </script>

@@ -109,7 +109,8 @@
           </div>
         </div>
         <div class="widgets__right">
-          <setup-form :formData="segmentation" />
+          <setup-form />
+          <!-- <setup-form :formData="segmentation" /> -->
         </div>
       </div>
     </div>
@@ -121,20 +122,31 @@ import SetupForm from "@/components/setup/SetupForm";
 export default {
   data() {
     return {
-      segmentation: {
-        sex: [],
-        age: { from: "", to: "" },
-        bdate: [],
-        relation: [],
-        city: [],
-        devices: [],
-        userSurname: [],
-        userName: [],
-        userInterests: [],
-        relationGroups: [],
-        users: [],
-        groups_exclude: [],
-        groups: []
+      widget: {
+        createdAt: "",
+        data: {},
+        groupId: null,
+        id: null,
+        isActive: false,
+        name: "",
+        position: 0,
+        segmentation: {
+          sex: [],
+          age: { from: "", to: "" },
+          bdate: [],
+          relation: [],
+          city: [],
+          devices: [],
+          userSurname: [],
+          userName: [],
+          userInterests: [],
+          relationGroups: [],
+          users: [],
+          groups_exclude: [],
+          groups: []
+        },
+        type: "",
+        updatedAt: ""
       }
     };
   },
