@@ -19,21 +19,21 @@
           <div class="stock-discounts">
             <div class="stock-discounts__item">
               <div class="stock-discounts__img-wrapper">
-                <img class="stock-discounts__img" src="img/catalog-sales-sale1.png">
+                <img class="stock-discounts__img" src="/img/catalog-sales-sale1.png">
               </div>
               <div class="stock-discounts__header">Скидки до 70%</div>
               <a class="catalog-sales__link">Получить скидку</a>
             </div>
             <div class="stock-discounts__item">
               <div class="stock-discounts__img-wrapper">
-                <img class="stock-discounts__img" src="img/catalog-sales-sale2.png">
+                <img class="stock-discounts__img" src="/img/catalog-sales-sale2.png">
               </div>
               <div class="stock-discounts__header">Только сегодня</div>
               <a class="catalog-sales__link">Получить скидку</a>
             </div>
             <div class="stock-discounts__item">
               <div class="stock-discounts__img-wrapper">
-                <img class="stock-discounts__img" src="img/catalog-sales-sale3.png">
+                <img class="stock-discounts__img" src="/img/catalog-sales-sale3.png">
               </div>
               <div class="stock-discounts__header">Заполни анкету</div>
               <a class="catalog-sales__link">Получить скидку</a>
@@ -56,7 +56,7 @@
             <h3 class="catalog-sales__content-text">Артем, хватит работать, тебя ждут горячие туры.</h3>
           </div>
           <div class="stock-promotions">
-            <div class="stock-promotions__item" style="background-image: url(img/stock-promotions-item1.png)">
+            <div class="stock-promotions__item" style="background-image: url(/img/stock-promotions-item1.png)">
               <div class="stock-promotions__rating">
                 <span class="stock-promotions__star active"></span>
                 <span class="stock-promotions__star active"></span>
@@ -70,7 +70,7 @@
               </div>
               <button class="gen-btn">Забронировать</button>
             </div>
-            <div class="stock-promotions__item" style="background-image: url(img/stock-promotions-item2.png)">
+            <div class="stock-promotions__item" style="background-image: url(/img/stock-promotions-item2.png)">
               <div class="stock-promotions__rating">
                 <span class="stock-promotions__star active"></span>
                 <span class="stock-promotions__star active"></span>
@@ -84,7 +84,7 @@
               </div>
               <button class="gen-btn">Забронировать</button>
             </div>
-            <div class="stock-promotions__item" style="background-image: url(img/stock-promotions-item3.png)">
+            <div class="stock-promotions__item" style="background-image: url(/img/stock-promotions-item3.png)">
               <div class="stock-promotions__rating">
                 <span class="stock-promotions__star active"></span>
                 <span class="stock-promotions__star active"></span>
@@ -142,7 +142,7 @@
           </div>
           <div class="personal-offer">
             <div class="personal-offer__img-wrapper">
-              <img src="img/personal-offer-img.png">
+              <img src="/img/personal-offer-img.png">
             </div>
             <div class="personal-offer__wrapper">
               <h3 class="personal-offer__title">
@@ -176,7 +176,7 @@
           <div class="promotional-products">
             <div class="promotional-products__item">
               <div class="promotional-products__img-wrapper">
-                <img class="promotional-products__img" src="img/promotional-products-img1.png">
+                <img class="promotional-products__img" src="/img/promotional-products-img1.png">
                 <span class="promotional-products__img-sales">
                   -15
                   <span class="promotional-products__procent">%</span>
@@ -188,7 +188,7 @@
             </div>
             <div class="promotional-products__item">
               <div class="promotional-products__img-wrapper">
-                <img class="promotional-products__img" src="img/promotional-products-img2.png">
+                <img class="promotional-products__img" src="/img/promotional-products-img2.png">
                 <span class="promotional-products__img-sales">
                   -20
                   <span class="promotional-products__procent">%</span>
@@ -200,7 +200,7 @@
             </div>
             <div class="promotional-products__item">
               <div class="promotional-products__img-wrapper">
-                <img class="promotional-products__img" src="img/promotional-products-img3.png">
+                <img class="promotional-products__img" src="/img/promotional-products-img3.png">
                 <span class="promotional-products__img-sales">
                   -12
                   <span class="promotional-products__procent">%</span>
@@ -233,21 +233,21 @@
           <div class="featured-products">
             <div class="promotional-products__item">
               <div class="promotional-products__img-wrapper">
-                <img src="img/featured-products-img1.png">
+                <img src="/img/featured-products-img1.png">
               </div>
               <h4 class="promotional-products__name">Camisetas Mujer</h4>
               <a href="#" class="promotional-products__link">Узнать цену</a>
             </div>
             <div class="promotional-products__item">
               <div class="promotional-products__img-wrapper">
-                <img src="img/featured-products-img2.png">
+                <img src="/img/featured-products-img2.png">
               </div>
               <h4 class="promotional-products__name">Boss Lady</h4>
               <a href="#" class="promotional-products__link">Узнать цену</a>
             </div>
             <div class="promotional-products__item">
               <div class="promotional-products__img-wrapper">
-                <img src="img/featured-products-img3.png">
+                <img src="/img/featured-products-img3.png">
               </div>
               <h4 class="promotional-products__name">Серьги</h4>
               <a href="#" class="promotional-products__link">Узнать цену</a>
@@ -272,7 +272,7 @@
           <div class="reviews">
             <div class="personal-offer">
               <div class="personal-offer__img-wrapper">
-                <img src="img/reviews-img1.png">
+                <img src="/img/reviews-img1.png">
               </div>
               <div class="personal-offer__wrapper">
                 <h3 class="personal-offer__title">
@@ -286,7 +286,7 @@
             </div>
             <div class="personal-offer">
               <div class="personal-offer__img-wrapper">
-                <img src="img/reviews-img2.png">
+                <img src="/img/reviews-img2.png">
               </div>
               <div class="personal-offer__wrapper">
                 <h3 class="personal-offer__title">
@@ -300,7 +300,7 @@
             </div>
             <div class="personal-offer">
               <div class="personal-offer__img-wrapper">
-                <img src="img/reviews-img3.png">
+                <img src="/img/reviews-img3.png">
               </div>
               <div class="personal-offer__wrapper">
                 <h3 class="personal-offer__title">
@@ -334,39 +334,39 @@
           </div>
           <div class="our-clients">
             <div class="our-clients__item">
-              <img class="our-clients__img" src="img/our-clients-img1.png">
+              <img class="our-clients__img" src="/img/our-clients-img1.png">
               <h4 class="our-clients__title">МТС</h4>
             </div>
             <div class="our-clients__item">
-              <img class="our-clients__img" src="img/our-clients-img2.png">
+              <img class="our-clients__img" src="/img/our-clients-img2.png">
               <h4 class="our-clients__title">Word of   Tanks Blitz</h4>
             </div>
             <div class="our-clients__item">
-              <img class="our-clients__img" src="img/our-clients-img3.png">
+              <img class="our-clients__img" src="/img/our-clients-img3.png">
               <h4 class="our-clients__title">Читай-город</h4>
             </div>
             <div class="our-clients__item">
-              <img class="our-clients__img" src="img/our-clients-img4.png">
+              <img class="our-clients__img" src="/img/our-clients-img4.png">
               <h4 class="our-clients__title">EVA  Коврики, Автоковрики ЕВА/Эва</h4>
             </div>
             <div class="our-clients__item">
-              <img class="our-clients__img" src="img/our-clients-img5.png">
+              <img class="our-clients__img" src="/img/our-clients-img5.png">
               <h4 class="our-clients__title">Школо танцев Social Dance Studio</h4>
             </div>
             <div class="our-clients__item">
-              <img class="our-clients__img" src="img/our-clients-img6.png">
+              <img class="our-clients__img" src="/img/our-clients-img6.png">
               <h4 class="our-clients__title">BBR Factory</h4>
             </div>
             <div class="our-clients__item">
-              <img class="our-clients__img" src="img/our-clients-img7.png">
+              <img class="our-clients__img" src="/img/our-clients-img7.png">
               <h4 class="our-clients__title">Турмания | Горящие туры Минск</h4>
             </div>
             <div class="our-clients__item">
-              <img class="our-clients__img" src="img/our-clients-img8.png">
+              <img class="our-clients__img" src="/img/our-clients-img8.png">
               <h4 class="our-clients__title">Fallout</h4>
             </div>
             <div class="our-clients__item">
-              <img class="our-clients__img" src="img/our-clients-img9.png">
+              <img class="our-clients__img" src="/img/our-clients-img9.png">
               <h4 class="our-clients__title">Путевка | Распродажа туров</h4>
             </div>
           </div>
