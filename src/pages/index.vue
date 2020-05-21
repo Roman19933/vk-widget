@@ -6,10 +6,10 @@
           <nuxt-link class="def-menu" target="_blank" to="/home">Главная</nuxt-link>
         </li>
         <li>
-          <nuxt-link class="def-menu" target="_blank" to="/catalog-sales">Каталог для продаж</nuxt-link>
+          <nuxt-link class="def-menu" target="_blank" to="/catalog/sales">Каталог для продаж</nuxt-link>
         </li>
         <li>
-          <nuxt-link class="def-menu" target="_blank" to="/catalog-nav">Каталог навигации</nuxt-link>
+          <nuxt-link class="def-menu" target="_blank" to="/catalog/nav">Каталог навигации</nuxt-link>
         </li>
         <li>
           <nuxt-link class="def-menu" target="_blank" to="/setup/actions">Виджет «Акционные товары»</nuxt-link>
@@ -41,7 +41,7 @@
           <nuxt-link class="def-menu" target="_blank" to="#">Помощь</nuxt-link>
         </li>
         <li>
-          <nuxt-link class="def-menu" target="_blank" to="#">Тарифы</nuxt-link>
+          <nuxt-link class="def-menu" target="_blank" to="/tarif">Тарифы</nuxt-link>
         </li>
         <li>
           <nuxt-link class="def-menu" target="_blank" to="#">История платежей</nuxt-link>
