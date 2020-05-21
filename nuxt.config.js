@@ -39,6 +39,7 @@ module.exports = {
   plugins: [
     '~/components',
     { src: '~plugins/axios-rest-client', ssr: false },
+    { src: '~plugins/vue-select', ssr: false },
   ],
   router: {
     prefetchLinks: process.env.NUXT_APP_MODE === 'production',
@@ -68,7 +69,7 @@ module.exports = {
     /*
     ** Run ESLint on save
     */
-    extend (config, { isDev, isClient }) {
+    extend(config, { isDev, isClient }) {
       if (isDev && isClient) {
         config.module.rules.push({
           enforce: 'pre',
