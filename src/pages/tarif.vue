@@ -199,7 +199,11 @@
                 <span class="checkbox-custom"></span>
                 <p class="label">
                   Я принимаю условия
-                  <a href="/policy.html" rel="nofollow" target="_blank">договора</a>
+                  <a
+                    href="#"
+                    rel="nofollow"
+                    v-b-modal="'modal-contract'"
+                  >договора</a>
                 </p>
               </label>
             </div>
@@ -208,10 +212,12 @@
       </div>
     </div>
     <app-modal-promocode/>
+    <app-modal-contract/>
   </div>
 </template>
 
 <script>
+import AppModalContract from "@/components/modal/AppModalContract.vue";
 import AppNavigationMenu from "@/components/AppNavigationMenu.vue";
 import AppModalPromocode from "@/components/modal/AppModalPromocode.vue";
 import AppSwitch from "@/components/form/AppSwitch.vue";
@@ -219,6 +225,7 @@ import AppSvgIcon from "@/components/AppSvgIcon.vue";
 
 export default {
   components: {
+    AppModalContract,
     AppNavigationMenu,
     AppModalPromocode,
     AppSwitch,
