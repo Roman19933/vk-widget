@@ -6,7 +6,7 @@
       <div class="item">
         <div class="item__title">
           <span>Пол</span>
-          <img src="img/lock.png" alt />
+          <img src="/img/lock.png" alt />
         </div>
         <div class="form-group">
           <v-select :options="sexData" placeholder="Выберите пол" v-model="formData.sex"></v-select>
@@ -15,7 +15,7 @@
       <div class="item">
         <div class="item__title">
           <span>Возраст</span>
-          <img src="img/lock.png" alt />
+          <img src="/img/lock.png" alt />
         </div>
         <div class="item__double">
           <div class="form-group">
@@ -29,48 +29,16 @@
       <div class="item">
         <div class="item__title">
           <span>День рождения</span>
-          <img src="img/lock.png" alt />
+          <img src="/img/lock.png" alt />
         </div>
         <div class="item__double item__double_radio">
-          <label class="radio">
-            <input
-              type="radio"
-              name="birth"
-              class="radio__input"
-              value="7 дней"
-              v-model="formData.bdate"
-            />
-            <span class="radio__custom"></span>
-            <span class="radio__text">7 дней</span>
-          </label>
-          <label class="radio">
-            <input
-              type="radio"
-              name="birth"
-              class="radio__input"
-              value="3 дня"
-              v-model="formData.bdate"
-            />
-            <span class="radio__custom"></span>
-            <span class="radio__text">3 дня</span>
-          </label>
-          <label class="radio">
-            <input
-              type="radio"
-              name="birth"
-              class="radio__input"
-              value="Сегодня"
-              v-model="formData.bdate"
-            />
-            <span class="radio__custom"></span>
-            <span class="radio__text">Сегодня</span>
-          </label>
+          <app-radio v-for="(item,index) in birthData" :key="index" :value="item" :data="formData" />
         </div>
       </div>
       <div class="item">
         <div class="item__title">
           <span>Семейное положение</span>
-          <img src="img/lock.png" alt />
+          <img src="/img/lock.png" alt />
         </div>
         <div class="form-group">
           <v-select
@@ -83,7 +51,7 @@
       <div class="item">
         <div class="item__title">
           <span>Город</span>
-          <img src="img/lock.png" alt />
+          <img src="/img/lock.png" alt />
         </div>
         <div class="form-group">
           <v-select :options="cityData" placeholder="Выберите город" v-model="formData.city"></v-select>
@@ -92,7 +60,7 @@
       <div class="item">
         <div class="item__title">
           <span>Устройство</span>
-          <img src="img/lock.png" alt />
+          <img src="/img/lock.png" alt />
         </div>
         <div class="form-group">
           <v-select
@@ -105,7 +73,7 @@
       <div class="item">
         <div class="item__title">
           <span>Состоит в сообществе</span>
-          <img src="img/lock.png" alt />
+          <img src="/img/lock.png" alt />
         </div>
         <div class="form-group form-group_textarea">
           <textarea name id placeholder="Введите ID сообществ" v-model="formData.groups"></textarea>
@@ -115,7 +83,7 @@
       <div class="item">
         <div class="item__title">
           <span>Не состоит в сообществе</span>
-          <img src="img/lock.png" alt />
+          <img src="/img/lock.png" alt />
         </div>
         <div class="form-group form-group_textarea">
           <textarea name id placeholder="Введите ID сообществ" v-model="formData.groups_exclude"></textarea>
@@ -125,7 +93,7 @@
       <div class="item">
         <div class="item__title">
           <span>ID пользователей</span>
-          <img src="img/lock.png" alt />
+          <img src="/img/lock.png" alt />
         </div>
         <div class="form-group form-group_textarea">
           <textarea name id placeholder="Введите ID сообществ" v-model="formData.users"></textarea>
@@ -135,7 +103,7 @@
       <div class="item">
         <div class="item__title">
           <span>Интересы второй половинки</span>
-          <img src="img/lock.png" alt />
+          <img src="/img/lock.png" alt />
         </div>
         <div class="form-group form-group_textarea">
           <textarea name id placeholder="Введите ID сообществ" v-model="formData.relationGroups"></textarea>
@@ -145,7 +113,7 @@
       <div class="item">
         <div class="item__title">
           <span>Интересы пользователя</span>
-          <img src="img/lock.png" alt />
+          <img src="/img/lock.png" alt />
         </div>
         <div class="form-group form-group_textarea">
           <textarea name id placeholder="Введите ID сообществ" v-model="formData.userInterests"></textarea>
@@ -155,7 +123,7 @@
       <div class="item">
         <div class="item__title">
           <span>Имя пользователя</span>
-          <img src="img/lock.png" alt />
+          <img src="/img/lock.png" alt />
         </div>
         <div class="form-group form-group_textarea">
           <textarea name id placeholder="Введите ID сообществ" v-model="formData.userName"></textarea>
@@ -165,7 +133,7 @@
       <div class="item">
         <div class="item__title">
           <span>Фамилия пользователя</span>
-          <img src="img/lock.png" alt />
+          <img src="/img/lock.png" alt />
         </div>
         <div class="form-group form-group_textarea">
           <textarea name id placeholder="Введите ID сообществ" v-model="formData.userSurname"></textarea>
@@ -177,12 +145,16 @@
 </template>
 
 <script>
+import AppRadio from "@/components/form/AppRadio";
 export default {
-  // props: {
-  //   formData: {
-  //     type: Object
-  //   }
-  // },
+  props: {
+    formData: {
+      type: Object
+    }
+  },
+  components: {
+    AppRadio
+  },
   data() {
     return {
       sexData: ["мужской", "женский", "любой"],
@@ -190,29 +162,8 @@ export default {
       statusData: ["женат", "не женат", "любой"],
       cityData: ["Москва", "Санкт-Петербург", "Казань"],
       deviceData: ["телефон", "планшет", "любой"],
-      formData: {
-        // sex: [],
-        age: { from: "", to: "" }
-        // bdate: [],
-        // relation: [],
-        // city: [],
-        // devices: [],
-        // userSurname: [],
-        // userName: [],
-        // userInterests: [],
-        // relationGroups: [],
-        // users: [],
-        // groups_exclude: [],
-        // groups: []
-      }
+      birthData: ["7 дней", "3 дня", "сегодня"]
     };
-  },
-  watch: {
-    formData(val) {
-      // handler(val) {
-      console.log(val);
-      // }
-    }
   }
 };
 </script>

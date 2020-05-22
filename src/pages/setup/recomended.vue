@@ -11,79 +11,37 @@
             <div class="widgets__switch">
               <span>Режим просмотра</span>
               <div class="widgets__switch-btn">
-                <input id="switchcheckbox" type="checkbox" class="hidden switchcheckbox" />
-                <label for="switchcheckbox" id="switch" class="switch"></label>
+                <label class="switch">
+                  <input type="checkbox" class="hidden switchcheckbox" />
+                  <span class="switch__circle"></span>
+                </label>
               </div>
             </div>
           </div>
           <div class="widgets__content">
             <div class="widgets__content-wrapper">
               <div class="widgets__content-title">
-                <img src="img/heart.png" alt />
-                <h4>{firstname}, успей на распродажу!</h4>
+                <img src="/img/heart.png" alt />
+                <a href="#">{{this.widget.data.title}}</a>
               </div>
               <div class="widgets__items widgets__items_product">
-                <div class="item">
-                  <div class="item__menu">
-                    <button class="item__menu-close">
-                      <img src="img/close-error.png" alt />
-                    </button>
-                    <a href="#" class="item__menu-burger">
-                      <img src="img/burger.png" alt />
-                    </a>
-                  </div>
-                  <div class="item__img">
-                    <input id="file" type="file" class="hidden" />
-                    <label for="file" id="upload"></label>
-                    <img src="img/photo.png" alt class="photo" />
-                  </div>
-                  <div class="item__info">
-                    <span class="item__title">Red T-shirt</span>
-                    <button class="item__add">+ добавить</button>
-                    <a href="#" class="item__sales">Узнать цену</a>
-                  </div>
-                </div>
-                <div class="item">
-                  <div class="item__menu">
-                    <button class="item__menu-close">
-                      <img src="img/close-error.png" alt />
-                    </button>
-                    <a href="#" class="item__menu-burger">
-                      <img src="img/burger.png" alt />
-                    </a>
-                  </div>
-                  <div class="item__img">
-                    <input id="file" type="file" class="hidden" />
-                    <label for="file" id="upload"></label>
-                    <img src="img/photo.png" alt class="photo" />
-                  </div>
-                  <div class="item__info">
-                    <span class="item__title">Red T-shirt</span>
-                    <button class="item__add">+ добавить</button>
-                    <a href="#" class="item__sales">Узнать цену</a>
-                  </div>
-                </div>
-                <div class="item">
-                  <div class="item__menu">
-                    <button class="item__menu-close">
-                      <img src="img/close-error.png" alt />
-                    </button>
-                    <a href="#" class="item__menu-burger">
-                      <img src="img/burger.png" alt />
-                    </a>
-                  </div>
-                  <div class="item__img">
-                    <input id="file" type="file" class="hidden" />
-                    <label for="file" id="upload"></label>
-                    <img src="img/photo.png" alt class="photo" />
-                  </div>
-                  <div class="item__info">
-                    <span class="item__title">Red T-shirt</span>
-                    <button class="item__add">+ добавить</button>
-                    <a href="#" class="item__sales">Узнать цену</a>
-                  </div>
-                </div>
-                <button class="add-item">+ Добавить элемент</button>
+                <draggable
+                  v-model="widget.data.tiles"
+                  group="product"
+                  class="widgets__items_draggable"
+                >
+                  <setup-item-product
+                    v-for="(item,index) in widget.data.tiles"
+                    :key="`item-${index}`"
+                    :item="item"
+                    @remove:item="removeItem(index)"
+                  />
+                  <button
+                    class="add-item"
+                    @click.prevent="addItem(widget.data.tiles)"
+                    v-if="widget.data.tiles.length < 10"
+                  >+ Добавить элемент</button>
+                </draggable>
               </div>
               <button class="widgets__content-add">+ Добавить подвал виджета</button>
             </div>
@@ -92,9 +50,6 @@
             </div>
           </div>
           <div class="widgets__footer">
-            <!-- <div class="widgets__save">
-                            <button class="gen-btn">Сохранить</button>
-            </div>-->
             <div class="widgets__rules">
               <p>
                 В виджетах запрещено размещение сторонней коммерческой и политической рекламы! Подробнее
@@ -107,7 +62,7 @@
           </div>
         </div>
         <div class="widgets__right">
-          <setup-form />
+          <setup-form :formData="widget.segmentation" />
         </div>
       </div>
     </div>
@@ -116,9 +71,77 @@
 
 <script>
 import SetupForm from "@/components/setup/SetupForm";
+import SetupItemProduct from "@/components/setup/SetupItemProduct";
 export default {
+  data() {
+    return {
+      widget: {
+        createdAt: "",
+        data: {
+          more: "",
+          more_url: "",
+          title: "{firstname}, успей на распродажу!",
+          title_counter: "",
+          title_url: "",
+          tiles: [
+            {
+              descr: "5 500 руб",
+              icon_id: "5686299_1676309",
+              icon_type: "160x160",
+              link: "Узнать цену",
+              link_url: "https://vk.com/editapp?id=7467558&section=admins",
+              title: "Шорти",
+              url: ""
+            }
+          ]
+        },
+        groupId: null,
+        id: null,
+        isActive: false,
+        name: "",
+        position: 0,
+        segmentation: {
+          sex: [],
+          age: { from: "", to: "" },
+          bdate: [],
+          relation: [],
+          city: [],
+          devices: [],
+          userSurname: [],
+          userName: [],
+          userInterests: [],
+          relationGroups: [],
+          users: [],
+          groups_exclude: [],
+          groups: []
+        },
+        type: "",
+        updatedAt: ""
+      }
+    };
+  },
+  methods: {
+    onSubmit() {
+      console.log("ok");
+    },
+    addItem(arr) {
+      arr.push({
+        descr: "",
+        icon_id: "",
+        icon_type: "",
+        link: "",
+        link_url: "",
+        title: "",
+        url: ""
+      });
+    },
+    removeItem(index) {
+      this.widget.data.tiles.splice(index, 1);
+    }
+  },
   components: {
-    SetupForm
+    SetupForm,
+    SetupItemProduct
   }
 };
 </script>

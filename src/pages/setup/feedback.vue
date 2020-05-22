@@ -47,7 +47,7 @@
           </div>
         </div>
         <div class="widgets__right">
-          <setup-form />
+          <!-- <setup-form /> -->
         </div>
       </div>
     </div>
@@ -55,10 +55,10 @@
 </template>
 
 <script>
-import SetupForm from "@/components/setup/SetupForm";
+// import SetupForm from "@/components/setup/SetupForm";
 export default {
   components: {
-    SetupForm
+    // SetupForm
   }
 };
 </script>

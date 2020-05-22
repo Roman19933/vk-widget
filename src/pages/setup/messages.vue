@@ -11,24 +11,20 @@
             <div class="widgets__switch">
               <span>Режим просмотра</span>
               <div class="widgets__switch-btn">
-                <input id="switchcheckbox" type="checkbox" class="hidden switchcheckbox" />
-                <label for="switchcheckbox" id="switch" class="switch"></label>
+                <label class="switch">
+                  <input type="checkbox" class="hidden switchcheckbox" />
+                  <span class="switch__circle"></span>
+                </label>
               </div>
             </div>
           </div>
           <div class="widgets__content">
             <div class="widgets__content-wrapper">
               <div class="widgets__content-title">
-                <img src="img/idea.png" alt />
-                <h4>Важное сообщение!</h4>
+                <img src="/img/idea.png" alt />
+                <a href="#">{{this.widget.data.title}}</a>
               </div>
-              <div class="widgets__content-text">
-                <p>
-                  Каждый подписчик сообщества получает скидку 3%
-                  на все товары
-                </p>
-                <span>Подпишитесь на сообщество и напишите нам</span>
-              </div>
+              <setup-item-messages :item="widget.data" />
               <button class="widgets__content-add">+ Добавить подвал виджета</button>
             </div>
             <div class="widgets__save">
@@ -48,16 +44,10 @@
                 >правил ВКонтакте!</a>
               </p>
             </div>
-            <!-- <div class="widgets__error">
-                            <p>Некоторые поля заполнены неверно. Внесите изменения и попробуйте снова.</p>
-                            <button>
-                                <img src="img/close-error.png" alt="">
-                            </button>
-            </div>-->
           </div>
         </div>
         <div class="widgets__right">
-          <setup-form />
+          <setup-form :formData="widget.segmentation" />
         </div>
       </div>
     </div>
@@ -66,9 +56,54 @@
 
 <script>
 import SetupForm from "@/components/setup/SetupForm";
+import SetupItemMessages from "@/components/setup/SetupItemMessages";
 export default {
+  data() {
+    return {
+      widget: {
+        createdAt: "",
+        data: {
+          descr: "Подпишитесь на сообщество и напишите нам",
+          more: "",
+          more_url: "",
+          text: "Каждый подписчик сообщества получает скидку 3% на все товары",
+          title: "Важное сообщение!",
+          title_counter: "",
+          title_url: ""
+        },
+        groupId: null,
+        id: null,
+        isActive: false,
+        name: "",
+        position: 0,
+        segmentation: {
+          sex: [],
+          age: { from: "", to: "" },
+          bdate: [],
+          relation: [],
+          city: [],
+          devices: [],
+          userSurname: [],
+          userName: [],
+          userInterests: [],
+          relationGroups: [],
+          users: [],
+          groups_exclude: [],
+          groups: []
+        },
+        type: "",
+        updatedAt: ""
+      }
+    };
+  },
+  methods: {
+    onSubmit() {
+      console.log("ok");
+    }
+  },
   components: {
-    SetupForm
+    SetupForm,
+    SetupItemMessages
   }
 };
 </script>
