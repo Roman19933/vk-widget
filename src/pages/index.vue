@@ -44,7 +44,7 @@
           <nuxt-link class="def-menu" target="_blank" to="/tarif">Тарифы</nuxt-link>
         </li>
         <li>
-          <nuxt-link class="def-menu" target="_blank" to="#">История платежей</nuxt-link>
+          <nuxt-link class="def-menu" target="_blank" to="/history">История платежей</nuxt-link>
         </li>
       </ul>
     </div>
