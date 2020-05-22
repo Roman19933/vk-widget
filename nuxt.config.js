@@ -47,6 +47,7 @@ module.exports = {
     '~/components',
     { src: '~plugins/axios-rest-client', ssr: false },
     { src: '~plugins/vue-select', ssr: false },
+    { src: '~plugins/vuedraggable', ssr: false },
   ],
   router: {
     prefetchLinks: process.env.NUXT_APP_MODE === 'production',

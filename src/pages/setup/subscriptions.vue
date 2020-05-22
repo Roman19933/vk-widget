@@ -11,8 +11,10 @@
             <div class="widgets__switch">
               <span>Режим просмотра</span>
               <div class="widgets__switch-btn">
-                <input id="switchcheckbox" type="checkbox" class="hidden switchcheckbox" />
-                <label for="switchcheckbox" id="switch" class="switch"></label>
+                <label class="switch">
+                  <input type="checkbox" class="hidden switchcheckbox" />
+                  <span class="switch__circle"></span>
+                </label>
               </div>
             </div>
           </div>
@@ -20,83 +22,26 @@
             <div class="widgets__content-wrapper">
               <div class="widgets__content-title">
                 <img src="img/fire.png" alt />
-                <h4>Рассылки с акциями</h4>
+                <a href="#">Рассылки с акциями</a>
               </div>
               <div class="widgets__items widgets__items_places">
-                <div class="widgets__content-places">
-                  <div class="widgets__content-avatar">
-                    <img src="img/photo.png" alt />
-                  </div>
-                  <div class="widgets__content-text widgets__content-text_places">
-                    <div class="places-content">
-                      <h4>Распродажи</h4>
-                      <span class="places-content__text">Только самые горячие скидки до 60%</span>
-                      <div class="places-content__info">
-                        <div class="places-content__location">
-                          <img src="img/marker.png" alt />
-                          <!-- <span>ул. Советская, 33</span> -->
-                          <button class="item__add">+ добавить</button>
-                        </div>
-                        <div class="places-content__location">
-                          <img src="img/time.png" alt />
-                          <!-- <span>8:00 - 20:00 (без выходных)</span> -->
-                          <button class="item__add">+ добавить</button>
-                        </div>
-                      </div>
-                    </div>
-                    <button class="gen-btn">Подписаться</button>
-                  </div>
-                </div>
-                <div class="widgets__content-places">
-                  <div class="widgets__content-avatar">
-                    <img src="img/photo.png" alt />
-                  </div>
-                  <div class="widgets__content-text widgets__content-text_places">
-                    <div class="places-content">
-                      <h4>Распродажи</h4>
-                      <span class="places-content__text">Только самые горячие скидки до 60%</span>
-                      <div class="places-content__info">
-                        <div class="places-content__location">
-                          <img src="img/marker.png" alt />
-                          <!-- <span>ул. Советская, 33</span> -->
-                          <button class="item__add">+ добавить</button>
-                        </div>
-                        <div class="places-content__location">
-                          <img src="img/time.png" alt />
-                          <!-- <span>8:00 - 20:00 (без выходных)</span> -->
-                          <button class="item__add">+ добавить</button>
-                        </div>
-                      </div>
-                    </div>
-                    <button class="gen-btn">Подписаться</button>
-                  </div>
-                </div>
-                <div class="widgets__content-places">
-                  <div class="widgets__content-avatar">
-                    <img src="img/photo.png" alt />
-                  </div>
-                  <div class="widgets__content-text widgets__content-text_places">
-                    <div class="places-content">
-                      <h4>Распродажи</h4>
-                      <span class="places-content__text">Только самые горячие скидки до 60%</span>
-                      <div class="places-content__info">
-                        <div class="places-content__location">
-                          <img src="img/marker.png" alt />
-                          <!-- <span>ул. Советская, 33</span> -->
-                          <button class="item__add">+ добавить</button>
-                        </div>
-                        <div class="places-content__location">
-                          <img src="img/time.png" alt />
-                          <!-- <span>8:00 - 20:00 (без выходных)</span> -->
-                          <button class="item__add">+ добавить</button>
-                        </div>
-                      </div>
-                    </div>
-                    <button class="gen-btn">Подписаться</button>
-                  </div>
-                </div>
-
-                <button class="add-item">+ Добавить элемент</button>
+                <draggable
+                  v-model="widget.data.rows"
+                  group="product"
+                  class="widgets__items_draggable"
+                >
+                  <setup-item-places
+                    v-for="(item,index) in widget.data.rows"
+                    :key="`item-${index}`"
+                    :item="item"
+                    @remove:item="removeItem(index)"
+                  />
+                  <button
+                    class="add-item"
+                    @click.prevent="addItem(widget.data.rows)"
+                    v-if="widget.data.rows.length < 6"
+                  >+ Добавить элемент</button>
+                </draggable>
               </div>
               <!-- <button class="add-item">+ Добавить элемент</button> -->
               <button class="widgets__content-add">+ Добавить подвал виджета</button>
@@ -121,7 +66,7 @@
           </div>
         </div>
         <div class="widgets__right">
-          <setup-form />
+          <setup-form :formData="widget.segmentation" />
         </div>
       </div>
     </div>
@@ -130,9 +75,81 @@
 
 <script>
 import SetupForm from "@/components/setup/SetupForm";
+import SetupItemPlaces from "@/components/setup/SetupItemPlaces";
 export default {
+  data() {
+    return {
+      widget: {
+        createdAt: "",
+        data: {
+          more: "",
+          more_url: "",
+          title: "{firstname}, Время поднять навык в SMM",
+          title_counter: "",
+          title_url: "",
+          rows: [
+            {
+              address: "ул. Советская, 33",
+              button: "Подписаться",
+              button_url: "https://vk.com/apps?act=manage",
+              descr: "Более 3000 пар обуви в одном месте",
+              icon_id: "",
+              text: null,
+              time: "8:00-20:00(без выходных)",
+              title: "Магазин «Дом обуви»",
+              title_url: ""
+            }
+          ]
+        },
+        groupId: null,
+        id: null,
+        isActive: false,
+        name: "",
+        position: 0,
+        segmentation: {
+          sex: [],
+          age: { from: "", to: "" },
+          bdate: [],
+          relation: [],
+          city: [],
+          devices: [],
+          userSurname: [],
+          userName: [],
+          userInterests: [],
+          relationGroups: [],
+          users: [],
+          groups_exclude: [],
+          groups: []
+        },
+        type: "",
+        updatedAt: ""
+      }
+    };
+  },
+  methods: {
+    onSubmit() {
+      console.log("ok");
+    },
+    addItem(arr) {
+      arr.push({
+        address: "",
+        button: "",
+        button_url: "",
+        descr: "",
+        icon_id: "",
+        text: null,
+        time: "",
+        title: "",
+        title_url: ""
+      });
+    },
+    removeItem(index) {
+      this.widget.data.rows.splice(index, 1);
+    }
+  },
   components: {
-    SetupForm
+    SetupForm,
+    SetupItemPlaces
   }
 };
 </script>

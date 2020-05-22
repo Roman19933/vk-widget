@@ -11,47 +11,37 @@
             <div class="widgets__switch">
               <span>Режим просмотра</span>
               <div class="widgets__switch-btn">
-                <input id="switchcheckbox" type="checkbox" class="hidden switchcheckbox" />
-                <label for="switchcheckbox" id="switch" class="switch"></label>
+                <label class="switch">
+                  <input type="checkbox" class="hidden switchcheckbox" />
+                  <span class="switch__circle"></span>
+                </label>
               </div>
             </div>
           </div>
           <div class="widgets__content">
             <div class="widgets__content-wrapper">
               <div class="widgets__content-title">
-                <img src="img/box.png" alt />
-                <h4>{firstname}, хочешь купон на скидку в подарок?</h4>
+                <img src="/img/box.png" alt />
+                <a href="#">{{this.widget.data.title}}</a>
               </div>
               <div class="widgets__items widgets__items_cover">
-                <div class="item">
-                  <div class="item__img">
-                    <input id="file" type="file" class="hidden" />
-                    <label for="file" id="upload"></label>
-                    <img src="img/photo.png" alt class="photo" />
-                  </div>
-                  <div class="item__info">
-                    <div class="item__info-cover">
-                      <a href="#">Жаркое солнце в Майами</a>
-                      <span>30% скидка, 4 звезды</span>
-                    </div>
-                    <button class="gen-btn">Забронировать</button>
-                  </div>
-                </div>
-                <div class="item">
-                  <div class="item__img">
-                    <input id="file" type="file" class="hidden" />
-                    <label for="file" id="upload"></label>
-                    <img src="img/photo.png" alt class="photo" />
-                  </div>
-                  <div class="item__info">
-                    <div class="item__info-cover">
-                      <a href="#">Загадочный Египет</a>
-                      <span>5% скидка, 3 звезды</span>
-                    </div>
-                    <button class="gen-btn">Забронировать</button>
-                  </div>
-                </div>
-                <button class="add-item">+ Добавить элемент</button>
+                <draggable
+                  v-model="widget.data.rows"
+                  group="product"
+                  class="widgets__items_draggable"
+                >
+                  <setup-item-cover
+                    v-for="(item,index) in widget.data.rows"
+                    :key="`item-${index}`"
+                    :item="item"
+                    @remove:item="removeItem(index)"
+                  />
+                  <button
+                    class="add-item"
+                    @click.prevent="addItem(widget.data.rows)"
+                    v-if="widget.data.rows.length < 3"
+                  >+ Добавить элемент</button>
+                </draggable>
               </div>
               <button class="widgets__content-add">+ Добавить подвал виджета</button>
             </div>
@@ -60,9 +50,6 @@
             </div>
           </div>
           <div class="widgets__footer">
-            <!-- <div class="widgets__save">
-                            <button class="gen-btn">Сохранить</button>
-            </div>-->
             <div class="widgets__rules">
               <p>
                 В виджетах запрещено размещение сторонней коммерческой и политической рекламы! Подробнее
@@ -75,13 +62,13 @@
             <!-- <div class="widgets__error">
                             <p>Некоторые поля заполнены неверно. Внесите изменения и попробуйте снова.</p>
                             <button>
-                                <img src="img/close-error.png" alt="">
+                                <img src="/img/close-error.png" alt="">
                             </button>
             </div>-->
           </div>
         </div>
         <div class="widgets__right">
-          <setup-form />
+          <setup-form :formData="widget.segmentation" />
         </div>
       </div>
     </div>
@@ -90,9 +77,76 @@
 
 <script>
 import SetupForm from "@/components/setup/SetupForm";
+import SetupItemCover from "@/components/setup/SetupItemCover";
+
 export default {
+  data() {
+    return {
+      widget: {
+        createdAt: "",
+        data: {
+          more: "",
+          more_url: "",
+          title: "{firstname}, хочешь купон на скидку в подарок?",
+          title_counter: "",
+          title_url: "",
+          rows: [
+            {
+              button: "Забронировать",
+              button_url: "https://vk.com/apps?act=manage",
+              cover_id: "5686299_1676775",
+              descr: "30% скидка, 4 звезды",
+              title: "Жаркое солнце в Майами",
+              url: ""
+            }
+          ]
+        },
+        groupId: null,
+        id: null,
+        isActive: false,
+        name: "",
+        position: 0,
+        segmentation: {
+          sex: [],
+          age: { from: "", to: "" },
+          bdate: [],
+          relation: [],
+          city: [],
+          devices: [],
+          userSurname: [],
+          userName: [],
+          userInterests: [],
+          relationGroups: [],
+          users: [],
+          groups_exclude: [],
+          groups: []
+        },
+        type: "",
+        updatedAt: ""
+      }
+    };
+  },
+  methods: {
+    onSubmit() {
+      console.log("ok");
+    },
+    addItem(arr) {
+      arr.push({
+        button: "",
+        button_url: "",
+        cover_id: "",
+        descr: "",
+        title: "",
+        url: ""
+      });
+    },
+    removeItem(index) {
+      this.widget.data.rows.splice(index, 1);
+    }
+  },
   components: {
-    SetupForm
+    SetupForm,
+    SetupItemCover
   }
 };
 </script>
