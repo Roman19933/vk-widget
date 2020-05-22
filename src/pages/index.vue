@@ -38,7 +38,7 @@
           >Виджет «подписка на рассылки»</nuxt-link>
         </li>
         <li>
-          <nuxt-link class="def-menu" target="_blank" to="#">Помощь</nuxt-link>
+          <nuxt-link class="def-menu" target="_blank" to="/faq">Помощь</nuxt-link>
         </li>
         <li>
           <nuxt-link class="def-menu" target="_blank" to="/tarif">Тарифы</nuxt-link>
