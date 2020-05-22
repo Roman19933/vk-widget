@@ -21,7 +21,7 @@
             <div class="widgets__content-wrapper">
               <div class="widgets__content-title">
                 <img src="/img/heart.png" alt />
-                <a href="#">{{this.widget.data.title}}</a>
+                <a href="#" v-b-modal.default>{{this.widget.data.title}}</a>
               </div>
               <div class="widgets__items widgets__items_product">
                 <draggable
@@ -65,12 +65,18 @@
         </div>
       </div>
     </div>
+    <setup-modal-upload />
+    <setup-modal-title />
+    <setup-modal-sub />
   </form>
 </template>
 
 <script>
 import SetupForm from "@/components/setup/SetupForm";
 import SetupItemProduct from "@/components/setup/SetupItemProduct";
+import SetupModalTitle from "@/components/modal/SetupModalTitle";
+import SetupModalSub from "@/components/modal/SetupModalSub";
+import SetupModalUpload from "@/components/modal/SetupModalUpload";
 export default {
   data() {
     return {
@@ -140,7 +146,10 @@ export default {
   },
   components: {
     SetupForm,
-    SetupItemProduct
+    SetupItemProduct,
+    SetupModalTitle,
+    SetupModalSub,
+    SetupModalUpload
   }
 };
 </script>
