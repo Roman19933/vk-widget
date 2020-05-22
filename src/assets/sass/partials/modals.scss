@@ -38,8 +38,8 @@
         z-index: 999;
         position: relative;
         margin: auto;
-        width: 710px;
-        height: 260px;
+        max-width: 710px;
+        // height: 260px;
         box-shadow: 0 2px 5px rgba(33, 32, 61, 0.35);
         border-radius: 6px;
         background-color: #3a3b5e;
@@ -335,6 +335,7 @@
     // }
 }
 .promocode {
+    height: 260px;
     .modal__text {
         margin-bottom: 13px;
     }
