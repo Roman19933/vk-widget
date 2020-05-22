@@ -157,6 +157,9 @@
        &-title {
             display: flex;
             align-items: center;
+            h4 {
+                font-size: 13px;
+            }
        }
     }
     &__content {

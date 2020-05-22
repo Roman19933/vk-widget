@@ -14,9 +14,17 @@
       <img src="/img/photo.png" alt class="photo" />
     </div>
     <div class="item__info">
-      <a href="#" class="item__title">{{!!item.title ? item.title : "+ добавить"}}</a>
-      <a href="#" class="item__price">{{!!item.descr ? item.descr : "+ добавить"}}</a>
-      <a href="#" class="item__sales">{{!!item.link ? item.link : "+ добавить"}}</a>
+      <a href="#" class="item__title" v-b-modal.default>{{!!item.title ? item.title : "+ добавить"}}</a>
+      <a
+        href="#"
+        class="item__price"
+        v-b-modal.subscribe
+      >{{!!item.descr ? item.descr : "+ добавить"}}</a>
+      <a
+        :href="item.link_url"
+        class="item__sales"
+        v-b-modal.default
+      >{{!!item.link ? item.link : "+ добавить"}}</a>
     </div>
   </div>
 </template>
