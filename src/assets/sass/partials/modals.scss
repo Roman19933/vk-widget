@@ -85,8 +85,11 @@
         padding-right: 0!important;
         width: 232px;
         &-content {
-            height: 204px;
+            // height: 204px;
+            // padding-top: 32px;
+            height: max-content;
             padding-top: 32px;
+            padding-bottom: 32px;
             .modal__title {
                 padding: 0 29px;
                 text-transform: uppercase;
