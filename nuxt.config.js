@@ -24,12 +24,19 @@ module.exports = {
    */
   modules: [
     ['@nuxtjs/dotenv', { path: '', systemvars: true }],
+    
   ],
   /**
    * Plugins
    */
+  modules: ['bootstrap-vue/nuxt'],
+  bootstrapVue: {
+    componentPlugins: [
+      'ModalPlugin'
+    ]
+  },
   buildModules: [
-    '@nuxtjs/moment'
+    '@nuxtjs/moment',
   ],
   moment: {
     defaultLocale: 'ru',

@@ -7,12 +7,6 @@
 
 <script>
   export default {
-    props: {
-      classWrap: {
-        type: String,
-        default: ''
-      }
-    },
     data () {
       return {
         val: false

@@ -4,8 +4,16 @@
     <div class="vidget-page__wrapper">
       <div class="vidget-page__head">
         <h1 class="vidget-page__title">выберите подходящий тариф для сообщества</h1>
-        <button class="vidget-page__promocode">Ввести промокод</button>
+        <button
+          v-b-modal="'modal-promocode'"
+          class="vidget-page__promocode"
+        >Ввести промокод</button>
       </div>
+      <b-modal id="bv-modal-example" hide-header hide-footer>
+        <div class="d-block text-center">
+          <h3>Hello From This Modal!</h3>
+        </div>
+      </b-modal>
       <div class="tarif">
         <div class="tarif__wrapper">
           <div class="tarif__blocks">
@@ -172,7 +180,7 @@
                 <label for="switchcheckbox3" id="switch" class="switch"></label>-->
                 <span class="tarif-payment__switch-name active">год</span>
               </div>
-              <a href="#" class="tarif-payment__history">история платежей</a>
+              <nuxt-link to="/history" class="tarif-payment__history">история платежей</nuxt-link>
             </div>
             <p class="tarif-payment__info">
               * Чтобы получить счет для юридического лица, напишите нам в сообщения сообщества:
@@ -199,17 +207,20 @@
         </div>
       </div>
     </div>
+    <app-modal-promocode/>
   </div>
 </template>
 
 <script>
 import AppNavigationMenu from "@/components/AppNavigationMenu.vue";
+import AppModalPromocode from "@/components/modal/AppModalPromocode.vue";
 import AppSwitch from "@/components/form/AppSwitch.vue";
 import AppSvgIcon from "@/components/AppSvgIcon.vue";
 
 export default {
   components: {
     AppNavigationMenu,
+    AppModalPromocode,
     AppSwitch,
     AppSvgIcon
   },
