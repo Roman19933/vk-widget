@@ -1,6 +1,8 @@
 <template>
   <div :class="[{active: collaps}, wrapClass]">
-    <div @click="collaps = !collaps">
+    <div
+      :class="titleClass"
+      @click="collaps = !collaps">
       <slot name="title"></slot>
     </div>
       <transition
@@ -20,6 +22,14 @@
 <script>
   export default {
     props: {
+      col: {
+        type: Boolean,
+        default: false
+      },
+      titleClass: {
+        type: String,
+        default: ''
+      },
       wrapClass: {
         type: String,
         default: ''
@@ -27,7 +37,7 @@
     },
     data() {
       return {
-        collaps: false,
+        collaps: this.col,
       }
     },
     methods: {
@@ -56,6 +66,13 @@
     },
     mounted() {
 
+    },
+    watch: {
+      col: {
+        handler(bef) {
+          this.collaps = bef
+        }
+      }
     }
   }
 </script>

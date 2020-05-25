@@ -176,8 +176,6 @@
               <div class="tarif-payment__switch">
                 <span class="tarif-payment__switch-name">месяц</span>
                 <app-switch @switch-val="dateTarif" />
-                <!-- <input v-model="dateTarif" id="switchcheckbox3" type="checkbox" class="hidden switchcheckbox" />
-                <label for="switchcheckbox3" id="switch" class="switch"></label>-->
                 <span class="tarif-payment__switch-name active">год</span>
               </div>
               <nuxt-link to="/history" class="tarif-payment__history">история платежей</nuxt-link>
@@ -268,6 +266,3 @@ export default {
   }
 };
 </script>
-
-<style lang="scss" scoped>
-</style>

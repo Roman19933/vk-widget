@@ -20,10 +20,15 @@
         position: relative;
     }
     &-content {
+        width: auto;
+        margin: auto;
         border: none;
         background-color: transparent;
     }
     &-dialog {
+        display: flex;
+        max-width: none;
+        margin: 1.75rem auto;
         &__widgets {
             max-width: 270px;
             &_upload {
@@ -39,7 +44,7 @@
         position: relative;
         margin: auto;
         max-width: 710px;
-        // height: 260px;
+        height: 260px;
         box-shadow: 0 2px 5px rgba(33, 32, 61, 0.35);
         border-radius: 6px;
         background-color: #3a3b5e;
@@ -150,12 +155,6 @@
         font-size: 12px;
         font-family: 'RobotoLight';
     }
-    &.version {
-        .modal__wrapper {
-            width: 890px;
-            height: 523px;
-        }
-    }
     &.contract {
         overflow-y: auto;
         height: 100%;
@@ -224,6 +223,7 @@
         position: absolute;
         bottom: 0;
         left: 0;
+        z-index: -1;
     }
     .modal {
         &__title {
@@ -337,8 +337,13 @@
     //     }
     // }
 }
+.version {
+    width: 890px;
+    height: 523px;
+}
 .promocode {
     height: 260px;
+    width: 710px;
     .modal__text {
         margin-bottom: 13px;
     }
@@ -354,6 +359,8 @@
     }
 }
 .contract {
+    max-width: 657px;
+    height: auto;
     &__wrapper {
         padding: 20px 25px;
         font-size: 13px;
@@ -449,11 +456,5 @@
                 color: #ffc25e;
             }
         }
-    }
-}
-@media (max-width: 576px) {
-    .modal-dialog {
-        max-width: none;
-        margin: 1.75rem auto;
     }
 }

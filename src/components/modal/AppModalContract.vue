@@ -1,5 +1,5 @@
 <template>
-  <b-modal id="modal-contract" hide-header hide-footer>
+  <b-modal id="modal-contract" hide-header hide-footer centered>
     <div class="modal__wrapper contract">
       <button
         class="modal__close"
