@@ -7,9 +7,15 @@
 
 <script>
   export default {
-    data () {
+    props: {
+      value: {
+        type: Boolean,
+        default: false
+      }
+    },
+    data() {
       return {
-        val: false
+        val: this.value
       }
     },
     watch: {

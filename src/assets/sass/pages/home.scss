@@ -24,7 +24,7 @@
                 border: none;
             }
         }
-        &__switch,  &__user, &__edit, &__look, &__delete {
+        &__switch, &__user, &__edit, &__look, &__delete {
             margin-right: 18px;
             position: relative;
             &:hover {
@@ -62,6 +62,7 @@
     min-width: 178px;
     position: absolute;
     right: 50px;
+    left: auto;
     display: none;
     box-shadow: 0 2px 5px rgba(10, 10, 10, 0.4);
     border-radius: 2px;

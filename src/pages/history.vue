@@ -76,13 +76,11 @@
 
 <script>
 import AppNavigationMenu from "@/components/AppNavigationMenu.vue";
-import AppSwitch from "@/components/form/AppSwitch.vue";
 import AppSvgIcon from "@/components/AppSvgIcon.vue";
 
 export default {
   components: {
     AppNavigationMenu,
-    AppSwitch,
     AppSvgIcon
   },
   data() {

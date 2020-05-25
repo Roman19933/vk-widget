@@ -3,7 +3,7 @@
     <div>
       <ul>
         <li>
-          <nuxt-link class="def-menu" target="_blank" to="/home">Главная</nuxt-link>
+          <nuxt-link class="def-menu" to="/home">Главная</nuxt-link>
         </li>
         <li>
           <nuxt-link class="def-menu" target="_blank" to="/catalog/sales">Каталог для продаж</nuxt-link>
