@@ -3,7 +3,7 @@
     <div class="main__wrapper">
       <div class="main__head wrapper">
         <div class="main__head-title">
-          <img src="img/logo_widget.png" alt />
+          <img src="/img/logo_widget.png" alt />
           <h4>
             Превращайте 30% посетителей сообщества
             <span>в заявки при помощи умных виджетов Spycat</span>
@@ -19,7 +19,7 @@
           <button class="gen-btn">Подключить клиенту</button>
         </div>
         <div class="main__head-footer">
-          <img src="img/scroll.png" alt />
+          <img src="/img/scroll.png" alt />
           <span>Сервис для предпринимателей и SMM-специалистов</span>
         </div>
       </div>
@@ -27,7 +27,7 @@
         <div class="main__info-wrapper wrapper">
           <h4>ДЛЯ ЧЕГО НУЖЕН SPYCAT?</h4>
           <div class="main__info-content">
-            <img src="img/logo_widgets.png" alt />
+            <img src="/img/logo_widgets.png" alt />
             <div class="main__info-p">
               <p>
                 Вы сделали дизайн сообщества, публикуете посты, настроили рекламу, получаете переходы,а
