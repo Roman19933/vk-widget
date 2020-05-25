@@ -6,6 +6,9 @@
           <nuxt-link class="def-menu" to="/home">Главная</nuxt-link>
         </li>
         <li>
+          <nuxt-link class="def-menu" target="_blank" to="/main">Main</nuxt-link>
+        </li>
+        <li>
           <nuxt-link class="def-menu" target="_blank" to="/catalog/sales">Каталог для продаж</nuxt-link>
         </li>
         <li>

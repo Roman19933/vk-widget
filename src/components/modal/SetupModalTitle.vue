@@ -21,7 +21,7 @@
         <div class="widgets-setting__input">
           <span class="modal__title">ссылка</span>
           <div class="form-group">
-            <input type="text" placeholder="Ваш промокод" />
+            <input type="text" placeholder="Ваш промокод" v-model="input1" />
           </div>
         </div>
         <div class="widgets-setting__btn">
@@ -57,14 +57,30 @@
         </div>
       </div>
     </div>
+    <p>{{this.input1}}</p>
   </b-modal>
 </template>
 <script>
 export default {
   data() {
     return {
-      show: false
+      show: false,
+      input1: ""
     };
+  },
+  watch: {
+    input1(val) {
+      // console.log(val);
+      let val1 = val.includes("{");
+      if (val1) {
+        console.log(val1);
+      }
+    }
   }
+  // methods: {
+  //   a() {
+  //     console.log(this.input1);
+  //   }
+  // }
 };
 </script>
