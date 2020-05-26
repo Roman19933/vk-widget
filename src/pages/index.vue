@@ -1,73 +1,329 @@
 <template>
-  <section class="container">
-    <div>
-      <ul>
-        <li>
-          <nuxt-link class="def-menu" to="/home">Главная</nuxt-link>
-        </li>
-        <li>
-          <nuxt-link class="def-menu" target="_blank" to="/main">Main</nuxt-link>
-        </li>
-        <li>
-          <nuxt-link class="def-menu" target="_blank" to="/catalog/sales">Каталог для продаж</nuxt-link>
-        </li>
-        <li>
-          <nuxt-link class="def-menu" target="_blank" to="/catalog/nav">Каталог навигации</nuxt-link>
-        </li>
-        <li>
-          <nuxt-link class="def-menu" target="_blank" to="/setup/actions">Виджет «Акционные товары»</nuxt-link>
-          <nuxt-link class="def-menu" target="_blank" to="/setup/clients">Виджет «наши клиенты»</nuxt-link>
-          <nuxt-link class="def-menu" target="_blank" to="/setup/cover">Виджет «Акции в обложках»</nuxt-link>
-          <nuxt-link class="def-menu" target="_blank" to="/setup/events">Виджет «Мероприятие»</nuxt-link>
-          <nuxt-link class="def-menu" target="_blank" to="/setup/feedback">Виджет «отзывы»</nuxt-link>
-          <nuxt-link class="def-menu" target="_blank" to="/setup/messages">Виджет «важное сообщение»</nuxt-link>
-          <nuxt-link class="def-menu" target="_blank" to="/setup/peoples">Виджет «меню сообщества»</nuxt-link>
-          <nuxt-link
-            class="def-menu"
-            target="_blank"
-            to="/setup/personal"
-          >Виджет «Персональное предложение»</nuxt-link>
-          <nuxt-link class="def-menu" target="_blank" to="/setup/places">Виджет «Точки продаж»</nuxt-link>
-          <nuxt-link
-            class="def-menu"
-            target="_blank"
-            to="/setup/recomended"
-          >Виджет «Рекомендованные товары»</nuxt-link>
-          <nuxt-link class="def-menu" target="_blank" to="/setup/sales">Виджет "Акция и роспродажа"</nuxt-link>
-          <nuxt-link
-            class="def-menu"
-            target="_blank"
-            to="/setup/subscriptions"
-          >Виджет «подписка на рассылки»</nuxt-link>
-        </li>
-        <li>
-          <nuxt-link class="def-menu" target="_blank" to="/faq">Помощь</nuxt-link>
-        </li>
-        <li>
-          <nuxt-link class="def-menu" target="_blank" to="/tarif">Тарифы</nuxt-link>
-        </li>
-        <li>
-          <nuxt-link class="def-menu" target="_blank" to="/history">История платежей</nuxt-link>
-        </li>
-      </ul>
+  <div class="vidget-page">
+    <app-navigation-menu />
+    <div class="vidget-page__wrapper">
+      <div class="vidget-page__head">
+        <h1 class="vidget-page__title">Мои виджеты</h1>
+        <button class="vidget-page__add gen-btn">Создать виджет</button>
+      </div>
+      <div
+        class="vidget-none"
+        v-if="vidgets.length == 0"
+      >
+        <div class="vidget-none__wrapper">
+          <img src="img/PIT.svg" alt="" class="vidget-none__img">
+          <p class="vidget-none__text">
+            Дружище, у тебя еще нет виджетов.
+            Не пора ли их создать?
+          </p>
+          <a href="#" class="vidget-none__link gen-btn">Создать виджет</a>
+        </div>
+      </div>
+      <div
+        class="home"
+        v-else
+      >
+        <div class="home__wrapper">
+          <ul class="home__blocks">
+            <li
+              v-for="(vidget, index) in vidgets"
+              :key="index"
+              class="home-block"
+            >
+              <div class="home-block__title">
+                <p class="home-block__icon">
+                  <img src="img/home-sort.svg" alt />
+                </p>
+                <p class="home-block__name">Скидки!</p>
+              </div>
+              <p class="home-block__text">Акции и скидки</p>
+              <div class="home-block__events">
+                <div class="home-block__switch">
+                  <div class="popover">
+                    <div class="popover__wrapper">
+                      <span>Опубликовать виджет</span>
+                    </div>
+                  </div>
+                  <app-switch v-model="vidget.switch" @switch-val="modalPublic($event), vidget.switch = !vidget.switch"/>
+                </div>
+                <a href="#" class="home-block__user">
+                  <img src="img/home-user.svg" alt />
+                  <div class="popover">
+                    <div class="popover__wrapper">
+                      <span>Аудитория</span>
+                      <span>Возраст: от 15 до 66</span>
+                      <span>Пол: женский</span>
+                      <span>ДР: сегодня</span>
+                      <span>
+                        Семейное положение: не
+                        женат/не замужем
+                      </span>
+                    </div>
+                  </div>
+                </a>
+                <a href="#" class="home-block__edit">
+                  <img src="img/home-register.png" alt />
+                  <div class="popover">
+                    <div class="popover__wrapper">
+                      <span>Редактировать виджет</span>
+                    </div>
+                  </div>
+                </a>
+                <a href="#" class="home-block__look">
+                  <img src="img/home-sheet.png" alt />
+                  <div class="popover">
+                    <div class="popover__wrapper">
+                      <span>Создать копию</span>
+                    </div>
+                  </div>
+                </a>
+                <button class="home-block__delete">
+                  <img src="img/home-trash.png" alt />
+                  <div class="popover">
+                    <div class="popover__wrapper">
+                      <span>Удалить виджет</span>
+                    </div>
+                  </div>
+                </button>
+              </div>
+            </li>
+            <!-- <li class="home-block">
+              <div class="home-block__title">
+                <p class="home-block__icon">
+                  <img src="img/home-sort.svg" alt />
+                </p>
+                <p class="home-block__name">Скидки!</p>
+              </div>
+              <p class="home-block__text">Акции и скидки</p>
+              <div class="home-block__events">
+                <div class="home-block__switch">
+                  <div class="popover">
+                    <div class="popover__wrapper">
+                      <span>Опубликовать виджет</span>
+                    </div>
+                  </div>
+                  <input id="switchcheckbox1" type="checkbox" class="hidden switchcheckbox" />
+                  <label for="switchcheckbox1" id="switch" class="switch"></label>
+                </div>
+                <a href="#" class="home-block__user">
+                  <img src="img/home-user.svg" alt />
+                  <div class="popover">
+                    <div class="popover__wrapper">
+                      <span>Аудитория</span>
+                      <span>Возраст: от 15 до 66</span>
+                      <span>Пол: женский</span>
+                      <span>ДР: сегодня</span>
+                      <span>
+                        Семейное положение: не
+                        женат/не замужем
+                      </span>
+                    </div>
+                  </div>
+                </a>
+                <a href="#" class="home-block__edit">
+                  <img src="img/home-register.png" alt />
+                  <div class="popover">
+                    <div class="popover__wrapper">
+                      <span>Редактировать виджет</span>
+                    </div>
+                  </div>
+                </a>
+                <a href="#" class="home-block__look">
+                  <img src="img/home-sheet.png" alt />
+                  <div class="popover">
+                    <div class="popover__wrapper">
+                      <span>Создать копию</span>
+                    </div>
+                  </div>
+                </a>
+                <button class="home-block__delete">
+                  <img src="img/home-trash.png" alt />
+                  <div class="popover">
+                    <div class="popover__wrapper">
+                      <span>Удалить виджет</span>
+                    </div>
+                  </div>
+                </button>
+              </div>
+            </li>
+            <li class="home-block">
+              <div class="home-block__title">
+                <p class="home-block__icon">
+                  <img src="img/home-sort.svg" alt />
+                </p>
+                <p class="home-block__name">Скидки!</p>
+              </div>
+              <p class="home-block__text">Акции и скидки</p>
+              <div class="home-block__events">
+                <div class="home-block__switch">
+                  <div class="popover">
+                    <div class="popover__wrapper">
+                      <span>Опубликовать виджет</span>
+                    </div>
+                  </div>
+                  <input id="switchcheckbox2" type="checkbox" class="hidden switchcheckbox" />
+                  <label for="switchcheckbox2" id="switch" class="switch"></label>
+                </div>
+                <a href="#" class="home-block__user">
+                  <img src="img/home-user.svg" alt />
+                  <div class="popover">
+                    <div class="popover__wrapper">
+                      <span>Аудитория</span>
+                      <span>Возраст: от 15 до 66</span>
+                      <span>Пол: женский</span>
+                      <span>ДР: сегодня</span>
+                      <span>
+                        Семейное положение: не
+                        женат/не замужем
+                      </span>
+                    </div>
+                  </div>
+                </a>
+                <a href="#" class="home-block__edit">
+                  <img src="img/home-register.png" alt />
+                  <div class="popover">
+                    <div class="popover__wrapper">
+                      <span>Редактировать виджет</span>
+                    </div>
+                  </div>
+                </a>
+                <a href="#" class="home-block__look">
+                  <img src="img/home-sheet.png" alt />
+                  <div class="popover">
+                    <div class="popover__wrapper">
+                      <span>Создать копию</span>
+                    </div>
+                  </div>
+                </a>
+                <button class="home-block__delete">
+                  <img src="img/home-trash.png" alt />
+                  <div class="popover">
+                    <div class="popover__wrapper">
+                      <span>Удалить виджет</span>
+                    </div>
+                  </div>
+                </button>
+              </div>
+            </li>
+            <li class="home-block">
+              <div class="home-block__title">
+                <p class="home-block__icon">
+                  <img src="img/home-sort.svg" alt />
+                </p>
+                <p class="home-block__name">Скидки!</p>
+              </div>
+              <p class="home-block__text">Акции и скидки</p>
+              <div class="home-block__events">
+                <div class="home-block__switch">
+                  <div class="popover">
+                    <div class="popover__wrapper">
+                      <span>Опубликовать виджет</span>
+                    </div>
+                  </div>
+                  <input id="switchcheckbox3" type="checkbox" class="hidden switchcheckbox" />
+                  <label for="switchcheckbox3" id="switch" class="switch"></label>
+                </div>
+                <a href="#" class="home-block__user">
+                  <img src="img/home-user.svg" alt />
+                  <div class="popover">
+                    <div class="popover__wrapper">
+                      <span>Аудитория</span>
+                      <span>Возраст: от 15 до 66</span>
+                      <span>Пол: женский</span>
+                      <span>ДР: сегодня</span>
+                      <span>
+                        Семейное положение: не
+                        женат/не замужем
+                      </span>
+                    </div>
+                  </div>
+                </a>
+                <a href="#" class="home-block__edit">
+                  <img src="img/home-register.png" alt />
+                  <div class="popover">
+                    <div class="popover__wrapper">
+                      <span>Редактировать виджет</span>
+                    </div>
+                  </div>
+                </a>
+                <a href="#" class="home-block__look">
+                  <img src="img/home-sheet.png" alt />
+                  <div class="popover">
+                    <div class="popover__wrapper">
+                      <span>Создать копию</span>
+                    </div>
+                  </div>
+                </a>
+                <button class="home-block__delete">
+                  <img src="img/home-trash.png" alt />
+                  <div class="popover">
+                    <div class="popover__wrapper">
+                      <span>Удалить виджет</span>
+                    </div>
+                  </div>
+                </button>
+              </div>
+            </li> -->
+          </ul>
+        </div>
+      </div>
     </div>
-  </section>
+    <app-modal-public/>
+    <app-modal-version/>
+  </div>
 </template>
 
-<style lang="scss" scoped>
-ul {
-  margin: 30px auto;
-  width: 300px;
-  list-style: none;
-}
-.def-menu {
-  padding: 15px 20px;
-  width: 300px;
-  text-align: center;
-  display: block;
-  background-color: #3a3b5e;
-  margin-bottom: 10px;
-  border-radius: 15px;
-}
-</style>
+<script>
+  import bridge from '@vkontakte/vk-bridge';
+  import AppModalVersion from "@/components/modal/AppModalVersion.vue";
+  import AppModalPublic from "@/components/modal/AppModalPublic.vue";
+  import AppSwitch from "@/components/form/AppSwitch.vue";
+  import AppNavigationMenu from "@/components/AppNavigationMenu.vue";
 
+  export default {
+    components: {
+      AppModalVersion,
+      AppModalPublic,
+      AppSwitch,
+      AppNavigationMenu
+    },
+    data() {
+      return {
+        vidgets: [
+          {
+            switch: false
+          },
+          {
+            switch: true
+          }
+        ]
+      }
+    },
+    methods: {
+      modalPublic (e) {
+        if (e) {
+          this.$bvModal.show('modal-public')
+        }
+      }
+    },
+    mounted() {
+      bridge
+        .send('VKWebAppGetCommunityToken', {
+          "app_id": 7474103,
+          "group_id": 195259137,
+          "scope": "app_widget"
+        })
+        .then(data => {
+          // Обработка события в случае успеха
+          console.log(data);
+        })
+        .catch(error => {
+          console.log('error')
+          // Обработка события в случае ошибки
+        });
+    }
+  };
+</script>
+
+<style lang="scss" scoped>
+</style>

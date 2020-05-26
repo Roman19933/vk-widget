@@ -96,7 +96,7 @@
           {
             icon: '/img/menu-1.png',
             text: 'Мои виджеты',
-            to: '/home'
+            to: '/'
           },
           {
             to: '/home',
@@ -128,7 +128,6 @@
       }
     },
     mounted () {
-      console.log(this.$route.name)
       if (this.$route.name === 'catalog-sales' || this.$route.name === 'catalog-nav') {
         this.collaps = true
       }
