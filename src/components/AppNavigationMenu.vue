@@ -64,6 +64,7 @@
             </li> -->
             <nuxt-link
               v-else
+              exact
               :tag="'li'"
               :to="item.to"
               :key="item.text"

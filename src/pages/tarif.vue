@@ -186,7 +186,7 @@
             </p>
             <div class="tarif-payment__checkbox">
               <label>
-                <input class="checkbox" type="checkbox" />
+                <input class="checkbox" type="checkbox" checked />
                 <span class="checkbox-custom"></span>
                 <p class="label">Автоматический платеж</p>
               </label>
@@ -222,6 +222,9 @@ import AppSwitch from "@/components/form/AppSwitch.vue";
 import AppSvgIcon from "@/components/AppSvgIcon.vue";
 
 export default {
+  // head: {
+  //   title: 'Тарифы'
+  // },
   components: {
     AppModalContract,
     AppNavigationMenu,
