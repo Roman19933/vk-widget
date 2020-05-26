@@ -63,11 +63,7 @@
 			color: #ffc25e;
 			font-family: 'RobotoCondensedRegular';
 			font-size: 18px;
-			display: none;
 			margin-left: -38px;
-			&.active {
-				display: block;
-			}
 		}
 		&__right {
 			margin-top: -7px;
@@ -144,16 +140,15 @@
 				height: 24px;
 				border-radius: 12px;
 				background-color: #21203d;
+				&__circle {
+					width: 20px;
+					height: 20px;
+					background-color: #ffffff;
+					left: 1px;
+					top: 1px;
+				}
 			}
-			.switch::before {
-				width: 20px;
-				height: 20px;
-				background-color: #ffffff;
-				left: 1px;
-				top: 1px;
-			}
-			  
-			.switchcheckbox:checked + label::before {
+			.switchcheckbox:checked + span.switch__circle {
 				left: 27px;
 			}
 		}

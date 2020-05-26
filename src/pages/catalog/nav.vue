@@ -206,7 +206,7 @@
           <div class="community-menu">
             <div class="catalog-nav__item">
               <div class="catalog-nav__icon-wrapper">
-                <img class="catalog-nav__icon" src="img/one.png">
+                <img class="catalog-nav__icon" src="/img/one.png">
               </div>
               <div class="catalog-nav__item-wrapper">
                 <div class="catalog-nav__item-title">Бесплатное занятие</div>

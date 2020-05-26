@@ -1,102 +1,51 @@
 <template>
-  <form action="#">
+  <form action="#" @submit.prevent="onSubmit">
     <div class="widgets vidget-page">
       <div class="widgets__wrapper vidget-page__wrapper">
         <div class="widgets__left">
           <div class="widgets__header vidget-page__head">
             <div class="widgets__header-title vidget-page__title">
-              <img src alt />
               <h4>Виджет «Акционные товары»</h4>
             </div>
             <div class="widgets__switch">
               <span>Режим просмотра</span>
               <div class="widgets__switch-btn">
-                <input id="switchcheckbox" type="checkbox" class="hidden switchcheckbox" />
-                <label for="switchcheckbox" id="switch" class="switch"></label>
+                <app-switch />
               </div>
             </div>
           </div>
           <div class="widgets__content">
             <div class="widgets__content-wrapper">
               <div class="widgets__content-title">
-                <img src="img/heart.png" alt />
-                <h4>{firstname}, успей на распродажу!</h4>
+                <img src="/img/heart.png" alt />
+                <a href="#" v-b-modal.default>{{this.widget.data.title}}</a>
               </div>
               <div class="widgets__items widgets__items_product">
-                <div class="item">
-                  <div class="item__menu">
-                    <button class="item__menu-close">
-                      <img src="img/close-error.png" alt />
-                    </button>
-                    <a href="#" class="item__menu-burger">
-                      <img src="img/burger.png" alt />
-                    </a>
-                  </div>
-                  <div class="item__img">
-                    <input id="file" type="file" class="hidden" />
-                    <label for="file" id="upload"></label>
-                    <img src="img/photo.png" alt class="photo" />
-                  </div>
-                  <div class="item__info">
-                    <span class="item__title">Браслет</span>
-                    <span class="item__price">3 900 руб.</span>
-                    <button class="item__add">+ добавить</button>
-                    <a href="#" class="item__sales">Написать</a>
-                  </div>
-                </div>
-                <div class="item">
-                  <div class="item__menu">
-                    <button class="item__menu-close">
-                      <img src="img/close-error.png" alt />
-                    </button>
-                    <a href="#" class="item__menu-burger">
-                      <img src="img/burger.png" alt />
-                    </a>
-                  </div>
-                  <div class="item__img">
-                    <input id="file" type="file" class="hidden" />
-                    <label for="file" id="upload"></label>
-                    <img src="img/photo.png" alt class="photo" />
-                  </div>
-                  <div class="item__info">
-                    <span class="item__title">Браслет</span>
-                    <span class="item__price">3 900 руб.</span>
-                    <a href="#" class="item__sales">Написать</a>
-                  </div>
-                </div>
-                <div class="item">
-                  <div class="item__menu">
-                    <button class="item__menu-close">
-                      <img src="img/close-error.png" alt />
-                    </button>
-                    <a href="#" class="item__menu-burger">
-                      <img src="img/burger.png" alt />
-                    </a>
-                  </div>
-                  <div class="item__img">
-                    <input id="file" type="file" class="hidden" />
-                    <label for="file" id="upload"></label>
-                    <img src="img/photo.png" alt class="photo" />
-                  </div>
-                  <div class="item__info">
-                    <span class="item__title">Браслет</span>
-                    <span class="item__price">3 900 руб.</span>
-                    <a href="#" class="item__sales">Написать</a>
-                  </div>
-                </div>
-
-                <button class="add-item">+ Добавить элемент</button>
+                <draggable
+                  v-model="widget.data.tiles"
+                  group="product"
+                  class="widgets__items_draggable"
+                >
+                  <setup-item-product
+                    v-for="(item,index) in widget.data.tiles"
+                    :key="`item-${index}`"
+                    :item="item"
+                    @remove:item="removeItem(widget.data.tiles,index)"
+                  />
+                  <button
+                    class="add-item"
+                    @click.prevent="addItem(widget.data.tiles)"
+                    v-if="widget.data.tiles.length < 10"
+                  >+ Добавить элемент</button>
+                </draggable>
               </div>
-              <button class="widgets__content-add">+ Добавить подвал виджета</button>
+              <button class="widgets__content-add" @click.prevent>+ Добавить подвал виджета</button>
             </div>
             <div class="widgets__save">
-              <button class="gen-btn">Сохранить</button>
+              <button class="gen-btn" type="submit">Сохранить</button>
             </div>
           </div>
           <div class="widgets__footer">
-            <!-- <div class="widgets__save">
-                            <button class="gen-btn">Сохранить</button>
-            </div>-->
             <div class="widgets__rules">
               <p>
                 В виджетах запрещено размещение сторонней коммерческой и политической рекламы! Подробнее
@@ -109,37 +58,80 @@
           </div>
         </div>
         <div class="widgets__right">
-          <setup-form :formData="segmentation" />
+          <setup-form :formData="widget.segmentation" />
         </div>
       </div>
     </div>
+    <setup-modal-upload />
+    <setup-modal-title />
+    <setup-modal-sub />
   </form>
 </template>
 
 <script>
 import SetupForm from "@/components/setup/SetupForm";
+import SetupItemProduct from "@/components/setup/SetupItemProduct";
+import SetupModalTitle from "@/components/modal/SetupModalTitle";
+import SetupModalSub from "@/components/modal/SetupModalSub";
+import SetupModalUpload from "@/components/modal/SetupModalUpload";
+import AppSwitch from "@/components/form/AppSwitch";
+import SetupDefault from "@/mixins/setupDefault";
 export default {
   data() {
     return {
-      segmentation: {
-        sex: [],
-        age: { from: "", to: "" },
-        bdate: [],
-        relation: [],
-        city: [],
-        devices: [],
-        userSurname: [],
-        userName: [],
-        userInterests: [],
-        relationGroups: [],
-        users: [],
-        groups_exclude: [],
-        groups: []
+      widget: {
+        createdAt: "",
+        data: {
+          more: "",
+          more_url: "",
+          title: "{firstname}, успей на распродажу!",
+          title_counter: "",
+          title_url: "",
+          tiles: [
+            {
+              descr: "3 900 руб",
+              icon_id: "5686299_1676309",
+              icon_type: "160x160",
+              link: "Написать",
+              link_url: "https://vk.com/editapp?id=7467558&section=admins",
+              title: "Кольцо",
+              url: ""
+            }
+          ]
+        },
+        groupId: null,
+        id: null,
+        isActive: false,
+        name: "",
+        position: 0,
+        segmentation: {
+          sex: [],
+          age: { from: "", to: "" },
+          bdate: [],
+          relation: [],
+          city: [],
+          devices: [],
+          userSurname: [],
+          userName: [],
+          userInterests: [],
+          relationGroups: [],
+          users: [],
+          groups_exclude: [],
+          groups: []
+        },
+        type: "",
+        updatedAt: ""
       }
     };
   },
+  mixins: [SetupDefault],
   components: {
-    SetupForm
+    SetupForm,
+    AppSwitch,
+    SetupItemProduct,
+    SetupModalTitle,
+    SetupModalSub,
+    SetupModalUpload
   }
 };
 </script>

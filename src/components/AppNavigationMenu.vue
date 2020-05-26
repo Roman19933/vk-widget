@@ -6,8 +6,38 @@
       </h2>
       <nav class="main-menu__menu">
         <ul class="main-menu__items">
-          <template v-for="item in items">
-            <li class="main-menu__item"
+          <template v-for="item in items" >
+            <app-collaps
+              :col="collaps"
+              class="main-menu__item"
+              v-if="item.children"
+              title-class="main-menu__item_col"
+              :key="item.text"
+            >
+              <template v-slot:title>
+                <a href="#" class="main-menu__link">
+                  <img class="main-menu__icon" :src="item.icon" alt="">
+                  <span class="main-menu__link-text">{{ item.text }}</span>
+                </a>
+                <div class="main-menu__arrow"><img src="/img/arrow.png" alt=""></div>
+                <div class="main-menu__arrow main-menu__arrow_inner"><img src="/img/arrow-yellow.png" alt=""></div>
+              </template>
+              <template v-slot:content>
+                <ul class="main-menu__subitems">
+                  <nuxt-link
+                    class="main-menu__subitem"
+                     v-for="(child, i) in item.children"
+                    :key="i"
+                    :to="child.to"
+                  >
+                    <p class="main-menu__sublink">
+                      {{ child.text }}
+                    </p>
+                  </nuxt-link>
+                </ul>
+              </template>
+            </app-collaps>
+            <!-- <li class="main-menu__item"
               v-if="item.children"
               :key="item.text"
               @click="isShow=!isShow"
@@ -17,7 +47,7 @@
                 <img class="main-menu__icon" :src="item.icon" alt="">
                 <span class="main-menu__link-text">{{ item.text }}</span>
               </a>
-              <div class="main-menu__arrow"><img src="img/arrow.png" alt=""></div>
+              <div class="main-menu__arrow"><img src="/img/arrow.png" alt=""></div>
               <div class="main-menu__arrow main-menu__arrow_inner"><img src="img/arrow-yellow.png" alt=""></div>
               <ul class="main-menu__subitems">
                 <nuxt-link
@@ -31,9 +61,10 @@
                   </p>
                 </nuxt-link>
               </ul>
-            </li>
+            </li> -->
             <nuxt-link
               v-else
+              :tag="'li'"
               :to="item.to"
               :key="item.text"
               class="main-menu__item"
@@ -51,43 +82,55 @@
 </template>
 
 <script>
+  import AppCollaps from "@/components/AppCollaps.vue";
+
   export default {
+    components: {
+      AppCollaps
+    },
     data() {
       return {
+        collaps: false,
         isShow: false,
         items: [
           {
-            icon: 'img/menu-1.png',
+            icon: '/img/menu-1.png',
             text: 'Мои виджеты',
             to: '/home'
           },
           {
             to: '/home',
-            icon: 'img/menu-2.png',
+            icon: '/img/menu-2.png',
             text: 'Каталог виджетов',
             model: false,
             children: [
               {
                 text: 'Для продаж',
-                to: '/new'
+                to: '/catalog/sales'
               },
               {
                 text: 'Для навигации',
-                to: '/new1'
+                to: '/catalog/nav'
               }
             ],
           },
           {
-            icon: 'img/menu-3.png',
+            icon: '/img/menu-3.png',
             text: 'Тарифы',
             to: '/tarif'
           },
           {
-            icon: 'img/menu-4.png',
+            icon: '/img/menu-4.png',
             text: 'Помощь',
             to: '/faq'
           }
         ],
+      }
+    },
+    mounted () {
+      console.log(this.$route.name)
+      if (this.$route.name === 'catalog-sales' || this.$route.name === 'catalog-nav') {
+        this.collaps = true
       }
     }
   }

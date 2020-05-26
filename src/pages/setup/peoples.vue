@@ -1,5 +1,5 @@
 <template>
-  <form action="#">
+  <form action="#" @submit.prevent="onSubmit">
     <div class="widgets vidget-page">
       <div class="widgets__wrapper vidget-page__wrapper">
         <div class="widgets__left feedback">
@@ -11,91 +11,42 @@
             <div class="widgets__switch">
               <span>Режим просмотра</span>
               <div class="widgets__switch-btn">
-                <input id="switchcheckbox" type="checkbox" class="hidden switchcheckbox" />
-                <label for="switchcheckbox" id="switch" class="switch"></label>
+                <app-switch />
               </div>
             </div>
           </div>
           <div class="widgets__content">
             <div class="widgets__content-wrapper">
               <div class="widgets__content-title">
-                <img src="img/fire.png" alt />
-                <h4>Меню сообщества</h4>
+                <img src="/img/fire.png" alt />
+                <a href="#">{{this.widget.data.title}}</a>
               </div>
               <div class="widgets__items widgets__items_places">
-                <div class="widgets__content-places">
-                  <div class="widgets__content-avatar">
-                    <img src="img/photo.png" alt />
-                  </div>
-                  <div class="widgets__content-text widgets__content-text_places">
-                    <div class="places-content">
-                      <h4>Бесплатное занятие</h4>
-                      <span class="places-content__text">
-                        Запишись на первую бесплатную
-                        тренировку!
-                      </span>
-                    </div>
-                    <button class="gen-btn">Записаться</button>
-                  </div>
-                </div>
-                <div class="widgets__content-places">
-                  <div class="widgets__content-avatar">
-                    <img src="img/photo.png" alt />
-                  </div>
-                  <div class="widgets__content-text widgets__content-text_places">
-                    <div class="places-content">
-                      <h4>Бесплатное занятие</h4>
-                      <span class="places-content__text">
-                        Запишись на первую бесплатную
-                        тренировку!
-                      </span>
-                    </div>
-                    <button class="gen-btn">Записаться</button>
-                  </div>
-                </div>
-                <div class="widgets__content-places">
-                  <div class="widgets__content-avatar">
-                    <img src="img/photo.png" alt />
-                  </div>
-                  <div class="widgets__content-text widgets__content-text_places">
-                    <div class="places-content">
-                      <h4>Бесплатное занятие</h4>
-                      <span class="places-content__text">
-                        Запишись на первую бесплатную
-                        тренировку!
-                      </span>
-                    </div>
-                    <button class="gen-btn">Записаться</button>
-                  </div>
-                </div>
-                <div class="widgets__content-places">
-                  <div class="widgets__content-avatar">
-                    <img src="img/photo.png" alt />
-                  </div>
-                  <div class="widgets__content-text widgets__content-text_places">
-                    <div class="places-content">
-                      <h4>Бесплатное занятие</h4>
-                      <span class="places-content__text">
-                        Запишись на первую бесплатную
-                        тренировку!
-                      </span>
-                    </div>
-                    <button class="gen-btn">Записаться</button>
-                  </div>
-                </div>
-                <button class="add-item">+ Добавить элемент</button>
+                <draggable
+                  v-model="widget.data.rows"
+                  group="product"
+                  class="widgets__items_draggable"
+                >
+                  <setup-item-peoples
+                    v-for="(item,index) in widget.data.rows"
+                    :key="`item-${index}`"
+                    :item="item"
+                    @remove:item="removeItem(widget.data.rows,index)"
+                  />
+                  <button
+                    class="add-item"
+                    @click.prevent="addItem(widget.data.rows)"
+                    v-if="widget.data.rows.length < 6"
+                  >+ Добавить элемент</button>
+                </draggable>
               </div>
-              <!-- <button class="add-item">+ Добавить элемент</button> -->
-              <button class="widgets__content-add">+ Добавить подвал виджета</button>
+              <button class="widgets__content-add" @click.prevent>+ Добавить подвал виджета</button>
             </div>
             <div class="widgets__save">
               <button class="gen-btn">Сохранить</button>
             </div>
           </div>
           <div class="widgets__footer">
-            <!-- <div class="widgets__save">
-                                        <button class="gen-btn">Сохранить</button>
-            </div>-->
             <div class="widgets__rules">
               <p>
                 В виджетах запрещено размещение сторонней коммерческой и политической рекламы! Подробнее
@@ -108,7 +59,7 @@
           </div>
         </div>
         <div class="widgets__right">
-          <setup-form />
+          <setup-form :formData="widget.segmentation" />
         </div>
       </div>
     </div>
@@ -117,9 +68,64 @@
 
 <script>
 import SetupForm from "@/components/setup/SetupForm";
+import SetupItemPeoples from "@/components/setup/SetupItemPeoples";
+import AppSwitch from "@/components/form/AppSwitch";
+import SetupDefault from "@/mixins/setupDefault";
 export default {
+  data() {
+    return {
+      widget: {
+        createdAt: "",
+        data: {
+          more: "",
+          more_url: "",
+          title: "Меню сообщества",
+          title_counter: "",
+          title_url: "",
+          rows: [
+            {
+              address: null,
+              button: "Записаться",
+              button_url: "https://vk.com/apps?act=manage",
+              descr: "Запишись на первую бесплатную тренировку!",
+              icon_id: "",
+              text: null,
+              time: null,
+              title: "Бесплатное занятие",
+              title_url: ""
+            }
+          ]
+        },
+        groupId: null,
+        id: null,
+        isActive: false,
+        name: "",
+        position: 0,
+        segmentation: {
+          sex: [],
+          age: { from: "", to: "" },
+          bdate: [],
+          relation: [],
+          city: [],
+          devices: [],
+          userSurname: [],
+          userName: [],
+          userInterests: [],
+          relationGroups: [],
+          users: [],
+          groups_exclude: [],
+          groups: []
+        },
+        type: "",
+        updatedAt: ""
+      }
+    };
+  },
+  mixins: [SetupDefault],
   components: {
-    SetupForm
+    SetupForm,
+    AppSwitch,
+    SetupItemPeoples
   }
 };
 </script>

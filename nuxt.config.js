@@ -24,12 +24,19 @@ module.exports = {
    */
   modules: [
     ['@nuxtjs/dotenv', { path: '', systemvars: true }],
+    
   ],
   /**
    * Plugins
    */
+  modules: ['bootstrap-vue/nuxt'],
+  bootstrapVue: {
+    componentPlugins: [
+      'ModalPlugin'
+    ]
+  },
   buildModules: [
-    '@nuxtjs/moment'
+    '@nuxtjs/moment',
   ],
   moment: {
     defaultLocale: 'ru',
@@ -40,6 +47,7 @@ module.exports = {
     '~/components',
     { src: '~plugins/axios-rest-client', ssr: false },
     { src: '~plugins/vue-select', ssr: false },
+    { src: '~plugins/vuedraggable', ssr: false },
   ],
   router: {
     prefetchLinks: process.env.NUXT_APP_MODE === 'production',
