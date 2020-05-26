@@ -1,5 +1,5 @@
 <template>
-  <form action="#">
+  <form action="#" @submit.prevent="onSubmit">
     <div class="widgets vidget-page">
       <div class="widgets__wrapper vidget-page__wrapper">
         <div class="widgets__left feedback">
@@ -11,10 +11,7 @@
             <div class="widgets__switch">
               <span>Режим просмотра</span>
               <div class="widgets__switch-btn">
-                <label class="switch">
-                  <input type="checkbox" class="hidden switchcheckbox" />
-                  <span class="switch__circle"></span>
-                </label>
+                <app-switch />
               </div>
             </div>
           </div>
@@ -29,7 +26,7 @@
                 :key="`item-${index}`"
                 :item="item"
               />
-              <button class="widgets__content-add">+ Добавить подвал виджета</button>
+              <button class="widgets__content-add" @click.prevent>+ Добавить подвал виджета</button>
             </div>
             <div class="widgets__save">
               <button class="gen-btn">Сохранить</button>
@@ -58,6 +55,7 @@
 <script>
 import SetupForm from "@/components/setup/SetupForm";
 import SetupItemPersonal from "@/components/setup/SetupItemPersonal";
+import AppSwitch from "@/components/form/AppSwitch";
 export default {
   data() {
     return {
@@ -109,26 +107,9 @@ export default {
       }
     };
   },
-  methods: {
-    onSubmit() {
-      console.log("ok");
-    },
-    addItem(arr) {
-      arr.push({
-        address: "",
-        button: "",
-        button_url: "",
-        descr: "",
-        icon_id: "",
-        text: null,
-        time: "",
-        title: "",
-        title_url: ""
-      });
-    }
-  },
   components: {
     SetupForm,
+    AppSwitch,
     SetupItemPersonal
   }
 };
