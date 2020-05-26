@@ -43,7 +43,7 @@
         <div class="catalog-sales__settings">
           <h4 class="catalog-sales__settings-title">Акции и скидки</h4>
           <p class="catalog-sales__settings-text">Добавьте в сообщество от 3 до 10 баннеров, чтобы привлечь внимание к акциям и получить больше продажм</p>
-          <button class="gen-btn">Выбрать</button>
+          <nuxt-link class="gen-btn" tag="button" to="/setup/sales">Выбрать</nuxt-link>
         </div>
       </section>
       <section class="catalog-sales__row">
@@ -103,7 +103,7 @@
         <div class="catalog-sales__settings">
           <h4 class="catalog-sales__settings-title">Акции в обложках</h4>
           <p class="catalog-sales__settings-text">Привлекайте внимание к акциям при помощи 3 больших баннеров с кнопками</p>
-          <button class="gen-btn">Выбрать</button>
+          <nuxt-link class="gen-btn" tag="button" to="/setup/cover">Выбрать</nuxt-link>
         </div>
       </section>
       <section class="catalog-sales__row">
@@ -128,7 +128,7 @@
         <div class="catalog-sales__settings">
           <h4 class="catalog-sales__settings-title">Важное сообщение</h4>
           <p class="catalog-sales__settings-text">Привлекайте внимание к акциям при помощи 3 больших баннеров с кнопками</p>
-          <button class="gen-btn">Выбрать</button>
+          <nuxt-link class="gen-btn" tag="button" to="/setup/messages">Выбрать</nuxt-link>
         </div>
       </section>
       <section class="catalog-sales__row">
@@ -161,7 +161,7 @@
         <div class="catalog-sales__settings">
           <h4 class="catalog-sales__settings-title">Персональное предложение</h4>
           <p class="catalog-sales__settings-text">Сделайте персональное предложение посетителю сообщества. В виджет автоматически добавится его аватарка</p>
-          <button class="gen-btn">Выбрать</button>
+          <nuxt-link class="gen-btn" tag="button" to="/setup/personal">Выбрать</nuxt-link>
         </div>
       </section>
       <section class="catalog-sales__row">
@@ -218,7 +218,7 @@
         <div class="catalog-sales__settings">
           <h4 class="catalog-sales__settings-title">Акционные товары</h4>
           <p class="catalog-sales__settings-text">Сделайте распродажу более эффективной со вторым товарным блоком в сообществе</p>
-          <button class="gen-btn">Выбрать</button>
+          <nuxt-link class="gen-btn" tag="button" to="/setup/actions">Выбрать</nuxt-link>
         </div>
       </section>
       <section class="catalog-sales__row">
@@ -257,7 +257,7 @@
         <div class="catalog-sales__settings">
           <h4 class="catalog-sales__settings-title">Рекомендованные товары</h4>
           <p class="catalog-sales__settings-text">Составляйте индивидуальные подборки товаров для пользователей по их интересам</p>
-          <button class="gen-btn">Выбрать</button>
+          <nuxt-link class="gen-btn" tag="button" to="/setup/recomended">Выбрать</nuxt-link>
         </div>
       </section>
       <section class="catalog-sales__row">
@@ -320,7 +320,7 @@
         <div class="catalog-sales__settings">
           <h4 class="catalog-sales__settings-title">Отзывы</h4>
           <p class="catalog-sales__settings-text">Опубликуйте лучшие отзывы клиентов на самом видном месте сообщества и повышайте доверие аудитории</p>
-          <button class="gen-btn">Выбрать</button>
+          <nuxt-link class="gen-btn" tag="button" to="/setup/feedback">Выбрать</nuxt-link>
         </div>
       </section>
       <section class="catalog-sales__row">
@@ -374,7 +374,7 @@
         <div class="catalog-sales__settings">
           <h4 class="catalog-sales__settings-title">Наши клиенты</h4>
           <p class="catalog-sales__settings-text">Продемонстрируйте опыт работы с корпоративными клиентами в новом формате</p>
-          <button class="gen-btn">Выбрать</button>
+          <nuxt-link class="gen-btn" tag="button" to="/setup/clients">Выбрать</nuxt-link>
         </div>
       </section>
     </main>
