@@ -48,6 +48,7 @@ module.exports = {
     { src: '~plugins/axios-rest-client', ssr: false },
     { src: '~plugins/vue-select', ssr: false },
     { src: '~plugins/vuedraggable', ssr: false },
+    // { src: '~plugins/vk-bridge' },
   ],
   router: {
     prefetchLinks: process.env.NUXT_APP_MODE === 'production',
@@ -74,6 +75,7 @@ module.exports = {
   ** Build configuration
   */
   build: {
+    // vendor: ['vk-bridge'],
     /*
     ** Run ESLint on save
     */

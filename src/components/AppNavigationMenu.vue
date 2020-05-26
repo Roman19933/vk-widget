@@ -128,7 +128,6 @@
       }
     },
     mounted () {
-      console.log(this.$route.name)
       if (this.$route.name === 'catalog-sales' || this.$route.name === 'catalog-nav') {
         this.collaps = true
       }

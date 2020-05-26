@@ -274,6 +274,7 @@
 </template>
 
 <script>
+  import bridge from '@vkontakte/vk-bridge';
   import AppModalVersion from "@/components/modal/AppModalVersion.vue";
   import AppModalPublic from "@/components/modal/AppModalPublic.vue";
   import AppSwitch from "@/components/form/AppSwitch.vue";
@@ -306,7 +307,20 @@
       }
     },
     mounted() {
-      this.$bvModal.show('modal-version')
+      bridge
+        .send('VKWebAppGetCommunityToken', {
+          "app_id": 7474103,
+          "group_id": 195259137,
+          "scope": "app_widget"
+        })
+        .then(data => {
+          // Обработка события в случае успеха
+          console.log(data);
+        })
+        .catch(error => {
+          console.log('error')
+          // Обработка события в случае ошибки
+        });
     }
   };
 </script>
