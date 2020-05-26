@@ -113,7 +113,7 @@
         <div class="catalog-nav__settings">
           <h4 class="catalog-nav__settings-title">Точки продаж</h4>
           <p class="catalog-nav__settings-text">Сообщите посетителям сообщества о местоположении и времени работы ваших магазинов.</p>
-          <button class="gen-btn">Выбрать</button>
+          <nuxt-link class="gen-btn" tag="button" to="/setup/places">Выбрать</nuxt-link>
         </div>
       </section>
       <section class="catalog-nav__row">
@@ -191,7 +191,7 @@
         <div class="catalog-nav__settings">
           <h4 class="catalog-nav__settings-title">Мероприятия</h4>
           <p class="catalog-nav__settings-text">Расскажите аудитории про ваши мероприятия, времени начала и месте проведения.</p>
-          <button class="gen-btn">Выбрать</button>
+          <nuxt-link class="gen-btn" tag="button" to="/setup/events">Выбрать</nuxt-link>
         </div>
       </section>
       <section class="catalog-nav__row">
@@ -277,7 +277,7 @@
         <div class="catalog-nav__settings">
           <h4 class="catalog-nav__settings-title">Меню сообщества</h4>
           <p class="catalog-nav__settings-text">Опубликуйте самые важные разделы сообщества в виджете: расписания, статьи, обсуждения, лид-формы и т.д.</p>
-          <button class="gen-btn">Выбрать</button>
+          <nuxt-link class="gen-btn" tag="button" to="/setup/peoples">Выбрать</nuxt-link>
         </div>
       </section>
       <section class="catalog-nav__row">
@@ -344,7 +344,7 @@
           <h4 class="catalog-nav__settings-title">Подписка на рассылки</h4>
           <p class="catalog-nav__settings-text">Используйте возможности Spycat для увеличения подписчиков в рассылки сторонних сервисов.</p>
           <p class="catalog-nav__settings-text">Создайте рассылку в стороннем приложении и вставьте ссылку на подписку в виджет сообщества.</p>
-          <button class="gen-btn">Выбрать</button>
+          <nuxt-link class="gen-btn" tag="button" to="/setup/subscriptions">Выбрать</nuxt-link>
         </div>
       </section>
     </main>
