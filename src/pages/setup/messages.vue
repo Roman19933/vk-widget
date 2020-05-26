@@ -1,5 +1,5 @@
 <template>
-  <form action="#">
+  <form action="#" @submit.prevent="onSubmit">
     <div class="widgets vidget-page">
       <div class="widgets__wrapper vidget-page__wrapper">
         <div class="widgets__left feedback">
@@ -11,10 +11,7 @@
             <div class="widgets__switch">
               <span>Режим просмотра</span>
               <div class="widgets__switch-btn">
-                <label class="switch">
-                  <input type="checkbox" class="hidden switchcheckbox" />
-                  <span class="switch__circle"></span>
-                </label>
+                <app-switch />
               </div>
             </div>
           </div>
@@ -25,7 +22,7 @@
                 <a href="#">{{this.widget.data.title}}</a>
               </div>
               <setup-item-messages :item="widget.data" />
-              <button class="widgets__content-add">+ Добавить подвал виджета</button>
+              <button class="widgets__content-add" @click.prevent>+ Добавить подвал виджета</button>
             </div>
             <div class="widgets__save">
               <button class="gen-btn">Сохранить</button>
@@ -57,6 +54,7 @@
 <script>
 import SetupForm from "@/components/setup/SetupForm";
 import SetupItemMessages from "@/components/setup/SetupItemMessages";
+import AppSwitch from "@/components/form/AppSwitch";
 export default {
   data() {
     return {
@@ -96,13 +94,9 @@ export default {
       }
     };
   },
-  methods: {
-    onSubmit() {
-      console.log("ok");
-    }
-  },
   components: {
     SetupForm,
+    AppSwitch,
     SetupItemMessages
   }
 };

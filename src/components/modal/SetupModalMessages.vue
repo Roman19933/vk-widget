@@ -9,7 +9,7 @@
   >
     <div class="modal__wrapper modal__wrapper-widgets">
       <button class="modal__close" @click.prevent="show = !show">
-        <img src="img/modal-close.png" alt />
+        <img src="/img/modal-close.png" alt />
       </button>
       <div class="widgets-setting__content">
         <div class="widgets-setting__input">

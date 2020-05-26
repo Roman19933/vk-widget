@@ -1,5 +1,5 @@
 <template>
-  <form action="#">
+  <form action="#" @submit.prevent="onSubmit">
     <div class="widgets vidget-page">
       <div class="widgets__wrapper vidget-page__wrapper">
         <div class="widgets__left feedback">
@@ -11,10 +11,7 @@
             <div class="widgets__switch">
               <span>Режим просмотра</span>
               <div class="widgets__switch-btn">
-                <label class="switch">
-                  <input type="checkbox" class="hidden switchcheckbox" />
-                  <span class="switch__circle"></span>
-                </label>
+                <app-switch />
               </div>
             </div>
           </div>
@@ -34,7 +31,7 @@
                     v-for="(item,index) in widget.data.rows"
                     :key="`item-${index}`"
                     :item="item"
-                    @remove:item="removeItem(index)"
+                    @remove:item="removeItem(widget.data.rows,index)"
                   />
                   <button
                     class="add-item"
@@ -43,7 +40,7 @@
                   >+ Добавить элемент</button>
                 </draggable>
               </div>
-              <button class="widgets__content-add">+ Добавить подвал виджета</button>
+              <button class="widgets__content-add" @click.prevent>+ Добавить подвал виджета</button>
             </div>
             <div class="widgets__save">
               <button class="gen-btn">Сохранить</button>
@@ -72,6 +69,8 @@
 <script>
 import SetupForm from "@/components/setup/SetupForm";
 import SetupItemPlaces from "@/components/setup/SetupItemPlaces";
+import AppSwitch from "@/components/form/AppSwitch";
+import SetupDefault from "@/mixins/setupDefault";
 export default {
   data() {
     return {
@@ -122,29 +121,10 @@ export default {
       }
     };
   },
-  methods: {
-    onSubmit() {
-      console.log("ok");
-    },
-    addItem(arr) {
-      arr.push({
-        address: "",
-        button: "",
-        button_url: "",
-        descr: "",
-        icon_id: "",
-        text: null,
-        time: "",
-        title: "",
-        title_url: ""
-      });
-    },
-    removeItem(index) {
-      this.widget.data.rows.splice(index, 1);
-    }
-  },
+  mixins: [SetupDefault],
   components: {
     SetupForm,
+    AppSwitch,
     SetupItemPlaces
   }
 };

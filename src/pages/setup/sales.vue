@@ -1,5 +1,5 @@
 <template>
-  <form action="#">
+  <form action="#" @submit.prevent="onSubmit">
     <div class="widgets vidget-page">
       <div class="widgets__wrapper vidget-page__wrapper">
         <div class="widgets__left">
@@ -11,10 +11,7 @@
             <div class="widgets__switch">
               <span>Режим просмотра</span>
               <div class="widgets__switch-btn">
-                <label class="switch">
-                  <input type="checkbox" class="hidden switchcheckbox" />
-                  <span class="switch__circle"></span>
-                </label>
+                <app-switch />
               </div>
             </div>
           </div>
@@ -34,7 +31,7 @@
                     v-for="(item,index) in widget.data.tiles"
                     :key="`item-${index}`"
                     :item="item"
-                    @remove:item="removeItem(index)"
+                    @remove:item="removeItem(widget.data.tiles,index)"
                   />
                   <button
                     class="add-item"
@@ -43,7 +40,7 @@
                   >+ Добавить элемент</button>
                 </draggable>
               </div>
-              <button class="widgets__content-add">+ Добавить подвал виджета</button>
+              <button class="widgets__content-add" @click.prevent>+ Добавить подвал виджета</button>
             </div>
             <div class="widgets__save">
               <button class="gen-btn">Сохранить</button>
@@ -78,6 +75,8 @@
 <script>
 import SetupForm from "@/components/setup/SetupForm";
 import SetupItemProduct from "@/components/setup/SetupItemProduct";
+import AppSwitch from "@/components/form/AppSwitch";
+import SetupDefault from "@/mixins/setupDefault";
 export default {
   data() {
     return {
@@ -126,27 +125,10 @@ export default {
       }
     };
   },
-  methods: {
-    onSubmit() {
-      console.log("ok");
-    },
-    addItem(arr) {
-      arr.push({
-        descr: "",
-        icon_id: "",
-        icon_type: "",
-        link: "",
-        link_url: "",
-        title: "",
-        url: ""
-      });
-    },
-    removeItem(idx) {
-      this.widget.data.tiles.splice(idx, 1);
-    }
-  },
+  mixins: [SetupDefault],
   components: {
     SetupForm,
+    AppSwitch,
     SetupItemProduct
   }
 };
