@@ -96,7 +96,7 @@
           {
             icon: '/img/menu-1.png',
             text: 'Мои виджеты',
-            to: '/home'
+            to: '/'
           },
           {
             to: '/home',
