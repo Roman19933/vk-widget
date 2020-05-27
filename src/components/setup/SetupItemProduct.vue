@@ -20,11 +20,21 @@
         class="item__price"
         v-b-modal.subscribe
       >{{!!item.descr ? item.descr : "+ добавить"}}</a>
-      <a
-        :href="item.link_url"
-        class="item__sales"
-        v-b-modal.default
-      >{{!!item.link ? item.link : "+ добавить"}}</a>
+      <div class="item__popover">
+        <div class="item__popover-info">
+          <img src="/img/info.png" alt />
+          <div class="popover">
+            <div class="popover__wrapper">
+              <span>Ссылка должна быть внутри vk.com</span>
+            </div>
+          </div>
+        </div>
+        <a
+          :href="item.link_url"
+          class="item__sales"
+          v-b-modal.default
+        >{{!!item.link ? item.link : "+ добавить"}}</a>
+      </div>
     </div>
   </div>
 </template>
