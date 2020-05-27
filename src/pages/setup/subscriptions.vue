@@ -18,7 +18,7 @@
           <div class="widgets__content">
             <div class="widgets__content-wrapper">
               <div class="widgets__content-title">
-                <img src="img/fire.png" alt />
+                <img src="/img/fire.png" alt />
                 <a href="#">Рассылки с акциями</a>
               </div>
               <div class="widgets__items widgets__items_places">

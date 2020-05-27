@@ -59,7 +59,7 @@
             <div class="widgets__error">
               <p>Некоторые поля заполнены неверно. Внесите изменения и попробуйте снова.</p>
               <button>
-                <img src="img/close-error.png" alt />
+                <img src="/img/close-error.png" alt />
               </button>
             </div>
           </div>

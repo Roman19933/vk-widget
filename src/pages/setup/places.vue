@@ -18,7 +18,7 @@
           <div class="widgets__content">
             <div class="widgets__content-wrapper">
               <div class="widgets__content-title">
-                <img src="img/fire.png" alt />
+                <img src="/img/fire.png" alt />
                 <a href="#">{{this.widget.data.title}}</a>
               </div>
               <div class="widgets__items widgets__items_places">

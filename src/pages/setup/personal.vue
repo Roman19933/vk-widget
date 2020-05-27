@@ -18,7 +18,7 @@
           <div class="widgets__content">
             <div class="widgets__content-wrapper">
               <div class="widgets__content-title">
-                <img src="img/fire.png" alt />
+                <img src="/img/fire.png" alt />
                 <a href="#">{firstname}, у нас для тебя спецпредложение!</a>
               </div>
               <setup-item-personal
