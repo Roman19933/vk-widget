@@ -18,7 +18,7 @@
           <div class="widgets__content">
             <div class="widgets__content-wrapper">
               <div class="widgets__content-title">
-                <img src="img/heart.png" alt />
+                <img src="/img/heart.png" alt />
                 <a href="#" v-b-modal.default>{Firstname}, среди наших клиентов:</a>
               </div>
               <div class="widgets__items widgets__items_product">
