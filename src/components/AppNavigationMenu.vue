@@ -62,7 +62,14 @@
                 </nuxt-link>
               </ul>
             </li>-->
-            <nuxt-link v-else :tag="'li'" :to="item.to" :key="item.text" class="main-menu__item">
+            <nuxt-link
+              v-else
+              exact
+              :tag="'li'"
+              :to="item.to"
+              :key="item.text"
+              class="main-menu__item"
+            >
               <p class="main-menu__link">
                 <img class="main-menu__icon" :src="item.icon" alt />
                 <span class="main-menu__link-text">{{ item.text }}</span>
