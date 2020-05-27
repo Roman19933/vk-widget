@@ -10,6 +10,16 @@
     }
     &__title {
         font-size: 20px;
+        &-back {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 73px;
+            cursor: pointer;
+            img {
+                transform: rotate(90deg);
+            }
+        }
     }
     &-user {
         display: flex;
