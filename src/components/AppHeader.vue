@@ -35,7 +35,7 @@ export default {
   methods: {
     headerName(name) {
       switch (name) {
-        case "index":
+        case "main":
           return "Мои виджеты";
           break;
         case "tarif":
