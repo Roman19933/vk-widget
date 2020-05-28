@@ -24,17 +24,21 @@
         v-else
       >
         <div class="home__wrapper">
-          <ul class="home__blocks">
+          <!-- <ul class="home__blocks"> -->
+          <transition-group
+            name="flip-list"
+            tag="ul"
+          >
             <li
-              v-for="(vidget, index) in vidgets"
-              :key="index"
+              v-for="(vidget) in vidgets"
+              :key="vidget.title"
               class="home-block"
             >
               <div class="home-block__title">
                 <p class="home-block__icon">
                   <img src="img/home-sort.svg" alt />
                 </p>
-                <p class="home-block__name">Скидки!</p>
+                <p class="home-block__name">{{ vidget.title }}</p>
               </div>
               <p class="home-block__text">Акции и скидки</p>
               <div class="home-block__events">
@@ -264,7 +268,8 @@
                 </button>
               </div>
             </li> -->
-          </ul>
+          </transition-group>
+          <!-- </ul> -->
         </div>
       </div>
     </div>
@@ -280,6 +285,8 @@
   import AppSwitch from "@/components/form/AppSwitch.vue";
   import AppNavigationMenu from "@/components/AppNavigationMenu.vue";
 
+  const APP_ID = process.env.NUXT_APP_ID;
+
   export default {
     components: {
       AppModalVersion,
@@ -291,9 +298,19 @@
       return {
         vidgets: [
           {
+            title: '3',
             switch: false
           },
           {
+            title: '2',
+            switch: false
+          },
+          {
+            title: '1',
+            switch: false
+          },
+          {
+            title: '4',
             switch: true
           }
         ]
@@ -307,6 +324,7 @@
       }
     },
     mounted() {
+      console.log(this.APP_ID)
       this.$bvModal.show('modal-version')
       bridge
         .send('VKWebAppGetCommunityToken', {
@@ -327,4 +345,7 @@
 </script>
 
 <style lang="scss" scoped>
+.flip-list-move {
+  transition: transform 1s;
+}
 </style>
