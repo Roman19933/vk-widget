@@ -18,8 +18,8 @@
           <div class="widgets__content">
             <div class="widgets__content-wrapper">
               <div class="widgets__content-title">
-                <img src="img/fire.png" alt />
-                <a href="#">Рассылки с акциями</a>
+                <img src="/img/fire.png" alt />
+                <a href="#" v-b-modal.default>Рассылки с акциями</a>
               </div>
               <div class="widgets__items widgets__items_places">
                 <draggable
@@ -27,10 +27,11 @@
                   group="product"
                   class="widgets__items_draggable"
                 >
-                  <setup-item-places
+                  <setup-item-peoples
                     v-for="(item,index) in widget.data.rows"
                     :key="`item-${index}`"
                     :item="item"
+                    :index="index"
                     @remove:item="removeItem(widget.data.rows,index)"
                   />
                   <button
@@ -63,14 +64,16 @@
         </div>
       </div>
     </div>
+    <setup-modal-title mainTitle :data="widget.data" />
   </form>
 </template>
 
 <script>
 import SetupForm from "@/components/setup/SetupForm";
-import SetupItemPlaces from "@/components/setup/SetupItemPlaces";
+import SetupItemPeoples from "@/components/setup/SetupItemPeoples";
 import AppSwitch from "@/components/form/AppSwitch";
 import SetupDefault from "@/mixins/setupDefault";
+import SetupModalTitle from "@/components/modal/SetupModalTitle";
 export default {
   data() {
     return {
@@ -79,19 +82,19 @@ export default {
         data: {
           more: "",
           more_url: "",
-          title: "{firstname}, Время поднять навык в SMM",
+          title: "Меню сообщества",
           title_counter: "",
           title_url: "",
           rows: [
             {
-              address: "ул. Советская, 33",
+              address: null,
               button: "Подписаться",
               button_url: "https://vk.com/apps?act=manage",
-              descr: "Более 3000 пар обуви в одном месте",
+              descr: "Запишись на первую бесплатную тренировку!",
               icon_id: "",
               text: null,
-              time: "8:00-20:00(без выходных)",
-              title: "Магазин «Дом обуви»",
+              time: null,
+              title: "Бесплатное занятие",
               title_url: ""
             }
           ]
@@ -121,11 +124,27 @@ export default {
       }
     };
   },
+  methods: {
+    addItem(arr) {
+      arr.push({
+        address: null,
+        button: "",
+        button_url: "",
+        descr: "",
+        icon_id: "",
+        text: null,
+        time: null,
+        title: "",
+        title_url: ""
+      });
+    }
+  },
   mixins: [SetupDefault],
   components: {
     SetupForm,
     AppSwitch,
-    SetupItemPlaces
+    SetupItemPeoples,
+    SetupModalTitle
   }
 };
 </script>

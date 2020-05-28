@@ -209,7 +209,7 @@
 }
 .widget-version {
     &__wrapper {
-        padding: 45px 70px 47px 70px;
+        padding: 43px 70px 47px 70px;
     }
     &__blocks {
         display: flex;
@@ -227,16 +227,16 @@
     }
     .modal {
         &__title {
-            margin-bottom: 11px;
+            margin-bottom: 10px;
             text-align: center;
         }
         &__text {
             text-align: center;
-            margin-bottom: 34px;
+            margin-bottom: 35px;
         }
     }
     &__img {
-        margin-bottom: 33px;
+        margin-bottom: 34px;
     }
     &__name {
         margin-bottom: 18px;
@@ -338,7 +338,7 @@
     // }
 }
 .version {
-    width: 890px;
+    max-width: 890px;
     height: 523px;
 }
 .promocode {

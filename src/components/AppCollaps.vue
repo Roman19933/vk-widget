@@ -2,7 +2,7 @@
   <div :class="[{active: collaps}, wrapClass]">
     <div
       :class="titleClass"
-      @click="collaps = !collaps">
+      @click="clicCollaps">
       <slot name="title"></slot>
     </div>
       <transition
@@ -12,7 +12,7 @@
         @after-enter="afterEnter"
         @leave="leave"
       >
-        <div v-if="collaps">
+        <div :class="{noanimate: noAnimate}" v-if="collaps">
           <slot name="content"></slot>
         </div>
       </transition>
@@ -38,9 +38,14 @@
     data() {
       return {
         collaps: this.col,
+        noAnimate: false
       }
     },
     methods: {
+      async clicCollaps () {
+        await (this.noAnimate = false)
+        this.collaps = !this.collaps
+      },
       beforeEnter (element) {
         element.style.height = 0
       },
@@ -65,7 +70,7 @@
       },
     },
     mounted() {
-
+      this.noAnimate = true
     },
     watch: {
       col: {
@@ -77,6 +82,9 @@
   }
 </script>
 <style lang="scss" scoped>
+  .noanimate {
+    transition: none!important;
+  }
   .collaps-enter-active, .collaps-leave-active {
     transition: height .3s;
     overflow: hidden;

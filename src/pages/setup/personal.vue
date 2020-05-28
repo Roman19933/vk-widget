@@ -18,8 +18,8 @@
           <div class="widgets__content">
             <div class="widgets__content-wrapper">
               <div class="widgets__content-title">
-                <img src="img/fire.png" alt />
-                <a href="#">{firstname}, у нас для тебя спецпредложение!</a>
+                <img src="/img/fire.png" alt />
+                <a href="#" v-b-modal.default>{{this.widget.data.title}}</a>
               </div>
               <setup-item-personal
                 v-for="(item,index) in widget.data.rows"
@@ -49,6 +49,7 @@
         </div>
       </div>
     </div>
+    <setup-modal-title mainTitle :data="widget.data" />
   </form>
 </template>
 
@@ -56,6 +57,7 @@
 import SetupForm from "@/components/setup/SetupForm";
 import SetupItemPersonal from "@/components/setup/SetupItemPersonal";
 import AppSwitch from "@/components/form/AppSwitch";
+import SetupModalTitle from "@/components/modal/SetupModalTitle";
 export default {
   data() {
     return {
@@ -64,7 +66,7 @@ export default {
         data: {
           more: "",
           more_url: "",
-          title: "{firstname}, Время поднять навык в SMM",
+          title: "{firstname}, у нас для тебя спецпредложение!",
           title_counter: "",
           title_url: "",
           rows: [
@@ -110,7 +112,8 @@ export default {
   components: {
     SetupForm,
     AppSwitch,
-    SetupItemPersonal
+    SetupItemPersonal,
+    SetupModalTitle
   }
 };
 </script>

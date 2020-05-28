@@ -19,7 +19,7 @@
             <div class="widgets__content-wrapper">
               <div class="widgets__content-title">
                 <img src="/img/box.png" alt />
-                <a href="#">{{this.widget.data.title}}</a>
+                <a href="#" v-b-modal.default>{{this.widget.data.title}}</a>
               </div>
               <div class="widgets__items widgets__items_cover">
                 <draggable
@@ -31,6 +31,7 @@
                     v-for="(item,index) in widget.data.rows"
                     :key="`item-${index}`"
                     :item="item"
+                    :index="index"
                     @remove:item="removeItem(widget.data.rows,index)"
                   />
                   <button
@@ -69,6 +70,7 @@
         </div>
       </div>
     </div>
+    <setup-modal-title mainTitle :data="widget.data" />
   </form>
 </template>
 
@@ -77,6 +79,7 @@ import SetupForm from "@/components/setup/SetupForm";
 import SetupItemCover from "@/components/setup/SetupItemCover";
 import AppSwitch from "@/components/form/AppSwitch";
 import SetupDefault from "@/mixins/setupDefault";
+import SetupModalTitle from "@/components/modal/SetupModalTitle";
 export default {
   data() {
     return {
@@ -125,10 +128,23 @@ export default {
     };
   },
   mixins: [SetupDefault],
+  methods: {
+    addItem(arr) {
+      arr.push({
+        button: "",
+        button_url: "",
+        cover_id: "",
+        descr: "",
+        title: "",
+        url: ""
+      });
+    }
+  },
   components: {
     SetupForm,
     AppSwitch,
-    SetupItemCover
+    SetupItemCover,
+    SetupModalTitle
   }
 };
 </script>

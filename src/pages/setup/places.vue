@@ -18,8 +18,8 @@
           <div class="widgets__content">
             <div class="widgets__content-wrapper">
               <div class="widgets__content-title">
-                <img src="img/fire.png" alt />
-                <a href="#">{{this.widget.data.title}}</a>
+                <img src="/img/fire.png" alt />
+                <a href="#" v-b-modal.default>{{this.widget.data.title}}</a>
               </div>
               <div class="widgets__items widgets__items_places">
                 <draggable
@@ -31,6 +31,7 @@
                     v-for="(item,index) in widget.data.rows"
                     :key="`item-${index}`"
                     :item="item"
+                    :index="index"
                     @remove:item="removeItem(widget.data.rows,index)"
                   />
                   <button
@@ -63,6 +64,7 @@
         </div>
       </div>
     </div>
+    <setup-modal-title mainTitle :data="widget.data" />
   </form>
 </template>
 
@@ -71,6 +73,7 @@ import SetupForm from "@/components/setup/SetupForm";
 import SetupItemPlaces from "@/components/setup/SetupItemPlaces";
 import AppSwitch from "@/components/form/AppSwitch";
 import SetupDefault from "@/mixins/setupDefault";
+import SetupModalTitle from "@/components/modal/SetupModalTitle";
 export default {
   data() {
     return {
@@ -121,11 +124,27 @@ export default {
       }
     };
   },
+  methods: {
+    addItem(arr) {
+      arr.push({
+        address: "",
+        button: "",
+        button_url: "",
+        descr: "",
+        icon_id: "",
+        text: null,
+        time: "",
+        title: "",
+        title_url: ""
+      });
+    }
+  },
   mixins: [SetupDefault],
   components: {
     SetupForm,
     AppSwitch,
-    SetupItemPlaces
+    SetupItemPlaces,
+    SetupModalTitle
   }
 };
 </script>

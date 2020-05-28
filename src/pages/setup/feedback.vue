@@ -11,16 +11,15 @@
             <div class="widgets__switch">
               <span>Режим просмотра</span>
               <div class="widgets__switch-btn">
-                <input id="switchcheckbox" type="checkbox" class="hidden switchcheckbox" />
-                <label for="switchcheckbox" id="switch" class="switch"></label>
+                <app-switch />
               </div>
             </div>
           </div>
           <div class="widgets__content">
             <div class="widgets__content-wrapper">
               <div class="widgets__content-title">
-                <img src="img/heart.png" alt />
-                <h4>Отзывы наших клиентов</h4>
+                <img src="/img/heart.png" alt />
+                <a href="#" v-b-modal.default>Отзывы наших клиентов</a>
               </div>
               <div class="widgets__items widgets__items_product">
                 <button class="add-item">+ Добавить элемент</button>
@@ -47,7 +46,7 @@
           </div>
         </div>
         <div class="widgets__right">
-          <!-- <setup-form /> -->
+          <setup-form :formData="widget.segmentation" />
         </div>
       </div>
     </div>
@@ -55,10 +54,59 @@
 </template>
 
 <script>
-// import SetupForm from "@/components/setup/SetupForm";
+import SetupForm from "@/components/setup/SetupForm";
+import AppSwitch from "@/components/form/AppSwitch";
 export default {
+  data() {
+    return {
+      widget: {
+        createdAt: "",
+        data: {
+          more: "",
+          more_url: "",
+          title: "{firstname}, успей на распродажу!",
+          title_counter: "",
+          title_url: "",
+          tiles: [
+            {
+              descr: "3 900 руб",
+              icon_id: "5686299_1676309",
+              icon_type: "160x160",
+              link: "Написать",
+              link_url: "https://vk.com/editapp?id=7467558&section=admins",
+              title: "Кольцо",
+              url: ""
+            }
+          ]
+        },
+        groupId: null,
+        id: null,
+        isActive: false,
+        name: "",
+        position: 0,
+        segmentation: {
+          sex: [],
+          age: { from: "", to: "" },
+          bdate: [],
+          relation: [],
+          city: [],
+          devices: [],
+          userSurname: [],
+          userName: [],
+          userInterests: [],
+          relationGroups: [],
+          users: [],
+          groups_exclude: [],
+          groups: []
+        },
+        type: "",
+        updatedAt: ""
+      }
+    };
+  },
   components: {
-    // SetupForm
+    SetupForm,
+    AppSwitch
   }
 };
 </script>
