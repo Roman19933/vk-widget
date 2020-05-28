@@ -19,21 +19,21 @@
                 <img class="stock-discounts__img" src="/img/catalog-sales-sale1.png" />
               </div>
               <div class="stock-discounts__header">Скидки до 70%</div>
-              <a class="catalog-sales__link">Получить скидку</a>
+              <a href="#" class="catalog-sales__link">Получить скидку</a>
             </div>
             <div class="stock-discounts__item">
               <div class="stock-discounts__img-wrapper">
                 <img class="stock-discounts__img" src="/img/catalog-sales-sale2.png" />
               </div>
               <div class="stock-discounts__header">Только сегодня</div>
-              <a class="catalog-sales__link">Получить скидку</a>
+              <a href="#" class="catalog-sales__link">Получить скидку</a>
             </div>
             <div class="stock-discounts__item">
               <div class="stock-discounts__img-wrapper">
                 <img class="stock-discounts__img" src="/img/catalog-sales-sale3.png" />
               </div>
               <div class="stock-discounts__header">Заполни анкету</div>
-              <a class="catalog-sales__link">Получить скидку</a>
+              <a href="#" class="catalog-sales__link">Получить скидку</a>
             </div>
           </div>
         </div>

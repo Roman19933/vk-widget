@@ -307,6 +307,7 @@
       }
     },
     mounted() {
+      this.$bvModal.show('modal-version')
       bridge
         .send('VKWebAppGetCommunityToken', {
           "app_id": 7474103,
