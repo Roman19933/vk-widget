@@ -31,26 +31,41 @@
         <p class>Введите знак { в поле, чтобы выбрать переменную</p>
       </div>
     </div>
-    <div class="modal__wrapper modal__extra">
+    <div class="modal__wrapper modal__extra" v-if="this.openExtra">
       <div class="modal__extra-content">
         <span class="modal__title">выберите переменную</span>
         <div class="content">
           <nav>
             <ul>
               <li>
-                <a href="#">{имя} - Иван</a>
+                <a href="#" @click="inputs($event)" data-value="{имя}">{имя} - Иван</a>
               </li>
               <li>
-                <a href="#">{имя} - Иван</a>
+                <a href="#" @click="inputs($event)" data-value="{любимый(ая)}">{любимый(ая)} - Катя</a>
               </li>
               <li>
-                <a href="#">{имя} - Иван</a>
+                <a
+                  href="#"
+                  @click="inputs($event)"
+                  data-value="{любимого(ой)}"
+                >{любимого(ой)} - Кати</a>
               </li>
               <li>
-                <a href="#">{имя} - Иван</a>
+                <a
+                  href="#"
+                  @click="inputs($event)"
+                  data-value="{любимому(ой)}"
+                >{любимому(ой)} - Кате</a>
               </li>
               <li>
-                <a href="#">{имя} - Иван</a>
+                <a
+                  href="#"
+                  @click="inputs($event)"
+                  data-value="{любимого(ую)}"
+                >{любимого(ую)} - Катю</a>
+              </li>
+              <li>
+                <a href="#" @click="inputs($event)" data-value="{любимом(ой)}">{любимом(ой)} - Кате</a>
               </li>
             </ul>
           </nav>
@@ -86,8 +101,24 @@ export default {
     return {
       show: false,
       title: "",
-      link: ""
+      link: "",
+      openExtra: false,
+      extraRadio: "{"
     };
+  },
+  watch: {
+    title(val) {
+      this.change(val, "title");
+      // for (let l in val) {
+      //   if (val[l] === "*") {
+      //     let n = val.replace("*", this.extraRadio);
+      //     this.title = n;
+      //   }
+      // }
+    },
+    link(val) {
+      this.change(val, "link");
+    }
   },
   mounted() {
     if (this.mainTitle) {
@@ -105,6 +136,40 @@ export default {
     }
   },
   methods: {
+    inputs(event) {
+      this.extraRadio = event.target.getAttribute("data-value");
+      this.openExtra = false;
+    },
+    change(str, variable) {
+      let b = str.split(" ");
+      console.log(b);
+      for (let i in b) {
+        if (b[i].indexOf("{") !== -1) {
+          this.openExtra = true;
+          console.log(i);
+          console.log(b[i]);
+          let newStr = str.replace("{", this.extraRadio);
+          switch (variable) {
+            case "title":
+              this.title = newStr;
+              this.extraRadio = "{";
+              break;
+            case "link":
+              this.link = newStr;
+              this.extraRadio = "{";
+              break;
+            case "subs":
+              this.subs = newStr;
+              this.extraRadio = "{";
+              break;
+            case "messages":
+              this.messages = newStr;
+              this.extraRadio = "{";
+              break;
+          }
+        }
+      }
+    },
     add() {
       if (this.mainTitle) {
         this.data.title = this.title;
