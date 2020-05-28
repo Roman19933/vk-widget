@@ -19,7 +19,7 @@
             <div class="widgets__content-wrapper">
               <div class="widgets__content-title">
                 <img src="/img/idea.png" alt />
-                <a href="#">{{this.widget.data.title}}</a>
+                <a href="#" v-b-modal.default>{{this.widget.data.title}}</a>
               </div>
               <setup-item-messages :item="widget.data" />
               <button class="widgets__content-add" @click.prevent>+ Добавить подвал виджета</button>
@@ -48,6 +48,7 @@
         </div>
       </div>
     </div>
+    <setup-modal-title mainTitle :data="widget.data" />
   </form>
 </template>
 
@@ -55,6 +56,7 @@
 import SetupForm from "@/components/setup/SetupForm";
 import SetupItemMessages from "@/components/setup/SetupItemMessages";
 import AppSwitch from "@/components/form/AppSwitch";
+import SetupModalTitle from "@/components/modal/SetupModalTitle";
 export default {
   data() {
     return {
@@ -97,7 +99,8 @@ export default {
   components: {
     SetupForm,
     AppSwitch,
-    SetupItemMessages
+    SetupItemMessages,
+    SetupModalTitle
   }
 };
 </script>

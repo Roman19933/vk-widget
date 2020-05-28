@@ -1,7 +1,7 @@
 <template>
   <b-modal
     v-model="show"
-    id="subscribe"
+    :id="id"
     hide-header
     hide-footer
     centered
@@ -15,12 +15,12 @@
         <div class="widgets-setting__input">
           <span class="modal__title">Описание</span>
           <div class="form-group">
-            <input type="text" placeholder="описание" />
+            <input type="text" placeholder="описание" v-model="subs" />
           </div>
         </div>
         <div class="widgets-setting__btn">
           <button type="submit" class="gen-btn bgnone" @click.prevent="show = !show">Отменить</button>
-          <button type="submit" class="gen-btn">Принять</button>
+          <button type="submit" class="gen-btn" @click.prevent="add">Принять</button>
         </div>
         <p>Введите знак { в поле, чтобы выбрать переменную</p>
       </div>
@@ -55,10 +55,50 @@
 </template>
 <script>
 export default {
+  props: {
+    data: {
+      type: Object
+    },
+    place: {
+      type: Boolean
+    },
+    text: {
+      type: Boolean
+    },
+    time: {
+      type: Boolean
+    },
+    id: {
+      type: String,
+      default: "subscriptions"
+    }
+  },
   data() {
     return {
-      show: false
+      show: false,
+      subs: ""
     };
+  },
+  mounted() {
+    if (this.place) {
+      this.subs = this.data.address;
+    } else if (this.time) {
+      this.subs = this.data.time;
+    } else if (this.text) {
+      this.subs = this.data.descr;
+    }
+  },
+  methods: {
+    add() {
+      if (this.place) {
+        this.data.address = this.subs;
+      } else if (this.time) {
+        this.data.time = this.subs;
+      } else if (this.text) {
+        this.data.descr = this.subs;
+      }
+      this.$bvModal.hide(this.id);
+    }
   }
 };
 </script>

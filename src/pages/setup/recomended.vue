@@ -19,7 +19,7 @@
             <div class="widgets__content-wrapper">
               <div class="widgets__content-title">
                 <img src="/img/heart.png" alt />
-                <a href="#">{{this.widget.data.title}}</a>
+                <a href="#" v-b-modal.default>{{this.widget.data.title}}</a>
               </div>
               <div class="widgets__items widgets__items_product">
                 <draggable
@@ -63,6 +63,7 @@
         </div>
       </div>
     </div>
+    <setup-modal-title mainTitle :data="widget.data" />
   </form>
 </template>
 
@@ -71,6 +72,7 @@ import SetupForm from "@/components/setup/SetupForm";
 import SetupItemProduct from "@/components/setup/SetupItemProduct";
 import AppSwitch from "@/components/form/AppSwitch";
 import SetupDefault from "@/mixins/setupDefault";
+import SetupModalTitle from "@/components/modal/SetupModalTitle";
 export default {
   data() {
     return {
@@ -123,7 +125,8 @@ export default {
   components: {
     SetupForm,
     AppSwitch,
-    SetupItemProduct
+    SetupItemProduct,
+    SetupModalTitle
   }
 };
 </script>

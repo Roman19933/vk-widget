@@ -1,7 +1,7 @@
 <template>
   <b-modal
     v-model="show"
-    id="default2"
+    :id="id"
     hide-header
     hide-footer
     centered
@@ -15,12 +15,12 @@
         <div class="widgets-setting__input">
           <span>Описание</span>
           <div class="form-group">
-            <textarea name id></textarea>
+            <textarea v-model="messages"></textarea>
           </div>
         </div>
         <div class="widgets-setting__btn">
           <button type="submit" class="gen-btn bgnone" @click.prevent="show = !show">Отменить</button>
-          <button type="submit" class="gen-btn">Принять</button>
+          <button type="submit" class="gen-btn" @click.prevent="add">Принять</button>
         </div>
         <p>Введите знак { в поле, чтобы выбрать переменную</p>
       </div>
@@ -57,8 +57,38 @@
 export default {
   data() {
     return {
-      show: false
+      show: false,
+      messages: ""
     };
+  },
+  props: {
+    id: {
+      type: String,
+      default: "messages"
+    },
+    text: {
+      type: Boolean
+    },
+    data: {
+      type: Object
+    }
+  },
+  mounted() {
+    if (this.text) {
+      this.messages = this.data.text;
+    } else {
+      this.messages = this.data.descr;
+    }
+  },
+  methods: {
+    add() {
+      if (this.text) {
+        this.data.text = this.messages;
+      } else {
+        this.data.descr = this.messages;
+      }
+      this.$bvModal.hide(this.id);
+    }
   }
 };
 </script>
