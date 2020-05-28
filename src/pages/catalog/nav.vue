@@ -79,7 +79,7 @@
           <p
             class="catalog-nav__settings-text"
           >Сообщите посетителям сообщества о местоположении и времени работы ваших магазинов.</p>
-          <nuxt-link class="gen-btn" tag="button" to="/setup/places">Выбрать</nuxt-link>
+          <nuxt-link class="gen-btn" tag="button" to="/setup/places?category=nav">Выбрать</nuxt-link>
         </div>
       </section>
       <section class="catalog-nav__row">
@@ -134,7 +134,7 @@
           <p
             class="catalog-nav__settings-text"
           >Расскажите аудитории про ваши мероприятия, времени начала и месте проведения.</p>
-          <nuxt-link class="gen-btn" tag="button" to="/setup/events">Выбрать</nuxt-link>
+          <nuxt-link class="gen-btn" tag="button" to="/setup/events?category=nav">Выбрать</nuxt-link>
         </div>
       </section>
       <section class="catalog-nav__row">
@@ -210,7 +210,7 @@
           <p
             class="catalog-nav__settings-text"
           >Опубликуйте самые важные разделы сообщества в виджете: расписания, статьи, обсуждения, лид-формы и т.д.</p>
-          <nuxt-link class="gen-btn" tag="button" to="/setup/peoples">Выбрать</nuxt-link>
+          <nuxt-link class="gen-btn" tag="button" to="/setup/peoples?category=nav">Выбрать</nuxt-link>
         </div>
       </section>
       <section class="catalog-nav__row">
@@ -269,7 +269,7 @@
           <p
             class="catalog-nav__settings-text"
           >Создайте рассылку в стороннем приложении и вставьте ссылку на подписку в виджет сообщества.</p>
-          <nuxt-link class="gen-btn" tag="button" to="/setup/subscriptions">Выбрать</nuxt-link>
+          <nuxt-link class="gen-btn" tag="button" to="/setup/subscriptions?category=nav">Выбрать</nuxt-link>
         </div>
       </section>
     </main>

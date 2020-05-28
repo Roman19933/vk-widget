@@ -15,15 +15,33 @@
     </div>
     <div class="item__info">
       <div class="item__info-cover">
-        <a href="#" class="item__info-cover_title">{{!!item.title ? item.title : "+ добавить"}}</a>
-        <a href="#" class="item__info-cover_star">{{!!item.descr ? item.descr : "+ добавить"}}</a>
+        <a
+          href="#"
+          class="item__info-cover_title"
+          v-b-modal="`title-${index}`"
+        >{{!!item.title ? item.title : "+ добавить"}}</a>
+        <a
+          href="#"
+          class="item__info-cover_star"
+          v-b-modal="`subs-${index}`"
+        >{{!!item.descr ? item.descr : "+ добавить"}}</a>
       </div>
-      <a :href="item.button_url" class="gen-btn">{{!!item.button ? item.button : "+ добавить"}}</a>
+      <a
+        :href="item.button_url"
+        class="gen-btn"
+        v-b-modal="`button-${index}`"
+        @click.prevent
+      >{{!!item.button ? item.button : "+ добавить"}}</a>
     </div>
+    <setup-modal-title itemTitle :data="item" :id="`title-${index}`" />
+    <setup-modal-title itemButton :data="item" :id="`button-${index}`" />
+    <setup-modal-sub text :data="item" :id="`subs-${index}`" />
   </div>
 </template>
 
 <script>
+import SetupModalTitle from "@/components/modal/SetupModalTitle";
+import SetupModalSub from "@/components/modal/SetupModalSub";
 export default {
   props: {
     item: {
@@ -31,7 +49,15 @@ export default {
       default() {
         return undefined;
       }
+    },
+    index: {
+      type: Number,
+      default: 0
     }
+  },
+  components: {
+    SetupModalTitle,
+    SetupModalSub
   }
 };
 </script>

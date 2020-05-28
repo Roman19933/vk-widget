@@ -30,6 +30,7 @@
                     v-for="(item,index) in widget.data.tiles"
                     :key="`item-${index}`"
                     :item="item"
+                    :index="index"
                     @remove:item="removeItem(widget.data.tiles,index)"
                   />
                   <button
@@ -63,8 +64,7 @@
       </div>
     </div>
     <setup-modal-upload />
-    <setup-modal-title />
-    <setup-modal-sub />
+    <setup-modal-title mainTitle :data="widget.data" />
   </form>
 </template>
 
@@ -72,7 +72,6 @@
 import SetupForm from "@/components/setup/SetupForm";
 import SetupItemProduct from "@/components/setup/SetupItemProduct";
 import SetupModalTitle from "@/components/modal/SetupModalTitle";
-import SetupModalSub from "@/components/modal/SetupModalSub";
 import SetupModalUpload from "@/components/modal/SetupModalUpload";
 import AppSwitch from "@/components/form/AppSwitch";
 import SetupDefault from "@/mixins/setupDefault";
@@ -130,7 +129,6 @@ export default {
     AppSwitch,
     SetupItemProduct,
     SetupModalTitle,
-    SetupModalSub,
     SetupModalUpload
   }
 };
