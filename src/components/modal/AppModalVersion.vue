@@ -1,5 +1,5 @@
 <template>
-  <b-modal id="modal-version" hide-header hide-footer>
+  <b-modal id="modal-version" hide-header hide-footer centered>
     <div class="modal__wrapper version">
       <button class="modal__close" @click="$bvModal.hide('modal-version')">
         <img src="img/modal-close.png" alt />
