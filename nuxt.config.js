@@ -23,13 +23,14 @@ module.exports = {
    * Modules
    */
   modules: [
+    '@nuxtjs/dotenv',
     ['@nuxtjs/dotenv', { path: '', systemvars: true }],
+    'bootstrap-vue/nuxt'
     
   ],
   /**
    * Plugins
    */
-  modules: ['bootstrap-vue/nuxt'],
   bootstrapVue: {
     componentPlugins: [
       'ModalPlugin'

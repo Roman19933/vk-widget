@@ -97,7 +97,7 @@ export default {
         {
           icon: "/img/menu-1.png",
           text: "Мои виджеты",
-          to: "/"
+          to: "/main"
         },
         {
           to: "/home",
