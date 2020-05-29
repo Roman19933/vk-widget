@@ -22,29 +22,52 @@
           <button type="submit" class="gen-btn bgnone" @click.prevent="show = !show">Отменить</button>
           <button type="submit" class="gen-btn" @click.prevent="add">Принять</button>
         </div>
-        <p>Введите знак { в поле, чтобы выбрать переменную</p>
+        <p>Введите знак [ в поле, чтобы выбрать переменную</p>
       </div>
     </div>
-    <div class="modal__wrapper modal__extra">
+    <div class="modal__wrapper modal__extra" v-if="this.openExtra">
       <div class="modal__extra-content">
         <span class="modal__title">выберите переменную</span>
         <div class="content">
           <nav>
             <ul>
               <li>
-                <a href="#">{имя} - Иван</a>
+                <a href="#" @click="$emit('changes',$event.target)" data-value="{имя}">{имя} - Иван</a>
               </li>
               <li>
-                <a href="#">{имя} - Иван</a>
+                <a
+                  href="#"
+                  @click="$emit('changes',$event.target)"
+                  data-value="{любимый(ая)}"
+                >{любимый(ая)} - Катя</a>
               </li>
               <li>
-                <a href="#">{имя} - Иван</a>
+                <a
+                  href="#"
+                  @click="$emit('changes',$event.target)"
+                  data-value="{любимого(ой)}"
+                >{любимого(ой)} - Кати</a>
               </li>
               <li>
-                <a href="#">{имя} - Иван</a>
+                <a
+                  href="#"
+                  @click="$emit('changes',$event.target)"
+                  data-value="{любимому(ой)}"
+                >{любимому(ой)} - Кате</a>
               </li>
               <li>
-                <a href="#">{имя} - Иван</a>
+                <a
+                  href="#"
+                  @click="$emit('changes',$event.target)"
+                  data-value="{любимого(ую)}"
+                >{любимого(ую)} - Катю</a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  @click="$emit('changes',$event.target)"
+                  data-value="{любимом(ой)}"
+                >{любимом(ой)} - Кате</a>
               </li>
             </ul>
           </nav>
@@ -54,6 +77,7 @@
   </b-modal>
 </template>
 <script>
+import SetupModalDefault from "@/mixins/setupModalDefault";
 export default {
   props: {
     data: {
@@ -73,11 +97,17 @@ export default {
       default: "subscriptions"
     }
   },
+  mixins: [SetupModalDefault],
   data() {
     return {
       show: false,
       subs: ""
     };
+  },
+  watch: {
+    subs(val) {
+      this.change(val, "subs");
+    }
   },
   mounted() {
     if (this.place) {
