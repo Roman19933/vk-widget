@@ -15,8 +15,10 @@
           </p>
         </div>
         <div class="main__head-btn">
-          <nuxt-link to="/catalog/sales" class="gen-btn">Подключить себе</nuxt-link>
-          <nuxt-link to="/catalog/sales" class="gen-btn">Подключить клиенту</nuxt-link>
+          <button @click="toPlug" class="gen-btn">Подключить себе</button>
+          <button @click="toPlug" class="gen-btn">Подключить клиенту</button>
+          <!-- <nuxt-link to="/catalog/sales" class="gen-btn">Подключить себе</nuxt-link>
+          <nuxt-link to="/catalog/sales" class="gen-btn">Подключить клиенту</nuxt-link> -->
         </div>
         <div class="main__head-footer">
           <img src="/img/scroll.png" alt />
@@ -100,8 +102,10 @@
           </div>
         </div>
         <div class="main__button">
-          <nuxt-link to="/catalog/sales" class="gen-btn">Подключить себе</nuxt-link>
-          <nuxt-link to="/catalog/sales" class="gen-btn">Подключить клиенту</nuxt-link>
+          <button @click="toPlug" class="gen-btn">Подключить себе</button>
+          <button @click="toPlug" class="gen-btn">Подключить клиенту</button>
+          <!-- <nuxt-link to="/catalog/sales" tag="button" class="gen-btn">Подключить себе</nuxt-link>
+          <nuxt-link to="/catalog/sales" tag="button" class="gen-btn">Подключить клиенту</nuxt-link> -->
         </div>
       </div>
     </div>
@@ -109,13 +113,65 @@
 </template>
 
 <script>
-import AppSvgIcon from "@/components/AppSvgIcon.vue";
-export default {
-  components: {
-    AppSvgIcon
-  }
-};
+  import bridge from '@vkontakte/vk-bridge';
+  import AppSvgIcon from "@/components/AppSvgIcon.vue";
+  export default {
+    components: {
+      AppSvgIcon
+    },
+    data () {
+      return {
+        
+      }
+    },
+    methods: {
+      toPlug () {
+        bridge
+          .send('VKWebAppAddToCommunity', {})
+          .then(data => {
+            this.receiveToken(+data.group_id)
+          })
+          .catch(error => {
+            console.log('error-group_id')
+            this.$router.replace({ path: '/main' })
+            // Обработка события в случае ошибки
+          });
+      },
+      async receiveToken (groupId) {
+        try {
+          let response = await this.$store.dispatch('tokenGroup/getTokenGroup', groupId)
+          console.log(response)
+          this.$router.replace({ path: '/catalog/sales' })
+        } catch (e) {
+          console.dir('errorTocen', e)
+        } finally {
+          console.log('final')
+        }
+        // console.log(groupId)
+        // console.log(this.appId)
+        // bridge
+        //   .send('VKWebAppGetCommunityToken', {
+        //     "app_id": this.appId,
+        //     "group_id": groupId,
+        //     "scope": "app_widget"
+        //   })
+        //   .then(data => {
+        //     console.log(data)
+        //     this.$router.replace({ path: '/catalog/sales'})
+        //   })
+        //   .catch(error => {
+        //     console.log('error')
+        //   })
+      }
+    },
+    mounted () {
+      bridge.send("VKWebAppInit", {})
+    }
+  };
 </script>
 
 <style lang="scss" scoped>
+.flip-list-move {
+  transition: transform 1s;
+}
 </style>

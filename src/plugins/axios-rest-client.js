@@ -1,7 +1,7 @@
 import axiosRestClient from 'axios-rest-client'
 import JsCookie from 'js-cookie'
 
-const token = JsCookie.get('token')
+// const token = JsCookie.get('token')
 
 const api = axiosRestClient({
   baseUrl: process.env.NUXT_APP_API_URL || '/api/',
@@ -12,9 +12,9 @@ let headers = {
   'Content-Type': 'application/json',
 }
 
-if (token || null) {
-  headers = Object.assign({ 'Authorization': `Bearer ${token}` }, headers)
-}
+// if (token || null) {
+//   headers = Object.assign({ 'Authorization': `Bearer ${token}` }, headers)
+// }
 
 api.axios().defaults.withCredentials = true
 api.axios().defaults.headers.common = headers
