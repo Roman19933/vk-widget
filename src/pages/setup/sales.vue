@@ -44,7 +44,7 @@
               <button class="widgets__content-add" @click.prevent>+ Добавить подвал виджета</button>
             </div>
             <div class="widgets__save">
-              <button class="gen-btn">Сохранить</button>
+              <button type="submit" class="gen-btn">Сохранить</button>
             </div>
           </div>
           <div class="widgets__footer">
@@ -134,6 +134,12 @@ export default {
     AppSwitch,
     SetupItemProduct,
     SetupModalTitle
+  },
+  methods: {
+    async onSubmit () {
+      this.$store.dispatch("server/sales/create", this.widget);
+      console.log(this.widget)
+    },
   }
 };
 </script>
