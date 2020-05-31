@@ -116,7 +116,7 @@ export default {
     async getFotoId() {
       let fd = new FormData();
       fd.append("image", this.image, this.image.name);
-      fd.append("group_id", 195259137);
+      fd.append("group_id", 195873545);
       fd.append("size", this.size);
       await this.$store.dispatch("server/upload/uploadFoto", fd);
       if (this.type === "cover") {
