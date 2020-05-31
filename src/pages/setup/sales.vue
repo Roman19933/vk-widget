@@ -12,7 +12,10 @@
               <div class="widgets__switch">
                 <span>Режим просмотра</span>
                 <div class="widgets__switch-btn">
-                  <app-switch v-model="widget.isActive" @switch-val="widget.isActive = !widget.isActive" />
+                  <app-switch
+                    v-model="widget.isActive"
+                    @switch-val="widget.isActive = !widget.isActive"
+                  />
                 </div>
               </div>
             </div>
@@ -139,10 +142,10 @@ export default {
     SetupModalTitle
   },
   methods: {
-    async onSubmit () {
+    async onSubmit() {
       this.$store.dispatch("server/sales/create", this.widget);
-      console.log(this.widget)
-    },
+      console.log(this.widget);
+    }
   }
 };
 </script>
