@@ -126,6 +126,7 @@ export default {
       } else {
         this.data.icon_id = this.fotoId;
       }
+      console.log(this.fotoId);
       await this.$store.dispatch("server/upload/getUrl", {
         group_id: 195873545,
         image_id: this.fotoId
