@@ -8,9 +8,9 @@
         <img src="/img/burger.png" alt />
       </div>
     </div>
-    <div class="item__img">
-      <input id="file" type="file" class="hidden" />
-      <label for="file" id="upload"></label>
+    <div class="item__img" v-b-modal="`upload-${index}`">
+      <!-- <input id="file" type="file" class="hidden" />
+      <label for="file" id="upload"></label>-->
       <img src="/img/photo.png" alt class="photo" />
     </div>
     <div class="item__info">
@@ -44,16 +44,25 @@
     <setup-modal-title itemTitle :data="item" :id="`title-${index}`" />
     <setup-modal-title itemLink :data="item" :id="`link-${index}`" />
     <setup-modal-sub text :data="item" :id="`subs-${index}`" />
+    <setup-modal-upload :data="item" :id="`upload-${index}`" :type="type" />
   </div>
 </template>
 
 <script>
 import SetupModalTitle from "@/components/modal/SetupModalTitle";
 import SetupModalSub from "@/components/modal/SetupModalSub";
+import SetupModalUpload from "@/components/modal/SetupModalUpload";
 export default {
   props: {
     item: {
-      type: Object
+      type: Object,
+      default: function() {
+        return {};
+      }
+    },
+    type: {
+      type: String,
+      default: ""
     },
     index: {
       type: Number,
@@ -62,7 +71,8 @@ export default {
   },
   components: {
     SetupModalTitle,
-    SetupModalSub
+    SetupModalSub,
+    SetupModalUpload
   }
 };
 </script>

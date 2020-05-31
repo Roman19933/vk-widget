@@ -7,7 +7,7 @@ export default {
             arr.push({
                 descr: "",
                 icon_id: "",
-                icon_type: "",
+                // icon_type: "",
                 link: "",
                 link_url: "",
                 title: "",
