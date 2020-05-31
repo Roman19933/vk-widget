@@ -428,14 +428,16 @@
                 height: 240px;
                 position: relative;
                 cursor: pointer;
+                background-color: #474873;
+                display: flex;
+                align-items: center;
+                justify-content: center;
                 img {
                     width: 100%;
+                    height: 100%;
                     &.photo {
-                        position: absolute;
-                        top: 43%;
-                        left: 38%;
                         width: auto;
-                        pointer-events: none;
+                        height: auto;
                     }
                 }
             }
@@ -610,9 +612,5 @@
 }
 
 #upload {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    background-color: #474873;
-    border-radius: 3px;
+display:none
 }

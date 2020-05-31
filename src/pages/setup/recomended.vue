@@ -31,6 +31,7 @@
                     v-for="(item,index) in widget.data.tiles"
                     :key="`item-${index}`"
                     :item="item"
+                    type="tilesSquare"
                     @remove:item="removeItem(widget.data.tiles,index)"
                   />
                   <button
@@ -88,7 +89,7 @@ export default {
             {
               descr: "5 500 руб",
               icon_id: "5686299_1676309",
-              icon_type: "160x160",
+              // icon_type: "160x160",
               link: "Узнать цену",
               link_url: "https://vk.com/editapp?id=7467558&section=admins",
               title: "Шорти",
@@ -116,7 +117,7 @@ export default {
           groups_exclude: [],
           groups: []
         },
-        type: "",
+        type: "tiles",
         updatedAt: ""
       }
     };
