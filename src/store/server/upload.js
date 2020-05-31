@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import { Api } from '~/plugins/axios-rest-client'
-const GET_FOTO_ID = 'GET_FOTO_ID',
-const GET_FOTO_URL = 'GET_FOTO_ID',
+const GET_FOTO_ID = 'GET_FOTO_ID';
+const GET_FOTO_URL = 'GET_FOTO_ID';
 
 export const state = () => ({
     fotoId: "",
