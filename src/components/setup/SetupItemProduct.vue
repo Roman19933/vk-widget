@@ -12,7 +12,7 @@
       <!-- <input id="file" type="file" class="hidden" />
       <label for="file" id="upload"></label>-->
       <img src="/img/photo.png" alt class="photo" v-if="!this.fotoUrl" />
-      <img :src="fotoUrl" alt v-else />
+      <img :src="urlToFoto" alt v-else />
     </div>
     <div class="item__info">
       <a
@@ -70,6 +70,11 @@ export default {
       default: 0
     }
   },
+  data() {
+    return {
+      urlToFoto: ""
+    };
+  },
   // computed: {
   //   fotoUrl() {
   //     return this.$store.getters["server/upload/urlFoto"];
@@ -77,8 +82,8 @@ export default {
   // },
   methods: {
     fotoUrl(val) {
-      return val;
-      // console.log(val)
+      this.urlToFoto = val;
+      console.log(val);
     }
   },
   components: {
