@@ -137,10 +137,16 @@ export default {
       this.image = this.preview = "";
     },
     async getUrlFoto(idxFoto) {
-      await this.$store.dispatch("server/upload/getUrl", {
-        group_id: 195873545,
-        image_id: idxFoto
-      });
+      try {
+        let url = await this.$store.dispatch("server/upload/getUrl", {
+          group_id: 195873545,
+          image_id: idxFoto
+        });
+        this.$emit("url", url.data.response[0].images[0].url);
+        console.log("url", url.data.response[0].images[0].url);
+      } catch (e) {
+        console.log("e", e);
+      }
     }
   }
 };
