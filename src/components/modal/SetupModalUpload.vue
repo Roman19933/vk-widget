@@ -67,7 +67,7 @@ export default {
     };
   },
   computed: {
-    getFotoId() {
+    fotoId() {
       return this.$store.getters["server/upload/fotoId"];
     }
   },
@@ -125,11 +125,11 @@ export default {
       fd.append("size", this.size);
       await this.$store.dispatch("server/upload/uploadFoto", fd);
       if (this.type === "cover") {
-        this.data.cover_id = this.$store.getters["server/upload/fotoId"];
+        this.data.cover_id = this.fotoId;
       } else {
-        this.data.icon_id = this.$store.getters["server/upload/fotoId"];
+        this.data.icon_id = this.fotoId;
       }
-      console.log("sgtf", this.$store.getters["server/upload/fotoId"]);
+      console.log("sgtf", this.fotoId);
       console.log("data", this.data);
       this.$bvModal.hide(this.id);
       this.image = this.preview = "";
