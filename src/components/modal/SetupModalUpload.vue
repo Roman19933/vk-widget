@@ -129,6 +129,7 @@ export default {
         this.data.icon_id = this.fotoId;
       }
       console.log("sgtf", this.fotoId);
+      console.log("data", this.data);
       this.$bvModal.hide(this.id);
       this.image = this.preview = "";
     }
