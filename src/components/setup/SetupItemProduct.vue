@@ -11,7 +11,8 @@
     <div class="item__img" v-b-modal="`upload-${index}`">
       <!-- <input id="file" type="file" class="hidden" />
       <label for="file" id="upload"></label>-->
-      <img src="/img/photo.png" alt class="photo" />
+      <img src="/img/photo.png" alt class="photo" v-if="!this.fotoUrl" />
+      <img :src="fotoUrl" alt v-else />
     </div>
     <div class="item__info">
       <a
@@ -67,6 +68,11 @@ export default {
     index: {
       type: Number,
       default: 0
+    }
+  },
+  computed: {
+    fotoUrl() {
+      return this.$store.getters["server/upload/urlFoto"];
     }
   },
   components: {
