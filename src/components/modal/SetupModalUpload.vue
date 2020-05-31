@@ -41,7 +41,6 @@
 </template>
 <script>
 import axios from "axios";
-import { mapGetters } from "vuex";
 export default {
   props: {
     data: {
@@ -68,7 +67,9 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["fotoId"])
+    getFotoId() {
+      return this.$store.getters["server/upload/fotoId"];
+    }
   },
   mounted() {
     console.log(document.location.pathname);
@@ -124,11 +125,11 @@ export default {
       fd.append("size", this.size);
       await this.$store.dispatch("server/upload/uploadFoto", fd);
       if (this.type === "cover") {
-        this.data.cover_id = this.fotoId;
+        this.data.cover_id = this.getFotoId;
       } else {
-        this.data.icon_id = this.fotoId;
+        this.data.icon_id = this.getFotoId;
       }
-      console.log("sgtf", this.fotoId);
+      console.log("sgtf", this.getFotoId);
       console.log("data", this.data);
       this.$bvModal.hide(this.id);
       this.image = this.preview = "";

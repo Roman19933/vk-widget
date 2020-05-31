@@ -14,8 +14,8 @@ export const actions = {
     async uploadFoto({ commit }, payload) {
         try {
             let id = await Api['groups/image'].create(payload)
-            commit('GET_FOTO_ID', id.response.id)
-            console.log('id', id.response.id)
+            commit('GET_FOTO_ID', id.data.response.id)
+            console.log('id', id.data.response.id)
         } catch (e) {
             console.log('e', e)
         }
