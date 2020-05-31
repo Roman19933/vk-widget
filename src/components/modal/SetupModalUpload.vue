@@ -123,9 +123,11 @@ export default {
       fd.append("size", this.size);
       await this.$store.dispatch("server/upload/uploadFoto", fd);
       if (this.type === "cover") {
-        this.imgId = this.data.cover_id = this.fotoId;
+        this.data.cover_id = this.fotoId;
+        this.imgId = this.data.cover_id;
       } else {
         this.imgId = this.data.icon_id = this.fotoId;
+        this.imgId = this.data.icon_id;
       }
       await this.$store.dispatch("server/upload/getUrl", {
         group_id: 195873545,
