@@ -1,9 +1,11 @@
 import _ from 'lodash'
 import { Api } from '~/plugins/axios-rest-client'
-const GET_FOTO_ID = 'GET_FOTO_ID'
+const GET_FOTO_ID = 'GET_FOTO_ID',
+const GET_FOTO_URL = 'GET_FOTO_ID',
 
 export const state = () => ({
-    fotoId: ""
+    fotoId: "",
+    urlFoto: ""
 })
 
 export const getters = {
@@ -19,11 +21,23 @@ export const actions = {
         } catch (e) {
             console.log('e', e)
         }
+    },
+    async getUrl({ commit }, { group_id, image_id }) {
+        try {
+            let url = await Api[`/groups/image/${group_id}/${image_id}`].get()
+            commit('GET_FOTO_URL', url.data.response.images[0])
+            console.log('id', url.data.response.images[0])
+        } catch (e) {
+            console.log('e', e)
+        }
     }
 }
 
 export const mutations = {
     [GET_FOTO_ID](state, payload) {
         state.fotoId = payload
+    },
+    [GET_FOTO_URL](state, payload) {
+        state.urlFoto = payload
     }
 }
