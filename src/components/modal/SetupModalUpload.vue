@@ -125,11 +125,11 @@ export default {
       fd.append("size", this.size);
       await this.$store.dispatch("server/upload/uploadFoto", fd);
       if (this.type === "cover") {
-        this.data.cover_id = this.getFotoId;
+        this.data.cover_id = this.$store.getters["server/upload/fotoId"];
       } else {
-        this.data.icon_id = this.getFotoId;
+        this.data.icon_id = this.$store.getters["server/upload/fotoId"];
       }
-      console.log("sgtf", this.getFotoId);
+      console.log("sgtf", this.$store.getters["server/upload/fotoId"]);
       console.log("data", this.data);
       this.$bvModal.hide(this.id);
       this.image = this.preview = "";
