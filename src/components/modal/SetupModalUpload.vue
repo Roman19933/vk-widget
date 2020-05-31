@@ -116,18 +116,17 @@ export default {
     async getFotoId() {
       let fd = new FormData();
       fd.append("image", this.image, this.image.name);
-      fd.append("group_id", 195873545);
+      fd.append("group_id", 195259137);
       fd.append("size", this.size);
       await this.$store.dispatch("server/upload/uploadFoto", fd);
-      // axios
-      //   .post("https://api-adprice.demka.online/api/v1/groups/image", fd)
-      //   .then(function(response) {
-      //     console.log(response.data.response.id);
-      //   })
-      //   .catch(function(error) {
-      //     console.log(error);
-      //   });
+      if (this.type === "cover") {
+        this.data.cover_id = this.$store.getters.fotoId;
+      } else {
+        this.data.icon_id = this.$store.getters.fotoId;
+      }
+      console.log("sgtf", this.$store.getters.fotoId);
       this.$bvModal.hide(this.id);
+      this.image = this.preview = "";
     }
   }
 };
