@@ -124,17 +124,23 @@ export default {
       await this.$store.dispatch("server/upload/uploadFoto", fd);
       if (this.type === "cover") {
         this.data.cover_id = this.fotoId;
-        this.imgId = this.data.cover_id;
+        this.getUrlFoto(this.data.cover_id);
       } else {
-        this.imgId = this.data.icon_id = this.fotoId;
-        this.imgId = this.data.icon_id;
+        this.data.icon_id = this.fotoId;
+        this.getUrlFoto(this.data.icon_id);
       }
-      await this.$store.dispatch("server/upload/getUrl", {
-        group_id: 195873545,
-        image_id: this.imgId
-      });
+      // await this.$store.dispatch("server/upload/getUrl", {
+      //   group_id: 195873545,
+      //   image_id: this.imgId
+      // });
       this.$bvModal.hide(this.id);
       this.image = this.preview = "";
+    },
+    async getUrlFoto(idxFoto) {
+      await this.$store.dispatch("server/upload/getUrl", {
+        group_id: 195873545,
+        image_id: idxFoto
+      });
     }
   }
 };
