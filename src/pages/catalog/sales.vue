@@ -375,15 +375,15 @@
 </template>
 
 <script>
-import AppNavigationMenu from "@/components/AppNavigationMenu.vue";
-import AppSvgIcon from "@/components/AppSvgIcon.vue";
+  import AppNavigationMenu from "@/components/AppNavigationMenu.vue";
+  import AppSvgIcon from "@/components/AppSvgIcon.vue";
 
-export default {
-  components: {
-    AppNavigationMenu,
-    AppSvgIcon
-  }
-};
+  export default {
+    components: {
+      AppNavigationMenu,
+      AppSvgIcon
+    }
+  };
 </script>
 
 <style lang="scss" scoped>
