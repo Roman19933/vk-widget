@@ -24,13 +24,14 @@ export const actions = {
         }
     },
     async getUrl({ commit }, { group_id, image_id }) {
-        try {
-            let url = await Api[`groups/image/${group_id}/${image_id}`]()
-            commit('GET_FOTO_URL', url.data.response[0].images[0].url)
-            console.log('url', url.data.response[0].images[0].url)
-        } catch (e) {
-            console.log('e', e)
-        }
+        // try {
+        return await Api[`groups/image/${group_id}/${image_id}`]()
+        // let url = await Api[`groups/image/${group_id}/${image_id}`]()
+        // commit('GET_FOTO_URL', url.data.response[0].images[0].url)
+        // console.log('url', url.data.response[0].images[0].url)
+        // } catch (e) {
+        //     console.log('e', e)
+        // }
     }
 }
 

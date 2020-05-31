@@ -45,7 +45,7 @@
     <setup-modal-title itemTitle :data="item" :id="`title-${index}`" />
     <setup-modal-title itemLink :data="item" :id="`link-${index}`" />
     <setup-modal-sub text :data="item" :id="`subs-${index}`" />
-    <setup-modal-upload :data="item" :id="`upload-${index}`" :type="type" />
+    <setup-modal-upload :data="item" :id="`upload-${index}`" :type="type" @url="fotoUrl" />
   </div>
 </template>
 
@@ -70,9 +70,15 @@ export default {
       default: 0
     }
   },
-  computed: {
-    fotoUrl() {
-      return this.$store.getters["server/upload/urlFoto"];
+  // computed: {
+  //   fotoUrl() {
+  //     return this.$store.getters["server/upload/urlFoto"];
+  //   }
+  // },
+  methods: {
+    fotoUrl(val) {
+      return val;
+      // console.log(val)
     }
   },
   components: {
