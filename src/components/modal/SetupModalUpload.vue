@@ -61,7 +61,8 @@ export default {
       show: false,
       image: "",
       preview: "",
-      size: ""
+      size: "",
+      imgId: ""
     };
   },
   computed: {
@@ -121,16 +122,14 @@ export default {
       fd.append("group_id", 195873545);
       fd.append("size", this.size);
       await this.$store.dispatch("server/upload/uploadFoto", fd);
-      console.log(this.fotoId);
       if (this.type === "cover") {
-        this.data.cover_id = this.fotoId;
+        this.imgId = this.data.cover_id = this.fotoId;
       } else {
-        this.data.icon_id = this.fotoId;
+        this.imgId = this.data.icon_id = this.fotoId;
       }
-      console.log(this.fotoId);
       await this.$store.dispatch("server/upload/getUrl", {
         group_id: 195873545,
-        image_id: this.fotoId
+        image_id: this.imgId
       });
       this.$bvModal.hide(this.id);
       this.image = this.preview = "";
