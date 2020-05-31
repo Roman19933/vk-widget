@@ -31,6 +31,7 @@
                     :key="`item-${index}`"
                     :item="item"
                     :index="index"
+                    type="tilesSquare"
                     @remove:item="removeItem(widget.data.tiles,index)"
                   />
                   <button
@@ -63,7 +64,6 @@
         </div>
       </div>
     </div>
-    <setup-modal-upload />
     <setup-modal-title mainTitle :data="widget.data" />
   </form>
 </template>
@@ -72,7 +72,6 @@
 import SetupForm from "@/components/setup/SetupForm";
 import SetupItemProduct from "@/components/setup/SetupItemProduct";
 import SetupModalTitle from "@/components/modal/SetupModalTitle";
-import SetupModalUpload from "@/components/modal/SetupModalUpload";
 import AppSwitch from "@/components/form/AppSwitch";
 import SetupDefault from "@/mixins/setupDefault";
 export default {
@@ -90,7 +89,7 @@ export default {
             {
               descr: "3 900 руб",
               icon_id: "5686299_1676309",
-              icon_type: "160x160",
+              // icon_type: "160x160",
               link: "Написать",
               link_url: "https://vk.com/editapp?id=7467558&section=admins",
               title: "Кольцо",
@@ -118,7 +117,7 @@ export default {
           groups_exclude: [],
           groups: []
         },
-        type: "",
+        type: "tiles",
         updatedAt: ""
       }
     };
@@ -128,8 +127,7 @@ export default {
     SetupForm,
     AppSwitch,
     SetupItemProduct,
-    SetupModalTitle,
-    SetupModalUpload
+    SetupModalTitle
   }
 };
 </script>
