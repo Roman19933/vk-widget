@@ -17,7 +17,7 @@ export const actions = {
   //   return res
   // },
   async create ({ commit }, payload) {
-    return await Api['widgets']()
+    return await Api['widgets'].create(payload)
   }
 }
 
