@@ -25,8 +25,8 @@ export const actions = {
     async getUrl({ commit }, { group_id, image_id }) {
         try {
             let url = await Api[`groups/image/${group_id}/199137986_867747`]()
-            commit('GET_FOTO_URL', url.data.response.images[0].url)
-            console.log('id', url.data.response.images[0].url)
+            commit('GET_FOTO_URL', url.data.response.images.url)
+            console.log('id', url.data.response.images.url)
         } catch (e) {
             console.log('e', e)
         }
