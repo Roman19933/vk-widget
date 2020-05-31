@@ -121,6 +121,7 @@ export default {
       fd.append("group_id", 195873545);
       fd.append("size", this.size);
       await this.$store.dispatch("server/upload/uploadFoto", fd);
+      console.log(this.fotoId);
       if (this.type === "cover") {
         this.data.cover_id = this.fotoId;
       } else {
