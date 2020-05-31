@@ -103,6 +103,7 @@
 
 <script>
   import bridge from '@vkontakte/vk-bridge';
+import axios from 'axios'
   import AppModalVersion from "@/components/modal/AppModalVersion.vue";
   import AppModalPublic from "@/components/modal/AppModalPublic.vue";
   import AppSwitch from "@/components/form/AppSwitch.vue";
@@ -120,9 +121,23 @@
         appId: process.env.APP_ID,
         vidgets: [
           {
+            name: '3',
             switch: false
           },
           {
+            name: '2',
+            switch: false
+          },
+          {
+            name: '1',
+            switch: false
+          },
+          {
+            name: '4',
+            switch: false
+          },
+          {
+            name: '5',
             switch: true
           }
         ]
@@ -133,25 +148,47 @@
         if (e) {
           this.$bvModal.show('modal-public')
         }
+      },
+      async token () {
+        try {
+          let response = await this.$store.dispatch('tokenGroup/getTokenGroup', 195259137)
+          console.log(response)
+        } catch (e) {
+          console.dir('errorTocen', e)
+        } finally {
+          console.log('final')
+        }
       }
     },
     mounted() {
-      bridge.send("VKWebAppInit", {});
+      // bridge.send("VKWebAppInit", {});
+      this.token()
+      // axios
+      //   .post("https://api-adprice.demka.online/api/v1/tokens", {
+      //     group_id: 195259137,
+      //     token: 'aaf8625fc80c5279e7d719316c468428cd85ebbd3f819bd3faaa04f2b68bdf66f3b3bb76abce544b88090'
+      //   })
+      //   .then(function(response) {
+      //     console.log(response);
+      //   })
+      //   .catch(function(error) {
+      //     console.log(error);
+      //   });
       this.$bvModal.show('modal-version')
-      bridge
-        .send('VKWebAppGetCommunityToken', {
-          "app_id": this.appId,
-          "group_id": 7474103,
-          "scope": "app_widget"
-        })
-        .then(data => {
-          // Обработка события в случае успеха
-          console.log(data);
-        })
-        .catch(error => {
-          console.log('error')
-          // Обработка события в случае ошибки
-        });
+      // bridge
+      //   .send('VKWebAppGetCommunityToken', {
+      //     "app_id": this.appId,
+      //     "group_id": 7474103,
+      //     "scope": "app_widget"
+      //   })
+      //   .then(data => {
+      //     // Обработка события в случае успеха
+      //     console.log(data);
+      //   })
+      //   .catch(error => {
+      //     console.log('error')
+      //     // Обработка события в случае ошибки
+      //   });
     }
   };
 </script>

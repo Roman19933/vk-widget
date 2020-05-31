@@ -15,14 +15,14 @@ export const getters = {
 }
 
 export const actions = {
-  getTokenGroup ({ commit }, payload) {
+  async getTokenGroup ({ commit }, payload) {
     bridge
       .send('VKWebAppGetCommunityToken', {
         "app_id": APP_ID,
         "group_id": payload,
         "scope": "app_widget"
       })
-      .then(data => {
+      .then( data => {
         console.log(payload, data.access_token)
         let payloadApi = {
           group_id: payload,
