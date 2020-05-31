@@ -15,7 +15,6 @@
         <div class="widgets-setting__input">
           <span class="modal__title">загрузка изображения</span>
         </div>
-        <!-- <div> -->
         <label class="label" :class="this.image ? types(this.type) : ''">
           <input type="file" id="upload" @change="changeImage" accept="image/*" />
           <img src="/img/loading.png" alt v-if="!this.image" />
@@ -25,7 +24,6 @@
             Изображение выровнено по центру. Формат .png или .jpg
           </p>
         </label>
-        <!-- </div> -->
         <div class="widgets-setting__btn">
           <div v-if="!this.image">
             <label for="upload">
@@ -104,7 +102,6 @@ export default {
       if (/\.(jpe?g|png)$/i.test(img.name)) {
         this.image = img;
       }
-      // this.image = event.target.files[0];
       this.createImage(this.image);
     },
     createImage(file) {
@@ -129,8 +126,6 @@ export default {
       } else {
         this.data.icon_id = this.fotoId;
       }
-      console.log("sgtf", this.fotoId);
-      console.log("data", this.data);
       this.$bvModal.hide(this.id);
       this.image = this.preview = "";
     }
