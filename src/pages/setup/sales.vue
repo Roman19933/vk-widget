@@ -131,32 +131,6 @@ export default {
     };
   },
   mixins: [SetupDefault],
-  mounted() {
-    // console.log("ok");
-    // bridge
-    //   .send("VKWebAppGetEmail")
-    //   .then(data => {
-    //     // Обработка события в случае успеха
-    //     console.log(data.email);
-    //   })
-    //   .catch(error => {
-    //     // Обработка события в случае ошибки
-    //   });
-    // bridge
-    //   .send("VKWebAppGetCommunityToken", {
-    //     app_id: 7492043,
-    //     group_id: 195873545,
-    //     scope: "app_widget"
-    //   })
-    //   .then(data => {
-    //     // Обработка события в случае успеха
-    //     console.log(data);
-    //   })
-    //   .catch(error => {
-    //     console.log(error);
-    //     // Обработка события в случае ошибки
-    //   });
-  },
   components: {
     SetupForm,
     AppSwitch,
