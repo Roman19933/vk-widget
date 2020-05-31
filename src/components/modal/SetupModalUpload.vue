@@ -143,7 +143,6 @@ export default {
           image_id: idxFoto
         });
         this.$emit("url", url.data.response[0].images[0].url);
-        console.log("url", url.data.response[0].images[0].url);
       } catch (e) {
         console.log("e", e);
       }

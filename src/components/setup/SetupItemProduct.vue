@@ -9,9 +9,7 @@
       </div>
     </div>
     <div class="item__img" v-b-modal="`upload-${index}`">
-      <!-- <input id="file" type="file" class="hidden" />
-      <label for="file" id="upload"></label>-->
-      <img src="/img/photo.png" alt class="photo" v-if="!this.fotoUrl" />
+      <img src="/img/photo.png" alt class="photo" v-if="!this.urlToFoto" />
       <img :src="urlToFoto" alt v-else />
     </div>
     <div class="item__info">
@@ -75,15 +73,9 @@ export default {
       urlToFoto: ""
     };
   },
-  // computed: {
-  //   fotoUrl() {
-  //     return this.$store.getters["server/upload/urlFoto"];
-  //   }
-  // },
   methods: {
     fotoUrl(val) {
       this.urlToFoto = val;
-      console.log(val);
     }
   },
   components: {
