@@ -116,10 +116,17 @@ export default {
     getFotoId() {
       let fd = new FormData();
       fd.append("image", this.image, this.image.name);
-      fd.append("group_id", this.group_id);
+      fd.append("group_id", "195366635");
       fd.append("size", this.size);
       console.log(fd);
-      // axios.post("http://localhost:3000/images", formData);
+      axios
+        .post("https://api-adprice.demka.online/api/v1/groups/image", fd)
+        .then(function(response) {
+          console.log(response);
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
     }
   }
 };
