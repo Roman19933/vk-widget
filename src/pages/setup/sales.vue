@@ -12,7 +12,10 @@
               <div class="widgets__switch">
                 <span>Режим просмотра</span>
                 <div class="widgets__switch-btn">
-                  <app-switch v-model="widget.isActive" @switch-val="widget.isActive = !widget.isActive" />
+                  <app-switch
+                    v-model="widget.isActive"
+                    @switch-val="widget.isActive = !widget.isActive"
+                  />
                 </div>
               </div>
             </div>

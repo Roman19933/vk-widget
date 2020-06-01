@@ -15,7 +15,6 @@
         <div class="widgets-setting__input">
           <span class="modal__title">загрузка изображения</span>
         </div>
-        <!-- <div> -->
         <label class="label" :class="this.image ? types(this.type) : ''">
           <input type="file" id="upload" @change="changeImage" accept="image/*" />
           <img src="/img/loading.png" alt v-if="!this.image" />
@@ -25,7 +24,6 @@
             Изображение выровнено по центру. Формат .png или .jpg
           </p>
         </label>
-        <!-- </div> -->
         <div class="widgets-setting__btn">
           <div v-if="!this.image">
             <label for="upload">
@@ -63,8 +61,14 @@ export default {
       show: false,
       image: "",
       preview: "",
-      size: ""
+      size: "",
+      imgId: ""
     };
+  },
+  computed: {
+    fotoId() {
+      return this.$store.getters["server/upload/fotoId"];
+    }
   },
   mounted() {
     console.log(document.location.pathname);
@@ -99,7 +103,6 @@ export default {
       if (/\.(jpe?g|png)$/i.test(img.name)) {
         this.image = img;
       }
-      // this.image = event.target.files[0];
       this.createImage(this.image);
     },
     createImage(file) {
@@ -113,20 +116,36 @@ export default {
         reader.readAsDataURL(file);
       }
     },
-    getFotoId() {
+    async getFotoId() {
       let fd = new FormData();
       fd.append("image", this.image, this.image.name);
-      fd.append("group_id", "195366635");
+      fd.append("group_id", 195873545);
       fd.append("size", this.size);
-      console.log(fd);
-      axios
-        .post("https://api-adprice.demka.online/api/v1/groups/image", fd)
-        .then(function(response) {
-          console.log(response);
-        })
-        .catch(function(error) {
-          console.log(error);
+      await this.$store.dispatch("server/upload/uploadFoto", fd);
+      if (this.type === "cover") {
+        this.data.cover_id = this.fotoId;
+        this.getUrlFoto(this.data.cover_id);
+      } else {
+        this.data.icon_id = this.fotoId;
+        this.getUrlFoto(this.data.icon_id);
+      }
+      // await this.$store.dispatch("server/upload/getUrl", {
+      //   group_id: 195873545,
+      //   image_id: this.imgId
+      // });
+      this.$bvModal.hide(this.id);
+      this.image = this.preview = "";
+    },
+    async getUrlFoto(idxFoto) {
+      try {
+        let url = await this.$store.dispatch("server/upload/getUrl", {
+          group_id: 195873545,
+          image_id: idxFoto
         });
+        this.$emit("url", url.data.response[0].images[0].url);
+      } catch (e) {
+        console.log("e", e);
+      }
     }
   }
 };
