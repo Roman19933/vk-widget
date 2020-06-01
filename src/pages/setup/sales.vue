@@ -83,6 +83,7 @@ import SetupItemProduct from "@/components/setup/SetupItemProduct";
 import AppSwitch from "@/components/form/AppSwitch";
 import SetupDefault from "@/mixins/setupDefault";
 import SetupModalTitle from "@/components/modal/SetupModalTitle";
+import bridge from '@vkontakte/vk-bridge';
 export default {
   data() {
     return {
@@ -109,7 +110,7 @@ export default {
         groupId: null,
         id: null,
         isActive: false,
-        name: "",
+        name: "Виджет 1",
         position: 0,
         segmentation: {
           sex: [],
@@ -139,10 +140,36 @@ export default {
     SetupModalTitle
   },
   methods: {
-    async onSubmit () {
+    async create () {
       this.$store.dispatch("server/sales/create", this.widget);
       console.log(this.widget)
     },
+    async onSubmit () {
+      this.getGroupId(this.payloadId)
+      let payload = this.widget
+      payload.groupId = this.payloadId
+
+
+      this.create(payload)
+    },
+    async getGroupId() {
+      const APP_ID = +process.env.APP_ID
+      bridge
+        .send('VKWebAppGetCommunityToken', {
+          "app_id": APP_ID,
+          "group_id": payloadId,
+          "scope": "app_widget"
+        })
+        .then( data => {
+          console.log(payloadId)
+          let payloadId = {
+            group_id: payloadId
+          }
+        })
+        .catch(error => {
+          console.log(error)
+        })
+    }
   }
 };
 </script>
