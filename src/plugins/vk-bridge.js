@@ -1,6 +1,7 @@
-import Vue from 'vue'
 import bridge from '@vkontakte/vk-bridge'
 
-// if (!Vue.prototype.plugin) {
-  Vue.use(bridge)
-// }
+export const vkBridge = bridge
+
+export default (context, inject) => {
+  inject('vkBridge', bridge)
+}
