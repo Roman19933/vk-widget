@@ -126,22 +126,19 @@
 
 <script>
 export default {
+  mounted () {
+    const groupId = this.$store.getters['server/token/vkQuery'].vk_group_id
+    this.$store.dispatch('vk/bridge/updateTokenGroup', groupId)
+  },
   methods: {
     async toPlug() {
-      /* try {
+      try {
         let { group_id } = await this.$vkBridge.send("VKWebAppAddToCommunity");
         window.open(
           `https://vk.com/app${process.env.NUXT_VK_APP_ID}_-${group_id}`,
           "_blank"
         );
       } catch (e) {
-        console.log(e)
-      } */
-
-      try {
-        let res = await this.$vkBridge.send('VKWebAppGetCommunityToken', {app_id: 7474103, group_id: 195259137, scope: "app_widget"})
-        console.log(res)
-      } catch(e) {
         console.log(e)
       }
     }
