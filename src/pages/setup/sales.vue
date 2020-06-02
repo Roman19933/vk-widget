@@ -144,34 +144,13 @@ export default {
   },
   methods: {
     async create () {
-      this.$store.dispatch("server/sales/create", this.widget);
+      await this.$store.dispatch("server/sales/create", this.widget);
       console.log(this.widget)
     },
-    async onSubmit () {
-      this.getGroupId(this.payloadId)
+    onSubmit () {
       let payload = this.widget
-      payload.groupId = this.payloadId
-
-
+      // payload.groupId = this.groupId
       this.create(payload)
-    },
-    async getGroupId() {
-      const APP_ID = +process.env.APP_ID
-      bridge
-        .send('VKWebAppGetCommunityToken', {
-          "app_id": APP_ID,
-          "group_id": payloadId,
-          "scope": "app_widget"
-        })
-        .then( data => {
-          console.log(payloadId)
-          let payloadId = {
-            group_id: payloadId
-          }
-        })
-        .catch(error => {
-          console.log(error)
-        })
     }
   }
 };
