@@ -161,6 +161,7 @@ import axios from 'axios'
       }
     },
     mounted() {
+      console.log(this.$route.query.vk_group_id)
       // bridge.send("VKWebAppInit", {});
       this.token()
       // axios

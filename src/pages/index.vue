@@ -165,8 +165,17 @@
       }
     },
     mounted () {
+      console.log(this.$route.query.vk_group_id)
+      var regexp = /vk_group_id=([^&]+)/i;
+    var group = "";
+    if (!!regexp.exec(document.location.search))
+      group = regexp.exec(document.location.search)[1];
+    localStorage.setItem("group_id", group || "");
+    // console.log("search", document.location.search);
+    // console.log("var", group);
+    // console.log("ls", localStorage.getItem("group_id"));
       const isMobile = /Mobile|webOS|BlackBerry|IEMobile|MeeGo|mini|Fennec|Windows Phone|Android|iP(ad|od|hone)/i.test(navigator.userAgent);
-      console.log(isMobile)
+      // console.log(isMobile)
       bridge.send("VKWebAppInit", {})
     }
   };
