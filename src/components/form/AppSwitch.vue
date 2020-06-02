@@ -19,6 +19,12 @@
       }
     },
     watch: {
+      value: {
+        handler(bef) {
+          console.log(bef)
+          this.val = bef
+        }
+      },
       val: {
         handler(bef) {
           this.$emit('switch-val', bef)

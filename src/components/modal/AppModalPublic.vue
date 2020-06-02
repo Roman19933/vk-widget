@@ -15,10 +15,13 @@
             </p>
             <div class="widget-public__group">
               <button
-                @click="$bvModal.hide('modal-public')"
+                @click="$emit('public', false)"
                 class="widget-public__btn gen-btn disable"
               >Нет</button>
-              <button class="widget-public__btn gen-btn">Да</button>
+              <button
+                class="widget-public__btn gen-btn"
+                @click="$emit('public', true)"
+              >Да</button>
             </div>
           </div>
         </div>
@@ -26,3 +29,9 @@
     </div>
   </b-modal>
 </template>
+
+<script>
+  export default {
+    
+  }
+</script>
