@@ -32,6 +32,7 @@
                     :key="`item-${index}`"
                     :item="item"
                     :index="index"
+                    type="cover"
                     @remove:item="removeItem(widget.data.rows,index)"
                   />
                   <button
@@ -122,7 +123,7 @@ export default {
           groups_exclude: [],
           groups: []
         },
-        type: "",
+        type: "coverlist",
         updatedAt: ""
       }
     };
