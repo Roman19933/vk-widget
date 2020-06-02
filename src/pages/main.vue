@@ -48,7 +48,10 @@
                       <span>Опубликовать виджет</span>
                     </div>
                   </div>
-                  <app-switch v-model="vidget.switch" @switch-val="modalPublic($event), vidget.switch = !vidget.switch"/>
+                  <app-switch
+                    v-model="vidget.switch"
+                    @switch-val="modalPublic($event), vidget.switch = $event, switchActive = vidget.name"
+                  />
                 </div>
                 <a href="#" class="home-block__user">
                   <img src="img/home-user.svg" alt />
@@ -96,14 +99,15 @@
         </div>
       </div>
     </div>
-    <app-modal-public/>
+    <app-modal-public
+      @public="publicVidget($event)"
+    />
     <app-modal-version/>
   </div>
 </template>
 
 <script>
   import bridge from '@vkontakte/vk-bridge';
-import axios from 'axios'
   import AppModalVersion from "@/components/modal/AppModalVersion.vue";
   import AppModalPublic from "@/components/modal/AppModalPublic.vue";
   import AppSwitch from "@/components/form/AppSwitch.vue";
@@ -119,6 +123,7 @@ import axios from 'axios'
     data() {
       return {
         appId: process.env.APP_ID,
+        switchActive: null,
         vidgets: [
           {
             name: '3',
@@ -144,6 +149,20 @@ import axios from 'axios'
       }
     },
     methods: {
+      publicVidget (e) {
+        let vid = this.vidgets,
+          sa = this.switchActive
+        if (e) {
+          this.checkTokenGroup()
+          this.$bvModal.hide('modal-public')
+          let index = vid.findIndex(e => e.name === sa)
+          vid[index].switch = true
+        } else {
+          this.$bvModal.hide('modal-public')
+          let index = vid.findIndex(e => e.name === sa)
+          vid[index].switch = false
+        }
+      },
       modalPublic (e) {
         if (e) {
           this.$bvModal.show('modal-public')
@@ -158,22 +177,22 @@ import axios from 'axios'
         } finally {
           console.log('final')
         }
+      },
+      async checkTokenGroup () {
+        try {
+          let response = await this.$store.dispatch('tokenGroup/checkTokenGroup')
+          console.log(response)
+        } catch (e) {
+          console.dir('errorCheckTocen', e)
+        } finally {
+          console.log('final')
+        }
       }
     },
     mounted() {
+      bridge.send("VKWebAppInit", 'vk_group_id')
       // bridge.send("VKWebAppInit", {});
-      this.token()
-      // axios
-      //   .post("https://api-adprice.demka.online/api/v1/tokens", {
-      //     group_id: 195259137,
-      //     token: 'aaf8625fc80c5279e7d719316c468428cd85ebbd3f819bd3faaa04f2b68bdf66f3b3bb76abce544b88090'
-      //   })
-      //   .then(function(response) {
-      //     console.log(response);
-      //   })
-      //   .catch(function(error) {
-      //     console.log(error);
-      //   });
+      // this.token()
       this.$bvModal.show('modal-version')
       // bridge
       //   .send('VKWebAppGetCommunityToken', {

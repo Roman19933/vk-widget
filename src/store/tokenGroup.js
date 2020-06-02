@@ -7,7 +7,8 @@ const APP_ID = +process.env.APP_ID
 const SET_TOKEN_GROUP = 'SET_TOKEN_GROUP'
 
 export const state = () => ({
-  tokenGroup: ''
+  tokenGroup: '',
+  groupId: 195259137
 })
 
 export const getters = {
@@ -15,7 +16,7 @@ export const getters = {
 }
 
 export const actions = {
-  async getTokenGroup ({ commit }, payload) {
+  getTokenGroup ({ commit }, payload) {
     bridge
       .send('VKWebAppGetCommunityToken', {
         "app_id": APP_ID,
@@ -29,17 +30,26 @@ export const actions = {
           token: data.access_token
         }
         commit('SET_TOKEN_GROUP', data.access_token)
+        commit('SET_GROUP_ID', payload)
         // return data.access_token
         return Api.tokens.create(payloadApi)
       })
       .catch(error => {
         console.log(error)
       })
+  },
+  checkTokenGroup ({ commit }, payload) {
+    let id = this.state.tokenGroup.groupId
+    console.log(id)
+    return Api['tokens/check'].find(id)
   }
 }
 
 export const mutations = {
   [SET_TOKEN_GROUP] (state, payload) {
     state.tokenGroup = payload
+  },
+  [SET_TOKEN_GROUP] (state, payload) {
+    state.groupId = payload
   }
 }
