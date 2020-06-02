@@ -9,9 +9,8 @@
             <span>в заявки при помощи умных виджетов Spycat</span>
           </h4>
           <p>
-            Умные виджеты подстраиваются под вашу аудиторию, привлекают внимание, собирают заявки и подписчиков
-            в
-            рассылки
+            Умные виджеты подстраиваются под вашу аудиторию, привлекают
+            внимание, собирают заявки и подписчиков в рассылки
           </p>
         </div>
         <div class="main__head-btn">
@@ -32,10 +31,13 @@
             <img src="/img/logo_widgets.png" alt />
             <div class="main__info-p">
               <p>
-                Вы сделали дизайн сообщества, публикуете посты, настроили рекламу, получаете переходы,а
-                заказов мало или совсем нет?
+                Вы сделали дизайн сообщества, публикуете посты, настроили
+                рекламу, получаете переходы,а заказов мало или совсем нет?
               </p>
-              <p>Spycat поможет получать в 2 раза больше клиентов из сообщества при помощи умных виджетов</p>
+              <p>
+                Spycat поможет получать в 2 раза больше клиентов из сообщества
+                при помощи умных виджетов
+              </p>
             </div>
           </div>
         </div>
@@ -43,14 +45,20 @@
       <div class="main__options wrapper">
         <div class="main__options-title">
           <h4>ВОЗМОЖНОСТИ СЕРВИСА</h4>
-          <p>Самый мощный и простой редактор виджетов ВКонтакте, нацеленный на повышение ваших продаж</p>
+          <p>
+            Самый мощный и простой редактор виджетов ВКонтакте, нацеленный на
+            повышение ваших продаж
+          </p>
         </div>
         <div class="main__options-items">
           <div class="item">
             <app-svg-icon name="editor" class="editor" />
             <div class="item__content">
               <h4>Визуальный редактор</h4>
-              <p>Легко и быстро редактируйте текст, картинки, ссылки и другие элементы виджета</p>
+              <p>
+                Легко и быстро редактируйте текст, картинки, ссылки и другие
+                элементы виджета
+              </p>
             </div>
           </div>
           <div class="item">
@@ -58,8 +66,8 @@
             <div class="item__content">
               <h4>Готовые шаблоны</h4>
               <p>
-                Экономьте время на обдумывание идеи виджета и настройте 1 из 12 готовых шаблонов для
-                коммерции.
+                Экономьте время на обдумывание идеи виджета и настройте 1 из 12
+                готовых шаблонов для коммерции.
               </p>
             </div>
           </div>
@@ -68,8 +76,9 @@
             <div class="item__content">
               <h4>Выбор аудитории</h4>
               <p>
-                Делайте разные предложения для разных групп аудиторий по полу, возрасту, городу, дню
-                рождения, интересам, VK ID и другим параметрам.
+                Делайте разные предложения для разных групп аудиторий по полу,
+                возрасту, городу, дню рождения, интересам, VK ID и другим
+                параметрам.
               </p>
             </div>
           </div>
@@ -78,8 +87,8 @@
             <div class="item__content">
               <h4>Статистика</h4>
               <p>
-                Собирайте статистику по кликам в vk.cc и найдите лучший вариант виджета, который приносит
-                больше результата.
+                Собирайте статистику по кликам в vk.cc и найдите лучший вариант
+                виджета, который приносит больше результата.
               </p>
             </div>
           </div>
@@ -88,8 +97,8 @@
             <div class="item__content">
               <h4>Клиентская поддержка</h4>
               <p>
-                Если у вас появятся вопросы, то мы быстро поможем решить их и подскажем, как действовать
-                дальше.
+                Если у вас появятся вопросы, то мы быстро поможем решить их и
+                подскажем, как действовать дальше.
               </p>
             </div>
           </div>
@@ -97,7 +106,10 @@
             <app-svg-icon name="idea" class="editor" />
             <div class="item__content">
               <h4>Виджет «под ключ»</h4>
-              <p>Придумаем эффективный виджет под ваши аудитории и настроим Spycat с гарантией результата.</p>
+              <p>
+                Придумаем эффективный виджет под ваши аудитории и настроим
+                Spycat с гарантией результата.
+              </p>
             </div>
           </div>
         </div>
@@ -113,67 +125,26 @@
 </template>
 
 <script>
-  import bridge from '@vkontakte/vk-bridge';
-  import AppSvgIcon from "@/components/AppSvgIcon.vue";
-  export default {
-    components: {
-      AppSvgIcon
-    },
-    data () {
-      return {
-        
-      }
-    },
-    methods: {
-      toPlug () {
-        bridge
-          .send('VKWebAppAddToCommunity', {})
-          .then(data => {
-            this.receiveToken(+data.group_id)
-          })
-          .catch(error => {
-            console.log('error-group_id')
-            this.$router.replace({ path: '/main' })
-            // Обработка события в случае ошибки
-          });
-      },
-      async receiveToken (groupId) {
-        try {
-          let response = await this.$store.dispatch('tokenGroup/getTokenGroup', groupId)
-          console.log(response)
-          this.$router.replace({ path: '/catalog/sales' })
-        } catch (e) {
-          console.dir('errorTocen', e)
-        } finally {
-          console.log('final')
-        }
-        // console.log(groupId)
-        // console.log(this.appId)
-        // bridge
-        //   .send('VKWebAppGetCommunityToken', {
-        //     "app_id": this.appId,
-        //     "group_id": groupId,
-        //     "scope": "app_widget"
-        //   })
-        //   .then(data => {
-        //     console.log(data)
-        //     this.$router.replace({ path: '/catalog/sales'})
-        //   })
-        //   .catch(error => {
-        //     console.log('error')
-        //   })
-      }
-    },
-    mounted () {
-      const isMobile = /Mobile|webOS|BlackBerry|IEMobile|MeeGo|mini|Fennec|Windows Phone|Android|iP(ad|od|hone)/i.test(navigator.userAgent);
-      console.log(isMobile)
-      bridge.send("VKWebAppInit", {})
-    }
-  };
-</script>
+export default {
+  methods: {
+    async toPlug() {
+      /* try {
+        let { group_id } = await this.$vkBridge.send("VKWebAppAddToCommunity");
+        window.open(
+          `https://vk.com/app${process.env.NUXT_VK_APP_ID}_-${group_id}`,
+          "_blank"
+        );
+      } catch (e) {
+        console.log(e)
+      } */
 
-<style lang="scss" scoped>
-.flip-list-move {
-  transition: transform 1s;
-}
-</style>
+      try {
+        let res = await this.$vkBridge.send('VKWebAppGetCommunityToken', {app_id: 7474103, group_id: 195259137, scope: "app_widget"})
+        console.log(res)
+      } catch(e) {
+        console.log(e)
+      }
+    }
+  }
+};
+</script>
