@@ -154,52 +154,10 @@ export default {
       if (e) {
         this.$bvModal.show("modal-public");
       }
-    },
-    async token() {
-      try {
-        let response = await this.$store.dispatch(
-          "tokenGroup/getTokenGroup",
-          195259137
-        );
-        console.log(response);
-      } catch (e) {
-        console.dir("errorTocen", e);
-      } finally {
-        console.log("final");
-      }
-    },
-    async checkTokenGroup() {
-      try {
-        let response = await this.$store.dispatch("tokenGroup/checkTokenGroup");
-        console.log(response);
-      } catch (e) {
-        console.dir("errorCheckTocen", e);
-      } finally {
-        console.log("final");
-      }
     }
   },
   mounted() {
-    // console.log(this.$route.query.vk_group_id)
-    // bridge.send("VKWebAppInit", {});
-    // this.token()
     this.$bvModal.show("modal-version");
-    // bridge
-    //   .send('VKWebAppGetCommunityToken', {
-    //     "app_id": this.appId,
-    //     "group_id": 7474103,
-    //     "scope": "app_widget"
-    //   })
-    //   .then(data => {
-    //     // Обработка события в случае успеха
-    //     console.log(data);
-    //   })
-    //   .catch(error => {
-    //     console.log('error')
-    //     // Обработка события в случае ошибки
-    //   });
   }
 };
 </script>
-
-<style lang="scss" scoped></style>
