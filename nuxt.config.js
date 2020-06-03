@@ -2,6 +2,7 @@ require('dotenv').config()
 
 module.exports = {
   srcDir: 'src',
+  mode: 'spa',
   /*
   ** Headers of the page
   */
