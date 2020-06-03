@@ -26,21 +26,20 @@ export const actions = {
       "group_id": +group_id,
       "scope": "app_widget"
     }
-    console.log(group_id, payload)
 
-    /* try {
-      let res = await vkBridge.send('VKWebAppGetCommunityToken', payload)
-      console.log(res)
+    try {
+      let { access_token } = await vkBridge.send('VKWebAppGetCommunityToken', payload)
+      try {
+        await this.dispatch('server/token/setToken', {
+          group_id: group_id,
+          token: access_token
+        })
+      } catch (e) {
+        console.log(e)
+      }
     } catch(e) {
       console.log(e)
-    } */
-     
-
-
-    /*  this.dispatch('server/token/setToken', {
-      group_id: group_id,
-      token: res.access_token
-    }) */
+    }
   }
 }
 

@@ -16,6 +16,9 @@ export const getters = {
 export const actions = {
   async setToken ({ commit }, payload) {
     await Api.tokens.create(payload)
+  },
+  async checkToken ({ commit }, payload) {
+    return await Api['tokens/check'].find(payload)
   }
 }
 
