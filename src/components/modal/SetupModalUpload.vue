@@ -62,7 +62,8 @@ export default {
       image: "",
       preview: "",
       size: "",
-      imgId: ""
+      imgId: "",
+      groupId:''
     };
   },
   computed: {
@@ -71,8 +72,9 @@ export default {
     }
   },
   mounted() {
-    console.log(document.location.pathname);
-    switch (this.type) {
+      this.groupId = this.$store.getters["server/token/vkQuery"].vk_group_id;
+      console.log(this.groupId)
+      switch (this.type) {
       case "cover":
         this.size = "510x128";
         break;
@@ -119,7 +121,7 @@ export default {
     async getFotoId() {
       let fd = new FormData();
       fd.append("image", this.image, this.image.name);
-      fd.append("group_id", 195873545);
+      fd.append("group_id", +this.groupId);
       fd.append("size", this.size);
       await this.$store.dispatch("server/upload/uploadFoto", fd);
       if (this.type === "cover") {
@@ -139,7 +141,7 @@ export default {
     async getUrlFoto(idxFoto) {
       try {
         let url = await this.$store.dispatch("server/upload/getUrl", {
-          group_id: 195873545,
+          group_id: +this.groupId,
           image_id: idxFoto
         });
         this.$emit("url", url.data.response[0].images[0].url);

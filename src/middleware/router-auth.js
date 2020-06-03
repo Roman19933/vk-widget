@@ -15,7 +15,5 @@ export default async function({ store, redirect, route }) {
 
 async function validToken(store) {
   const groupId = store.getters["server/token/vkQuery"].vk_group_id;
-  return {data: {
-    check:true
-  }}
+  return await store.dispatch("server/token/checkToken", groupId);
 }
