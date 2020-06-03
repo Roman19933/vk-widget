@@ -1,3 +1,5 @@
 import Vue from 'vue'
 
-// import AppLogo from "@/components/AppLogo";
+import AppSvgIcon from './AppSvgIcon'
+
+Vue.component('app-svg-icon', AppSvgIcon)

@@ -1,0 +1,209 @@
+.catalog-nav {
+  background-color: #3a3b5e;
+  padding: 22px 0 0;
+  width: 100%;
+  &__row {
+    max-width: 740px;
+    display: flex;
+    align-items: flex-start;
+    padding: 32px 30px 18px;
+  }
+  &__link {
+    color: #a2a2ad;
+    font-family: 'RobotoLight';
+    font-size: 13.2px;
+    line-height: 18px;
+    text-decoration: underline;
+  }
+  &__text {
+    margin-bottom: 4px;
+    color: #a2a2ad;
+    font-family: 'RobotoLight';
+    font-size: 12px;
+    font-weight: 300;
+    line-height: 14px;
+  }
+  &__icon {
+    max-width: 20px;
+    max-height: 20px;
+    color: #ffffff;
+    &_red {
+      color: #ff3c67;
+    }
+    &_blue {
+      color: #3bb4ff;
+    }
+    &_green {
+      color: #3ef57c;
+    }
+    &-wrapper {
+      margin-top: 2px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex: none;
+      width: 38px;
+      height: 38px;
+      margin-right: 10px;
+      background-color: #3a3b5e;
+    }
+  }
+  &__item {
+    display: flex;
+    padding: 0 15px 6px;
+    margin-bottom: 13px;
+    border-bottom: solid 1px #3a3b5e;
+    &:last-child {
+      margin-bottom: 0!important;
+      border-bottom: none!important;
+    }
+    &-wrapper {
+      width: 100%;
+    }
+    &-title {
+      color: #ffffff;
+      font-family: 'RobotoMedium';
+      font-size: 14px;
+      line-height: 14px;
+      margin-bottom: 6px;
+    }
+    &-content {
+      display: flex;
+      align-items: flex-end;
+    }
+    &-icon {
+      max-width: 10px;
+      max-height: 10px;
+      margin-right: 6px;
+    }
+  }
+  &__content {
+    flex: 0;
+    min-width: 415px;
+    // width: 442px;
+    box-shadow: 0 2px 5px rgba(33, 32, 61, 0.4);
+    border-radius: 6px;
+    background-color: #474873;
+    padding: 8px 0px 0px;
+    margin-right: 23px;
+    .gen-btn {
+      flex: none;
+      width: 112px;
+      height: 21px;
+      color: #ffffff;
+      border-radius: 3px;
+      font-family: 'RobotoBold';
+      font-size: 11px;
+      margin-bottom: 7px;
+      margin-left: auto;
+    }
+    &-footer {
+      text-align: center;
+      padding: 7px 0 9px;
+      border-top: solid 1px #3a3b5e;
+    }
+    &-header {
+      display: flex;
+      align-items: flex-end;
+      margin-bottom: 11px;
+      padding: 0 16px;
+    }
+    &-text {
+      color: #ffffff;
+      font-family: 'RobotoLight';
+      font-size: 12px;
+      letter-spacing: .1px;
+    }
+    &-icon {
+      width: 14px;
+      height: 14px;
+      margin-right: 8px;
+      color: #ffc25e;
+    }
+    &.point-sale {
+      .catalog-nav {
+        &__icon {
+          &-wrapper {
+            border-radius: 50%;
+          }
+        }
+      }
+    }
+    &.activity {
+      padding-bottom: 2px;
+      .catalog-nav {
+        &__icon {
+          max-width: 26px;
+          max-height: 26px;
+          &-wrapper {
+            border-radius: 3px;
+          }
+        }
+        &__item {
+          padding-bottom: 1px;
+          margin-bottom: 8px;
+        }
+      }
+      .gen-btn {
+        margin-bottom: 14px;
+      }
+    }
+    .community-menu {
+      .catalog-nav {
+        &__icon {
+          max-width: 22px;
+          max-height: 21px;
+        }
+        &__item {
+          padding-bottom: 5px;
+          margin-bottom: 10px;
+          &-content {
+            align-items: flex-start;
+          }
+        }
+      }
+      .gen-btn {
+        margin-top: auto;
+      }
+    }
+    .subscription {
+      .catalog-nav {
+        &__icon {
+          margin-top: 2px;
+          max-width: 38px;
+          max-height: 38px;
+          margin-right: 10px;
+        }
+        &__item {
+          padding-bottom: 8px;
+          margin-bottom: 8px;
+          &-content {
+            align-items: flex-start;
+          }
+        }
+      }
+    }
+  }
+  &__settings {
+    &-title {
+      color: #ffffff;
+      font-family: 'RobotoMedium';
+      font-size: 18px;
+      font-weight: 500;
+      margin-bottom: 5px;
+      margin-top: 15px;
+    }
+    &-text {
+      color: #a2a2ad;
+      font-family: 'RobotoLight';
+      font-size: 13px;
+      font-weight: 300;
+      line-height: 22px;
+    }
+    .gen-btn {
+      margin-top: 14px;
+      width: 115px;
+      height: 32px;
+    }
+  }
+}

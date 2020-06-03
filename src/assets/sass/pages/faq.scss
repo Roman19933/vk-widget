@@ -1,0 +1,54 @@
+.vidget-page_faq {
+    .vidget-page {
+        &__wrapper {
+            padding: 27px 0 0;
+        }
+        &__head {
+            padding: 0 15px;
+            margin-bottom: 20px;
+        }
+    }
+}
+.faq {
+    &__arrow {
+        img {
+            transition: all .3s;
+            transform: rotate(-90deg);
+        }
+    }
+    &__block {
+        opacity: 0.6;
+        cursor: pointer;
+        border-bottom: 0.5px solid #474873;
+        &-list {
+            transition: all .3s;
+            padding: 18px 15px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        &.active {
+            opacity: 1;
+            .faq {
+                &__arrow {
+                    img {
+                        transform: rotate(0);
+                    }
+                }
+                &__block-list {
+                    background-color: #474873;
+                }
+            }
+        }
+    }
+    &__name {
+        font-size: 14px;
+    }
+    &__hidden {
+        padding: 13px 15px;
+        font-size: 12px;
+        .gen-btn {
+            margin-top: 10px;
+        }
+    }
+}

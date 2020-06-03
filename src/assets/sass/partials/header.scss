@@ -1,0 +1,40 @@
+.header {
+    font-family: 'RobotoRegular';
+    background-color: #363757;
+    color: white;
+    &__wrapper {
+        padding: 8px 30px 5px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    &__title {
+        font-size: 20px;
+        a {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 73px;
+            cursor: pointer;
+            img {
+                transform: rotate(90deg);
+            }
+        }
+    }
+    &-user {
+        display: flex;
+        align-items: center;
+        &__info {
+            text-align: right;
+            margin-right: 14px;
+        }
+        &__name {
+            margin-bottom: 3px;
+            font-size: 16px;
+        }
+        &__text {
+            font-size: 13px;
+            color: #a2a2ad;
+        }
+    }
+}

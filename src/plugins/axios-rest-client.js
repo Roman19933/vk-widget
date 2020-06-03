@@ -16,7 +16,7 @@ if (token || null) {
   headers = Object.assign({ 'Authorization': `Bearer ${token}` }, headers)
 }
 
-api.axios().defaults.withCredentials = true
+// api.axios().defaults.withCredentials = true
 api.axios().defaults.headers.common = headers
 
 api.axios().interceptors.response.use((response) => {

@@ -17,19 +17,27 @@ module.exports = {
     ]
   },
   css: [
-    '~/assets/sass/common.sass'
+    '~/assets/sass/style.scss'
   ],
   /**
    * Modules
    */
   modules: [
+    '@nuxtjs/dotenv',
     ['@nuxtjs/dotenv', { path: '', systemvars: true }],
+    'bootstrap-vue/nuxt'
+    
   ],
   /**
    * Plugins
    */
+  bootstrapVue: {
+    componentPlugins: [
+      'ModalPlugin'
+    ]
+  },
   buildModules: [
-    '@nuxtjs/moment'
+    '@nuxtjs/moment',
   ],
   moment: {
     defaultLocale: 'ru',
@@ -39,6 +47,9 @@ module.exports = {
   plugins: [
     '~/components',
     { src: '~plugins/axios-rest-client', ssr: false },
+    { src: '~plugins/vue-select', ssr: false },
+    { src: '~plugins/vuedraggable', ssr: false },
+    { src: '~plugins/vk-bridge', ssr: false },
   ],
   router: {
     prefetchLinks: process.env.NUXT_APP_MODE === 'production',
@@ -65,10 +76,11 @@ module.exports = {
   ** Build configuration
   */
   build: {
+    // vendor: ['vk-bridge'],
     /*
     ** Run ESLint on save
     */
-    extend (config, { isDev, isClient }) {
+    extend(config, { isDev, isClient }) {
       if (isDev && isClient) {
         config.module.rules.push({
           enforce: 'pre',
