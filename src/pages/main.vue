@@ -157,7 +157,11 @@ export default {
     }
   },
   mounted() {
-    this.$bvModal.show("modal-version");
+    console.log(this.$store.getters['server/token/vkQuery'])
+    if (!this.$route.query.token) {
+      const groupId = this.$store.getters['server/token/vkQuery'].vk_group_id
+      this.$store.dispatch('vk/bridge/updateTokenGroup', groupId)
+    }
   }
 };
 </script>
