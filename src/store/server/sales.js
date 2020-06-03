@@ -11,13 +11,16 @@ export const getters = {
 }
 
 export const actions = {
-  // async getSales ({ commit }) {
-  //   let res = await Api.widgets()
-  //   commit(SET_SALES, res.data)
-  //   return res
-  // },
+  async getSales ({ commit },) {
+    let res = await Api['groups/widget/{group_id}'].get()
+    commit(SET_SALES, res.data)
+    return res
+  },
   async create ({ commit }, payload) {
     return await Api['widgets'].create(payload)
+  },
+  async edit ({ commit }, payload) {
+    return await Api['widgets'].update(payload)
   }
 }
 

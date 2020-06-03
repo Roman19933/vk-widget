@@ -26,7 +26,7 @@ module.exports = {
     '@nuxtjs/dotenv',
     ['@nuxtjs/dotenv', { path: '', systemvars: true }],
     'bootstrap-vue/nuxt'
-    
+
   ],
   /**
    * Plugins

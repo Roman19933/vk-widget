@@ -1,6 +1,6 @@
 <template>
   <client-only>
-    <form action="#" @submit.prevent="onSubmit">
+    <form action="#" @submit.prevent="create">
       <div class="widgets vidget-page">
         <div class="widgets__wrapper vidget-page__wrapper">
           <div class="widgets__left">
@@ -86,7 +86,6 @@ import SetupItemProduct from "@/components/setup/SetupItemProduct";
 import AppSwitch from "@/components/form/AppSwitch";
 import SetupDefault from "@/mixins/setupDefault";
 import SetupModalTitle from "@/components/modal/SetupModalTitle";
-import bridge from '@vkontakte/vk-bridge';
 export default {
   data() {
     return {
@@ -100,12 +99,13 @@ export default {
           title_url: "",
           tiles: [
             {
-              descr: "5 500 руб",
+              descr: "+ добавить",
               icon_id: "5686299_1676309",
               // icon_type: "160x160",
-              link: "Узнать цену",
-              link_url: "https://vk.com/editapp?id=7467558&section=admins",
-              title: "Шорти2",
+              link: "Получить скидку",
+              // link_url: "https://vk.com/editapp?id=7467558&section=admins",
+              link_url: "",
+              title: "Скидки",
               url: ""
             }
           ]
@@ -113,7 +113,7 @@ export default {
         groupId: null,
         id: null,
         isActive: false,
-        name: "Виджет 1",
+        name: "Акции и скидки",
         position: 0,
         segmentation: {
           sex: [],
@@ -132,8 +132,9 @@ export default {
         },
         type: "tiles",
         updatedAt: ""
-      }
-    };
+      },
+      validFields: false,
+    }
   },
   mixins: [SetupDefault],
   components: {
@@ -144,13 +145,21 @@ export default {
   },
   methods: {
     async create () {
-      await this.$store.dispatch("server/sales/create", this.widget);
-      console.log(this.widget)
-    },
-    onSubmit () {
       let payload = this.widget
-      // payload.groupId = this.groupId
-      this.create(payload)
+      if(this.validFields == true) {
+         if (payload.id || false) {
+          console.log("id");
+          await this.$store.dispatch("server/sales/edit", this.payload);
+        } else {
+          console.log("no id");
+          await this.$store.dispatch("server/sales/create", this.payload);
+        }
+      }
+
+      // let payload = this.widget
+      // // const groupId = this.$store.getters['server/token/vkQuery'].vk_group_id
+      // // payload.groupId = this.groupId
+      // this.$store.dispatch("server/sales/onSubmit", payload);
     }
   }
 };
