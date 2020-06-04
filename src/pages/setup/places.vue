@@ -66,7 +66,7 @@
     </div>
     <setup-modal-title mainTitle :data="widget.data" />
   </form>
-</template>
+</template>s
 
 <script>
 import SetupForm from "@/components/setup/SetupForm";

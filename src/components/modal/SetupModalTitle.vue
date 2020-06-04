@@ -25,8 +25,16 @@
           </div>
         </div>
         <div class="widgets-setting__btn">
-          <button type="submit" class="gen-btn bgnone" @click.prevent="show = !show">Отменить</button>
-          <button type="submit" class="gen-btn" @click.prevent="add">Принять</button>
+          <button
+            type="submit"
+            class="gen-btn bgnone"
+            @click.prevent="show = !show"
+          >
+            Отменить
+          </button>
+          <button type="submit" class="gen-btn" @click.prevent="add">
+            Принять
+          </button>
         </div>
         <p class>Введите знак [ в поле, чтобы выбрать переменную</p>
       </div>
@@ -38,42 +46,52 @@
           <nav>
             <ul>
               <li>
-                <a href="#" @click="$emit('changes',$event.target)" data-value="{имя}">{имя} - Иван</a>
+                <a
+                  href="#"
+                  @click="$emit('changes', $event.target)"
+                  data-value="{имя}"
+                  >{имя} - Иван</a
+                >
               </li>
               <li>
                 <a
                   href="#"
-                  @click="$emit('changes',$event.target)"
+                  @click="$emit('changes', $event.target)"
                   data-value="{любимый(ая)}"
-                >{любимый(ая)} - Катя</a>
+                  >{любимый(ая)} - Катя</a
+                >
               </li>
               <li>
                 <a
                   href="#"
-                  @click="$emit('changes',$event.target)"
+                  @click="$emit('changes', $event.target)"
                   data-value="{любимого(ой)}"
-                >{любимого(ой)} - Кати</a>
+                  >{любимого(ой)} - Кати</a
+                >
               </li>
               <li>
                 <a
                   href="#"
-                  @click="$emit('changes',$event.target)"
+                  @click="$emit('changes', $event.target)"
                   data-value="{любимому(ой)}"
-                >{любимому(ой)} - Кате</a>
+                  >{любимому(ой)} - Кате</a
+                >
               </li>
               <li>
                 <a
                   href="#"
-                  @click="$emit('changes',$event.target)"
+                  @click="$emit('changes', $event.target)"
                   data-value="{любимого(ую)}"
-                >{любимого(ую)} - Катю</a>
+                  >{любимого(ую)} - Катю</a
+                >
               </li>
               <li>
                 <a
                   href="#"
-                  @click="$emit('changes',$event.target)"
+                  @click="$emit('changes', $event.target)"
                   data-value="{любимом(ой)}"
-                >{любимом(ой)} - Кате</a>
+                  >{любимом(ой)} - Кате</a
+                >
               </li>
             </ul>
           </nav>
@@ -93,6 +111,9 @@ export default {
       type: Boolean
     },
     itemTitle: {
+      type: Boolean
+    },
+    itemTitlePlace: {
       type: Boolean
     },
     itemLink: {
@@ -134,6 +155,9 @@ export default {
     } else if (this.itemButton) {
       this.title = this.data.button;
       this.link = this.data.button_url;
+    } else if (this.itemTitlePlace) {
+      this.title = this.data.title;
+      this.link = this.data.title_url;
     }
   },
   mixins: [SetupModalDefault],
@@ -151,6 +175,9 @@ export default {
       } else if (this.itemButton) {
         this.data.button = this.title;
         this.data.button_url = this.link;
+      } else if (this.itemTitlePlace) {
+        this.data.title = this.title;
+        this.data.title_url = this.link;
       }
       this.$bvModal.hide(this.id);
     }

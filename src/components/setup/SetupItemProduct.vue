@@ -1,7 +1,7 @@
 <template>
   <div class="item">
     <div class="item__menu">
-      <a href="#" class="item__menu-close" @click.prevent="$emit('remove:item')">
+      <a href="#" class="item__menu-close" @click.prevent="$emit('remove:item')" v-if="this.index >= 3">
         <img src="/img/close-error.png" alt />
       </a>
       <div class="item__menu-burger">
