@@ -4,7 +4,7 @@ export default async function({ store, redirect, route }) {
 
     let { data } = await validToken(store);
 
-    redirect({ path: "/main", query: {token: data.check}});
+    redirect({ path: "/main"});
     // if (data.check && route.path === "/") {
     //   redirect({ path: "/main" });
     // } else if (!data.check && route.path !== "/") {

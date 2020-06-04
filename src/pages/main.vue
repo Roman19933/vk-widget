@@ -154,13 +154,20 @@ export default {
       if (e) {
         this.$bvModal.show("modal-public");
       }
+    },
+    async updateTokenGroup () {
+      try {
+        const groupId = this.$store.getters['server/token/vkQuery'].vk_group_id
+        await this.$store.dispatch('vk/bridge/updateTokenGroup', groupId)
+      } catch(e) {
+        console.log(e)
+      }
     }
   },
   mounted() {
-    console.log(this.$store.getters['server/token/vkQuery'])
-    if (!this.$route.query.token) {
-      const groupId = this.$store.getters['server/token/vkQuery'].vk_group_id
-      this.$store.dispatch('vk/bridge/updateTokenGroup', groupId)
+    console.log(this.$store)
+    if (!this.$store.getters['server/token/checkToken']) {
+      this.updateTokenGroup()
     }
   }
 };
