@@ -83,9 +83,6 @@ export default {
     SetupModalTitle,
     SetupModalSub,
     SetupModalUpload
-  },
-  mounted() {
-    console.log(this.item.link_url)
   }
 };
 </script>

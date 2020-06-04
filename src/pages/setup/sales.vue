@@ -13,8 +13,8 @@
                 <span>Режим просмотра</span>
                 <div class="widgets__switch-btn">
                   <app-switch
-                    v-model="widget.isActive"
-                    @switch-val="widget.isActive = !widget.isActive"
+                    v-model="isLook"
+                    @switch-val="isLook = !isLook"
                   />
                 </div>
               </div>
@@ -89,13 +89,15 @@ import SetupModalTitle from "@/components/modal/SetupModalTitle";
 export default {
   data() {
     return {
+      isLook: false,
       widget: {
+        is_active: false,
         createdAt: "",
         data: {
           more: "",
           more_url: "",
           title: "{firstname}, хочешь купон на скидку в подарок?",
-          title_counter: "",
+          title_counter: null,
           title_url: "",
           tiles: [
             {
@@ -110,9 +112,7 @@ export default {
             }
           ]
         },
-        groupId: null,
         id: null,
-        isActive: false,
         name: "Акции и скидки",
         position: 0,
         segmentation: {
@@ -146,24 +146,19 @@ export default {
   methods: {
     async create () {
       let payload = this.widget
-      if(this.validFields == true) {
-         if (payload.id || false) {
-          console.log("id");
-          await this.$store.dispatch("server/sales/edit", this.payload);
-        } else {
-          console.log("no id");
-          await this.$store.dispatch("server/sales/create", this.payload);
-        }
+      const groupId = this.$store.getters['server/token/vkQuery'].vk_group_id
+      payload.group_id = +groupId
+      if (payload.id || false) {
+        console.log("id");
+        await this.$store.dispatch("server/sales/edit", payload);
+        this.$router.push('/main')
+      } else {
+        console.log("no id");
+        await this.$store.dispatch("server/sales/create", payload);
+        this.$router.push('/main')
       }
 
-      // let payload = this.widget
-      // // const groupId = this.$store.getters['server/token/vkQuery'].vk_group_id
-      // // payload.groupId = this.groupId
-      // this.$store.dispatch("server/sales/onSubmit", payload);
     }
   }
-};
+}
 </script>
-
-<style lang="scss" scoped>
-</style>
