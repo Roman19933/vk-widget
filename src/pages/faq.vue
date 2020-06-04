@@ -11,7 +11,6 @@
             <li
               v-for="(item, index) in faq"
               :key="index"
-              class="faq__block"
             >
               <app-collaps
                 wrap-class="faq__block"

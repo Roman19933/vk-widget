@@ -1,6 +1,6 @@
 <template>
   <client-only>
-    <form action="#" @submit.prevent="onSubmit">
+    <form action="#" @submit.prevent="create">
       <div class="widgets vidget-page">
         <div class="widgets__wrapper vidget-page__wrapper">
           <div class="widgets__left">
@@ -13,8 +13,8 @@
                 <span>Режим просмотра</span>
                 <div class="widgets__switch-btn">
                   <app-switch
-                    v-model="widget.isActive"
-                    @switch-val="widget.isActive = !widget.isActive"
+                    v-model="isLook"
+                    @switch-val="isLook = !isLook"
                   />
                 </div>
               </div>
@@ -89,30 +89,31 @@ import SetupModalTitle from "@/components/modal/SetupModalTitle";
 export default {
   data() {
     return {
+      isLook: false,
       widget: {
+        is_active: false,
         createdAt: "",
         data: {
           more: "",
           more_url: "",
           title: "{firstname}, хочешь купон на скидку в подарок?",
-          title_counter: "",
+          title_counter: null,
           title_url: "",
           tiles: [
             {
-              descr: "5 500 руб",
+              descr: "+ добавить",
               icon_id: "5686299_1676309",
               // icon_type: "160x160",
-              link: "Узнать цену",
-              link_url: "https://vk.com/editapp?id=7467558&section=admins",
-              title: "Шорти2",
+              link: "Получить скидку",
+              // link_url: "https://vk.com/editapp?id=7467558&section=admins",
+              link_url: "",
+              title: "Скидки",
               url: ""
             }
           ]
         },
-        groupId: null,
         id: null,
-        isActive: false,
-        name: "",
+        name: "Акции и скидки",
         position: 0,
         segmentation: {
           sex: [],
@@ -131,8 +132,9 @@ export default {
         },
         type: "tiles",
         updatedAt: ""
-      }
-    };
+      },
+      validFields: false,
+    }
   },
   mixins: [SetupDefault],
   components: {
@@ -142,13 +144,21 @@ export default {
     SetupModalTitle
   },
   methods: {
-    async onSubmit() {
-      this.$store.dispatch("server/sales/create", this.widget);
-      console.log(this.widget);
+    async create () {
+      let payload = this.widget
+      const groupId = this.$store.getters['server/token/vkQuery'].vk_group_id
+      payload.group_id = +groupId
+      if (payload.id || false) {
+        console.log("id");
+        await this.$store.dispatch("server/sales/edit", payload);
+        this.$router.push('/main')
+      } else {
+        console.log("no id");
+        await this.$store.dispatch("server/sales/create", payload);
+        this.$router.push('/main')
+      }
+
     }
   }
-};
+}
 </script>
-
-<style lang="scss" scoped>
-</style>
