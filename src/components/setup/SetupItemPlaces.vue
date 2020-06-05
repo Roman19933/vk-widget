@@ -49,7 +49,7 @@
         @click.prevent
       >{{!!item.button ? item.button : "+ добавить"}}</a>
     </div>
-    <setup-modal-title itemTitle :data="item" :id="`title-${index}`" />
+    <setup-modal-title itemTitlePlace :data="item" :id="`title-${index}`" />
     <setup-modal-title itemButton :data="item" :id="`button-${index}`" />
     <setup-modal-sub text :data="item" :id="`subs-${index}`" />
     <setup-modal-sub place :data="item" :id="`place-${index}`" />

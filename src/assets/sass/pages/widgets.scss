@@ -404,10 +404,14 @@
                 z-index: 999;
                 right: 5px;
                 top: 5px;
-                width: 52px;
+                width: fit-content;
+                // width: 52px;
                 display: none;
                 align-items: center;
                 justify-content: space-between;
+                &-burger {
+                  margin-left: 4px;
+                }
                 &-burger,&-close {
                     width: 24px;
                     height: 24px;
@@ -462,7 +466,7 @@
                             display: flex;
                             &:before {
                                 content:'';
-                                border: 5px solid transparent; border-right: 5px solid #21203d; 
+                                border: 5px solid transparent; border-right: 5px solid #21203d;
                                 position: absolute;
                                 left: -10px;
                                 right: initial;

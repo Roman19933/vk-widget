@@ -11,7 +11,7 @@
             <div class="widgets__switch">
               <span>Режим просмотра</span>
               <div class="widgets__switch-btn">
-                <app-switch />
+                <app-switch @switch-val="userInfo"/>
               </div>
             </div>
           </div>

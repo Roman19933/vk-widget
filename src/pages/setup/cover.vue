@@ -11,7 +11,7 @@
             <div class="widgets__switch">
               <span>Режим просмотра</span>
               <div class="widgets__switch-btn">
-                <app-switch />
+                <app-switch @switch-val="userInfo"/>
               </div>
             </div>
           </div>
@@ -38,7 +38,7 @@
                   <button
                     class="add-item"
                     @click.prevent="addItem(widget.data.rows)"
-                    v-if="widget.data.rows.length < 3"
+                    v-if="widget.data.rows.length < 3 && !this.switch"
                   >+ Добавить элемент</button>
                 </draggable>
               </div>
