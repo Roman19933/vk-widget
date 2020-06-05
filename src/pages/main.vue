@@ -24,7 +24,7 @@
                 <p class="home-block__icon">
                   <img src="img/home-sort.svg" alt />
                 </p>
-                <p class="home-block__name">{{ vidget.name }} {{ vidget.id }}</p>
+                <p class="home-block__name">Виджет </p>
               </div>
               <p class="home-block__text">{{ vidget.name }}</p>
               <div class="home-block__events">

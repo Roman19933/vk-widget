@@ -92,6 +92,8 @@ export default {
       isLook: false,
       widget: {
         is_active: false,
+        type_name: "Акции и скидки",
+        type_link: "/setup/sales",
         createdAt: "",
         data: {
           more: "",
@@ -113,7 +115,7 @@ export default {
           ]
         },
         id: null,
-        name: "Виджет",
+        name: "Акции и скидки",
         position: 0,
         segmentation: {
           sex: [],

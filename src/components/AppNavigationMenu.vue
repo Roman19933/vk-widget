@@ -112,6 +112,10 @@ export default {
             {
               text: "Для навигации",
               to: "/catalog/nav"
+            },
+            {
+              text: "Информационные",
+              to: "/catalog/nav"
             }
           ]
         },
