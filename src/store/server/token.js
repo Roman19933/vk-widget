@@ -22,7 +22,9 @@ export const actions = {
     commit('CHECK_TOKEN', true)
   },
   async checkToken ({ commit }, payload) {
-    return await Api['tokens/check'].find(payload)
+    let checkToken = await Api['tokens/check'].find(payload)
+    commit('CHECK_TOKEN', checkToken)
+    return checkToken
   }
 }
 
