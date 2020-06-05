@@ -13,7 +13,8 @@ export const getters = {
 export const actions = {
   async getUser ({ commit }) {
     try {
-      let res = await vkBridge.send('VKWebAppGetUserInfo')
+      let res = await vkBridge.send('VKWebAppGetUserInfo',{})
+      commit('SET_USER',res)
       console.log(res)
     } catch(e) {
       console.log(e)

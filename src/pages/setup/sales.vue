@@ -13,8 +13,7 @@
                 <span>Режим просмотра</span>
                 <div class="widgets__switch-btn">
                   <app-switch
-                    v-model="isLook"
-                    @switch-val="isLook = !isLook"
+                    @switch-val="userInfo"
                   />
                 </div>
               </div>
@@ -42,7 +41,7 @@
                     <button
                       class="add-item"
                       @click.prevent="addItem(widget.data.tiles)"
-                      v-if="widget.data.tiles.length < 10"
+                      v-if="widget.data.tiles.length < 10 && !this.switch"
                     >+ Добавить элемент</button>
                   </draggable>
                 </div>
@@ -89,7 +88,6 @@ import SetupModalTitle from "@/components/modal/SetupModalTitle";
 export default {
   data() {
     return {
-      isLook: false,
       widget: {
         is_active: false,
         createdAt: "",
