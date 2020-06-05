@@ -108,6 +108,11 @@ export default {
     AppSwitch,
     AppNavigationMenu
   },
+  computed: {
+    ...mapGetters({
+      vidgets: "server/sales/items",
+    })
+  },
   data() {
     return {
       appId: process.env.APP_ID,
@@ -155,15 +160,21 @@ export default {
       if (e) {
         this.$bvModal.show("modal-public");
       }
+    },
+    async updateTokenGroup () {
+      try {
+        const groupId = this.$store.getters['server/token/vkQuery'].vk_group_id
+        await this.$store.dispatch('vk/bridge/updateTokenGroup', groupId)
+      } catch(e) {
+        console.log(e)
+      }
     }
   },
-  computed: {
-    ...mapGetters({
-      vidgets: "server/sales/items",
-    })
-  },
-
   async mounted() {
+    console.log(this.$store)
+    if (!this.$store.getters['server/token/checkToken']) {
+      this.updateTokenGroup()
+    }
     const groupId = this.$store.getters['server/token/vkQuery'].vk_group_id
     await this.$store.dispatch("server/sales/getSales", groupId)
     if (!this.$route.query.token) {
