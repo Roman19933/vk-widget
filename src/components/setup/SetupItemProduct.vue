@@ -24,11 +24,12 @@
         v-b-modal="`subs-${index}`"
       >{{!!item.descr ? item.descr : "+ добавить"}}</a>
       <div class="item__popover">
-        <div class="item__popover-info">
+        <div v-if="item.link_url === ''" class="item__popover-info">
           <img src="/img/info.png" alt />
-          <div class="popover">
+          <div class="popover popover_setup">
             <div class="popover__wrapper">
-              <span>Ссылка должна быть внутри vk.com</span>
+              <span>Обязательное поле</span>
+              <!-- <span>Ссылка должна быть внутри vk.com</span> -->
             </div>
           </div>
         </div>
@@ -85,6 +86,3 @@ export default {
   }
 };
 </script>
-
-<style lang="scss" scoped>
-</style>

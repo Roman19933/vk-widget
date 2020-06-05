@@ -4,7 +4,7 @@
     <div class="vidget-page__wrapper">
       <div class="vidget-page__head">
         <h1 class="vidget-page__title">Мои виджеты</h1>
-        <button class="vidget-page__add gen-btn">Создать виджет</button>
+        <nuxt-link to="/catalog/sales" class="vidget-page__add gen-btn">Создать виджет</nuxt-link>
       </div>
       <div class="vidget-none" v-if="vidgets.length == 0">
         <div class="vidget-none__wrapper">
@@ -12,21 +12,21 @@
           <p class="vidget-none__text">
             Дружище, у тебя еще нет виджетов. Не пора ли их создать?
           </p>
-          <a href="#" class="vidget-none__link gen-btn">Создать виджет</a>
+          <nuxt-link to="/catalog/sales" class="vidget-none__link gen-btn">Создать виджет</nuxt-link>
         </div>
       </div>
       <div class="home" v-else>
         <div class="home__wrapper">
           <!-- <ul class="home__blocks"> -->
           <transition-group name="flip-list" tag="ul">
-            <li v-for="vidget in vidgets" :key="vidget.name" class="home-block">
+            <li class="home-block" v-for="vidget in vidgets" :key="vidget.id">
               <div class="home-block__title">
                 <p class="home-block__icon">
                   <img src="img/home-sort.svg" alt />
                 </p>
-                <p class="home-block__name">Скидки!</p>
+                <p class="home-block__name">Виджет {{ vidget.id }}</p>
               </div>
-              <p class="home-block__text">Акции и скидки</p>
+              <p class="home-block__text">{{ vidget.name }}</p>
               <div class="home-block__events">
                 <div class="home-block__switch">
                   <div class="popover">
@@ -99,6 +99,7 @@ import AppModalVersion from "@/components/modal/AppModalVersion.vue";
 import AppModalPublic from "@/components/modal/AppModalPublic.vue";
 import AppSwitch from "@/components/form/AppSwitch.vue";
 import AppNavigationMenu from "@/components/AppNavigationMenu.vue";
+import { mapGetters } from "vuex";
 
 export default {
   components: {
@@ -107,32 +108,37 @@ export default {
     AppSwitch,
     AppNavigationMenu
   },
+  computed: {
+    ...mapGetters({
+      vidgets: "server/sales/items",
+    })
+  },
   data() {
     return {
       appId: process.env.APP_ID,
       switchActive: null,
-      vidgets: [
-        {
-          name: "3",
-          switch: false
-        },
-        {
-          name: "2",
-          switch: false
-        },
-        {
-          name: "1",
-          switch: false
-        },
-        {
-          name: "4",
-          switch: false
-        },
-        {
-          name: "5",
-          switch: true
-        }
-      ]
+      // vidgets: [
+      //   // {
+      //   //   name: "3",
+      //   //   switch: false
+      //   // },
+      //   // {
+      //   //   name: "2",
+      //   //   switch: false
+      //   // },
+      //   // {
+      //   //   name: "1",
+      //   //   switch: false
+      //   // },
+      //   // {
+      //   //   name: "4",
+      //   //   switch: false
+      //   // },
+      //   // {
+      //   //   name: "5",
+      //   //   switch: true
+      //   // }
+      // ]
     };
   },
   methods: {
@@ -164,10 +170,16 @@ export default {
       }
     }
   },
-  mounted() {
+  async mounted() {
     console.log(this.$store)
     if (!this.$store.getters['server/token/checkToken']) {
       this.updateTokenGroup()
+    }
+    const groupId = this.$store.getters['server/token/vkQuery'].vk_group_id
+    await this.$store.dispatch("server/sales/getSales", groupId)
+    if (!this.$route.query.token) {
+      const groupId = this.$store.getters['server/token/vkQuery'].vk_group_id
+      this.$store.dispatch('vk/bridge/updateTokenGroup', groupId)
     }
   }
 };

@@ -21,7 +21,6 @@
     watch: {
       value: {
         handler(bef) {
-          console.log(bef)
           this.val = bef
         }
       },
