@@ -113,7 +113,7 @@ export default {
           ]
         },
         id: null,
-        name: "Акции и скидки",
+        name: "Виджет",
         position: 0,
         segmentation: {
           sex: [],
