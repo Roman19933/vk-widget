@@ -121,6 +121,16 @@
         </div>
       </div>
     </div>
+    <img class="main__cloudlet" src="img/cloudlet.svg" alt>
+    <img class="main__cloudlet1" src="img/cloudlet8.svg" alt>
+    <img class="main__cloudlet2" src="img/cloudlet1.svg" alt>
+    <img class="main__cloudlet3" src="img/cloudlet2.svg" alt>
+    <img class="main__cloudlet4" src="img/cloudlet3.svg" alt>
+    <img class="main__cloudlet5" src="img/cloudlet4.svg" alt>
+    <img class="main__cloudlet6" src="img/cloudlet5.svg" alt>
+    <img class="main__cloudlet7" src="img/cloudlet6.svg" alt>
+    <img class="main__cloudlet8" src="img/cloudlet7.svg" alt>
+    <img class="main__cloudlet9" src="img/cloudlet8.svg" alt>
   </main>
 </template>
 
@@ -130,6 +140,7 @@ export default {
     const groupId = this.$store.getters['server/token/vkQuery'].vk_group_id
     this.$store.dispatch('vk/bridge/updateTokenGroup', groupId)
   },
+  layout: 'main',
   methods: {
     async toPlug() {
       try {

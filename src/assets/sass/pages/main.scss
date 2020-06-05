@@ -1,14 +1,20 @@
 .main {
-    background-image: url('/img/bg-main.png');
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
+    // background-image: url('/img/bg-main.png');
+    // background-repeat: no-repeat;
+    // background-size: 100% 100%;
+    overflow-x: hidden;
+    position: relative;
+    width:100vw;
+    height: 100vh;
     .gen-btn {
         width: 203px;
         height: 35px;
     }
     &__wrapper {
+        position: relative;
         padding-top: 60px;
         padding-bottom: 60px;
+        z-index: 2;
     }
     &__head {
         display: flex;
@@ -160,6 +166,116 @@
         display: flex;
         justify-content: space-between;
         margin-top: 27px;
+    }
+    //-- cloudlet
+    &__cloudlet {
+        // width: 100%;
+        left: 100%;
+        top: 150px;
+        position: absolute;
+        user-select: none;
+        pointer-events: none;
+        animation: animCloudLeft 40s infinite linear;
+        &1 {
+            left: 100%;
+            top: 250px;
+            position: absolute;
+            user-select: none;
+            pointer-events: none;
+            animation: animCloudLeft 50s infinite linear;
+        }
+        &2 {
+            left: 100%;
+            top: 20px;
+            position: absolute;
+            user-select: none;
+            pointer-events: none;
+            animation: animCloudRight 80s infinite linear;
+            animation-delay: 3s;
+        }
+        &3 {
+            left: 100%;
+            top: 450px;
+            position: absolute;
+            user-select: none;
+            pointer-events: none;
+            animation: animCloudRight 60s infinite linear;
+            animation-delay: 5s;
+        }
+        &4 {
+            left: 100%;
+            top: 350px;
+            position: absolute;
+            user-select: none;
+            pointer-events: none;
+            animation: animCloudLeft 30s infinite linear;
+            animation-delay: 1s;
+        }
+        &5 {
+            left: 100%;
+            top: 1020px;
+            position: absolute;
+            user-select: none;
+            pointer-events: none;
+            animation: animCloudRight 70s infinite linear;
+            animation-delay: 3s;
+        }
+        &6 {
+            left: 100%;
+            top: 1450px;
+            position: absolute;
+            user-select: none;
+            pointer-events: none;
+            animation: animCloudRight 60s infinite linear;
+            animation-delay: 5s;
+        }
+        &7 {
+            left: 100%;
+            top: 1350px;
+            position: absolute;
+            user-select: none;
+            pointer-events: none;
+            animation: animCloudLeft 40s infinite linear;
+            animation-delay: 1s;
+        }
+        &8 {
+            left: 100%;
+            top: 1600px;
+            position: absolute;
+            user-select: none;
+            pointer-events: none;
+            animation: animCloudLeft 50s infinite linear;
+            animation-delay: 1s;
+        }
+        &9 {
+            left: 100%;
+            top: 1250px;
+            position: absolute;
+            user-select: none;
+            pointer-events: none;
+            animation: animCloudLeft 80s infinite linear;
+            animation-delay: 1s;
+        }
+    }
+}
+@keyframes animCloudLeft {
+    from {
+        transform: translateX(0%);
+        left: 100%;
+    }
+    to {
+        transform: translateX(-100%);
+        left: 0;
+    }
+}
+@keyframes animCloudRight {
+    from {
+        transform: translateX(-100%);
+        left: 0%;
+    }
+    to {
+        transform: translateX(0%);
+        left: 100%;
     }
 }
 @media screen and (max-width: 1130px) {

@@ -1,10 +1,13 @@
 export default async function({ store, redirect, route }) {
-  if (route.query.vk_group_id !== undefined) {
-    await store.commit("server/token/SET_VK_QUERY", route.query);
+  if (route.query.vk_platform !== undefined && route.query.vk_platform !== 'desktop_web') {
+    redirect({ path: "/mobile"})
+  } else if (route.query.vk_group_id !== undefined) {
+    await store.commit("server/token/SET_VK_QUERY", route.query)
+    console.log(route.query.vk_platform)
 
-    let { data } = await validToken(store);
+    let { data } = await validToken(store)
 
-    redirect({ path: "/main", query: {token: data.check}});
+    redirect({ path: "/main"})
     // if (data.check && route.path === "/") {
     //   redirect({ path: "/main" });
     // } else if (!data.check && route.path !== "/") {

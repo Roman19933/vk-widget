@@ -90,6 +90,8 @@ export default {
     return {
       widget: {
         is_active: false,
+        type_name: "Акции и скидки",
+        type_link: "/setup/sales",
         createdAt: "",
         data: {
           more: "",

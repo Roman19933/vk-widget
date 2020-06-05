@@ -24,7 +24,7 @@
                 <p class="home-block__icon">
                   <img src="img/home-sort.svg" alt />
                 </p>
-                <p class="home-block__name">Виджет {{ vidget.id }}</p>
+                <p class="home-block__name">Виджет </p>
               </div>
               <p class="home-block__text">{{ vidget.name }}</p>
               <div class="home-block__events">
@@ -57,14 +57,14 @@
                     </div>
                   </div>
                 </a>
-                <a href="#" class="home-block__edit">
+                <nuxt-link to="setup/sales" @click="remove(vidget.id)" class="home-block__edit">
                   <img src="img/home-register.png" alt />
                   <div class="popover">
                     <div class="popover__wrapper">
                       <span>Редактировать виджет</span>
                     </div>
                   </div>
-                </a>
+                </nuxt-link>
                 <a href="#" class="home-block__look">
                   <img src="img/home-sheet.png" alt />
                   <div class="popover">
@@ -73,7 +73,7 @@
                     </div>
                   </div>
                 </a>
-                <button class="home-block__delete">
+                <button @click="remove(vidget.id)" class="home-block__delete">
                   <img src="img/home-trash.png" alt />
                   <div class="popover">
                     <div class="popover__wrapper">
@@ -112,28 +112,7 @@ export default {
     return {
       appId: process.env.APP_ID,
       switchActive: null,
-      // vidgets: [
-      //   // {
-      //   //   name: "3",
-      //   //   switch: false
-      //   // },
-      //   // {
-      //   //   name: "2",
-      //   //   switch: false
-      //   // },
-      //   // {
-      //   //   name: "1",
-      //   //   switch: false
-      //   // },
-      //   // {
-      //   //   name: "4",
-      //   //   switch: false
-      //   // },
-      //   // {
-      //   //   name: "5",
-      //   //   switch: true
-      //   // }
-      // ]
+      // vidgets: []
     };
   },
   methods: {
@@ -155,6 +134,21 @@ export default {
       if (e) {
         this.$bvModal.show("modal-public");
       }
+    },
+    async updateTokenGroup (groupId) {
+      try {
+        await this.$store.dispatch('vk/bridge/updateTokenGroup', groupId)
+      } catch(e) {
+        console.log(e)
+      }
+    },
+    modalPublic(e) {
+      if (e) {
+        this.$bvModal.show("modal-public");
+      }
+    },
+    async remove(id) {
+      await this.$store.dispatch("server/sales/remove", id)
     }
   },
   computed: {
@@ -162,14 +156,12 @@ export default {
       vidgets: "server/sales/items",
     })
   },
-
   async mounted() {
     const groupId = this.$store.getters['server/token/vkQuery'].vk_group_id
-    await this.$store.dispatch("server/sales/getSales", groupId)
-    if (!this.$route.query.token) {
-      const groupId = this.$store.getters['server/token/vkQuery'].vk_group_id
-      this.$store.dispatch('vk/bridge/updateTokenGroup', groupId)
+    if (!this.$store.getters['server/token/checkToken']) {
+      this.updateTokenGroup(groupId)
     }
+    await this.$store.dispatch("server/sales/getSales", groupId)
   }
 };
 </script>

@@ -31,7 +31,7 @@ export const actions = {
     try {
       let { access_token } = await vkBridge.send('VKWebAppGetCommunityToken', payload)
       try {
-        await this.dispatch('server/token/setToken', {
+        this.dispatch('server/token/setToken', {
           group_id: group_id,
           token: access_token
         })
