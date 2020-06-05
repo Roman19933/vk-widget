@@ -117,28 +117,7 @@ export default {
     return {
       appId: process.env.APP_ID,
       switchActive: null,
-      // vidgets: [
-      //   // {
-      //   //   name: "3",
-      //   //   switch: false
-      //   // },
-      //   // {
-      //   //   name: "2",
-      //   //   switch: false
-      //   // },
-      //   // {
-      //   //   name: "1",
-      //   //   switch: false
-      //   // },
-      //   // {
-      //   //   name: "4",
-      //   //   switch: false
-      //   // },
-      //   // {
-      //   //   name: "5",
-      //   //   switch: true
-      //   // }
-      // ]
+      // vidgets: []
     };
   },
   methods: {
@@ -161,9 +140,8 @@ export default {
         this.$bvModal.show("modal-public");
       }
     },
-    async updateTokenGroup () {
+    async updateTokenGroup (groupId) {
       try {
-        const groupId = this.$store.getters['server/token/vkQuery'].vk_group_id
         await this.$store.dispatch('vk/bridge/updateTokenGroup', groupId)
       } catch(e) {
         console.log(e)
@@ -172,15 +150,11 @@ export default {
   },
   async mounted() {
     console.log(this.$store)
-    if (!this.$store.getters['server/token/checkToken']) {
-      this.updateTokenGroup()
-    }
     const groupId = this.$store.getters['server/token/vkQuery'].vk_group_id
-    await this.$store.dispatch("server/sales/getSales", groupId)
-    if (!this.$route.query.token) {
-      const groupId = this.$store.getters['server/token/vkQuery'].vk_group_id
-      this.$store.dispatch('vk/bridge/updateTokenGroup', groupId)
+    if (!this.$store.getters['server/token/checkToken']) {
+      this.updateTokenGroup(groupId)
     }
+    await this.$store.dispatch("server/sales/getSales", groupId)
   }
 };
 </script>
