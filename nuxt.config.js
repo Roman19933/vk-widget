@@ -35,7 +35,8 @@ module.exports = {
   bootstrapVue: {
     componentPlugins: [
       'ModalPlugin'
-    ]
+    ],
+    components: ['BProgress'],
   },
   buildModules: [
     '@nuxtjs/moment',
