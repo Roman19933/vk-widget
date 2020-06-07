@@ -1,6 +1,6 @@
 <template>
   <label class="switch">
-    <input v-model="val" type="checkbox" class="hidden switchcheckbox" />
+    <input v-model="val" type="checkbox" class="switchcheckbox" />
     <span class="switch__circle"></span>
   </label>
 </template>

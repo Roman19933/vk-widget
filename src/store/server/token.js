@@ -24,6 +24,7 @@ export const actions = {
   async checkToken ({ commit }, payload) {
     let checkToken = await Api['tokens/check'].find(payload)
     commit('CHECK_TOKEN', checkToken)
+    console.log(checkToken)
     return checkToken
   }
 }

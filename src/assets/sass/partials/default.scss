@@ -224,37 +224,23 @@ body {
     display: inline-block;
     border-radius: 9px;
     cursor: pointer;
-}
-
-// .switch::before {
-//     content: "";
-//     display: inline-block;
-//     width: 14px;
-//     height: 14px;
-//     background-color: #a2a2ad;
-//     border-radius: 50%;
-//     position: relative;
-//     left: 2px;
-//     transition: left 0.5s;
-//     top: 2px;
-// }
-.switch__circle {
-    display: inline-block;
-    width: 14px;
-    height: 14px;
-    background-color: #a2a2ad;
-    border-radius: 50%;
-    position: relative;
-    left: 2px;
-    transition: left 0.5s;
-    top: 2px;
-}
-
-// .switchcheckbox:checked + label::before {
-//     left: 23px;
-// }
-.switchcheckbox:checked + span.switch__circle {
-    left: 23px;
+    &checkbox {
+        display: none;
+        &:checked + span.switch__circle {
+            left: 23px;
+        }
+    }
+    &__circle {
+        display: inline-block;
+        width: 14px;
+        height: 14px;
+        background-color: #a2a2ad;
+        border-radius: 50%;
+        position: relative;
+        left: 2px;
+        transition: left 0.5s;
+        top: 2px;
+    }
 }
 
 .radio {

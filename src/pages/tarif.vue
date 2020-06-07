@@ -234,6 +234,7 @@ export default {
   },
   data() {
     return {
+      val: false,
       priceMonth: {
         price: 490,
         priceBiz: {

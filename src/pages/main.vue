@@ -35,11 +35,11 @@
                     </div>
                   </div>
                   <app-switch
-                    v-model="vidget.switch"
+                    v-model="vidget.is_active"
                     @switch-val="
                       modalPublic($event),
-                        (vidget.switch = $event),
-                        (switchActive = vidget.name)
+                        (vidget.is_active = $event),
+                        (switchActive = vidget.id)
                     "
                   />
                 </div>
@@ -89,15 +89,15 @@
       </div>
     </div>
     <app-modal-public @public="publicVidget($event)" />
+    <app-modal-timer :timer-val="10"/>
     <app-modal-version />
   </div>
 </template>
 
 <script>
-import bridge from "@vkontakte/vk-bridge";
 import AppModalVersion from "@/components/modal/AppModalVersion.vue";
 import AppModalPublic from "@/components/modal/AppModalPublic.vue";
-import AppSwitch from "@/components/form/AppSwitch.vue";
+import AppModalTimer from "@/components/modal/AppModalTimer.vue";
 import AppNavigationMenu from "@/components/AppNavigationMenu.vue";
 import { mapGetters } from "vuex";
 
@@ -105,63 +105,81 @@ export default {
   components: {
     AppModalVersion,
     AppModalPublic,
-    AppSwitch,
+    AppModalTimer,
     AppNavigationMenu
   },
   data() {
     return {
       appId: process.env.APP_ID,
       switchActive: null,
-      // vidgets: []
+      groupId: this.$store.getters['server/token/vkQuery'].vk_group_id,
+      vidgets: []
     };
   },
   methods: {
-    publicVidget(e) {
-      let vid = this.vidgets,
-        sa = this.switchActive;
+    async publicVidget(e) {
+      let sa = this.switchActive,
+        index = this.vidgets.findIndex(e => e.id === sa),
+        vid = this.vidgets[index]
+      
+      // console.log(vid)
       if (e) {
-        this.checkTokenGroup();
-        this.$bvModal.hide("modal-public");
-        let index = vid.findIndex(e => e.name === sa);
-        vid[index].switch = true;
+        let response = await this.$store.dispatch("server/sales/enable",
+          '?group_id='+ this.groupId +'&widget_id='+ vid.id +''
+        )
+        // console.log(response)
+        this.$bvModal.hide("modal-public")
+        vid.is_active = true
       } else {
         this.$bvModal.hide("modal-public");
-        let index = vid.findIndex(e => e.name === sa);
-        vid[index].switch = false;
+        console.log(vid)
+        vid.is_active = false;
       }
     },
-    modalPublic(e) {
-      if (e) {
-        this.$bvModal.show("modal-public");
-      }
-    },
-    async updateTokenGroup (groupId) {
+    async updateTokenGroup () {
       try {
-        await this.$store.dispatch('vk/bridge/updateTokenGroup', groupId)
+        await this.$store.dispatch('vk/bridge/updateTokenGroup', this.groupId)
+      } catch(e) {
+        console.log(e)
+      }
+    },
+    async getVidget () {
+      try {
+        let response = await this.$store.dispatch("server/sales/getItems", this.groupId)
+        console.log(response)
+        this.vidgets = response
       } catch(e) {
         console.log(e)
       }
     },
     modalPublic(e) {
       if (e) {
-        this.$bvModal.show("modal-public");
+        this.$bvModal.show("modal-public")
       }
     },
     async remove(id) {
       await this.$store.dispatch("server/sales/remove", id)
     }
   },
-  computed: {
-    ...mapGetters({
-      vidgets: "server/sales/items",
-    })
-  },
+  // computed: {
+  //   ...mapGetters({
+  //     vidgets: "server/sales/items",
+  //   })
+  // },
   async mounted() {
-    const groupId = this.$store.getters['server/token/vkQuery'].vk_group_id
+    this.$bvModal.show("modal-timer")
+    console.log(this.$store.getters['server/token/checkToken'])
     if (!this.$store.getters['server/token/checkToken']) {
-      this.updateTokenGroup(groupId)
+      this.updateTokenGroup()
     }
-    await this.$store.dispatch("server/sales/getSales", groupId)
+    this.getVidget()
+  },
+  watch: {
+    vidgets: {
+      handler(bef) {
+        console.log(bef)
+      }
+    }
   }
 };
 </script>

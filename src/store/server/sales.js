@@ -14,8 +14,11 @@ export const getters = {
 export const actions = {
   async getItems ({ commit }, groupId) {
     let {data} = await Api[`groups/widget/${groupId}`]()
-    commit('SET_ITEMS', data.data)
+    // commit('SET_ITEMS', data.data)
     return data.data
+  },
+  async enable ({ commit }, payload) {
+    return await Api['widget/enable'].find(payload)
   },
   async create ({ commit }, payload) {
     return await Api['widgets'].create(payload)
