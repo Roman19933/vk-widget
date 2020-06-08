@@ -131,8 +131,7 @@ export default {
         this.$bvModal.hide("modal-public")
         vid.is_active = true
       } else {
-        this.$bvModal.hide("modal-public");
-        console.log(vid)
+        this.$bvModal.hide("modal-public")
         vid.is_active = false;
       }
     },
@@ -146,7 +145,6 @@ export default {
     async getVidget () {
       try {
         let response = await this.$store.dispatch("server/sales/getItems", this.groupId)
-        console.log(response)
         this.vidgets = response
       } catch(e) {
         console.log(e)
@@ -167,19 +165,14 @@ export default {
   //   })
   // },
   async mounted() {
-    this.$bvModal.show("modal-timer")
+    // let timestamp = '1591524564',
+    //   time = new Date(+timestamp * 1000)
+    // this.$bvModal.show("modal-timer")
     console.log(this.$store.getters['server/token/checkToken'])
     if (!this.$store.getters['server/token/checkToken']) {
       this.updateTokenGroup()
     }
     this.getVidget()
-  },
-  watch: {
-    vidgets: {
-      handler(bef) {
-        console.log(bef)
-      }
-    }
   }
 };
 </script>
