@@ -4,10 +4,10 @@ export default async function({ store, redirect, route }) {
   } else if (route.query.vk_group_id !== undefined) {
     await store.commit("server/token/SET_VK_QUERY", route.query)
 
-    let { data } = await validToken(store)
+    await validToken(store)
 
-    console.log(route.query.vk_platform)
-    console.log(data)
+    // console.log(route.query.vk_platform)
+    // console.log(data)
 
     redirect({ path: "/main"})
     // if (data.check && route.path === "/") {
