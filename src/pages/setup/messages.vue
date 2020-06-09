@@ -61,7 +61,6 @@ export default {
   data() {
     return {
       widget: {
-        createdAt: "",
         data: {
           descr: "Подпишитесь на сообщество и напишите нам",
           more: "",
@@ -75,7 +74,6 @@ export default {
         id: null,
         isActive: false,
         name: "",
-        position: 0,
         segmentation: {
           sex: [],
           age: { from: "", to: "" },
@@ -91,8 +89,8 @@ export default {
           groups_exclude: [],
           groups: []
         },
-        type: "",
-        updatedAt: ""
+        type: "text",
+        sc_type:'importantMessage',
       }
     };
   },

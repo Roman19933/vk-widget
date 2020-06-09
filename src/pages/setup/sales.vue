@@ -7,7 +7,8 @@
             <div class="widgets__header vidget-page__head">
               <div class="widgets__header-title vidget-page__title">
                 <img src alt />
-                <h4>Виджет «Акции и скидки»</h4>
+                <a href="#" v-b-modal="`header-${widget.id}`">{{ this.widget.name }}</a>
+                <!-- <h4>Виджет «Акции и скидки»</h4> -->
               </div>
               <div class="widgets__switch">
                 <span>Режим просмотра</span>
@@ -75,6 +76,7 @@
         </div>
       </div>
       <setup-modal-title mainTitle :data="widget.data" />
+      <setup-modal-sub headerTitle :data="widget" :id="`header-${widget.id}`" />
     </form>
   </client-only>
 </template>
@@ -85,6 +87,7 @@ import SetupItemProduct from "@/components/setup/SetupItemProduct";
 import AppSwitch from "@/components/form/AppSwitch";
 import SetupDefault from "@/mixins/setupDefault";
 import SetupModalTitle from "@/components/modal/SetupModalTitle";
+import SetupModalSub from "@/components/modal/SetupModalSub";
 import {mapGetters} from "vuex"
 export default {
   data() {
@@ -132,6 +135,7 @@ export default {
           groups: []
         },
         type: "tiles",
+        sc_type:'discounts',
         updatedAt: ""
       },
       validFields: false,
@@ -151,6 +155,7 @@ export default {
     SetupForm,
     AppSwitch,
     SetupItemProduct,
+    SetupModalSub,
     SetupModalTitle
   },
   methods: {

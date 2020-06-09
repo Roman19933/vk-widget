@@ -6,7 +6,8 @@
           <div class="widgets__header vidget-page__head">
             <div class="widgets__header-title vidget-page__title">
               <img src alt />
-              <h4>Виджет «Акции в обложках»</h4>
+              <a href="#" v-b-modal="`header-${widget.id}`">{{ this.widget.name }}</a>
+              <!-- <h4>Виджет «Акции в обложках»</h4> -->
             </div>
             <div class="widgets__switch">
               <span>Режим просмотра</span>
@@ -72,6 +73,7 @@
       </div>
     </div>
     <setup-modal-title mainTitle :data="widget.data" />
+    <setup-modal-sub headerTitle :data="widget" :id="`header-${widget.id}`" />
   </form>
 </template>
 
@@ -81,6 +83,7 @@ import SetupItemCover from "@/components/setup/SetupItemCover";
 import AppSwitch from "@/components/form/AppSwitch";
 import SetupDefault from "@/mixins/setupDefault";
 import SetupModalTitle from "@/components/modal/SetupModalTitle";
+import SetupModalSub from "@/components/modal/SetupModalSub";
 export default {
   data() {
     return {
@@ -106,7 +109,7 @@ export default {
         groupId: null,
         id: null,
         isActive: false,
-        name: "",
+        name: "Виджет «Акции в обложках»",
         position: 0,
         segmentation: {
           sex: [],
@@ -124,6 +127,7 @@ export default {
           groups: []
         },
         type: "coverlist",
+         sc_type:'coverSales',
         updatedAt: ""
       }
     };
@@ -145,6 +149,7 @@ export default {
     SetupForm,
     AppSwitch,
     SetupItemCover,
+    SetupModalSub,
     SetupModalTitle
   }
 };

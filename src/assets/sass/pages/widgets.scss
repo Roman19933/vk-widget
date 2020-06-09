@@ -157,8 +157,9 @@
        &-title {
             display: flex;
             align-items: center;
-            h4 {
+            h4,a {
                 font-size: 13px;
+                color: #8e8fbb;
             }
        }
     }
