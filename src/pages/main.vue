@@ -57,7 +57,7 @@
                     </div>
                   </div>
                 </a>
-                <nuxt-link to="setup/sales" @click="remove(vidget.id)" class="home-block__edit">
+                <nuxt-link to="setup/sales" @click="edit(vidget.id)" class="home-block__edit">
                   <img src="img/home-register.png" alt />
                   <div class="popover">
                     <div class="popover__wrapper">
@@ -65,14 +65,14 @@
                     </div>
                   </div>
                 </nuxt-link>
-                <a href="#" class="home-block__look">
+                <button @click="clone(vidget.id)" class="home-block__look">
                   <img src="img/home-sheet.png" alt />
                   <div class="popover">
                     <div class="popover__wrapper">
                       <span>Создать копию</span>
                     </div>
                   </div>
-                </a>
+                </button>
                 <button @click="remove(vidget.id)" class="home-block__delete">
                   <img src="img/home-trash.png" alt />
                   <div class="popover">
@@ -130,11 +130,6 @@ export default {
         vid[index].switch = false;
       }
     },
-    modalPublic(e) {
-      if (e) {
-        this.$bvModal.show("modal-public");
-      }
-    },
     async updateTokenGroup (groupId) {
       try {
         await this.$store.dispatch('vk/bridge/updateTokenGroup', groupId)
@@ -146,6 +141,17 @@ export default {
       if (e) {
         this.$bvModal.show("modal-public");
       }
+    },
+    async clone(id) {
+      let payload = this.vidgets
+      const groupId = this.$store.getters['server/token/vkQuery'].vk_group_id
+      payload.group_id = +groupId
+      payload.id = id
+      console.log( payload.id)
+      await this.$store.dispatch("server/sales/clone", {
+        group_id : payload.group_id,
+        id : id
+      })
     },
     async remove(id) {
       await this.$store.dispatch("server/sales/remove", id)
@@ -161,7 +167,7 @@ export default {
     if (!this.$store.getters['server/token/checkToken']) {
       this.updateTokenGroup(groupId)
     }
-    await this.$store.dispatch("server/sales/getSales", groupId)
+    await this.$store.dispatch("server/sales/getItems", groupId)
   }
 };
 </script>
