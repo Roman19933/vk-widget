@@ -459,3 +459,15 @@
         }
     }
 }
+.timer {
+    .widget-public__wrapper {
+        width: 550px;
+    }
+    .progress {
+        margin-top: 15px;
+        &-bar {
+            // background-color: #21203d;
+            background-color: #2f304d;
+        }
+    }
+}
