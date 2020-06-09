@@ -105,7 +105,7 @@ export default {
           groups: []
         },
         type: "list",
-        sc_type:'personalOffer'
+        sc_type:'personal_offer'
         // updatedAt: ""
       }
     };

@@ -96,7 +96,6 @@ export default {
         is_active: false,
         type_name: "Акции и скидки",
         type_link: "/setup/sales",
-        createdAt: "",
         data: {
           more: "",
           more_url: "",
@@ -118,7 +117,6 @@ export default {
         },
         id: null,
         name: "Акции и скидки2",
-        position: 0,
         segmentation: {
           sex: [],
           age: { from: "", to: "" },
@@ -136,7 +134,6 @@ export default {
         },
         type: "tiles",
         sc_type:'discounts',
-        updatedAt: ""
       },
       validFields: false,
     }
