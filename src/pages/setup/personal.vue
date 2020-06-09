@@ -62,7 +62,7 @@ export default {
   data() {
     return {
       widget: {
-        createdAt: "",
+        // createdAt: "",
         data: {
           more: "",
           more_url: "",
@@ -104,8 +104,9 @@ export default {
           groups_exclude: [],
           groups: []
         },
-        type: "",
-        updatedAt: ""
+        type: "list",
+        sc_type:'personalOffer'
+        // updatedAt: ""
       }
     };
   },

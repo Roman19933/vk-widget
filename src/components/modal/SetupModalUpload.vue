@@ -140,11 +140,12 @@ export default {
     },
     async getUrlFoto(idxFoto) {
       try {
-        let url = await this.$store.dispatch("server/upload/getUrl", {
+        let {data} = await this.$store.dispatch("server/upload/getUrl", {
           group_id: +this.groupId,
           image_id: idxFoto
         });
-        this.$emit("url", url.data.response[0].images[0].url);
+        // this.urlImg.push(data.response[0].images[0].url)
+        this.$emit("url",data.response[0].images[0].url);
       } catch (e) {
         console.log("e", e);
       }

@@ -60,7 +60,6 @@ export default {
   data() {
     return {
       widget: {
-        createdAt: "",
         data: {
           more: "",
           more_url: "",
@@ -83,7 +82,6 @@ export default {
         id: null,
         isActive: false,
         name: "",
-        position: 0,
         segmentation: {
           sex: [],
           age: { from: "", to: "" },
@@ -99,8 +97,8 @@ export default {
           groups_exclude: [],
           groups: []
         },
-        type: "",
-        updatedAt: ""
+        type: "table",
+        sc_type:'client',
       }
     };
   },

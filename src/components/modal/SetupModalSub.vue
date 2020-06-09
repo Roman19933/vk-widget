@@ -13,7 +13,7 @@
       </button>
       <div class="widgets-setting__content">
         <div class="widgets-setting__input">
-          <span class="modal__title">Описание</span>
+          <span class="modal__title">{{this.headerTitle ? "Введите название виджета" : "Описание"}}</span>
           <div class="form-group">
             <input type="text" placeholder="описание" v-model="subs" />
           </div>
@@ -92,6 +92,9 @@ export default {
     time: {
       type: Boolean
     },
+    headerTitle: {
+      type: Boolean
+    },
     id: {
       type: String,
       default: "subscriptions"
@@ -116,6 +119,8 @@ export default {
       this.subs = this.data.time;
     } else if (this.text) {
       this.subs = this.data.descr;
+    } else if (this.headerTitle) {
+      this.subs = this.data.name;
     }
   },
   methods: {
@@ -126,6 +131,8 @@ export default {
         this.data.time = this.subs;
       } else if (this.text) {
         this.data.descr = this.subs;
+      } else if (this.headerTitle) {
+        this.data.name = this.subs;
       }
       this.$bvModal.hide(this.id);
     }
