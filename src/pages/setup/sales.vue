@@ -85,6 +85,7 @@ import SetupItemProduct from "@/components/setup/SetupItemProduct";
 import AppSwitch from "@/components/form/AppSwitch";
 import SetupDefault from "@/mixins/setupDefault";
 import SetupModalTitle from "@/components/modal/SetupModalTitle";
+import {mapGetters} from "vuex"
 export default {
   data() {
     return {
@@ -113,7 +114,7 @@ export default {
           ]
         },
         id: null,
-        name: "Акции и скидки",
+        name: "Акции и скидки2",
         position: 0,
         segmentation: {
           sex: [],
@@ -135,6 +136,15 @@ export default {
       },
       validFields: false,
     }
+  },
+  computed: {
+    ...mapGetters({
+      item:'server/sales/item'
+    })
+  },
+  mounted() {
+    Object.assign(this.widget,this.item)
+    console.log(this.widget)
   },
   mixins: [SetupDefault],
   components: {
