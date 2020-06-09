@@ -24,9 +24,9 @@
                 <p class="home-block__icon">
                   <img src="img/home-sort.svg" alt />
                 </p>
-                <p class="home-block__name">Виджет </p>
+                <p class="home-block__name">{{ vidget.name }} </p>
               </div>
-              <p class="home-block__text">{{ vidget.name }}</p>
+              <p class="home-block__text">{{ vidget.type_name }}</p>
               <div class="home-block__events">
                 <div class="home-block__switch">
                   <div class="popover">
@@ -57,22 +57,26 @@
                     </div>
                   </div>
                 </a>
-                <nuxt-link to="setup/sales" @click="remove(vidget.id)" class="home-block__edit">
+                <button
+
+                  @click="edit(vidget.id,vidget.type_link)"
+                  class="home-block__edit"
+                >
                   <img src="img/home-register.png" alt />
                   <div class="popover">
                     <div class="popover__wrapper">
                       <span>Редактировать виджет</span>
                     </div>
                   </div>
-                </nuxt-link>
-                <a href="#" class="home-block__look">
+                </button>
+                <button @click="clone(vidget.id)" class="home-block__look">
                   <img src="img/home-sheet.png" alt />
                   <div class="popover">
                     <div class="popover__wrapper">
                       <span>Создать копию</span>
                     </div>
                   </div>
-                </a>
+                </button>
                 <button @click="remove(vidget.id)" class="home-block__delete">
                   <img src="img/home-trash.png" alt />
                   <div class="popover">
@@ -99,7 +103,6 @@ import AppModalVersion from "@/components/modal/AppModalVersion.vue";
 import AppModalPublic from "@/components/modal/AppModalPublic.vue";
 import AppModalTimer from "@/components/modal/AppModalTimer.vue";
 import AppNavigationMenu from "@/components/AppNavigationMenu.vue";
-import { mapGetters } from "vuex";
 
 export default {
   components: {
@@ -121,7 +124,7 @@ export default {
       let sa = this.switchActive,
         index = this.vidgets.findIndex(e => e.id === sa),
         vid = this.vidgets[index]
-      
+
       // console.log(vid)
       if (e) {
         let response = await this.$store.dispatch("server/sales/enable",
@@ -155,15 +158,18 @@ export default {
         this.$bvModal.show("modal-public")
       }
     },
+    async clone(id) {
+      await this.$store.dispatch("server/sales/clone",{group_id:this.groupId,id:id})
+      this.getVidget()
+    },
     async remove(id) {
       await this.$store.dispatch("server/sales/remove", id)
+    },
+    async edit(id,route) {
+      this.$store.dispatch('server/sales/edit1',id)
+      this.$router.push(route)
     }
   },
-  // computed: {
-  //   ...mapGetters({
-  //     vidgets: "server/sales/items",
-  //   })
-  // },
   async mounted() {
     // let timestamp = '1591524564',
     //   time = new Date(+timestamp * 1000)
