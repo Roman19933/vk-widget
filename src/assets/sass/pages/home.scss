@@ -3,6 +3,7 @@
         margin-top: 36px;
     }
     &-block {
+        transition: all 1s;
         padding-right: 40px;
         padding-left: 9px;
         margin-bottom: 18px;
@@ -14,7 +15,23 @@
             align-items: center;
         }
         &__icon {
-            margin-right: 19px;
+            cursor: pointer;
+            .popover {
+                justify-content: center;
+                top: -12px;
+                left: 50%;
+                transform: translate(-50%, -100%);
+                &::before {
+                    top: auto;
+                    bottom: 0;
+                    transform: translate(50%, 100%);
+                    right: 50%;
+                    position: absolute;
+                    content: '';
+                    border: 5px solid transparent;
+                    border-top: 7px solid #21203d;
+                }
+            }
         }
         &__events {
             display: flex;
@@ -24,7 +41,7 @@
                 border: none;
             }
         }
-        &__switch, &__user, &__edit, &__look, &__delete {
+        &__switch, &__user, &__edit, &__look, &__delete, &__icon {
             margin-right: 18px;
             position: relative;
             &:hover {
@@ -60,6 +77,7 @@
 }
 .popover {
     min-width: 178px;
+    pointer-events: none;
     position: absolute;
     right: 50px;
     left: auto;

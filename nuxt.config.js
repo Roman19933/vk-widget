@@ -34,6 +34,7 @@ module.exports = {
    */
   bootstrapVue: {
     componentPlugins: [
+      'ToastPlugin',
       'ModalPlugin'
     ],
     components: ['BProgress'],

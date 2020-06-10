@@ -6,7 +6,8 @@
         <h1 class="vidget-page__title">Мои виджеты</h1>
         <nuxt-link to="/catalog/sales" class="vidget-page__add gen-btn">Создать виджет</nuxt-link>
       </div>
-      <div class="vidget-none" v-if="vidgets.length == 0">
+      <!-- <button @click="vidgets.splice(5, 1)">del</button> -->
+      <div class="vidget-none" v-if="vidgets.length === 0 && vidgetLoad === false">
         <div class="vidget-none__wrapper">
           <img src="img/PIT.svg" alt="" class="vidget-none__img" />
           <p class="vidget-none__text">
@@ -16,94 +17,113 @@
         </div>
       </div>
       <div class="home" v-else>
-        <div class="home__wrapper">
-          <!-- <ul class="home__blocks"> -->
-          <transition-group name="flip-list" tag="ul">
-            <draggable
-              v-for="vidget in vidgets" :key="vidget.id"
-            >
-              <li class="home-block" >
-                <div class="home-block__title">
-                  <p class="home-block__icon">
-                    <img src="img/home-sort.svg" alt />
-                  </p>
-                  <p class="home-block__name">{{ vidget.name }} </p>
-                </div>
-                <p class="home-block__text">{{ vidget.type_name }}</p>
-                <div class="home-block__events">
-                  <div class="home-block__switch">
-                    <div class="popover">
-                      <div class="popover__wrapper">
-                        <span>Опубликовать виджет</span>
+        <app-loader
+          v-model="vidgetLoad"
+          class="top-center"
+        >
+          <div class="home__wrapper">
+            <!-- <ul class="home__blocks"> -->
+            <transition-group name="list-animation" tag="ul">
+              <!-- <draggable
+                v-for="vidget in vidgets" :key="vidget.id"
+              > -->
+                <li v-for="vidget in vidgets" :key="vidget.id" class="home-block" >
+                  <div class="home-block__title">
+                    <div class="home-block__icon">
+                      <div class="popover">
+                        <div class="popover__wrapper">
+                          <span>Сортировать</span>
+                        </div>
                       </div>
+                      <img src="img/home-sort.svg" alt />
                     </div>
-                    <div
-                      class="switch__disabled-wrapper"
-                      v-if="disablePublick"
-                      v-b-modal="'modal-timer'"
-                    >
-                      <app-switch/>
-                    </div>
-                    <app-switch
-                      v-else
-                      v-model="vidget.is_active"
-                      @switch-val="
-                        (switchActive = vidget.id),
-                        (vidget.is_active = $event),
-                        modalPublic($event)
-                      "
-                    />
+                    <p class="home-block__name">{{ vidget.name }} </p>
                   </div>
-                  <a href="#" class="home-block__user">
-                    <img src="img/home-user.svg" alt />
-                    <div class="popover">
-                      <div class="popover__wrapper">
-                        <span>Аудитория</span>
-                        <span>Возраст: от 15 до 66</span>
-                        <span>Пол: женский</span>
-                        <span>ДР: сегодня</span>
-                        <span>
-                          Семейное положение: не женат/не замужем
-                        </span>
+                  <p class="home-block__text">{{ vidget.type_name }}</p>
+                  <div class="home-block__events">
+                    <div class="home-block__switch">
+                      <div class="popover">
+                        <div class="popover__wrapper">
+                          <span>Опубликовать виджет</span>
+                        </div>
                       </div>
+                      <div
+                        class="switch__disabled-wrapper"
+                        v-if="disablePublick"
+                        v-b-modal="'modal-timer'"
+                      >
+                        <app-switch/>
+                      </div>
+                      <app-switch
+                        v-else
+                        v-model="vidget.is_active"
+                        @switch-val="
+                          (switchActive = vidget.id),
+                          (vidget.is_active = $event),
+                          modalPublic($event)
+                        "
+                      />
                     </div>
-                  </a>
-                  <button
+                    <a href="#" class="home-block__user">
+                      <img src="img/home-user.svg" alt />
+                      <div class="popover">
+                        <div class="popover__wrapper">
+                          <span>Аудитория</span>
+                          <span>Возраст: от 15 до 66</span>
+                          <span>Пол: женский</span>
+                          <span>ДР: сегодня</span>
+                          <span>
+                            Семейное положение: не женат/не замужем
+                          </span>
+                        </div>
+                      </div>
+                    </a>
+                    <button
 
-                    @click="edit(vidget.id,vidget.type_link)"
-                    class="home-block__edit"
-                  >
-                    <img src="img/home-register.png" alt />
-                    <div class="popover">
-                      <div class="popover__wrapper">
-                        <span>Редактировать виджет</span>
+                      @click="edit(vidget.id,vidget.type_link)"
+                      class="home-block__edit"
+                    >
+                      <img src="img/home-register.png" alt />
+                      <div class="popover">
+                        <div class="popover__wrapper">
+                          <span>Редактировать виджет</span>
+                        </div>
                       </div>
-                    </div>
-                  </button>
-                  <button @click="clone(vidget.id)" class="home-block__look">
-                    <img src="img/home-sheet.png" alt />
-                    <div class="popover">
-                      <div class="popover__wrapper">
-                        <span>Создать копию</span>
+                    </button>
+                    <button @click="clone(vidget.id)" class="home-block__look">
+                      <img src="img/home-sheet.png" alt />
+                      <div class="popover">
+                        <div class="popover__wrapper">
+                          <span>Создать копию</span>
+                        </div>
                       </div>
-                    </div>
-                  </button>
-                  <button @click="remove(vidget.id)" class="home-block__delete">
-                    <img src="img/home-trash.png" alt />
-                    <div class="popover">
-                      <div class="popover__wrapper">
-                        <span>Удалить виджет</span>
+                    </button>
+                    <button
+                      v-b-modal="'modal-wrapper'"
+                      @click="deleteVidgetId = vidget.id, deleteVidgetName = vidget.name"
+                      class="home-block__delete"
+                    >
+                      <img src="img/home-trash.png" alt />
+                      <div class="popover">
+                        <div class="popover__wrapper">
+                          <span>Удалить виджет</span>
+                        </div>
                       </div>
-                    </div>
-                  </button>
-                </div>
-              </li>
-            </draggable>
-          </transition-group>
-          <!-- </ul> -->
-        </div>
+                    </button>
+                  </div>
+                </li>
+              <!-- </draggable> -->
+            </transition-group>
+            <!-- </ul> -->
+          </div>
+        </app-loader>
       </div>
     </div>
+    <app-modal-wrapper
+      title="Удаление виджета"
+      :subtitle="`Виджет «${ deleteVidgetName }» будет удален, вы действительно этого хотите?`"
+      @input="$bvModal.hide('modal-wrapper'), $event && remove(deleteVidgetId)"
+    ></app-modal-wrapper>
     <app-modal-public @public="publicVidget($event)" />
     <app-modal-timer :timer-val="timerVal"/>
     <app-modal-version />
@@ -126,6 +146,9 @@ export default {
   data() {
     return {
       appId: process.env.APP_ID,
+      deleteVidgetName: null,
+      deleteVidgetId: null,
+      vidgetLoad: true,
       switchActive: null,
       disablePublick: false,
       timerVal: null,
@@ -181,11 +204,14 @@ export default {
       return check
     },
     async getVidget () {
+      this.vidgetLoad = true
       try {
         let response = await this.$store.dispatch("server/sales/getItems", this.groupId)
         this.vidgets = JSON.parse(JSON.stringify(response))
       } catch(e) {
         console.log(e)
+      } finally {
+        this.vidgetLoad = false
       }
     },
     async modalPublic(e) {
@@ -207,7 +233,20 @@ export default {
       this.getVidget()
     },
     async remove(id) {
-      await this.$store.dispatch("server/sales/remove", id)
+      this.vidgetLoad = true
+      try {
+        await this.$store.dispatch("server/sales/remove", id)
+        await this.getVidget()
+        this.$bvToast.toast('Виджет успешно удален.', {
+          title: 'Удаление',
+          variant: 'primary',
+          toaster: 'b-toaster-bottom-right',
+          solid: true
+        })
+      } catch(e) {
+        this.vidgetLoad = false
+        console.log(e)
+      }
     },
     async edit(id,route) {
       this.$store.dispatch('server/sales/edit1',id)
@@ -215,6 +254,7 @@ export default {
     }
   },
   async mounted() {
+    this.getVidget()
     let timerStore = (new Date().getTime() - localStorage.timer) / 1000
     if ( timerStore <= 10 ) {
       this.startTimer(Math.ceil(timerStore))
@@ -226,7 +266,6 @@ export default {
     if (!this.$store.getters['server/token/checkToken']) {
       this.updateTokenGroup()
     }
-    this.getVidget()
   },
   // watch: {
   //   switchActive: {
