@@ -22,15 +22,15 @@ export const actions = {
     commit('CHECK_TOKEN', true)
   },
   async checkToken ({ commit }, payload) {
-    let checkToken = await Api['tokens/check'].find(payload)
-    commit('CHECK_TOKEN', checkToken)
-    return checkToken
+    let { data } = await Api['tokens/check'].find(payload)
+    commit('CHECK_TOKEN', data.check)
+    return data.check
   }
 }
 
 export const mutations = {
   [CHECK_TOKEN] (state, payload) {
-    state.checkToken = payload.data.check
+    state.checkToken = payload
   },
   [SET_VK_QUERY] (state, payload) {
     state.vkQuery = payload
