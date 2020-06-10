@@ -90,7 +90,7 @@ export default {
           groups: []
         },
         type: "text",
-        sc_type:'importantMessage',
+        sc_type:'important_message',
       }
     };
   },

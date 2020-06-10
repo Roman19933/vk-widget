@@ -88,7 +88,6 @@ export default {
   data() {
     return {
       widget: {
-        createdAt: "",
         data: {
           more: "",
           more_url: "",
@@ -110,7 +109,6 @@ export default {
         id: null,
         isActive: false,
         name: "Виджет «Акции в обложках»",
-        position: 0,
         segmentation: {
           sex: [],
           age: { from: "", to: "" },
@@ -127,8 +125,7 @@ export default {
           groups: []
         },
         type: "coverlist",
-         sc_type:'coverSales',
-        updatedAt: ""
+         sc_type:'cover_sales',
       }
     };
   },
