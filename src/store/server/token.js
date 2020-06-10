@@ -30,7 +30,6 @@ export const actions = {
 
 export const mutations = {
   [CHECK_TOKEN] (state, payload) {
-    console.log(payload)
     state.checkToken = payload.data.check
   },
   [SET_VK_QUERY] (state, payload) {
