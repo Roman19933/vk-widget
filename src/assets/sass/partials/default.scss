@@ -241,6 +241,16 @@ body {
         transition: left 0.5s;
         top: 2px;
     }
+    &__disabled {
+        &-wrapper {
+            &:focus {
+                outline: none;
+            }
+            .switch {
+                pointer-events: none;
+            }
+        }
+    }
 }
 
 .radio {

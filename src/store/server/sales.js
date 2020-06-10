@@ -22,8 +22,11 @@ export const actions = {
     commit('SET_ITEMS', data.data)
     return data.data
   },
-  async enable ({ commit }, payload) {
-    return await Api['widget/enable'].find(payload)
+  async disable ({ commit }, { groupId, vidId }) {
+    return await Api[`widget/disable?group_id=${groupId}&widget_id=${vidId}`]()
+  },
+  async enable ({ commit }, { groupId, vidId }) {
+    return await Api[`widget/enable?group_id=${groupId}&widget_id=${vidId}`]()
   },
   async create ({ commit }, payload) {
     return await Api['widgets'].create(payload)

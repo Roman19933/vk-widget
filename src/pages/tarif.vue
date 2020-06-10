@@ -9,11 +9,6 @@
           class="vidget-page__promocode"
         >Ввести промокод</button>
       </div>
-      <b-modal id="bv-modal-example" hide-header hide-footer>
-        <div class="d-block text-center">
-          <h3>Hello From This Modal!</h3>
-        </div>
-      </b-modal>
       <div class="tarif">
         <div class="tarif__wrapper">
           <div class="tarif__blocks">

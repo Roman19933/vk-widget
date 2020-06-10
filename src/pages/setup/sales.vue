@@ -8,7 +8,6 @@
               <div class="widgets__header-title vidget-page__title">
                 <img src alt />
                 <a href="#" v-b-modal="`header-${widget.id}`">{{ this.widget.name }}</a>
-                <!-- <h4>Виджет «Акции и скидки»</h4> -->
               </div>
               <div class="widgets__switch">
                 <span>Режим просмотра</span>
@@ -72,9 +71,9 @@
               </div>
             </div>
           </div>
-          <div class="widgets__right">
+          <!-- <div class="widgets__right">
             <setup-form :formData="widget.segmentation" />
-          </div>
+          </div> -->
         </div>
       </div>
       <setup-modal-title mainTitle :data="widget.data" />
@@ -90,8 +89,6 @@ import AppSwitch from "@/components/form/AppSwitch";
 import SetupDefault from "@/mixins/setupDefault";
 import SetupModalTitle from "@/components/modal/SetupModalTitle";
 import SetupModalSub from "@/components/modal/SetupModalSub";
-import { mapGetters } from "vuex"
-
 export default {
   data() {
     return {
@@ -139,17 +136,13 @@ export default {
         type: "tiles",
         sc_type:'discounts',
       },
+      widgetEdit: null,
       validFields: false,
     }
   },
-  computed: {
-    ...mapGetters({
-      item:'server/sales/item'
-    })
-  },
   mounted() {
-    Object.assign(this.widget,this.item)
-    console.log(this.widget)
+    this.widgetEdit = JSON.parse(JSON.stringify(this.$store.getters['server/sales/item']))
+    this.widget = this.widgetEdit
   },
   mixins: [SetupDefault],
   components: {
