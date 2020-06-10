@@ -19,82 +19,86 @@
         <div class="home__wrapper">
           <!-- <ul class="home__blocks"> -->
           <transition-group name="flip-list" tag="ul">
-            <li class="home-block" v-for="vidget in vidgets" :key="vidget.id">
-              <div class="home-block__title">
-                <p class="home-block__icon">
-                  <img src="img/home-sort.svg" alt />
-                </p>
-                <p class="home-block__name">{{ vidget.name }} </p>
-              </div>
-              <p class="home-block__text">{{ vidget.type_name }}</p>
-              <div class="home-block__events">
-                <div class="home-block__switch">
-                  <div class="popover">
-                    <div class="popover__wrapper">
-                      <span>Опубликовать виджет</span>
-                    </div>
-                  </div>
-                  <div
-                    class="switch__disabled-wrapper"
-                    v-if="disablePublick"
-                    v-b-modal="'modal-timer'"
-                  >
-                    <app-switch/>
-                  </div>
-                  <app-switch
-                    v-else
-                    v-model="vidget.is_active"
-                    @switch-val="
-                      (switchActive = vidget.id),
-                      (vidget.is_active = $event),
-                      modalPublic($event)
-                    "
-                  />
+            <draggable
+              v-for="vidget in vidgets" :key="vidget.id"
+            >
+              <li class="home-block" >
+                <div class="home-block__title">
+                  <p class="home-block__icon">
+                    <img src="img/home-sort.svg" alt />
+                  </p>
+                  <p class="home-block__name">{{ vidget.name }} </p>
                 </div>
-                <a href="#" class="home-block__user">
-                  <img src="img/home-user.svg" alt />
-                  <div class="popover">
-                    <div class="popover__wrapper">
-                      <span>Аудитория</span>
-                      <span>Возраст: от 15 до 66</span>
-                      <span>Пол: женский</span>
-                      <span>ДР: сегодня</span>
-                      <span>
-                        Семейное положение: не женат/не замужем
-                      </span>
+                <p class="home-block__text">{{ vidget.type_name }}</p>
+                <div class="home-block__events">
+                  <div class="home-block__switch">
+                    <div class="popover">
+                      <div class="popover__wrapper">
+                        <span>Опубликовать виджет</span>
+                      </div>
                     </div>
+                    <div
+                      class="switch__disabled-wrapper"
+                      v-if="disablePublick"
+                      v-b-modal="'modal-timer'"
+                    >
+                      <app-switch/>
+                    </div>
+                    <app-switch
+                      v-else
+                      v-model="vidget.is_active"
+                      @switch-val="
+                        (switchActive = vidget.id),
+                        (vidget.is_active = $event),
+                        modalPublic($event)
+                      "
+                    />
                   </div>
-                </a>
-                <button
+                  <a href="#" class="home-block__user">
+                    <img src="img/home-user.svg" alt />
+                    <div class="popover">
+                      <div class="popover__wrapper">
+                        <span>Аудитория</span>
+                        <span>Возраст: от 15 до 66</span>
+                        <span>Пол: женский</span>
+                        <span>ДР: сегодня</span>
+                        <span>
+                          Семейное положение: не женат/не замужем
+                        </span>
+                      </div>
+                    </div>
+                  </a>
+                  <button
 
-                  @click="edit(vidget.id,vidget.type_link)"
-                  class="home-block__edit"
-                >
-                  <img src="img/home-register.png" alt />
-                  <div class="popover">
-                    <div class="popover__wrapper">
-                      <span>Редактировать виджет</span>
+                    @click="edit(vidget.id,vidget.type_link)"
+                    class="home-block__edit"
+                  >
+                    <img src="img/home-register.png" alt />
+                    <div class="popover">
+                      <div class="popover__wrapper">
+                        <span>Редактировать виджет</span>
+                      </div>
                     </div>
-                  </div>
-                </button>
-                <button @click="clone(vidget.id)" class="home-block__look">
-                  <img src="img/home-sheet.png" alt />
-                  <div class="popover">
-                    <div class="popover__wrapper">
-                      <span>Создать копию</span>
+                  </button>
+                  <button @click="clone(vidget.id)" class="home-block__look">
+                    <img src="img/home-sheet.png" alt />
+                    <div class="popover">
+                      <div class="popover__wrapper">
+                        <span>Создать копию</span>
+                      </div>
                     </div>
-                  </div>
-                </button>
-                <button @click="remove(vidget.id)" class="home-block__delete">
-                  <img src="img/home-trash.png" alt />
-                  <div class="popover">
-                    <div class="popover__wrapper">
-                      <span>Удалить виджет</span>
+                  </button>
+                  <button @click="remove(vidget.id)" class="home-block__delete">
+                    <img src="img/home-trash.png" alt />
+                    <div class="popover">
+                      <div class="popover__wrapper">
+                        <span>Удалить виджет</span>
+                      </div>
                     </div>
-                  </div>
-                </button>
-              </div>
-            </li>
+                  </button>
+                </div>
+              </li>
+            </draggable>
           </transition-group>
           <!-- </ul> -->
         </div>
