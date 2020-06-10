@@ -139,7 +139,6 @@ export default {
       this.timerVal = time
       let timer = setInterval(() => {
         this.timerVal--
-        console.log(this.timerVal)
         if (this.timerVal <= 0) {
           clearTimeout(timer)
           this.$bvModal.hide("modal-timer")
@@ -151,12 +150,10 @@ export default {
       let sa = this.switchActive,
         index = this.vidgets.findIndex(e => e.id === sa),
         vid = this.vidgets[index]
-      if (e) {
+      if (e && await this.validToken()) {
         let { data } = await this.$store.dispatch("server/sales/enable", { groupId:this.groupId, vidId: vid.id })
-        console.log( data.response )
         if(data.response) {
           this.disablePublick = true
-          // this.timerVal = 10
           this.startTimer(10)
         }
         this.$bvModal.hide("modal-public")
@@ -173,6 +170,16 @@ export default {
         console.log(e)
       }
     },
+    async validToken() {
+      const groupId = this.$store.getters["server/token/vkQuery"].vk_group_id
+      let check = await this.$store.dispatch("server/token/checkToken", groupId)
+      console.log(check)
+      !check && this.updateTokenGroup()
+      // if(!data.check) {
+      //   this.updateTokenGroup()
+      // }
+      return check
+    },
     async getVidget () {
       try {
         let response = await this.$store.dispatch("server/sales/getItems", this.groupId)
@@ -185,15 +192,14 @@ export default {
       let sa = this.switchActive,
         index = this.vidgets.findIndex(e => e.id === sa),
         vid = this.vidgets[index]
-      if (e) {
-        this.$bvModal.show("modal-public")
-      } else {
+      if (!e && await this.validToken()) {
         let { data } = await this.$store.dispatch("server/sales/disable", { groupId:this.groupId, vidId: vid.id })
         if(data.response) {
           this.disablePublick = true
-          // this.timerVal = 10
           this.startTimer(10)
         }
+      } else {
+        this.$bvModal.show("modal-public")
       }
     },
     async clone(id) {
@@ -210,7 +216,6 @@ export default {
   },
   async mounted() {
     let timerStore = (new Date().getTime() - localStorage.timer) / 1000
-    console.log(timerStore)
     if ( timerStore <= 10 ) {
       this.startTimer(Math.ceil(timerStore))
       this.disablePublick = true
