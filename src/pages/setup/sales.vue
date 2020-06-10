@@ -36,6 +36,8 @@
                       :item="item"
                       :index="index"
                       type="tilesLarge"
+                      :prename-validation="`data.tiles.${index}.`"
+                      :validation-errors="validationErrors"
                       @remove:item="removeItem(widget.data.tiles,index)"
                     />
                     <button
@@ -90,6 +92,7 @@ import SetupModalSub from "@/components/modal/SetupModalSub";
 export default {
   data() {
     return {
+      validationErrors: {},
       widget: {
         is_active: false,
         type_name: "Акции и скидки",
@@ -151,19 +154,23 @@ export default {
   },
   methods: {
     async create () {
-      let payload = this.widget
-      const groupId = this.$store.getters['server/token/vkQuery'].vk_group_id
-      payload.group_id = +groupId
-      if (payload.id || false) {
-        console.log("id");
-        await this.$store.dispatch("server/sales/edit", payload);
-        this.$router.push('/main')
-      } else {
-        console.log("no id");
-        await this.$store.dispatch("server/sales/create", payload);
-        this.$router.push('/main')
+      try {
+        let payload = this.widget
+        const groupId = this.$store.getters['server/token/vkQuery'].vk_group_id
+        payload.group_id = +groupId
+        if (payload.id || false) {
+          console.log("id");
+          await this.$store.dispatch("server/sales/edit", payload);
+          // this.$router.push('/main')
+        } else {
+          console.log("no id");
+          await this.$store.dispatch("server/sales/create", payload);
+          // this.$router.push('/main')
+        }
+      } catch({ data }) {
+        this.validationErrors = data;
+        console.log(data)
       }
-
     }
   }
 }
