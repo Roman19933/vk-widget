@@ -10,7 +10,7 @@
           <div class="widget-public__info">
             <h2 class="modal__title">Эй, не так быстро!</h2>
             <p>Между публикацией виджетов должно пройти 10 секунд. Пожалуйста, подождите...</p>
-            <b-progress :value="5" :max="10"></b-progress>
+            <b-progress :value="val" :max="10"></b-progress>
           </div>
         </div>
       </div>
@@ -28,36 +28,37 @@
     },
     data() {
       return {
-        timer: null,
+        // timer: null,
         val: this.timerVal
       }
     },
-    mounted() {
-      this.startTimer()
-    },
-    // destroyed() {
-    //   this.stopTimer()
-    // },
     methods: {
-      startTimer() {
-        let $this = this
-        this.timer = setInterval(() => {
-          this.val--
-          if (this.val === 0) {
-            clearTimeout($this.timer)
-          }
-        }, 1000)
-      },
+      // resetModal() {
+      //   this.startTimer()
+      // },
+      // startTimer() {
+      //   this.timer = setInterval(() => {
+      //     this.val--
+      //     console.log(this.val)
+      //     if (this.val <= 0) {
+      //       clearTimeout(this.timer)
+      //     }
+      //   }, 1000)
+      // },
       // stopTimer() {
       //   clearTimeout(this.timer)
       // },
     },
-    // watch: {
-    //   currentTime(time) {
-    //     if (time === 0) {
-    //       this.stopTimer()
-    //     }
-    //   }
+    mounted() {
+      // this.startTimer()
+    },
+    // destroyed() {
+    //   this.stopTimer()
     // },
+    watch: {
+      timerVal(time) {
+        this.val = time
+      }
+    },
   }
 </script>

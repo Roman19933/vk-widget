@@ -34,12 +34,20 @@
                       <span>Опубликовать виджет</span>
                     </div>
                   </div>
+                  <div
+                    class="switch__disabled-wrapper"
+                    v-if="disablePublick"
+                    v-b-modal="'modal-timer'"
+                  >
+                    <app-switch/>
+                  </div>
                   <app-switch
+                    v-else
                     v-model="vidget.is_active"
                     @switch-val="
-                      modalPublic($event),
-                        (vidget.is_active = $event),
-                        (switchActive = vidget.id)
+                      (switchActive = vidget.id),
+                      (vidget.is_active = $event),
+                      modalPublic($event)
                     "
                   />
                 </div>
@@ -93,7 +101,7 @@
       </div>
     </div>
     <app-modal-public @public="publicVidget($event)" />
-    <app-modal-timer :timer-val="10"/>
+    <app-modal-timer :timer-val="timerVal"/>
     <app-modal-version />
   </div>
 </template>
@@ -115,27 +123,43 @@ export default {
     return {
       appId: process.env.APP_ID,
       switchActive: null,
+      disablePublick: false,
+      timerVal: null,
       groupId: this.$store.getters['server/token/vkQuery'].vk_group_id,
       vidgets: []
     };
   },
   methods: {
+    startTimer(time) {
+      localStorage.timer = new Date().getTime()
+      this.timerVal = time
+      let timer = setInterval(() => {
+        this.timerVal--
+        console.log(this.timerVal)
+        if (this.timerVal <= 0) {
+          clearTimeout(timer)
+          this.$bvModal.hide("modal-timer")
+          this.disablePublick = false
+        }
+      }, 1000)
+    },
     async publicVidget(e) {
       let sa = this.switchActive,
         index = this.vidgets.findIndex(e => e.id === sa),
         vid = this.vidgets[index]
-
-      // console.log(vid)
       if (e) {
-        let response = await this.$store.dispatch("server/sales/enable",
-          '?group_id='+ this.groupId +'&widget_id='+ vid.id +''
-        )
-        // console.log(response)
+        let { data } = await this.$store.dispatch("server/sales/enable", { groupId:this.groupId, vidId: vid.id })
+        console.log( data.response )
+        if(data.response) {
+          this.disablePublick = true
+          // this.timerVal = 10
+          this.startTimer(10)
+        }
         this.$bvModal.hide("modal-public")
         vid.is_active = true
       } else {
         this.$bvModal.hide("modal-public")
-        vid.is_active = false;
+        vid.is_active = false
       }
     },
     async updateTokenGroup () {
@@ -148,14 +172,24 @@ export default {
     async getVidget () {
       try {
         let response = await this.$store.dispatch("server/sales/getItems", this.groupId)
-        this.vidgets = response
+        this.vidgets = JSON.parse(JSON.stringify(response))
       } catch(e) {
         console.log(e)
       }
     },
-    modalPublic(e) {
+    async modalPublic(e) {
+      let sa = this.switchActive,
+        index = this.vidgets.findIndex(e => e.id === sa),
+        vid = this.vidgets[index]
       if (e) {
         this.$bvModal.show("modal-public")
+      } else {
+        let { data } = await this.$store.dispatch("server/sales/disable", { groupId:this.groupId, vidId: vid.id })
+        if(data.response) {
+          this.disablePublick = true
+          // this.timerVal = 10
+          this.startTimer(10)
+        }
       }
     },
     async clone(id) {
@@ -171,14 +205,26 @@ export default {
     }
   },
   async mounted() {
+    let timerStore = (new Date().getTime() - localStorage.timer) / 1000
+    console.log(timerStore)
+    if ( timerStore <= 10 ) {
+      this.startTimer(Math.ceil(timerStore))
+      this.disablePublick = true
+    }
     // let timestamp = '1591524564',
     //   time = new Date(+timestamp * 1000)
     // this.$bvModal.show("modal-timer")
-    console.log(this.$store.getters['server/token/checkToken'])
     if (!this.$store.getters['server/token/checkToken']) {
       this.updateTokenGroup()
     }
     this.getVidget()
-  }
+  },
+  // watch: {
+  //   switchActive: {
+  //     handler(bef) {
+  //       console.log(bef)
+  //     }
+  //   }
+  // }
 };
 </script>
