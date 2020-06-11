@@ -34,6 +34,9 @@ export const actions = {
   async edit ({ commit }, payload) {
     return await Api['widgets'].update(payload.id,payload)
   },
+  async editName ({ commit }, payload) {
+    return await Api['widgets/rename'].patch(payload.widget_id,payload)
+  },
   async clone ({ commit }, {group_id,id}) {
    let {data} = await Api[`widget/clone?group_id=${group_id}&widget_id=${id}`]()
     commit('SET_ITEMS', data.data)

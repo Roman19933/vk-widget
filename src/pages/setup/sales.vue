@@ -4,6 +4,9 @@
       <div class="widgets vidget-page">
         <div class="widgets__wrapper vidget-page__wrapper">
           <div class="widgets__left">
+            <app-loader
+              v-model="loading"
+            >
             <div class="widgets__header vidget-page__head">
               <div class="widgets__header-title vidget-page__title">
                 <img src alt />
@@ -71,6 +74,7 @@
                 </button>
               </div>
             </div>
+            </app-loader>
           </div>
           <!-- <div class="widgets__right">
             <setup-form :formData="widget.segmentation" />
@@ -94,6 +98,7 @@ import SetupModalSub from "@/components/modal/SetupModalSub";
 export default {
   data() {
     return {
+      loading: false,
       validationErrors: {},
       // vidgetLoad:true,
       widget: {
@@ -163,6 +168,7 @@ export default {
     }
   },
 mounted() {
+    console.log(this.$bvToast)
     this.widgetEdit = JSON.parse(JSON.stringify(this.$store.getters['server/sales/item']))
     if(this.widgetEdit.length !== 0 ) {
       Object.assign(this.widget, this.widgetEdit)
@@ -178,6 +184,7 @@ mounted() {
   },
   methods: {
     async create () {
+      this.loading = true
       try {
         let payload = this.widget
         const groupId = this.$store.getters['server/token/vkQuery'].vk_group_id
@@ -185,15 +192,19 @@ mounted() {
         if (payload.id || false) {
           console.log("id");
           await this.$store.dispatch("server/sales/edit", payload);
-          // this.$router.push('/main')
+          this.$bvToast.show('update-toast')
+          this.$router.push('/main')
         } else {
           console.log("no id");
           await this.$store.dispatch("server/sales/create", payload);
-          // this.$router.push('/main')
+          this.$bvToast.show('create-toast')
+          this.$router.push('/main')
         }
       } catch({ data }) {
         this.validationErrors = data;
         console.log(data)
+      } finally {
+        this.loading = false
       }
     }
   }
