@@ -5,7 +5,7 @@
         href="#"
         class="item__menu-close"
         @click.prevent="$emit('remove:item')"
-        v-if="this.index > 3"
+        v-if="this.lenghtWidget > 3"
       >
         <img src="/img/close-error.png" alt />
       </a>
@@ -117,6 +117,10 @@ export default {
       default: ""
     },
     index: {
+      type: Number,
+      default: 0
+    },
+    lenghtWidget: {
       type: Number,
       default: 0
     }
