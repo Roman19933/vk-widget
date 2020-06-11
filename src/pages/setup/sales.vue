@@ -79,6 +79,7 @@
       <setup-modal-title mainTitle :data="widget.data" />
       <setup-modal-sub headerTitle :data="widget" :id="`header-${widget.id}`" />
     </form>
+
   </client-only>
 </template>
 
@@ -93,10 +94,11 @@ export default {
   data() {
     return {
       validationErrors: {},
+      // vidgetLoad:true,
       widget: {
         is_active: false,
         type_name: "Акции и скидки",
-        type_link: "/setup/sales",
+        type_link: "/setup/sales?category=sales",
         data: {
           more: "",
           more_url: "",
@@ -105,7 +107,7 @@ export default {
           title_url: "",
           tiles: [
             {
-              descr: "+ добавить",
+              descr: "",
               icon_id: "5686299_1676309",
               // icon_type: "160x160",
               link: "Получить скидку",
@@ -140,9 +142,12 @@ export default {
       validFields: false,
     }
   },
-  mounted() {
+mounted() {
     this.widgetEdit = JSON.parse(JSON.stringify(this.$store.getters['server/sales/item']))
-    this.widget = this.widgetEdit
+    if(this.widgetEdit.length !== 0 ) {
+      Object.assign(this.widget, this.widgetEdit)
+      console.log(this.widget)
+    }
   },
   mixins: [SetupDefault],
   components: {
