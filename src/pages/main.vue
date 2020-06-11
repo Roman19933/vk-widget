@@ -163,15 +163,13 @@ import AppModalVersion from "@/components/modal/AppModalVersion.vue";
 import AppModalEditName from "@/components/modal/AppModalEditName.vue";
 import AppModalPublic from "@/components/modal/AppModalPublic.vue";
 import AppModalTimer from "@/components/modal/AppModalTimer.vue";
-import AppNavigationMenu from "@/components/AppNavigationMenu.vue";
 
 export default {
   components: {
     AppModalVersion,
     AppModalEditName,
     AppModalPublic,
-    AppModalTimer,
-    AppNavigationMenu
+    AppModalTimer
   },
   data() {
     return {
