@@ -137,9 +137,16 @@ export default {
       validFields: false,
     }
   },
-  mounted() {
-    this.widgetEdit = JSON.parse(JSON.stringify(this.$store.getters['server/sales/item']))
-    this.widget = this.widgetEdit
+  async mounted() {
+     this.widgetEdit =  await JSON.parse(JSON.stringify(this.$store.getters['server/sales/item']))
+    if(this.widgetEdit !== null ) {
+
+      this.widget = this.widgetEdit
+      console.log('hi')
+    } else {
+
+    }
+    console.log(this.widgetEdit)
   },
   mixins: [SetupDefault],
   components: {
