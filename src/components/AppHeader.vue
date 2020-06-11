@@ -67,12 +67,6 @@ export default {
   },
   mounted() {
     this.headerTitle = this.headerName(this.$route.name);
-    var script = document.createElement('SCRIPT');
-      script.src = "https://api.vk.com/method/users.get?user_ids=210700286&fields=bdate&v=5.110&callback=callbackFunc";
-      document.getElementsByTagName("head")[0].appendChild(script);
-      function callbackFunc(result) {
-      alert(result.response[0].first_name)
-    }
   },
   watch: {
     $route: {

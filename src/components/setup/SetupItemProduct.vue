@@ -5,7 +5,7 @@
         href="#"
         class="item__menu-close"
         @click.prevent="$emit('remove:item')"
-        v-if="this.index > 3"
+        v-if="this.lenghtWidget > 3"
       >
         <img src="/img/close-error.png" alt />
       </a>
@@ -16,9 +16,19 @@
     <div class="item__img" v-b-modal="`upload-${index}`">
       <img src="/img/photo.png" alt class="photo" v-if="!this.urlToFoto" />
       <img :src="urlToFoto" alt v-else />
+      <setup-popover :varError="mapErros['icon_id']">
+        <template v-slot:varName> </template>
+      </setup-popover>
     </div>
     <div class="item__info">
-      <div class="item__popover">
+      <setup-popover :varError="mapErros['title']">
+        <template v-slot:varName>
+          <a href="#" class="item__title" v-b-modal="`title-${index}`">{{
+            !!item.title ? item.title : "+ добавить"
+          }}</a>
+        </template>
+      </setup-popover>
+      <!-- <div class="item__popover">
         <div v-if="mapErros['title']" class="item__popover-info">
           <img src="/img/info.png" alt />
           <div class="popover popover_setup">
@@ -32,11 +42,18 @@
         <a href="#" class="item__title" v-b-modal="`title-${index}`">{{
           !!item.title ? item.title : "+ добавить"
         }}</a>
-      </div>
+      </div> -->
       <!-- <a href="#" class="item__title" v-b-modal="`title-${index}`">{{
         !!item.title ? item.title : "+ добавить"
       }}</a> -->
-      <div class="item__popover">
+      <setup-popover :varError="mapErros['descr']">
+        <template v-slot:varName>
+          <a href="#" class="item__price" v-b-modal="`subs-${index}`">{{
+            !!item.descr ? item.descr : "+ добавить"
+          }}</a>
+        </template>
+      </setup-popover>
+      <!-- <div class="item__popover">
         <div v-if="mapErros['descr']" class="item__popover-info">
           <img src="/img/info.png" alt />
           <div class="popover popover_setup">
@@ -50,11 +67,22 @@
         <a href="#" class="item__price" v-b-modal="`subs-${index}`">{{
           !!item.descr ? item.descr : "+ добавить"
         }}</a>
-      </div>
+      </div> -->
       <!-- <a href="#" class="item__price" v-b-modal="`subs-${index}`">{{
         !!item.descr ? item.descr : "+ добавить"
       }}</a> -->
-      <div class="item__popover">
+      <setup-popover :varError="mapErros['link_url']">
+        <template v-slot:varName>
+          <a
+            :href="item.link_url"
+            class="item__sales"
+            @click.prevent
+            v-b-modal="`link-${index}`"
+            >{{ !!item.link ? item.link : "+ добавить" }}</a
+          >
+        </template>
+      </setup-popover>
+      <!-- <div class="item__popover">
         <div v-if="mapErros['link_url']" class="item__popover-info">
           <img src="/img/info.png" alt />
           <div class="popover popover_setup">
@@ -72,7 +100,7 @@
           v-b-modal="`link-${index}`"
           >{{ !!item.link ? item.link : "+ добавить" }}</a
         >
-      </div>
+      </div> -->
       <!-- <span>{{ this.error }}</span> -->
       <!-- <span>{{this.er}}</span> -->
       <!-- <span>{{this.e('link_url')}}</span> -->
@@ -84,7 +112,7 @@
       :data="item"
       :id="`upload-${index}`"
       :type="type"
-      @url="fotoUrl"
+      @url="fotoId"
     />
   </div>
 </template>
@@ -93,6 +121,7 @@
 import SetupModalTitle from "@/components/modal/SetupModalTitle";
 import SetupModalSub from "@/components/modal/SetupModalSub";
 import SetupModalUpload from "@/components/modal/SetupModalUpload";
+import SetupPopover from "@/components/setup/SetupPopover";
 import _ from "lodash";
 export default {
   props: {
@@ -119,12 +148,21 @@ export default {
     index: {
       type: Number,
       default: 0
+    },
+    lenghtWidget: {
+      type: Number,
+      default: 0
     }
   },
   data() {
     return {
-      urlToFoto: ""
+      urlToFoto: "",
+      groupId: ""
     };
+  },
+  mounted() {
+    this.groupId = this.$store.getters["server/token/vkQuery"].vk_group_id;
+    this.getUrlFoto();
   },
   computed: {
     mapErros() {
@@ -139,14 +177,28 @@ export default {
     }
   },
   methods: {
-    fotoUrl(val) {
-      this.urlToFoto = val;
+    fotoId() {
+      this.getUrlFoto();
+    },
+    async getUrlFoto() {
+      try {
+        let { data } = await this.$store.dispatch("server/upload/getUrl", {
+          group_id: +this.groupId,
+          image_id: this.item.icon_id
+        });
+        if (data.response[0]) {
+          this.urlToFoto = data.response[0].images[0].url;
+        }
+      } catch (e) {
+        console.log("e", e);
+      }
     }
   },
   components: {
     SetupModalTitle,
     SetupModalSub,
-    SetupModalUpload
+    SetupModalUpload,
+    SetupPopover
   }
 };
 </script>

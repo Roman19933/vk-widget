@@ -37,7 +37,8 @@
                       v-for="(item,index) in widget.data.tiles"
                       :key="`item-${index}`"
                       :item="item"
-                      :index="widget.data.tiles.length"
+                      :index="index"
+                      :lenghtWidget="widget.data.tiles.length"
                       type="tilesLarge"
                       :prename-validation="`data.tiles.${index}.`"
                       :validation-errors="validationErrors"
@@ -83,6 +84,7 @@
       <setup-modal-title mainTitle :data="widget.data" />
       <setup-modal-sub headerTitle :data="widget" :id="`header-${widget.id}`" />
     </form>
+
   </client-only>
 </template>
 
@@ -98,10 +100,11 @@ export default {
     return {
       loading: false,
       validationErrors: {},
+      // vidgetLoad:true,
       widget: {
         is_active: false,
         type_name: "Акции и скидки",
-        type_link: "/setup/sales",
+        type_link: "/setup/sales?category=sales",
         data: {
           more: "",
           more_url: "",
@@ -164,7 +167,7 @@ export default {
       widgetEdit: null
     }
   },
-  mounted() {
+mounted() {
     this.widgetEdit = JSON.parse(JSON.stringify(this.$store.getters['server/sales/item']))
     if(this.widgetEdit.length !== 0 ) {
       Object.assign(this.widget, this.widgetEdit)
