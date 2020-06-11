@@ -23,13 +23,18 @@
         >
           <div class="home__wrapper">
             <!-- <ul class="home__blocks"> -->
-            <transition-group name="list-animation" tag="ul">
-              <!-- <draggable
-                v-for="vidget in vidgets" :key="vidget.id"
-              > -->
-                <li v-for="vidget in vidgets" :key="vidget.id" class="home-block" >
+            <draggable v-model="vidgets">
+              <transition-group name="list-animation" tag="ul">
+                <li
+                  v-for="vidget in vidgets"
+                  :key="vidget.id"
+                  class="home-block" >
                   <div class="home-block__title">
-                    <div class="home-block__icon">
+                    <div
+                      class="home-block__icon"
+                    >
+                      <!-- @mousedown="sortList"
+                      @mousemove="sortListMove" -->
                       <div class="popover">
                         <div class="popover__wrapper">
                           <span>Сортировать</span>
@@ -112,8 +117,8 @@
                     </button>
                   </div>
                 </li>
-              <!-- </draggable> -->
-            </transition-group>
+              </transition-group>
+            </draggable>
             <!-- </ul> -->
           </div>
         </app-loader>
@@ -157,6 +162,12 @@ export default {
     };
   },
   methods: {
+    // sortList(e) {
+    //   console.log(e)
+    // },
+    // sortListMove(e) {
+    //   console.log(e)
+    // },
     startTimer(time) {
       localStorage.timer = new Date().getTime()
       this.timerVal = time
