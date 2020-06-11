@@ -75,13 +75,11 @@
 </template>
 
 <script>
-import AppNavigationMenu from "@/components/AppNavigationMenu.vue";
-import AppSvgIcon from "@/components/AppSvgIcon.vue";
+import AppNavigationMenu from "@/components/AppNavigationMenu.vue"
 
 export default {
   components: {
-    AppNavigationMenu,
-    AppSvgIcon
+    AppNavigationMenu
   },
   data() {
     return {
