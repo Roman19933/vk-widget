@@ -80,6 +80,7 @@
       <setup-modal-title mainTitle :data="widget.data" />
       <setup-modal-sub headerTitle :data="widget" :id="`header-${widget.id}`" />
     </form>
+
   </client-only>
 </template>
 
@@ -94,10 +95,11 @@ export default {
   data() {
     return {
       validationErrors: {},
+      // vidgetLoad:true,
       widget: {
         is_active: false,
         type_name: "Акции и скидки",
-        type_link: "/setup/sales",
+        type_link: "/setup/sales?category=sales",
         data: {
           more: "",
           more_url: "",
@@ -160,7 +162,7 @@ export default {
       widgetEdit: null
     }
   },
-  mounted() {
+mounted() {
     this.widgetEdit = JSON.parse(JSON.stringify(this.$store.getters['server/sales/item']))
     if(this.widgetEdit.length !== 0 ) {
       Object.assign(this.widget, this.widgetEdit)

@@ -7,6 +7,10 @@
     centered
     dialog-class="modal-dialog__widgets_upload"
   >
+   <app-loader
+          v-model="fotoLoading"
+          class="foto-load"
+        >
     <div class="modal__wrapper modal__wrapper-widgets modal__wrapper-widgets_upload">
       <button class="modal__close" @click.prevent="show = !show">
         <img src="/img/modal-close.png" alt />
@@ -35,7 +39,13 @@
         </div>
       </div>
     </div>
+
+   </app-loader>
   </b-modal>
+<!-- </app-loader
+          v-model="vidgetLoad"
+          class="top-center"
+        > -->
 </template>
 <script>
 import axios from "axios";
@@ -63,7 +73,8 @@ export default {
       preview: "",
       size: "",
       imgId: "",
-      groupId:''
+      groupId:'',
+      fotoLoading:false,
     };
   },
   computed: {
@@ -119,18 +130,21 @@ export default {
       }
     },
     async getFotoId() {
+      this.fotoLoading = true
       let fd = new FormData();
       fd.append("image", this.image, this.image.name);
       fd.append("group_id", +this.groupId);
       fd.append("size", this.size);
       await this.$store.dispatch("server/upload/uploadFoto", fd);
+      this.fotoLoading = false
       if (this.type === "cover") {
         this.data.cover_id = this.fotoId;
-        this.getUrlFoto(this.data.cover_id);
+        // this.getUrlFoto(this.data.cover_id);
       } else {
         this.data.icon_id = this.fotoId;
-        this.getUrlFoto(this.data.icon_id);
+        // this.getUrlFoto(this.data.icon_id);
       }
+      this.$emit("url");
       // await this.$store.dispatch("server/upload/getUrl", {
       //   group_id: 195873545,
       //   image_id: this.imgId
@@ -138,18 +152,18 @@ export default {
       this.$bvModal.hide(this.id);
       this.image = this.preview = "";
     },
-    async getUrlFoto(idxFoto) {
-      try {
-        let {data} = await this.$store.dispatch("server/upload/getUrl", {
-          group_id: +this.groupId,
-          image_id: idxFoto
-        });
-        // this.urlImg.push(data.response[0].images[0].url)
-        this.$emit("url",data.response[0].images[0].url);
-      } catch (e) {
-        console.log("e", e);
-      }
-    }
+    // async getUrlFoto(idxFoto) {
+    //   try {
+    //     let {data} = await this.$store.dispatch("server/upload/getUrl", {
+    //       group_id: +this.groupId,
+    //       image_id: idxFoto
+    //     });
+    //     // this.urlImg.push(data.response[0].images[0].url)
+    //     this.$emit("url",data.response[0].images[0].url);
+    //   } catch (e) {
+    //     console.log("e", e);
+    //   }
+    // }
   }
 };
 </script>
