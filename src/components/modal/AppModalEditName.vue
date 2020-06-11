@@ -15,7 +15,9 @@
             <div class="widget-public__group">
               <div class="form-group">
                 <input v-model="nameVidget" type="text" placeholder="Название виджета" />
-                <button @click.prevent="saveName" class="gen-btn">Сохранить</button>
+                <app-loader v-model="loading">
+                  <button @click.prevent="saveName" class="gen-btn">Сохранить</button>
+                </app-loader>
               </div>
             </div>
           </div>
@@ -25,6 +27,7 @@
   </b-modal>
 </template>
 <script>
+  import axios from "axios"
   export default {
     props: {
       vidgetName: {
@@ -34,33 +37,45 @@
       vidgetId: {
         type: Number,
         default: null
-      },
-      groupId: {
-        type: Number,
-        default: null
       }
     },
     data() {
       return {
+        loading: false,
         nameVidget: this.vidgetName
       }
     },
     methods: {
       async saveName () {
+        this.loading = true
+          // .then((response) => {
+          //   console.log(response);
+          // }, (error) => {
+          //   console.log(error);
+          // });
         try {
-          let response = await this.$store.dispatch('server/sales/edit', {
-            id: this.vidgetId,
-            name: this.nameVidget,
-            group_id: this.groupId
-          })
-          console.log(response)
+          await axios.patch(
+            process.env.NUXT_APP_API_URL + 'widgets/rename/' + this.vidgetId,
+            {
+                widget_id: this.vidgetId,
+                name: this.nameVidget
+            }
+          )
+          this.$bvModal.hide('modal-edit-name')
+          this.$emit('rename')
         } catch(e) {
           console.log(e)
+        } finally {
+          this.loading = false
         }
       }
     },
     watch: {
-
+      vidgetName: {
+        handler(bef) {
+          this.nameVidget = bef
+        }
+      }
     }
   }
 </script>

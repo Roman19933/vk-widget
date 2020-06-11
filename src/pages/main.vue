@@ -49,7 +49,9 @@
                         modalEditId = vidget.id,
                         $bvModal.show('modal-edit-name')"
                     >
-                      {{ vidget.name }}
+                      <span class="home-block__name-title">
+                        {{ vidget.name }}
+                      </span>
                       <div class="home-block__name-edit">
                         <app-svg-icon name="pencil-edit-button" class="home-block__name-icon"/>
                         <div class="popover">
@@ -143,7 +145,7 @@
     <app-modal-edit-name
       :vidget-name="modalEditMame"
       :vidget-id="modalEditId"
-      :group-id="groupId"
+      @rename="getVidget()"
     ></app-modal-edit-name>
     <app-modal-wrapper
       title="Удаление виджета"
@@ -187,12 +189,6 @@ export default {
     };
   },
   methods: {
-    // sortList(e) {
-    //   console.log(e)
-    // },
-    // sortListMove(e) {
-    //   console.log(e)
-    // },
     startTimer(time) {
       localStorage.timer = new Date().getTime()
       this.timerVal = time

@@ -39,6 +39,11 @@
             display: flex;
             align-items: center;
             flex: 1;
+            &-title {
+                white-space: nowrap;
+                overflow: hidden;
+                max-width: 186px;
+            }
             &:hover {
                 .home-block__name-edit {
                     display: flex;

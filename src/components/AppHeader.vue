@@ -22,6 +22,18 @@
         </div>
       </div>
     </div>
+    <b-toast id="update-toast" variant="primary" toaster="b-toaster-bottom-right" class="toast-all-app" solid>
+      <template v-slot:toast-title>
+        Обновление виджета
+      </template>
+        Виджет успешно оновлен
+    </b-toast>
+    <b-toast id="create-toast" variant="primary" toaster="b-toaster-bottom-right" class="toast-all-app" solid>
+      <template v-slot:toast-title>
+        Создание виджета
+      </template>
+        Виджет успешно добавлен
+    </b-toast>
   </header>
 </template>
 

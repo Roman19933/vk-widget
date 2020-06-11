@@ -168,6 +168,7 @@ export default {
     }
   },
 mounted() {
+    console.log(this.$bvToast)
     this.widgetEdit = JSON.parse(JSON.stringify(this.$store.getters['server/sales/item']))
     if(this.widgetEdit.length !== 0 ) {
       Object.assign(this.widget, this.widgetEdit)
@@ -191,19 +192,19 @@ mounted() {
         if (payload.id || false) {
           console.log("id");
           await this.$store.dispatch("server/sales/edit", payload);
-          this.loadin = false
-          // this.$router.push('/main')
+          this.$bvToast.show('update-toast')
+          this.$router.push('/main')
         } else {
           console.log("no id");
           await this.$store.dispatch("server/sales/create", payload);
-          this.loadin = false
-          // this.$router.push('/main')
+          this.$bvToast.show('create-toast')
+          this.$router.push('/main')
         }
       } catch({ data }) {
         this.validationErrors = data;
         console.log(data)
       } finally {
-        this.loadin = false
+        this.loading = false
       }
     }
   }
