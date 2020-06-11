@@ -34,7 +34,7 @@
                       v-for="(item,index) in widget.data.tiles"
                       :key="`item-${index}`"
                       :item="item"
-                      :index="index"
+                      :index="widget.data.tiles.length"
                       type="tilesLarge"
                       :prename-validation="`data.tiles.${index}.`"
                       :validation-errors="validationErrors"
@@ -105,7 +105,27 @@ export default {
           title_url: "",
           tiles: [
             {
-              descr: "+ добавить",
+              descr: "",
+              icon_id: "5686299_1676309",
+              // icon_type: "160x160",
+              link: "Получить скидку",
+              // link_url: "https://vk.com/editapp?id=7467558&section=admins",
+              link_url: "",
+              title: "Скидки",
+              url: ""
+            },
+            {
+              descr: "",
+              icon_id: "5686299_1676309",
+              // icon_type: "160x160",
+              link: "Получить скидку",
+              // link_url: "https://vk.com/editapp?id=7467558&section=admins",
+              link_url: "",
+              title: "Скидки",
+              url: ""
+            },
+            {
+              descr: "",
               icon_id: "5686299_1676309",
               // icon_type: "160x160",
               link: "Получить скидку",
@@ -117,7 +137,7 @@ export default {
           ]
         },
         id: null,
-        name: "Акции и скидки2",
+        name: "Акции и скидки",
         segmentation: {
           sex: [],
           age: { from: "", to: "" },
@@ -136,20 +156,14 @@ export default {
         type: "tiles",
         sc_type:'discounts',
       },
-      widgetEdit: null,
-      validFields: false,
+      widgetEdit: null
     }
   },
-  async mounted() {
-     this.widgetEdit =  await JSON.parse(JSON.stringify(this.$store.getters['server/sales/item']))
-    if(this.widgetEdit !== null ) {
-
-      this.widget = this.widgetEdit
-      console.log('hi')
-    } else {
-
+  mounted() {
+    this.widgetEdit = JSON.parse(JSON.stringify(this.$store.getters['server/sales/item']))
+    if(this.widgetEdit.length !== 0 ) {
+      Object.assign(this.widget, this.widgetEdit)
     }
-    console.log(this.widgetEdit)
   },
   mixins: [SetupDefault],
   components: {
