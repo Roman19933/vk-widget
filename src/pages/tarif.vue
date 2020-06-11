@@ -214,7 +214,6 @@ import AppModalContract from "@/components/modal/AppModalContract.vue";
 import AppNavigationMenu from "@/components/AppNavigationMenu.vue";
 import AppModalPromocode from "@/components/modal/AppModalPromocode.vue";
 import AppSwitch from "@/components/form/AppSwitch.vue";
-import AppSvgIcon from "@/components/AppSvgIcon.vue";
 
 export default {
   // head: {
@@ -225,7 +224,6 @@ export default {
     AppNavigationMenu,
     AppModalPromocode,
     AppSwitch,
-    AppSvgIcon
   },
   data() {
     return {

@@ -42,7 +42,23 @@
                       </div>
                       <img src="img/home-sort.svg" alt />
                     </div>
-                    <p class="home-block__name">{{ vidget.name }} </p>
+                    <div
+                      class="home-block__name"
+                      @click="
+                        modalEditMame = vidget.name,
+                        modalEditId = vidget.id,
+                        $bvModal.show('modal-edit-name')"
+                    >
+                      {{ vidget.name }}
+                      <div class="home-block__name-edit">
+                        <app-svg-icon name="pencil-edit-button" class="home-block__name-icon"/>
+                        <div class="popover">
+                          <div class="popover__wrapper">
+                            <span>Переименовать Виджет</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                   <p class="home-block__text">{{ vidget.type_name }}</p>
                   <div class="home-block__events">
@@ -124,6 +140,11 @@
         </app-loader>
       </div>
     </div>
+    <app-modal-edit-name
+      :vidget-name="modalEditMame"
+      :vidget-id="modalEditId"
+      :group-id="groupId"
+    ></app-modal-edit-name>
     <app-modal-wrapper
       title="Удаление виджета"
       :subtitle="`Виджет «${ deleteVidgetName }» будет удален, вы действительно этого хотите?`"
@@ -137,6 +158,7 @@
 
 <script>
 import AppModalVersion from "@/components/modal/AppModalVersion.vue";
+import AppModalEditName from "@/components/modal/AppModalEditName.vue";
 import AppModalPublic from "@/components/modal/AppModalPublic.vue";
 import AppModalTimer from "@/components/modal/AppModalTimer.vue";
 import AppNavigationMenu from "@/components/AppNavigationMenu.vue";
@@ -144,6 +166,7 @@ import AppNavigationMenu from "@/components/AppNavigationMenu.vue";
 export default {
   components: {
     AppModalVersion,
+    AppModalEditName,
     AppModalPublic,
     AppModalTimer,
     AppNavigationMenu
@@ -151,6 +174,8 @@ export default {
   data() {
     return {
       appId: process.env.APP_ID,
+      modalEditMame: null,
+      modalEditId: null,
       deleteVidgetName: null,
       deleteVidgetId: null,
       vidgetLoad: true,
