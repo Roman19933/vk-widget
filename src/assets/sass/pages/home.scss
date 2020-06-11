@@ -13,10 +13,12 @@
         &__title {
             display: flex;
             align-items: center;
+            width: 40%;
         }
-        &__icon {
+        &__icon, &__name-edit {
             cursor: pointer;
             .popover {
+                white-space: nowrap;
                 justify-content: center;
                 top: -12px;
                 left: 50%;
@@ -33,6 +35,23 @@
                 }
             }
         }
+        &__name {
+            display: flex;
+            align-items: center;
+            flex: 1;
+            &:hover {
+                .home-block__name-edit {
+                    display: flex;
+                }
+            }
+            &-edit {
+                display: none;
+                margin-left: 10px;
+            }
+            &-icon {
+                color: #a2a2ad;
+            }
+        }
         &__events {
             display: flex;
             align-items: center;
@@ -41,7 +60,7 @@
                 border: none;
             }
         }
-        &__switch, &__user, &__edit, &__look, &__delete, &__icon {
+        &__switch, &__user, &__edit, &__look, &__delete, &__icon, &__name-edit {
             margin-right: 18px;
             position: relative;
             &:hover {
