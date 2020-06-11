@@ -4,6 +4,9 @@
       <div class="widgets vidget-page">
         <div class="widgets__wrapper vidget-page__wrapper">
           <div class="widgets__left">
+            <app-loader
+              v-model="loading"
+            >
             <div class="widgets__header vidget-page__head">
               <div class="widgets__header-title vidget-page__title">
                 <img src alt />
@@ -70,6 +73,7 @@
                 </button>
               </div>
             </div>
+            </app-loader>
           </div>
           <!-- <div class="widgets__right">
             <setup-form :formData="widget.segmentation" />
@@ -92,6 +96,7 @@ import SetupModalSub from "@/components/modal/SetupModalSub";
 export default {
   data() {
     return {
+      loading: false,
       validationErrors: {},
       widget: {
         is_active: false,
@@ -175,6 +180,7 @@ export default {
   },
   methods: {
     async create () {
+      this.loading = true
       try {
         let payload = this.widget
         const groupId = this.$store.getters['server/token/vkQuery'].vk_group_id
@@ -182,15 +188,19 @@ export default {
         if (payload.id || false) {
           console.log("id");
           await this.$store.dispatch("server/sales/edit", payload);
+          this.loadin = false
           // this.$router.push('/main')
         } else {
           console.log("no id");
           await this.$store.dispatch("server/sales/create", payload);
+          this.loadin = false
           // this.$router.push('/main')
         }
       } catch({ data }) {
         this.validationErrors = data;
         console.log(data)
+      } finally {
+        this.loadin = false
       }
     }
   }
