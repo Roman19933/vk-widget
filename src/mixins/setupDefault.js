@@ -1,13 +1,13 @@
-import {mapGetters} from "vuex"
+import { mapGetters } from "vuex"
 export default {
-  data(){
+  data() {
     return {
-      switch:false
+      switch: false
     }
   },
-  computed:{
+  computed: {
     ...mapGetters({
-      user:'vk/bridge/user'
+      user: 'vk/bridge/user'
     })
   },
   async mounted() {
@@ -17,10 +17,10 @@ export default {
   methods: {
     userInfo(val) {
       this.switch = val
-      if(val) {
-        this.widget.data.title = this.widget.data.title.replace("{firstname}",this.user.first_name)
+      if (val) {
+        this.widget.data.title = this.widget.data.title.replace("{firstname}", this.user.first_name)
       } else {
-        this.widget.data.title = this.widget.data.title.replace(this.user.first_name,"{firstname}")
+        this.widget.data.title = this.widget.data.title.replace(this.user.first_name, "{firstname}")
       }
     },
     onSubmit() {
@@ -38,6 +38,8 @@ export default {
       });
     },
     removeItem(arr, index) {
+      // console.log(arr[index].icon_id)
+      // arr[index].icon_id = index
       arr.splice(index, 1);
     }
   }

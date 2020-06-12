@@ -17,60 +17,28 @@
       <img src="/img/photo.png" alt class="photo" v-if="!this.urlToFoto" />
       <img :src="urlToFoto" alt v-else />
       <setup-popover :varError="mapErros['icon_id']">
-        <template v-slot:varName> </template>
+        <template v-slot:varName></template>
       </setup-popover>
     </div>
     <div class="item__info">
       <setup-popover :varError="mapErros['title']">
         <template v-slot:varName>
-          <a href="#" class="item__title" v-b-modal="`title-${index}`">{{
+          <a href="#" class="item__title" v-b-modal="`title-${index}`">
+            {{
             !!item.title ? item.title : "+ добавить"
-          }}</a>
+            }}
+          </a>
         </template>
       </setup-popover>
-      <!-- <div class="item__popover">
-        <div v-if="mapErros['title']" class="item__popover-info">
-          <img src="/img/info.png" alt />
-          <div class="popover popover_setup">
-            <div class="popover__wrapper">
-              <span v-for="(e, ind) in mapErros['title']" :key="ind">
-                {{ e }}
-              </span>
-            </div>
-          </div>
-        </div>
-        <a href="#" class="item__title" v-b-modal="`title-${index}`">{{
-          !!item.title ? item.title : "+ добавить"
-        }}</a>
-      </div> -->
-      <!-- <a href="#" class="item__title" v-b-modal="`title-${index}`">{{
-        !!item.title ? item.title : "+ добавить"
-      }}</a> -->
       <setup-popover :varError="mapErros['descr']">
         <template v-slot:varName>
-          <a href="#" class="item__price" v-b-modal="`subs-${index}`">{{
+          <a href="#" class="item__price" v-b-modal="`subs-${index}`">
+            {{
             !!item.descr ? item.descr : "+ добавить"
-          }}</a>
+            }}
+          </a>
         </template>
       </setup-popover>
-      <!-- <div class="item__popover">
-        <div v-if="mapErros['descr']" class="item__popover-info">
-          <img src="/img/info.png" alt />
-          <div class="popover popover_setup">
-            <div class="popover__wrapper">
-              <span v-for="(e, ind) in mapErros['descr']" :key="ind">
-                {{ e }}
-              </span>
-            </div>
-          </div>
-        </div>
-        <a href="#" class="item__price" v-b-modal="`subs-${index}`">{{
-          !!item.descr ? item.descr : "+ добавить"
-        }}</a>
-      </div> -->
-      <!-- <a href="#" class="item__price" v-b-modal="`subs-${index}`">{{
-        !!item.descr ? item.descr : "+ добавить"
-      }}</a> -->
       <setup-popover :varError="mapErros['link_url']">
         <template v-slot:varName>
           <a
@@ -78,32 +46,9 @@
             class="item__sales"
             @click.prevent
             v-b-modal="`link-${index}`"
-            >{{ !!item.link ? item.link : "+ добавить" }}</a
-          >
+          >{{ !!item.link ? item.link : "+ добавить" }}</a>
         </template>
       </setup-popover>
-      <!-- <div class="item__popover">
-        <div v-if="mapErros['link_url']" class="item__popover-info">
-          <img src="/img/info.png" alt />
-          <div class="popover popover_setup">
-            <div class="popover__wrapper">
-              <span v-for="(e, ind) in mapErros['link_url']" :key="ind">
-                {{ e }}
-              </span>
-            </div>
-          </div>
-        </div>
-        <a
-          :href="item.link_url"
-          class="item__sales"
-          @click.prevent
-          v-b-modal="`link-${index}`"
-          >{{ !!item.link ? item.link : "+ добавить" }}</a
-        >
-      </div> -->
-      <!-- <span>{{ this.error }}</span> -->
-      <!-- <span>{{this.er}}</span> -->
-      <!-- <span>{{this.e('link_url')}}</span> -->
     </div>
     <setup-modal-title itemTitle :data="item" :id="`title-${index}`" />
     <setup-modal-title itemLink :data="item" :id="`link-${index}`" />
@@ -113,6 +58,7 @@
       :id="`upload-${index}`"
       :type="type"
       @url="fotoId"
+      :key="`${item.icon_id}`"
     />
   </div>
 </template>
@@ -162,7 +108,7 @@ export default {
   },
   mounted() {
     this.groupId = this.$store.getters["server/token/vkQuery"].vk_group_id;
-    this.getUrlFoto();
+    this.getUrlFoto(this.item.icon_id);
   },
   computed: {
     mapErros() {
@@ -178,15 +124,21 @@ export default {
   },
   methods: {
     fotoId() {
-      this.getUrlFoto();
+      this.getUrlFoto(this.item.icon_id);
+      console.log(this.item.icon_id);
     },
-    async getUrlFoto() {
+    async getUrlFoto(icon) {
+      this.urlToFoto = "";
+
+      console.log(icon);
       try {
         let { data } = await this.$store.dispatch("server/upload/getUrl", {
           group_id: +this.groupId,
-          image_id: this.item.icon_id
+          image_id: icon
         });
+        this.urlToFoto = "";
         if (data.response[0]) {
+          this.urlToFoto = "";
           this.urlToFoto = data.response[0].images[0].url;
         }
       } catch (e) {
