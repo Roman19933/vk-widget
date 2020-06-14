@@ -15,7 +15,6 @@ export const actions = {
     try {
       let res = await vkBridge.send('VKWebAppGetUserInfo',{})
       commit('SET_USER',res)
-      console.log(res)
     } catch(e) {
       console.log(e)
     }
@@ -38,6 +37,13 @@ export const actions = {
       } catch (e) {
         console.log(e)
       }
+    } catch(e) {
+      console.log(e)
+    }
+  },
+  async resizeWindow ({ commit }, payload) {
+    try {
+      return await vkBridge.send('VKWebAppResizeWindow', payload)
     } catch(e) {
       console.log(e)
     }
