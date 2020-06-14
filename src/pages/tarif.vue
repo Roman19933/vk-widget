@@ -230,7 +230,6 @@ export default {
     async getTarif () {
       // this.vidgetLoad = true
       try {
-        console.log(this.groupId)
         let { data } = await this.$store.dispatch("server/tarif/getTarif", this.groupId)
         console.log(data.data)
         data.data.forEach(e => {

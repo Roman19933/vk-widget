@@ -2,14 +2,15 @@
   <header class="header">
     <div class="header__wrapper">
       <div class="header__title">
-        <nuxt-link
-          tag="a"
+        <a
+          href="#"
           v-if="this.$route.query.category"
-          :to="this.$route.query.category === 'nav' ? '/catalog/nav' : '/catalog/sales'"
+          v-b-modal="'modal-wrapper'"
         >
+          <!-- :to="this.$route.query.category === 'nav' ? '/catalog/nav' : '/catalog/sales'" -->
           <img src="/img/arrow.png" alt />
           Назад
-        </nuxt-link>
+        </a>
         <span v-else>{{ headerTitle }}</span>
       </div>
       <div class="header-user">
@@ -34,6 +35,10 @@
       </template>
         Виджет успешно добавлен
     </b-toast>
+    <app-modal-wrapper
+      title="Выйти без сохранения?"
+      @input="$bvModal.hide('modal-wrapper'), $event && linkBack()"
+    ></app-modal-wrapper>
   </header>
 </template>
 
@@ -65,6 +70,14 @@ export default {
           break;
         default:
           return "Мои виджеты";
+      }
+    },
+    linkBack () {
+      console.log(this.$route.query)
+      if (this.$route.query.edit) {
+        this.$router.push('/main')
+      } else {
+        this.$router.push(this.$route.query.category === 'nav' ? '/catalog/nav' : '/catalog/sales')
       }
     }
   },

@@ -191,13 +191,13 @@ export default {
         if (payload.id || false) {
           console.log("id");
           await this.$store.dispatch("server/sales/edit", payload);
-          this.$bvToast.show("update-toast");
-          // this.$router.push('/main')
+          this.$bvToast.show("update-toast")
+          this.$router.push('/main')
         } else {
           console.log("no id");
           await this.$store.dispatch("server/sales/create", payload);
-          this.$bvToast.show("create-toast");
-          // this.$router.push('/main')
+          this.$bvToast.show("create-toast")
+          this.$router.push('/main')
         }
       } catch ({ data }) {
         this.validationErrors = data;
