@@ -1,38 +1,39 @@
 <template>
-  <form action="#" @submit.prevent="onSubmit">
+  <form action="#">
     <div class="widgets vidget-page">
       <div class="widgets__wrapper vidget-page__wrapper">
         <div class="widgets__left feedback">
           <div class="widgets__header vidget-page__head">
             <div class="widgets__header-title vidget-page__title">
               <img src alt />
-              <h4>Виджет «важное сообщение»</h4>
+              <h4>Виджет «отзывы»</h4>
             </div>
             <div class="widgets__switch">
               <span>Режим просмотра</span>
               <div class="widgets__switch-btn">
-                <app-switch @switch-val="userInfo"/>
+                <app-switch @switch-val="userInfo" />
               </div>
             </div>
           </div>
           <div class="widgets__content">
             <div class="widgets__content-wrapper">
               <div class="widgets__content-title">
-                <img src="/img/fire.png" alt />
-                <a href="#" v-b-modal.default>{{this.widget.data.title}}</a>
+                <img src="/img/heart.png" alt />
+                <a href="#" v-b-modal.default>Отзывы наших клиентов</a>
               </div>
-              <setup-item-personal
-                v-for="(item,index) in widget.data.rows"
-                :key="`item-${index}`"
-                :item="item"
-              />
-              <button class="widgets__content-add" @click.prevent>+ Добавить подвал виджета</button>
+              <div class="widgets__items widgets__items_product">
+                <button class="add-item">+ Добавить элемент</button>
+              </div>
+              <button class="widgets__content-add">+ Добавить подвал виджета</button>
             </div>
             <div class="widgets__save">
               <button class="gen-btn">Сохранить</button>
             </div>
           </div>
           <div class="widgets__footer">
+            <!-- <div class="widgets__save">
+                            <button class="gen-btn">Сохранить</button>
+            </div>-->
             <div class="widgets__rules">
               <p>
                 В виджетах запрещено размещение сторонней коммерческой и политической рекламы! Подробнее
@@ -44,43 +45,36 @@
             </div>
           </div>
         </div>
-        <div class="widgets__right">
+        <!-- <div class="widgets__right">
           <setup-form :formData="widget.segmentation" />
-        </div>
+        </div> -->
       </div>
     </div>
-    <setup-modal-title mainTitle :data="widget.data" />
   </form>
 </template>
 
 <script>
-import SetupForm from "@/components/setup/SetupForm";
-import SetupItemPersonal from "@/components/setup/SetupItemPersonal";
+import AppWidgetForm from "@/components/setup/AppWidgetFormComponent";
 import AppSwitch from "@/components/form/AppSwitch";
-import SetupModalTitle from "@/components/modal/SetupModalTitle";
 export default {
   data() {
     return {
       widget: {
-        // createdAt: "",
         data: {
           more: "",
           more_url: "",
-          title: "{firstname}, у нас для тебя спецпредложение!",
+          title: "{firstname}, успей на распродажу!",
           title_counter: "",
           title_url: "",
-          rows: [
+          tiles: [
             {
-              address: "",
-              button: "Оставить заявку",
-              button_url: "vk.me/club195259137",
-              descr: "",
-              icon_id: "{userAvatar}",
-              text:
-                "Все просто, жми на кнопку ниже, оставь заявку и мы свяжемся с тобой в считанные секунды",
-              time: "",
-              title: "Получи бесплатную консультацию!",
-              title_url: ""
+              descr: "3 900 руб",
+              icon_id: "5686299_1676309",
+              icon_type: "160x160",
+              link: "Написать",
+              link_url: "https://vk.com/editapp?id=7467558&section=admins",
+              title: "Кольцо",
+              url: ""
             }
           ]
         },
@@ -88,7 +82,6 @@ export default {
         id: null,
         isActive: false,
         name: "",
-        position: 0,
         segmentation: {
           sex: [],
           age: { from: "", to: "" },
@@ -104,17 +97,14 @@ export default {
           groups_exclude: [],
           groups: []
         },
-        type: "list",
-        sc_type:'personal_offer'
-        // updatedAt: ""
+        type: "table",
+        sc_type: "feedback"
       }
     };
   },
   components: {
-    SetupForm,
-    AppSwitch,
-    SetupItemPersonal,
-    SetupModalTitle
+    AppWidgetForm,
+    AppSwitch
   }
 };
 </script>

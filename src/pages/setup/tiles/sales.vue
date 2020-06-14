@@ -7,8 +7,18 @@
             <app-loader v-model="loading">
               <div class="widgets__header vidget-page__head">
                 <div class="widgets__header-title vidget-page__title">
-                  <img src alt />
-                  <a href="#" v-b-modal="`header-${widget.id}`">{{ this.widget.name }}</a>
+                  <a
+                    href="#"
+                    @click.prevent="$emit('edit:element', {
+                    typeModal: 'modal-widget-text',
+                    map: {
+                      title: {
+                        fieldName: 'name',
+                        value: widget.name || defaultName
+                      }
+                    }
+                  })"
+                  >{{ widget.name || defaultName }}</a>
                 </div>
                 <div class="widgets__switch">
                   <span>Режим просмотра</span>
@@ -21,7 +31,22 @@
                 <div class="widgets__content-wrapper">
                   <div class="widgets__content-title">
                     <img src="/img/heart.png" alt />
-                    <a href="#" v-b-modal.default>{{this.widget.data.title}}</a>
+                    <a
+                      href="#"
+                      @click.prevent="$emit('edit:element', {
+                    typeModal: 'modal-widget-title-link',
+                    map: {
+                      title: {
+                        fieldName: 'title',
+                        value: widget.data.title || ''
+                      },
+                      link: {
+                        fieldName: 'title_url',
+                        value: widget.data.title_url || ''
+                      }
+                    }
+                  })"
+                    >{{ widget.data.title }}</a>
                   </div>
                   <div class="widgets__items">
                     <draggable
@@ -29,17 +54,17 @@
                       group="product"
                       class="widgets__items_draggable"
                     >
-                      <setup-item-product
-                        v-for="(item,index) in widget.data.tiles"
-                        :key="`${ item.title + index }`"
-                        :item="item"
-                        :index="index"
-                        :lenghtWidget="widget.data.tiles.length"
-                        type="tilesLarge"
-                        :prename-validation="`data.tiles.${ index }.`"
-                        :validation-errors="validationErrors"
-                        @remove:item="removeItem(widget.data.tiles,index)"
-                      />
+                      <template v-for="(item, index) in widget.data.tiles">
+                        <app-widget-item-product
+                          v-model="widget.data.tiles[index]"
+                          :prename-validation="`data.tiles.${ index }.`"
+                          :validation-errors="validationErrors"
+                          :key="index"
+                          large
+                          :itemLength="widget.data.tiles.length"
+                          @remove:item="removeItem(widget.data.tiles,index)"
+                        />
+                      </template>
                       <button
                         class="add-item"
                         @click.prevent="addItem(widget.data.tiles)"
@@ -76,26 +101,30 @@
             <setup-form :formData="widget.segmentation" />
           </div>-->
         </div>
+        <component
+          v-if="modal"
+          :is="`app-${ modal }`"
+          :value="modal === 'modal-widget-text' ? widget : widget.data"
+          :map-data="mapData"
+          :other="other"
+          @saved="handlerSaved"
+          @close="clear"
+        />
       </div>
-      <setup-modal-title mainTitle :data="widget.data" />
-      <setup-modal-sub headerTitle :data="widget" :id="`header-${widget.id}`" />
     </form>
   </client-only>
 </template>
 
 <script>
-import SetupForm from "@/components/setup/SetupForm";
-import SetupItemProduct from "@/components/setup/SetupItemProduct";
-import AppSwitch from "@/components/form/AppSwitch";
-import SetupDefault from "@/mixins/setupDefault";
-import SetupModalTitle from "@/components/modal/SetupModalTitle";
-import SetupModalSub from "@/components/modal/SetupModalSub";
+import Widgets from "@/mixins/widgets";
+import AppWidgetForm from "@/components/setup/AppWidgetFormComponent";
+import AppWidgetItemProduct from "@/components/setup/widgets/AppWidgetItemProductComponent";
+import AppModalWidgetText from "@/components/modal/widgets/AppModalWidgetTextComponent";
+import AppModalWidgetTitleLink from "@/components/modal/widgets/AppModalWidgetTitleLinkComponent";
+
 export default {
   data() {
     return {
-      loading: false,
-      validationErrors: {},
-      // vidgetLoad:true,
       widget: {
         is_active: false,
         type_name: "Акции и скидки",
@@ -110,9 +139,8 @@ export default {
             {
               descr: "",
               icon_id: "",
-              // icon_type: "160x160",
+              link_url: "",
               link: "Получить скидку",
-              // link_url: "https://vk.com/editapp?id=7467558&section=admins",
               link_url: "",
               title: "Скидки",
               url: ""
@@ -120,9 +148,8 @@ export default {
             {
               descr: "",
               icon_id: "",
-              // icon_type: "160x160",
+              link_url: "",
               link: "Получить скидку",
-              // link_url: "https://vk.com/editapp?id=7467558&section=admins",
               link_url: "",
               title: "Скидки",
               url: ""
@@ -130,9 +157,8 @@ export default {
             {
               descr: "",
               icon_id: "",
-              // icon_type: "160x160",
+              link_url: "",
               link: "Получить скидку",
-              // link_url: "https://vk.com/editapp?id=7467558&section=admins",
               link_url: "",
               title: "Скидки",
               url: ""
@@ -158,54 +184,15 @@ export default {
         },
         type: "tiles",
         sc_type: "discounts"
-      },
-      widgetEdit: null
+      }
     };
   },
-  mounted() {
-    // console.log(this.$route.query.edit);
-    if (this.$route.query.edit) {
-      this.widgetEdit = JSON.parse(
-        JSON.stringify(this.$store.getters["server/sales/item"])
-      );
-      Object.assign(this.widget, this.widgetEdit);
-    }
-    // if (this.widgetEdit.length !== 0) {
-    // }
-  },
-  mixins: [SetupDefault],
+  mixins: [Widgets],
   components: {
-    SetupForm,
-    AppSwitch,
-    SetupItemProduct,
-    SetupModalSub,
-    SetupModalTitle
-  },
-  methods: {
-    async create() {
-      this.loading = true;
-      try {
-        let payload = this.widget;
-        const groupId = this.$store.getters["server/token/vkQuery"].vk_group_id;
-        payload.group_id = +groupId;
-        if (payload.id || false) {
-          console.log("id");
-          await this.$store.dispatch("server/sales/edit", payload);
-          this.$bvToast.show("update-toast");
-          // this.$router.push('/main')
-        } else {
-          console.log("no id");
-          await this.$store.dispatch("server/sales/create", payload);
-          this.$bvToast.show("create-toast");
-          // this.$router.push('/main')
-        }
-      } catch ({ data }) {
-        this.validationErrors = data;
-        console.log(data);
-      } finally {
-        this.loading = false;
-      }
-    }
+    AppWidgetForm,
+    AppWidgetItemProduct,
+    AppModalWidgetText,
+    AppModalWidgetTitleLink
   }
 };
 </script>
