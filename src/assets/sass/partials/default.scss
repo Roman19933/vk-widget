@@ -243,6 +243,7 @@ body {
     }
     &__disabled {
         &-wrapper {
+            cursor: pointer;
             &:focus {
                 outline: none;
             }
