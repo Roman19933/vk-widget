@@ -4,87 +4,82 @@
       <div class="widgets vidget-page">
         <div class="widgets__wrapper vidget-page__wrapper">
           <div class="widgets__left">
-            <app-loader
-              v-model="loading"
-            >
-            <div class="widgets__header vidget-page__head">
-              <div class="widgets__header-title vidget-page__title">
-                <img src alt />
-                <a href="#" v-b-modal="`header-${widget.id}`">{{ this.widget.name }}</a>
-              </div>
-              <div class="widgets__switch">
-                <span>Режим просмотра</span>
-                <div class="widgets__switch-btn">
-                  <app-switch
-                    @switch-val="userInfo"
-                  />
+            <app-loader v-model="loading">
+              <div class="widgets__header vidget-page__head">
+                <div class="widgets__header-title vidget-page__title">
+                  <img src alt />
+                  <a href="#" v-b-modal="`header-${widget.id}`">{{ this.widget.name }}</a>
+                </div>
+                <div class="widgets__switch">
+                  <span>Режим просмотра</span>
+                  <div class="widgets__switch-btn">
+                    <app-switch @switch-val="userInfo" />
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="widgets__content">
-              <div class="widgets__content-wrapper">
-                <div class="widgets__content-title">
-                  <img src="/img/heart.png" alt />
-                  <a href="#" v-b-modal.default>{{this.widget.data.title}}</a>
+              <div class="widgets__content">
+                <div class="widgets__content-wrapper">
+                  <div class="widgets__content-title">
+                    <img src="/img/heart.png" alt />
+                    <a href="#" v-b-modal.default>{{this.widget.data.title}}</a>
+                  </div>
+                  <div class="widgets__items">
+                    <draggable
+                      v-model="widget.data.tiles"
+                      group="product"
+                      class="widgets__items_draggable"
+                    >
+                      <setup-item-product
+                        v-for="(item,index) in widget.data.tiles"
+                        :key="`${ item.title + index }`"
+                        :item="item"
+                        :index="index"
+                        :lenghtWidget="widget.data.tiles.length"
+                        type="tilesLarge"
+                        :prename-validation="`data.tiles.${ index }.`"
+                        :validation-errors="validationErrors"
+                        @remove:item="removeItem(widget.data.tiles,index)"
+                      />
+                      <button
+                        class="add-item"
+                        @click.prevent="addItem(widget.data.tiles)"
+                        v-if="widget.data.tiles.length < 10 && !this.switch"
+                      >+ Добавить элемент</button>
+                    </draggable>
+                  </div>
+                  <button class="widgets__content-add" @click.prevent>+ Добавить подвал виджета</button>
                 </div>
-                <div class="widgets__items">
-                  <draggable
-                    v-model="widget.data.tiles"
-                    group="product"
-                    class="widgets__items_draggable"
-                  >
-                    <setup-item-product
-                      v-for="(item,index) in widget.data.tiles"
-                      :key="`item-${index}`"
-                      :item="item"
-                      :index="index"
-                      :lenghtWidget="widget.data.tiles.length"
-                      type="tilesLarge"
-                      :prename-validation="`data.tiles.${index}.`"
-                      :validation-errors="validationErrors"
-                      @remove:item="removeItem(widget.data.tiles,index)"
-                    />
-                    <button
-                      class="add-item"
-                      @click.prevent="addItem(widget.data.tiles)"
-                      v-if="widget.data.tiles.length < 10 && !this.switch"
-                    >+ Добавить элемент</button>
-                  </draggable>
+                <div class="widgets__save">
+                  <button type="submit" class="gen-btn">Сохранить</button>
                 </div>
-                <button class="widgets__content-add" @click.prevent>+ Добавить подвал виджета</button>
               </div>
-              <div class="widgets__save">
-                <button type="submit" class="gen-btn">Сохранить</button>
+              <div class="widgets__footer">
+                <div class="widgets__rules">
+                  <p>
+                    В виджетах запрещено размещение сторонней коммерческой и политической рекламы! Подробнее
+                    в п.5.13.4.1.
+                    <a
+                      href="#"
+                    >правил ВКонтакте!</a>
+                  </p>
+                </div>
+                <div class="widgets__error">
+                  <p>Некоторые поля заполнены неверно. Внесите изменения и попробуйте снова.</p>
+                  <button>
+                    <img src="/img/close-error.png" alt />
+                  </button>
+                </div>
               </div>
-            </div>
-            <div class="widgets__footer">
-              <div class="widgets__rules">
-                <p>
-                  В виджетах запрещено размещение сторонней коммерческой и политической рекламы! Подробнее
-                  в п.5.13.4.1.
-                  <a
-                    href="#"
-                  >правил ВКонтакте!</a>
-                </p>
-              </div>
-              <div class="widgets__error">
-                <p>Некоторые поля заполнены неверно. Внесите изменения и попробуйте снова.</p>
-                <button>
-                  <img src="/img/close-error.png" alt />
-                </button>
-              </div>
-            </div>
             </app-loader>
           </div>
           <!-- <div class="widgets__right">
             <setup-form :formData="widget.segmentation" />
-          </div> -->
+          </div>-->
         </div>
       </div>
       <setup-modal-title mainTitle :data="widget.data" />
       <setup-modal-sub headerTitle :data="widget" :id="`header-${widget.id}`" />
     </form>
-
   </client-only>
 </template>
 
@@ -104,7 +99,7 @@ export default {
       widget: {
         is_active: false,
         type_name: "Акции и скидки",
-        type_link: "/setup/sales?category=sales",
+        type_link: "/setup/sales?category=sales&edit=true",
         data: {
           more: "",
           more_url: "",
@@ -114,7 +109,7 @@ export default {
           tiles: [
             {
               descr: "",
-              icon_id: "5686299_1676309",
+              icon_id: "",
               // icon_type: "160x160",
               link: "Получить скидку",
               // link_url: "https://vk.com/editapp?id=7467558&section=admins",
@@ -124,7 +119,7 @@ export default {
             },
             {
               descr: "",
-              icon_id: "5686299_1676309",
+              icon_id: "",
               // icon_type: "160x160",
               link: "Получить скидку",
               // link_url: "https://vk.com/editapp?id=7467558&section=admins",
@@ -134,7 +129,7 @@ export default {
             },
             {
               descr: "",
-              icon_id: "5686299_1676309",
+              icon_id: "",
               // icon_type: "160x160",
               link: "Получить скидку",
               // link_url: "https://vk.com/editapp?id=7467558&section=admins",
@@ -162,17 +157,21 @@ export default {
           groups: []
         },
         type: "tiles",
-        sc_type:'discounts',
+        sc_type: "discounts"
       },
       widgetEdit: null
-    }
+    };
   },
-mounted() {
-    console.log(this.$bvToast)
-    this.widgetEdit = JSON.parse(JSON.stringify(this.$store.getters['server/sales/item']))
-    if(this.widgetEdit.length !== 0 ) {
-      Object.assign(this.widget, this.widgetEdit)
+  mounted() {
+    // console.log(this.$route.query.edit);
+    if (this.$route.query.edit) {
+      this.widgetEdit = JSON.parse(
+        JSON.stringify(this.$store.getters["server/sales/item"])
+      );
+      Object.assign(this.widget, this.widgetEdit);
     }
+    // if (this.widgetEdit.length !== 0) {
+    // }
   },
   mixins: [SetupDefault],
   components: {
@@ -183,30 +182,30 @@ mounted() {
     SetupModalTitle
   },
   methods: {
-    async create () {
-      this.loading = true
+    async create() {
+      this.loading = true;
       try {
-        let payload = this.widget
-        const groupId = this.$store.getters['server/token/vkQuery'].vk_group_id
-        payload.group_id = +groupId
+        let payload = this.widget;
+        const groupId = this.$store.getters["server/token/vkQuery"].vk_group_id;
+        payload.group_id = +groupId;
         if (payload.id || false) {
           console.log("id");
           await this.$store.dispatch("server/sales/edit", payload);
-          this.$bvToast.show('update-toast')
-          this.$router.push('/main')
+          this.$bvToast.show("update-toast");
+          // this.$router.push('/main')
         } else {
           console.log("no id");
           await this.$store.dispatch("server/sales/create", payload);
-          this.$bvToast.show('create-toast')
-          this.$router.push('/main')
+          this.$bvToast.show("create-toast");
+          // this.$router.push('/main')
         }
-      } catch({ data }) {
+      } catch ({ data }) {
         this.validationErrors = data;
-        console.log(data)
+        console.log(data);
       } finally {
-        this.loading = false
+        this.loading = false;
       }
     }
   }
-}
+};
 </script>
