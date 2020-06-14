@@ -41,6 +41,14 @@ export const actions = {
     } catch(e) {
       console.log(e)
     }
+  },
+  async resizeWindow ({ commit }, payload) {
+    try {
+      console.log(payload)
+      return await vkBridge.send('VKWebAppResizeWindow', payload)
+    } catch(e) {
+      console.log(e)
+    }
   }
 }
 
