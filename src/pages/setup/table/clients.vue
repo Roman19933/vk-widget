@@ -6,12 +6,12 @@
           <div class="widgets__header vidget-page__head">
             <div class="widgets__header-title vidget-page__title">
               <img src alt />
-              <h4>Виджет «отзывы»</h4>
+              <h4>Виджет «наши клиенты»</h4>
             </div>
             <div class="widgets__switch">
               <span>Режим просмотра</span>
               <div class="widgets__switch-btn">
-                <app-switch @switch-val="userInfo"/>
+                <app-switch @switch-val="userInfo" />
               </div>
             </div>
           </div>
@@ -19,7 +19,7 @@
             <div class="widgets__content-wrapper">
               <div class="widgets__content-title">
                 <img src="/img/heart.png" alt />
-                <a href="#" v-b-modal.default>Отзывы наших клиентов</a>
+                <a href="#" v-b-modal.default>{Firstname}, среди наших клиентов:</a>
               </div>
               <div class="widgets__items widgets__items_product">
                 <button class="add-item">+ Добавить элемент</button>
@@ -32,7 +32,7 @@
           </div>
           <div class="widgets__footer">
             <!-- <div class="widgets__save">
-                            <button class="gen-btn">Сохранить</button>
+                                <button class="gen-btn">Сохранить</button>
             </div>-->
             <div class="widgets__rules">
               <p>
@@ -45,16 +45,16 @@
             </div>
           </div>
         </div>
-        <div class="widgets__right">
+        <!-- <div class="widgets__right">
           <setup-form :formData="widget.segmentation" />
-        </div>
+        </div> -->
       </div>
     </div>
   </form>
 </template>
 
 <script>
-import SetupForm from "@/components/setup/SetupForm";
+import AppWidgetForm from "@/components/setup/AppWidgetFormComponent";
 import AppSwitch from "@/components/form/AppSwitch";
 export default {
   data() {
@@ -98,12 +98,12 @@ export default {
           groups: []
         },
         type: "table",
-        sc_type:'feedback',
+        sc_type: "client"
       }
     };
   },
   components: {
-    SetupForm,
+    AppWidgetForm,
     AppSwitch
   }
 };

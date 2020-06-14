@@ -1,12 +1,5 @@
 <template>
-  <b-modal
-    v-model="show"
-    :id="id"
-    hide-header
-    hide-footer
-    centered
-    dialog-class="modal-dialog__widgets"
-  >
+  <b-modal v-model="show" hide-header hide-footer centered dialog-class="modal-dialog__widgets">
     <div class="modal__wrapper modal__wrapper-widgets">
       <button class="modal__close" @click.prevent="show = !show">
         <img src="/img/modal-close.png" alt />
@@ -15,31 +8,23 @@
         <div class="widgets-setting__input">
           <span class="modal__title">заголовок</span>
           <div class="form-group">
-            <input type="text" placeholder="заголовок" v-model="title" />
+            <input type="text" placeholder="заголовок" v-model="form.title" />
           </div>
         </div>
         <div class="widgets-setting__input">
           <span class="modal__title">ссылка</span>
           <div class="form-group">
-            <input type="text" placeholder="ссылка" v-model="link" />
+            <input type="text" placeholder="ссылка" v-model="form.link" />
           </div>
         </div>
         <div class="widgets-setting__btn">
-          <button
-            type="submit"
-            class="gen-btn bgnone"
-            @click.prevent="show = !show"
-          >
-            Отменить
-          </button>
-          <button type="submit" class="gen-btn" @click.prevent="add">
-            Принять
-          </button>
+          <button type="submit" class="gen-btn bgnone" @click.prevent="show = !show">Отменить</button>
+          <button type="submit" class="gen-btn" @click.prevent="handlerSave">Принять</button>
         </div>
-        <p class>Введите знак [ в поле, чтобы выбрать переменную</p>
+        <p class>Введите знак { в поле, чтобы выбрать переменную</p>
       </div>
     </div>
-    <div class="modal__wrapper modal__extra" v-if="this.openExtra">
+    <!-- <div class="modal__wrapper modal__extra" v-if="this.openExtra">
       <div class="modal__extra-content">
         <span class="modal__title">выберите переменную</span>
         <div class="content">
@@ -97,90 +82,22 @@
           </nav>
         </div>
       </div>
-    </div>
+    </div>-->
   </b-modal>
 </template>
+
 <script>
-import SetupModalDefault from "@/mixins/setupModalDefault";
+import modalWidgets from "@/mixins/modalWidgets";
+
 export default {
-  props: {
-    data: {
-      type: Object
-    },
-    mainTitle: {
-      type: Boolean
-    },
-    itemTitle: {
-      type: Boolean
-    },
-    itemTitlePlace: {
-      type: Boolean
-    },
-    itemLink: {
-      type: Boolean
-    },
-    itemButton: {
-      type: Boolean
-    },
-    id: {
-      type: String,
-      default: "default"
-    }
-  },
+  mixins: [modalWidgets],
   data() {
     return {
-      show: false,
-      title: "",
-      link: ""
-    };
-  },
-  watch: {
-    title(val) {
-      this.change(val, "title");
-    },
-    link(val) {
-      this.change(val, "link");
-    }
-  },
-  mounted() {
-    if (this.mainTitle) {
-      this.title = this.data.title;
-      this.link = this.data.title_url;
-    } else if (this.itemTitle) {
-      this.title = this.data.title;
-      this.link = this.data.url;
-    } else if (this.itemLink) {
-      this.title = this.data.link;
-      this.link = this.data.link_url;
-    } else if (this.itemButton) {
-      this.title = this.data.button;
-      this.link = this.data.button_url;
-    } else if (this.itemTitlePlace) {
-      this.title = this.data.title;
-      this.link = this.data.title_url;
-    }
-  },
-  mixins: [SetupModalDefault],
-  methods: {
-    add() {
-      if (this.mainTitle) {
-        this.data.title = this.title;
-        this.data.title_url = this.link;
-      } else if (this.itemTitle) {
-        this.data.title = this.title;
-        this.data.url = this.link;
-      } else if (this.itemLink) {
-        this.data.link = this.title;
-        this.data.link_url = this.link;
-      } else if (this.itemButton) {
-        this.data.button = this.title;
-        this.data.button_url = this.link;
-      } else if (this.itemTitlePlace) {
-        this.data.title = this.title;
-        this.data.title_url = this.link;
+      form: {
+        title: "",
+        link: ""
       }
-      this.$bvModal.hide(this.id);
-    }
+    };
   }
 };
 </script>

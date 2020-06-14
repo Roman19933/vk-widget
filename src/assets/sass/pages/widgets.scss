@@ -192,6 +192,7 @@
         }
         &-avatar {
             min-width: 50px;
+            max-width: 50px;
             min-height: 50px;
             max-height: 50px;
             background-color: #474873;
@@ -200,9 +201,9 @@
             align-items: center;
             justify-content: center;
             margin-right: 12px;
-            img {
-                width: 31px;
-            }
+            // img {
+            //     width: 31px;
+            // }
         }
         &-text {
             padding: 0 27px;
@@ -447,7 +448,8 @@
                 }
                 .item__popover {
                   position: absolute;
-                  bottom: 5px;
+                  top: 0px;
+                //   bottom: 5px;
                   left: 5px;
                 }
             }
