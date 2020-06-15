@@ -4,9 +4,7 @@
       <img src="/img/info.png" alt />
       <div class="popover popover_setup">
         <div class="popover__wrapper">
-          <span v-for="(e, ind) in varError" :key="ind">
-            {{ e }}
-          </span>
+          <span v-for="(e, idx) in varError" :key="idx">{{ e }}</span>
         </div>
       </div>
     </div>
