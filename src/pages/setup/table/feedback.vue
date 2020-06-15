@@ -24,7 +24,9 @@
               <div class="widgets__items widgets__items_product">
                 <button class="add-item">+ Добавить элемент</button>
               </div>
-              <button class="widgets__content-add">+ Добавить подвал виджета</button>
+              <button class="widgets__content-add">
+                + Добавить подвал виджета
+              </button>
             </div>
             <div class="widgets__save">
               <button class="gen-btn">Сохранить</button>
@@ -36,18 +38,16 @@
             </div>-->
             <div class="widgets__rules">
               <p>
-                В виджетах запрещено размещение сторонней коммерческой и политической рекламы! Подробнее
-                в п.5.13.4.1.
-                <a
-                  href="#"
-                >правил ВКонтакте!</a>
+                В виджетах запрещено размещение сторонней коммерческой и
+                политической рекламы! Подробнее в п.5.13.4.1.
+                <a href="#">правил ВКонтакте!</a>
               </p>
             </div>
           </div>
         </div>
-        <!-- <div class="widgets__right">
-          <setup-form :formData="widget.segmentation" />
-        </div> -->
+        <div class="widgets__right">
+          <app-widget-form v-model="widget.segmentation" />
+        </div>
       </div>
     </div>
   </form>
@@ -109,5 +109,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

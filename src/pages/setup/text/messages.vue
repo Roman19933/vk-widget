@@ -74,13 +74,13 @@
                   <a href="#">правил ВКонтакте!</a>
                 </p>
               </div>
-              <app-widget-error v-if="error" @close="error = !error" />
+              <!-- <app-widget-error v-if="error" @close="error = !error" /> -->
             </div>
           </app-loader>
         </div>
-        <!-- <div class="widgets__right">
-          <setup-form :formData="widget.segmentation" />
-        </div>-->
+        <div class="widgets__right">
+          <app-widget-form v-model="widget.segmentation" />
+        </div>
       </div>
       <component
         v-if="modal"
