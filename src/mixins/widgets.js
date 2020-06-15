@@ -92,6 +92,12 @@ export default {
             } catch ({ data }) {
                 this.validationErrors = data;
                 data ? this.error = true : this.error = false
+                this.$bvToast.toast('Некоторые поля заполнены неверно. Внесите изменения и попробуйте снова.', {
+                  title: 'Ошибка',
+                  variant: 'danger',
+                  toaster: 'b-toaster-top-center',
+                  solid: true
+                })
                 console.log(data);
             } finally {
                 this.loading = false;

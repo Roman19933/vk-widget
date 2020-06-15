@@ -105,9 +105,9 @@
             </div>
           </app-loader>
         </div>
-        <!-- <div class="widgets__right">
-          <app-widget-form :formData="widget.segmentation" />
-        </div>-->
+        <div class="widgets__right">
+          <app-widget-form v-model="widget.segmentation" />
+        </div>
       </div>
       <component
         v-if="modal"
@@ -184,7 +184,7 @@ export default {
         {
           url: e,
           text: data.data[0].name,
-          icon_id: 'club' + data.data[0].id,
+          icon_id: "club" + data.data[0].id,
           icon_url: data.data[0].photo_50
         }
       ]);

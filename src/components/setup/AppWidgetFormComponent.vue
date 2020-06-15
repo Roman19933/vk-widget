@@ -9,7 +9,7 @@
           <img src="/img/lock.png" alt />
         </div>
         <div class="form-group">
-          <v-select :options="sexData" placeholder="Выберите пол" v-model="formData.sex"></v-select>
+          <v-select :options="sexData" placeholder="Выберите пол" v-model="value.sex"></v-select>
         </div>
       </div>
       <div class="item">
@@ -19,10 +19,10 @@
         </div>
         <div class="item__double">
           <div class="form-group">
-            <v-select :options="ageData" placeholder="От" v-model="formData.age.from"></v-select>
+            <v-select :options="ageData" placeholder="От" v-model="value.age.from"></v-select>
           </div>
           <div class="form-group">
-            <v-select :options="ageData" placeholder="До" v-model="formData.age.to"></v-select>
+            <v-select :options="ageData" placeholder="До" v-model="value.age.to"></v-select>
           </div>
         </div>
       </div>
@@ -32,7 +32,7 @@
           <img src="/img/lock.png" alt />
         </div>
         <div class="item__double item__double_radio">
-          <app-radio v-for="(item,index) in birthData" :key="index" :value="item" :data="formData" />
+          <app-radio v-for="(item,index) in birthData" :key="index" :value="item" :data="value" />
         </div>
       </div>
       <div class="item">
@@ -44,7 +44,7 @@
           <v-select
             :options="statusData"
             placeholder="Выберите семейное положение"
-            v-model="formData.relation"
+            v-model="value.relation"
           ></v-select>
         </div>
       </div>
@@ -54,7 +54,7 @@
           <img src="/img/lock.png" alt />
         </div>
         <div class="form-group">
-          <v-select :options="cityData" placeholder="Выберите город" v-model="formData.city"></v-select>
+          <v-select :options="cityData" placeholder="Выберите город" v-model="value.city"></v-select>
         </div>
       </div>
       <div class="item">
@@ -66,7 +66,7 @@
           <v-select
             :options="deviceData"
             placeholder="Выберите устройство"
-            v-model="formData.devices"
+            v-model="value.devices"
           ></v-select>
         </div>
       </div>
@@ -76,7 +76,7 @@
           <img src="/img/lock.png" alt />
         </div>
         <div class="form-group form-group_textarea">
-          <textarea name id placeholder="Введите ID сообществ" v-model="formData.groups"></textarea>
+          <textarea name id placeholder="Введите ID сообществ" v-model="value.groups"></textarea>
           <span>Каждый номер с новой строки</span>
         </div>
       </div>
@@ -86,7 +86,7 @@
           <img src="/img/lock.png" alt />
         </div>
         <div class="form-group form-group_textarea">
-          <textarea name id placeholder="Введите ID сообществ" v-model="formData.groups_exclude"></textarea>
+          <textarea name id placeholder="Введите ID сообществ" v-model="value.groups_exclude"></textarea>
           <span>Каждый номер с новой строки</span>
         </div>
       </div>
@@ -96,7 +96,7 @@
           <img src="/img/lock.png" alt />
         </div>
         <div class="form-group form-group_textarea">
-          <textarea name id placeholder="Введите ID сообществ" v-model="formData.users"></textarea>
+          <textarea name id placeholder="Введите ID сообществ" v-model="value.users"></textarea>
           <span>Каждый номер с новой строки</span>
         </div>
       </div>
@@ -106,7 +106,7 @@
           <img src="/img/lock.png" alt />
         </div>
         <div class="form-group form-group_textarea">
-          <textarea name id placeholder="Введите ID сообществ" v-model="formData.relationGroups"></textarea>
+          <textarea name id placeholder="Введите ID сообществ" v-model="value.relationGroups"></textarea>
           <span>Каждый номер с новой строки</span>
         </div>
       </div>
@@ -116,7 +116,7 @@
           <img src="/img/lock.png" alt />
         </div>
         <div class="form-group form-group_textarea">
-          <textarea name id placeholder="Введите ID сообществ" v-model="formData.userInterests"></textarea>
+          <textarea name id placeholder="Введите ID сообществ" v-model="value.userInterests"></textarea>
           <span>Каждый номер с новой строки</span>
         </div>
       </div>
@@ -126,7 +126,7 @@
           <img src="/img/lock.png" alt />
         </div>
         <div class="form-group form-group_textarea">
-          <textarea name id placeholder="Введите ID сообществ" v-model="formData.userName"></textarea>
+          <textarea name id placeholder="Введите ID сообществ" v-model="value.userName"></textarea>
           <span>Каждый номер с новой строки</span>
         </div>
       </div>
@@ -136,7 +136,7 @@
           <img src="/img/lock.png" alt />
         </div>
         <div class="form-group form-group_textarea">
-          <textarea name id placeholder="Введите ID сообществ" v-model="formData.userSurname"></textarea>
+          <textarea name id placeholder="Введите ID сообществ" v-model="value.userSurname"></textarea>
           <span>Каждый номер с новой строки</span>
         </div>
       </div>
@@ -148,8 +148,11 @@
 import AppRadio from "@/components/form/AppRadio";
 export default {
   props: {
-    formData: {
-      type: Object
+    value: {
+      type: Object,
+      default:function() {
+        return {}
+      }
     }
   },
   components: {
