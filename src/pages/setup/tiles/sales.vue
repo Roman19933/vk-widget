@@ -128,7 +128,7 @@ export default {
       widget: {
         is_active: false,
         type_name: "Акции и скидки",
-        type_link: "/setup/sales?category=sales&edit=true",
+        type_link: "/setup/tiles/sales?category=sales&edit=true",
         data: {
           more: "",
           more_url: "",
