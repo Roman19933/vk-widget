@@ -13,8 +13,8 @@ export const getters = {
 export const actions = {
   async getUser ({ commit }) {
     try {
-      let res = await vkBridge.send('VKWebAppGetUserInfo')
-      console.log(res)
+      let res = await vkBridge.send('VKWebAppGetUserInfo',{})
+      commit('SET_USER',res)
     } catch(e) {
       console.log(e)
     }
@@ -30,13 +30,20 @@ export const actions = {
     try {
       let { access_token } = await vkBridge.send('VKWebAppGetCommunityToken', payload)
       try {
-        await this.dispatch('server/token/setToken', {
+        this.dispatch('server/token/setToken', {
           group_id: group_id,
           token: access_token
         })
       } catch (e) {
         console.log(e)
       }
+    } catch(e) {
+      console.log(e)
+    }
+  },
+  async resizeWindow ({ commit }, payload) {
+    try {
+      return await vkBridge.send('VKWebAppResizeWindow', payload)
     } catch(e) {
       console.log(e)
     }

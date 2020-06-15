@@ -2,6 +2,7 @@ require('dotenv').config()
 
 module.exports = {
   srcDir: 'src',
+  mode: 'spa',
   /*
   ** Headers of the page
   */
@@ -26,15 +27,17 @@ module.exports = {
     '@nuxtjs/dotenv',
     ['@nuxtjs/dotenv', { path: '', systemvars: true }],
     'bootstrap-vue/nuxt'
-    
+
   ],
   /**
    * Plugins
    */
   bootstrapVue: {
     componentPlugins: [
+      'ToastPlugin',
       'ModalPlugin'
-    ]
+    ],
+    components: ['BProgress'],
   },
   buildModules: [
     '@nuxtjs/moment',

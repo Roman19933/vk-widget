@@ -2,26 +2,43 @@
   <header class="header">
     <div class="header__wrapper">
       <div class="header__title">
-        <nuxt-link
-          tag="a"
+        <a
+          href="#"
           v-if="this.$route.query.category"
-          :to="this.$route.query.category === 'nav' ? '/catalog/nav' : '/catalog/sales'"
+          v-b-modal="'modal-wrapper'"
         >
+          <!-- :to="this.$route.query.category === 'nav' ? '/catalog/nav' : '/catalog/sales'" -->
           <img src="/img/arrow.png" alt />
           Назад
-        </nuxt-link>
+        </a>
         <span v-else>{{ headerTitle }}</span>
       </div>
       <div class="header-user">
         <div class="header-user__info">
-          <p class="header-user__name">Room Factory</p>
+          <p class="header-user__name">{{ groupInfo.name }}</p>
           <p class="header-user__text">Подписка закончилась</p>
         </div>
         <div class="header-user__photo">
-          <img src="/img/user.svg" alt />
+          <img :src="groupInfo.photo_50" alt />
         </div>
       </div>
     </div>
+    <b-toast id="update-toast" variant="primary" toaster="b-toaster-bottom-right" class="toast-all-app" solid>
+      <template v-slot:toast-title>
+        Обновление виджета
+      </template>
+        Виджет успешно оновлен
+    </b-toast>
+    <b-toast id="create-toast" variant="primary" toaster="b-toaster-bottom-right" class="toast-all-app" solid>
+      <template v-slot:toast-title>
+        Создание виджета
+      </template>
+        Виджет успешно добавлен
+    </b-toast>
+    <app-modal-wrapper
+      title="Выйти без сохранения?"
+      @input="$bvModal.hide('modal-wrapper'), $event && linkBack()"
+    ></app-modal-wrapper>
   </header>
 </template>
 
@@ -29,7 +46,8 @@
 export default {
   data() {
     return {
-      headerTitle: ""
+      headerTitle: "",
+      groupInfo: ""
     };
   },
   methods: {
@@ -53,20 +71,25 @@ export default {
         default:
           return "Мои виджеты";
       }
-      // if (name === "index") {
-      //   return "Мои виджеты";
-      // } else if (name === "tarif") {
-      //   return "Тарифы";
-      // } else if (name === "faq") {
-      //   return "Помощь";
-      // } else if (~name.indexOf("catalog")) {
-      //   return "Каталог";
-      // }
-      // return "Мои виджеты";
+    },
+    linkBack () {
+      console.log(this.$route.query)
+      if (this.$route.query.edit) {
+        this.$router.push('/main')
+      } else {
+        this.$router.push(this.$route.query.category === 'nav' ? '/catalog/nav' : '/catalog/sales')
+      }
     }
   },
-  mounted() {
+  async mounted() {
     this.headerTitle = this.headerName(this.$route.name);
+    try {
+      const group_id = this.$store.getters['server/token/vkQuery'].vk_group_id
+      let response = await this.$store.dispatch("server/group/getGroup", group_id);
+      this.groupInfo = response[0]
+    } catch(e) {
+      console.log(e)
+    }
   },
   watch: {
     $route: {
@@ -77,6 +100,3 @@ export default {
   }
 };
 </script>
-
-<style lang="scss" scoped>
-</style>

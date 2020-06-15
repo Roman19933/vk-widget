@@ -1,7 +1,7 @@
 <template>
-  <b-modal id="modal-public" hide-header hide-footer>
+  <b-modal id="modal-public" @hide="$emit('public', false)" hide-header hide-footer>
     <div class="modal__wrapper public">
-      <button class="modal__close" @click="$bvModal.hide('modal-public')">
+      <button class="modal__close" @click="$bvModal.hide('modal-public'), $emit('public', false)">
         <img src="img/modal-close.png" alt />
       </button>
       <div class="widget-public">

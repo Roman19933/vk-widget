@@ -11,7 +11,6 @@
             <li
               v-for="(item, index) in faq"
               :key="index"
-              class="faq__block"
             >
               <app-collaps
                 wrap-class="faq__block"
@@ -26,52 +25,13 @@
                 </template>
                 <template v-slot:content>
                   <div class="faq__hidden">
-                    <p class="faq__text">{{ item.content }}</p>
+                    <p class="faq__text">{{ item.descr }}</p>
                     <a v-if="item.link" href="#" class="catalog-sales__link">{{ item.link }}</a>
                     <button v-if="item.btn" class="gen-btn" >{{ item.btn }}</button>
                   </div>
                 </template>
               </app-collaps>
             </li>
-            <!-- <li class="faq__block">
-              <div class="faq__block-list">
-                <h3 class="faq__name">Как включить виджет?</h3>
-                <span class="faq__arrow">
-                  <img src="img/arrow.png" alt />
-                </span>
-              </div>
-              <div class="faq__hidden">
-                <p
-                  class="faq__text"
-                >Нет, ссылки на внешние сайты использовать нельзя. Это ограничение на стороне ВКонтакте.</p>
-              </div>
-            </li>
-            <li class="faq__block">
-              <div class="faq__block-list">
-                <h3 class="faq__name">Публикация виджета прошла успешна, но виджет не отображается</h3>
-                <span class="faq__arrow">
-                  <img src="img/arrow.png" alt />
-                </span>
-              </div>
-              <div class="faq__hidden">
-                <p
-                  class="faq__text"
-                >Нет, ссылки на внешние сайты использовать нельзя. Это ограничение на стороне ВКонтакте.</p>
-              </div>
-            </li>
-            <li class="faq__block">
-              <div class="faq__block-list">
-                <h3 class="faq__name">Можно ли использовать ссылки на внешние сайты?</h3>
-                <span class="faq__arrow">
-                  <img src="img/arrow.png" alt />
-                </span>
-              </div>
-              <div class="faq__hidden">
-                <p
-                  class="faq__text"
-                >Нет, ссылки на внешние сайты использовать нельзя. Это ограничение на стороне ВКонтакте.</p>
-              </div>
-            </li> -->
           </ul>
         </div>
       </div>
@@ -90,26 +50,16 @@ export default {
   },
   data() {
     return {
-      faq: [
-        {
-          title: 'Как включить виджет?',
-          content: 'Нет, ссылки на внешние сайты использовать нельзя. Это ограничение на стороне ВКонтакте.',
-          btn: 'выключить'
-        },
-        {
-          title: 'Публикация виджета прошла успешна, но виджет не отображается',
-          content: 'Нет, ссылки на внешние сайты использовать нельзя. Это ограничение на стороне ВКонтакте'
-        },
-        {
-          title: 'Можно ли использовать ссылки на внешние сайты?',
-          content: 'Нет, ссылки на внешние сайты использовать нельзя. Это ограничение на стороне ВКонтакте.',
-          link: 'подробние'
-        }
-      ]
+      faq: ""
     }
-  }
+  },
+  async mounted() {
+    try {
+      let response = await this.$store.dispatch("server/faq/getFaq");
+      this.faq = response
+    } catch(e) {
+      console.log(e)
+    }
+  },
 };
 </script>
-
-<style lang="scss" scoped>
-</style>

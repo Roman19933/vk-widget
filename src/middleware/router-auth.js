@@ -1,18 +1,29 @@
 export default async function({ store, redirect, route }) {
-  if (route.query.vk_group_id !== undefined) {
-    await store.commit("server/token/SET_VK_QUERY", route.query);
+  resizeWindow(store)
+  if (route.query.vk_platform !== undefined && route.query.vk_platform !== 'desktop_web') {
+    redirect({ path: "/mobile"})
+  } else if (route.query.vk_group_id !== undefined) {
+    await store.commit("server/token/SET_VK_QUERY", route.query)
 
-    let { data } = await validToken(store);
+    await validToken(store)
 
-    if (data.check && route.path === "/") {
-      redirect({ path: "/main" });
-    } else if (!data.check && route.path !== "/") {
-      redirect({ path: "/" });
-    }
+    // console.log(route.query.vk_platform)
+    // console.log(data)
+
+    redirect({ path: "/main"})
+    // if (data.check && route.path === "/") {
+    //   redirect({ path: "/main" });
+    // } else if (!data.check && route.path !== "/") {
+    //   redirect({ path: "/" });
+    // }
   }
 }
 
 async function validToken(store) {
   const groupId = store.getters["server/token/vkQuery"].vk_group_id;
   return await store.dispatch("server/token/checkToken", groupId);
+}
+async function resizeWindow(store) {
+  let windowHeight = window.outerHeight
+  store.dispatch("vk/bridge/resizeWindow", {"width": 1000, "height": windowHeight})
 }

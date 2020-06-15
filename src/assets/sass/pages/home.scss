@@ -3,6 +3,7 @@
         margin-top: 36px;
     }
     &-block {
+        transition: all 1s;
         padding-right: 40px;
         padding-left: 9px;
         margin-bottom: 18px;
@@ -12,9 +13,49 @@
         &__title {
             display: flex;
             align-items: center;
+            width: 40%;
         }
-        &__icon {
-            margin-right: 19px;
+        &__icon, &__name-edit {
+            cursor: pointer;
+            .popover {
+                white-space: nowrap;
+                justify-content: center;
+                top: -12px;
+                left: 50%;
+                transform: translate(-50%, -100%);
+                &::before {
+                    top: auto;
+                    bottom: 0;
+                    transform: translate(50%, 100%);
+                    right: 50%;
+                    position: absolute;
+                    content: '';
+                    border: 5px solid transparent;
+                    border-top: 7px solid #21203d;
+                }
+            }
+        }
+        &__name {
+            display: flex;
+            align-items: center;
+            flex: 1;
+            &-title {
+                white-space: nowrap;
+                overflow: hidden;
+                max-width: 186px;
+            }
+            &:hover {
+                .home-block__name-edit {
+                    display: flex;
+                }
+            }
+            &-edit {
+                display: none;
+                margin-left: 10px;
+            }
+            &-icon {
+                color: #a2a2ad;
+            }
         }
         &__events {
             display: flex;
@@ -24,7 +65,7 @@
                 border: none;
             }
         }
-        &__switch, &__user, &__edit, &__look, &__delete {
+        &__switch, &__user, &__edit, &__look, &__delete, &__icon, &__name-edit {
             margin-right: 18px;
             position: relative;
             &:hover {
@@ -60,6 +101,7 @@
 }
 .popover {
     min-width: 178px;
+    pointer-events: none;
     position: absolute;
     right: 50px;
     left: auto;
@@ -90,4 +132,7 @@
         border: 5px solid transparent;
         border-left: 7px solid #21203d;
     }
+  &_setup {
+    width: auto !important;
+  }
 }

@@ -6,12 +6,14 @@ export default {
   },
   methods: {
     change(str, variable) {
-      let word = str.split(" ");
-      for (let i in word) {
-        if (word[i] === "[") {
-          this.openExtra = true;
-        } else if (word[i] === "") {
-          this.openExtra = false;
+      if(str !== null) {
+        let word = str.split(" ");
+        for (let i in word) {
+          if (word[i] === "[") {
+            this.openExtra = true;
+          } else if (word[i] === "") {
+            this.openExtra = false;
+          }
         }
       }
       this.$on("changes", val => {

@@ -170,6 +170,7 @@
     }
 }
 .widget-public {
+    width: 710px;
     height: 100%;
     &__wrapper {
         height: 100%;
@@ -350,7 +351,7 @@
     .form-group {
         display: flex;
         input {
-            width: 250px;
+            // width: 250px;
             margin-right: 10px;
         }
         .gen-btn {
@@ -455,6 +456,18 @@
             &:hover {
                 color: #ffc25e;
             }
+        }
+    }
+}
+.timer {
+    .widget-public__wrapper {
+        width: 550px;
+    }
+    .progress {
+        margin-top: 15px;
+        &-bar {
+            // background-color: #21203d;
+            background-color: #2f304d;
         }
     }
 }
