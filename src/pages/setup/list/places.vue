@@ -62,13 +62,6 @@
                         @remove:item="removeItem(widget.data.rows,index)"
                       />
                     </template>
-                    <!-- <setup-item-places
-                    v-for="(item,index) in widget.data.rows"
-                    :key="`item-${index}`"
-                    :item="item"
-                    :index="index"
-                    @remove:item="removeItem(widget.data.rows,index)"
-                    />-->
                     <button
                       class="add-item"
                       @click.prevent="addItem(widget.data.rows)"
@@ -92,6 +85,7 @@
                   >правил ВКонтакте!</a>
                 </p>
               </div>
+              <app-widget-error v-if="error" @close="error = !error"/>
             </div>
           </app-loader>
         </div>
@@ -123,7 +117,7 @@ export default {
   data() {
     return {
       widget: {
-        type_name: "Акционные товары32",
+        type_name: "Точки продаж",
         type_link: "/setup/list/places?category=sales&edit=true",
         data: {
           more: "",
@@ -145,9 +139,7 @@ export default {
             }
           ]
         },
-        groupId: null,
-        id: null,
-        isActive: false,
+        is_active: false,
         name: "",
         segmentation: {
           sex: [],

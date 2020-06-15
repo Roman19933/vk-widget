@@ -1,7 +1,7 @@
 <template>
   <div class="widgets__content-text widgets__content-text_messages">
-    <!-- <app-error-popover :varError="mapErros['text']">
-    <template v-slot:varName>-->
+    <app-error-popover :varError="mapErros['text']">
+    <template v-slot:varName>
     <a
       href="#"
       class="mess-text"
@@ -15,10 +15,11 @@
               }
             })"
     >{{!!value.text ? value.text : "+ добавить"}}</a>
-    <!-- </template>
-    </app-error-popover>-->
+    </template>
+    </app-error-popover>
     <a
       href="#"
+      class="mt"
       v-b-modal.messages
       @click.prevent="$emit('edit:element', {
               typeModal: 'modal-widget-text-area',

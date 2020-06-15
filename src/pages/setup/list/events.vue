@@ -8,16 +8,19 @@
               <div class="widgets__header-title vidget-page__title">
                 <a
                   href="#"
-                  @click.prevent="$emit('edit:element', {
-                    typeModal: 'modal-widget-text',
-                    map: {
-                      title: {
-                        fieldName: 'name',
-                        value: widget.name || defaultName
+                  @click.prevent="
+                    $emit('edit:element', {
+                      typeModal: 'modal-widget-text',
+                      map: {
+                        title: {
+                          fieldName: 'name',
+                          value: widget.name || defaultName
+                        }
                       }
-                    }
-                  })"
-                >{{ widget.name || defaultName }}</a>
+                    })
+                  "
+                  >{{ widget.name || defaultName }}</a
+                >
               </div>
               <div class="widgets__switch">
                 <span>Режим просмотра</span>
@@ -32,20 +35,23 @@
                   <img src="/img/fire.png" alt />
                   <a
                     href="#"
-                    @click.prevent="$emit('edit:element', {
-                    typeModal: 'modal-widget-title-link',
-                    map: {
-                      title: {
-                        fieldName: 'title',
-                        value: widget.data.title || ''
-                      },
-                      link: {
-                        fieldName: 'title_url',
-                        value: widget.data.title_url || ''
-                      }
-                    }
-                  })"
-                  >{{this.widget.data.title}}</a>
+                    @click.prevent="
+                      $emit('edit:element', {
+                        typeModal: 'modal-widget-title-link',
+                        map: {
+                          title: {
+                            fieldName: 'title',
+                            value: widget.data.title || ''
+                          },
+                          link: {
+                            fieldName: 'title_url',
+                            value: widget.data.title_url || ''
+                          }
+                        }
+                      })
+                    "
+                    >{{ this.widget.data.title }}</a
+                  >
                 </div>
                 <div class="widgets__items widgets__items_places">
                   <draggable
@@ -56,27 +62,24 @@
                     <template v-for="(item, index) in widget.data.rows">
                       <app-widget-item-places
                         v-model="widget.data.rows[index]"
-                        :prename-validation="`data.tiles.${ index }.`"
+                        :prename-validation="`data.tiles.${index}.`"
                         :validation-errors="validationErrors"
                         :key="index"
-                        @remove:item="removeItem(widget.data.rows,index)"
+                        @remove:item="removeItem(widget.data.rows, index)"
                       />
                     </template>
-                    <!-- <setup-item-places
-                    v-for="(item,index) in widget.data.rows"
-                    :key="`item-${index}`"
-                    :item="item"
-                    :index="index"
-                    @remove:item="removeItem(widget.data.rows,index)"
-                    />-->
                     <button
                       class="add-item"
                       @click.prevent="addItem(widget.data.rows)"
                       v-if="widget.data.rows.length < 6 && !this.switch"
-                    >+ Добавить элемент</button>
+                    >
+                      + Добавить элемент
+                    </button>
                   </draggable>
                 </div>
-                <button class="widgets__content-add" @click.prevent>+ Добавить подвал виджета</button>
+                <button class="widgets__content-add" @click.prevent>
+                  + Добавить подвал виджета
+                </button>
               </div>
               <div class="widgets__save">
                 <button class="gen-btn">Сохранить</button>
@@ -85,13 +88,12 @@
             <div class="widgets__footer">
               <div class="widgets__rules">
                 <p>
-                  В виджетах запрещено размещение сторонней коммерческой и политической рекламы! Подробнее
-                  в п.5.13.4.1.
-                  <a
-                    href="#"
-                  >правил ВКонтакте!</a>
+                  В виджетах запрещено размещение сторонней коммерческой и
+                  политической рекламы! Подробнее в п.5.13.4.1.
+                  <a href="#">правил ВКонтакте!</a>
                 </p>
               </div>
+              <app-widget-error v-if="error" @close="error = !error" />
             </div>
           </app-loader>
         </div>
@@ -101,7 +103,7 @@
       </div>
       <component
         v-if="modal"
-        :is="`app-${ modal }`"
+        :is="`app-${modal}`"
         :value="modal === 'modal-widget-text' ? widget : widget.data"
         :map-data="mapData"
         :other="other"
@@ -123,12 +125,12 @@ export default {
   data() {
     return {
       widget: {
-        type_name: "Акционные товары32",
+        type_name: "Мероприятия",
         type_link: "/setup/list/events?category=sales&edit=true",
         data: {
           more: "",
           more_url: "",
-          title: "{firstname}, Время поднять навык в SMM",
+          title: "{firstname}, время поднять навык в SMM",
           title_counter: "",
           title_url: "",
           rows: [
@@ -140,14 +142,12 @@ export default {
               icon_id: "",
               text: null,
               time: "8:00-20:00(без выходных)",
-              title: "Магазин «Дом обуви»",
+              title: "Онлайн",
               title_url: ""
             }
           ]
         },
-        groupId: null,
-        id: null,
-        isActive: false,
+        is_active: false,
         name: "",
         segmentation: {
           sex: [],
@@ -194,5 +194,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

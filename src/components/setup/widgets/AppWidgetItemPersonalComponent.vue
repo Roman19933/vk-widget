@@ -4,57 +4,74 @@
       <img :src="userPhoto ? userPhoto : '/img/photo.png'" alt />
     </div>
     <div class="widgets__content-text widgets__content-text_personal">
-      <a
-        href="#"
-        class="title"
-        @click.prevent="$emit('edit:element', {
-              typeModal: 'modal-widget-title-link',
-              map: {
-                title: {
-                  fieldName: 'title',
-                  value: value.title
-                },
-                link: {
-                  fieldName: 'title_url',
-                  value: value.title_url
+      <app-error-popover :varError="mapErros['title']">
+        <template v-slot:varName>
+          <a
+            href="#"
+            class="title"
+            @click.prevent="
+              $emit('edit:element', {
+                typeModal: 'modal-widget-title-link',
+                map: {
+                  title: {
+                    fieldName: 'title',
+                    value: value.title
+                  },
+                  link: {
+                    fieldName: 'title_url',
+                    value: value.title_url
+                  }
                 }
-              }
-            })"
-      >{{!!value.title ? value.title : "+ добавить"}}</a>
+              })
+            "
+            >{{ !!value.title ? value.title : "+ добавить" }}</a
+          >
+        </template>
+      </app-error-popover>
       <a
         href="#"
         class="text"
-        @click.prevent="$emit('edit:element', {
-              typeModal: 'modal-widget-text-area',
-              map: {
-                title: {
-                  fieldName: 'text',
-                  value: value.text
-                }
+        @click.prevent="
+          $emit('edit:element', {
+            typeModal: 'modal-widget-text-area',
+            map: {
+              title: {
+                fieldName: 'text',
+                value: value.text
               }
-            })"
-      >{{!!value.text ? value.text : "+ добавить"}}</a>
-      <a
-        href="#"
-        class="gen-btn"
-        @click.prevent="$emit('edit:element', {
-              typeModal: 'modal-widget-title-link',
-              map: {
-                title: {
-                  fieldName: 'button',
-                  value: value.button
-                },
-                link: {
-                  fieldName: 'button_url',
-                  value: value.button_url
+            }
+          })
+        "
+        >{{ !!value.text ? value.text : "+ добавить" }}</a
+      >
+      <app-error-popover :varError="mapErros['button_url']">
+        <template v-slot:varName>
+          <a
+            href="#"
+            class="gen-btn"
+            @click.prevent="
+              $emit('edit:element', {
+                typeModal: 'modal-widget-title-link',
+                map: {
+                  title: {
+                    fieldName: 'button',
+                    value: value.button
+                  },
+                  link: {
+                    fieldName: 'button_url',
+                    value: value.button_url
+                  }
                 }
-              }
-            })"
-      >{{!!value.button ? value.button : "+ добавить"}}</a>
+              })
+            "
+            >{{ !!value.button ? value.button : "+ добавить" }}</a
+          >
+        </template>
+      </app-error-popover>
     </div>
     <component
       v-if="modal"
-      :is="`app-${ modal }`"
+      :is="`app-${modal}`"
       :value="value"
       :map-data="mapData"
       :other="other"
@@ -107,5 +124,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

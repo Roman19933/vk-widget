@@ -30,6 +30,10 @@ export default {
             this.$emit('saved', item)
             this.show = false
         },
+        handlerSaves() {
+            this.$emit('savedClients', this.form.title)
+            this.show = false
+        },
     },
     watch: {
         show(newValue) {

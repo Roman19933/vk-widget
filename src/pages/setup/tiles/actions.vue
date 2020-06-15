@@ -8,16 +8,19 @@
               <div class="widgets__header-title vidget-page__title">
                 <a
                   href="#"
-                  @click.prevent="$emit('edit:element', {
-                    typeModal: 'modal-widget-text',
-                    map: {
-                      title: {
-                        fieldName: 'name',
-                        value: widget.name || defaultName
+                  @click.prevent="
+                    $emit('edit:element', {
+                      typeModal: 'modal-widget-text',
+                      map: {
+                        title: {
+                          fieldName: 'name',
+                          value: widget.name || defaultName
+                        }
                       }
-                    }
-                  })"
-                >{{ widget.name || defaultName }}</a>
+                    })
+                  "
+                  >{{ widget.name || defaultName }}</a
+                >
               </div>
               <div class="widgets__switch">
                 <span>Режим просмотра</span>
@@ -32,20 +35,23 @@
                   <img src="/img/heart.png" alt />
                   <a
                     href="#"
-                    @click.prevent="$emit('edit:element', {
-                    typeModal: 'modal-widget-title-link',
-                    map: {
-                      title: {
-                        fieldName: 'title',
-                        value: widget.data.title || ''
-                      },
-                      link: {
-                        fieldName: 'title_url',
-                        value: widget.data.title_url || ''
-                      }
-                    }
-                  })"
-                  >{{ widget.data.title }}</a>
+                    @click.prevent="
+                      $emit('edit:element', {
+                        typeModal: 'modal-widget-title-link',
+                        map: {
+                          title: {
+                            fieldName: 'title',
+                            value: widget.data.title || ''
+                          },
+                          link: {
+                            fieldName: 'title_url',
+                            value: widget.data.title_url || ''
+                          }
+                        }
+                      })
+                    "
+                    >{{ widget.data.title }}</a
+                  >
                 </div>
                 <div class="widgets__items widgets__items_product">
                   <draggable
@@ -56,21 +62,25 @@
                     <template v-for="(item, index) in widget.data.tiles">
                       <app-widget-item-product
                         v-model="widget.data.tiles[index]"
-                        :prename-validation="`data.tiles.${ index }.`"
+                        :prename-validation="`data.tiles.${index}.`"
                         :validation-errors="validationErrors"
                         :key="index"
                         :itemLength="widget.data.tiles.length"
-                        @remove:item="removeItem(widget.data.tiles,index)"
+                        @remove:item="removeItem(widget.data.tiles, index)"
                       />
                     </template>
                     <button
                       class="add-item"
                       @click.prevent="addItem(widget.data.tiles)"
                       v-if="widget.data.tiles.length < 10 && !this.switch"
-                    >+ Добавить элемент</button>
+                    >
+                      + Добавить элемент
+                    </button>
                   </draggable>
                 </div>
-                <button class="widgets__content-add" @click.prevent>+ Добавить подвал виджета</button>
+                <button class="widgets__content-add" @click.prevent>
+                  + Добавить подвал виджета
+                </button>
               </div>
               <div class="widgets__save">
                 <button class="gen-btn" type="submit">Сохранить</button>
@@ -81,11 +91,10 @@
                 <p>
                   В виджетах запрещено размещение сторонней коммерческой и
                   политической рекламы! Подробнее в п.5.13.4.1.
-                  <a
-                    href="#"
-                  >правил ВКонтакте!</a>
+                  <a href="#">правил ВКонтакте!</a>
                 </p>
               </div>
+              <app-widget-error v-if="error" @close="error = !error" />
             </div>
           </app-loader>
         </div>
@@ -95,7 +104,7 @@
       </div>
       <component
         v-if="modal"
-        :is="`app-${ modal }`"
+        :is="`app-${modal}`"
         :value="modal === 'modal-widget-text' ? widget : widget.data"
         :map-data="mapData"
         :other="other"
@@ -117,7 +126,7 @@ export default {
   data() {
     return {
       widget: {
-        type_name: "Акционные товары32",
+        type_name: "Акционные товары",
         type_link: "/setup/tiles/actions?category=sales&edit=true",
         data: {
           more: "",
@@ -155,9 +164,7 @@ export default {
             }
           ]
         },
-        groupId: null,
-        id: null,
-        isActive: false,
+        is_active: false,
         name: "",
         segmentation: {
           sex: [],
@@ -188,4 +195,3 @@ export default {
   }
 };
 </script>
-
