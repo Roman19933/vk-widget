@@ -88,12 +88,7 @@
                     >правил ВКонтакте!</a>
                   </p>
                 </div>
-                <div class="widgets__error">
-                  <p>Некоторые поля заполнены неверно. Внесите изменения и попробуйте снова.</p>
-                  <button>
-                    <img src="/img/close-error.png" alt />
-                  </button>
-                </div>
+                <app-widget-error v-if="error" @close="error = !error"/>
               </div>
             </app-loader>
           </div>
@@ -165,8 +160,7 @@ export default {
             }
           ]
         },
-        id: null,
-        name: "Акции и скидки",
+        name: "",
         segmentation: {
           sex: [],
           age: { from: "", to: "" },

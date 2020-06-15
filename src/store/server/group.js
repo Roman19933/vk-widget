@@ -14,6 +14,9 @@ export const actions = {
     let {data} = await Api[`groups/${group_id}`]()
     commit('SET_ITEMS', data.data)
     return data.data
+  },
+  getInfoForGroupToUrl({commit},link) {
+    return Api[`groups?url=${link}`]()
   }
 }
 
