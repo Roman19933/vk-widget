@@ -78,15 +78,17 @@
                         <app-switch/>
                       </div> -->
                       <div
-                        :class="{'switch__disabled-wrapper': disablePublick}"
-                        @click="disablePublick && $bvModal.show('modal-timer')"
+                        :class="'switch__disabled-wrapper'"
+                        @click="(
+                          switchActive = vidget.id),
+                          !disablePublick ? vidget.is_active ? disableVidget() : modalPublic() : null,
+                          disablePublick && $bvModal.show('modal-timer')"
                       >
                       <app-switch
                         v-model="vidget.is_active"
                         @switch-val="
                           (switchActive = vidget.id),
-                          (vidget.is_active = $event),
-                          modalPublic($event)
+                          (vidget.is_active = $event)
                         "
                       />
                       </div>
@@ -203,41 +205,47 @@ export default {
         }
       }, 1000)
     },
-    async modalPublic(e) {
-      let sa = this.switchActive,
-        index = this.vidgets.findIndex(e => e.id === sa),
-        vid = this.vidgets[index]
-      if (!e && await this.validToken()) {
-        // console.log('modalPublick', e)
-        let { data } = await this.$store.dispatch("server/sales/disable", { groupId:this.groupId, vidId: vid.id })
-        if(data.response) {
-          this.disablePublick = true
-          this.startTimer(10)
-        }
-        // this.getVidget()
-      } else {
-        // console.log('modalPublick', e)
-        this.$bvModal.show("modal-public")
-      }
+    async modalPublic() {
+      this.$bvModal.show("modal-public")
     },
     async publicVidget(e) {
       let sa = this.switchActive,
         index = this.vidgets.findIndex(e => e.id === sa),
         vid = this.vidgets[index]
       if (e && await this.validToken()) {
+        console.log('publick true')
         let { data } = await this.$store.dispatch("server/sales/enable", { groupId:this.groupId, vidId: vid.id })
         if(data.response) {
           this.disablePublick = true
           this.startTimer(10)
         }
+        this.getVidget()
         this.$bvModal.hide("modal-public")
         // vid.is_active = true
-        this.getVidget()
       } else {
+        // console.log('publick false')
+        // let { data } = await this.$store.dispatch("server/sales/disable", { groupId:this.groupId, vidId: vid.id })
+        // if(data.response) {
+        //   this.disablePublick = true
+        //   this.startTimer(10)
+        // }
+        // this.getVidget()
         this.$bvModal.hide("modal-public")
         // vid.is_active = false
         // this.getVidget()
       }
+    },
+    async disableVidget() {
+      let sa = this.switchActive,
+        index = this.vidgets.findIndex(e => e.id === sa),
+        vid = this.vidgets[index]
+      console.log('publick false')
+      let { data } = await this.$store.dispatch("server/sales/disable", { groupId:this.groupId, vidId: vid.id })
+      if(data.response) {
+        this.disablePublick = true
+        this.startTimer(10)
+      }
+      this.getVidget()
     },
     async updateTokenGroup () {
       try {
