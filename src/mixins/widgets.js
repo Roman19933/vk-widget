@@ -5,6 +5,7 @@ export default {
         return {
             widgetEdit: null,
             validationErrors: {},
+            error:false,
             loading: false,
             switch: false,
             modal: '',
@@ -18,6 +19,7 @@ export default {
         })
     },
     async mounted() {
+      this.widget.name = this.defaultName
         let self = this;
         this.$on("edit:element", e => {
             self.modal = e.typeModal;
@@ -50,7 +52,7 @@ export default {
             if (val) {
                 this.widget.data.title = this.widget.data.title.replace("{firstname}", this.user.first_name)
                 this.userFoto = this.user.photo_100
-                console.log(this.userFoto)
+                console.log(this.user)
             } else {
                 this.widget.data.title = this.widget.data.title.replace(this.user.first_name, "{firstname}")
                 this.userFoto = ''
@@ -80,15 +82,22 @@ export default {
                     console.log("id");
                     await this.$store.dispatch("server/sales/edit", payload);
                     this.$bvToast.show("update-toast");
-                    // this.$router.push('/main')
+                    this.$router.push('/main')
                 } else {
                     console.log("no id");
                     await this.$store.dispatch("server/sales/create", payload);
                     this.$bvToast.show("create-toast");
-                    // this.$router.push('/main')
+                    this.$router.push('/main')
                 }
             } catch ({ data }) {
                 this.validationErrors = data;
+                data ? this.error = true : this.error = false
+                this.$bvToast.toast('Некоторые поля заполнены неверно. Внесите изменения и попробуйте снова.', {
+                  title: 'Ошибка',
+                  variant: 'danger',
+                  toaster: 'b-toaster-top-center',
+                  solid: true
+                })
                 console.log(data);
             } finally {
                 this.loading = false;

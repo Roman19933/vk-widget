@@ -32,9 +32,10 @@
             <div class="widgets__content">
               <div class="widgets__content-wrapper">
                 <div class="widgets__content-title">
-                  <img src="/img/fire.png" alt />
+                  <img src="/img/heart.png" alt />
                   <a
                     href="#"
+                    v-b-modal.default
                     @click.prevent="
                       $emit('edit:element', {
                         typeModal: 'modal-widget-title-link',
@@ -53,16 +54,41 @@
                     >{{ widget.data.title }}</a
                   >
                 </div>
-                <template v-for="(item, index) in widget.data.rows">
-                  <app-widget-item-personal
-                    v-model="widget.data.rows[index]"
-                    :prename-validation="`data.rows.${index}.`"
-                    :validation-errors="validationErrors"
-                    :key="index"
-                    :userPhoto="userFoto"
-                    @remove:item="removeItem(widget.data.rows, index)"
-                  />
-                </template>
+                <!-- <div class="widgets__items widgets__items_product">
+                <button class="add-item">+ Добавить элемент</button>
+              </div> -->
+                <div class="widgets__items widgets__items_feedback">
+                  <draggable
+                    v-model="widget.data.rows"
+                    group="feedback"
+                    class="widgets__items_draggable "
+                  >
+                    <template v-for="(item, index) in widget.data.rows">
+                      <app-widget-item-personal
+                        v-model="widget.data.rows[index]"
+                        :key="index"
+                        @remove:item="removeItem(widget.data.rows, index)"
+                      />
+                    </template>
+                    <button
+                      v-if="widget.data.rows.length < 3 && !this.switch"
+                      class="add-item"
+                      @click.prevent="
+                        $emit('edit:element', {
+                          typeModal: 'modal-widget-client',
+                          map: {
+                            title: {
+                              fieldName: '',
+                              value: ''
+                            }
+                          }
+                        })
+                      "
+                    >
+                      + Добавить элемент
+                    </button>
+                  </draggable>
+                </div>
                 <div class="widgets__content-add">
                   <a
                     href="#"
@@ -97,7 +123,6 @@
                   <a href="#">правил ВКонтакте!</a>
                 </p>
               </div>
-              <!-- <app-widget-error v-if="error" @close="error = !error" /> -->
             </div>
           </app-loader>
         </div>
@@ -112,6 +137,7 @@
         :map-data="mapData"
         :other="other"
         @saved="handlerSaved"
+        @savedClients="groupLink"
         @close="clear"
       />
     </div>
@@ -123,34 +149,22 @@ import Widgets from "@/mixins/widgets";
 import AppWidgetForm from "@/components/setup/AppWidgetFormComponent";
 import AppWidgetItemPersonal from "@/components/setup/widgets/AppWidgetItemPersonalComponent";
 import AppModalWidgetText from "@/components/modal/widgets/AppModalWidgetTextComponent";
+import AppModalWidgetClient from "@/components/modal/widgets/AppModalWidgetClientsComponent";
 import AppModalWidgetTitleLink from "@/components/modal/widgets/AppModalWidgetTitleLinkComponent";
 
 export default {
   data() {
     return {
       widget: {
-        type_name: "Персональное предложение",
-        type_link: "/setup/list/personal?category=sales&edit=true",
+        type_name: "Отзывы",
+        type_link: "/setup/list/feedback?category=sales&edit=true",
         data: {
           more: "",
           more_url: "",
-          title: "{firstname}, у нас для тебя спецпредложение!",
+          title: "Отзывы наших клиентов",
           title_counter: "",
           title_url: "",
-          rows: [
-            {
-              address: "",
-              button: "Оставить заявку",
-              button_url: "vk.me/club195259137",
-              descr: "",
-              icon_id: "{userAvatar}",
-              text:
-                "Все просто, жми на кнопку ниже, оставь заявку и мы свяжемся с тобой в считанные секунды",
-              time: "",
-              title: "Получи бесплатную консультацию!",
-              title_url: ""
-            }
-          ]
+          rows: []
         },
         is_active: false,
         name: "",
@@ -170,18 +184,56 @@ export default {
           groups: []
         },
         type: "list",
-        sc_type: "personal_offer"
-      }
+        sc_type: "feedback"
+      },
+      groupId: this.$store.getters["server/token/vkQuery"].vk_group_id
     };
+  },
+  methods: {
+    async groupLink(e) {
+      try {
+        let obj = {
+          group_id: +this.groupId,
+          link: e
+        };
+        let { data } = await this.$store.dispatch(
+          "server/group/getInfoForComments",
+          obj
+        );
+        console.log(data);
+        this.widget.data.rows.push({
+          text: data.data.items[0].text,
+          time: "",
+          descr: "",
+          title:
+            data.data.profiles[0].first_name +
+            " " +
+            data.data.profiles[0].last_name,
+          button: "Читать отзыв",
+          address: "",
+          icon_id: data.data.profiles[0].screen_name,
+          icon_url: data.data.profiles[0].photo_50,
+          title_url: "https://vk.com/" + data.data.profiles[0].screen_name,
+          button_url: e
+        });
+      } catch (e) {
+        console.log(e);
+        this.$bvToast.toast(`${e.data.url}`, {
+          title: "Ошибка",
+          variant: "danger",
+          toaster: "b-toaster-top-center",
+          solid: true
+        });
+      }
+    }
   },
   mixins: [Widgets],
   components: {
     AppWidgetForm,
-    AppWidgetItemPersonal,
     AppModalWidgetText,
-    AppModalWidgetTitleLink
+    AppModalWidgetTitleLink,
+    AppWidgetItemPersonal,
+    AppModalWidgetClient
   }
 };
 </script>
-
-<style lang="scss" scoped></style>
