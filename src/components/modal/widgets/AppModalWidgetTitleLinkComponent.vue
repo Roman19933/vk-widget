@@ -24,7 +24,7 @@
         <p class>Введите знак { в поле, чтобы выбрать переменную</p>
       </div>
     </div>
-    <!-- <div class="modal__wrapper modal__extra" v-if="openExtra">
+    <!-- <div class="modal__wrapper modal__extra" v-if="this.openExtra">
       <div class="modal__extra-content">
         <span class="modal__title">выберите переменную</span>
         <div class="content">
@@ -82,7 +82,7 @@
           </nav>
         </div>
       </div>
-    </div> -->
+    </div>-->
   </b-modal>
 </template>
 
@@ -93,7 +93,6 @@ export default {
   mixins: [modalWidgets],
   data() {
     return {
-      openExtra: false,
       form: {
         title: "",
         link: ""

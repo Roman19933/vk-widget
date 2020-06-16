@@ -64,6 +64,13 @@ const sizes = {
     maxHeight: 160,
     mimeType: "image/jpeg",
     debug: false
+  },
+  small: {
+    quality: 0.7,
+    maxWidth: 50,
+    maxHeight: 50,
+    mimeType: "image/jpeg",
+    debug: false
   }
 };
 export default {
