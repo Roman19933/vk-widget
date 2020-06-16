@@ -13,7 +13,7 @@
           <p class="vidget-none__text">
             Дружище, у тебя еще нет виджетов. Не пора ли их создать?
           </p>
-          <nuxt-link to="/main" class="vidget-none__link gen-btn">Перейти на главною</nuxt-link>
+          <nuxt-link to="/catalog/sales" class="vidget-none__link gen-btn">Создать виджет</nuxt-link>
         </div>
       </div>
       <div class="home" v-else>

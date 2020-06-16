@@ -10,10 +10,10 @@
               Дружище, произошла ошибка, сделка не состоялась!
             </p>
             <p class="vidget-none__text">
-              Попробуй ещо
+              Попробуй еще
               раз=)
             </p>
-            <nuxt-link to="/main" class="vidget-none__link gen-btn"
+            <nuxt-link :to="`/main?group_id=${this.groupId}`" class="vidget-none__link gen-btn"
               >Перейти на главною</nuxt-link
             >
           </div>
@@ -26,6 +26,14 @@
 
 <script>
 export default {
+  data() {
+    return {
+      groupId: this.$store.getters["server/token/vkQuery"].vk_group_id
+    }
+  },
+  mounted() {
+    console.log(this.groupId)
+  }
   // layout: 'main',
 };
 </script>
