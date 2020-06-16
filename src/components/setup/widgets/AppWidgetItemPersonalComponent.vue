@@ -1,7 +1,8 @@
 <template>
   <div class="widgets__content-personal">
     <div class="widgets__content-avatar">
-      <img :src="userPhoto ? userPhoto : '/img/photo.png'" alt />
+      <img v-if="value.icon_url" :src="value.icon_url" alt />
+      <img v-else :src="userPhoto ? userPhoto : '/img/photo.png'" alt />
     </div>
     <div class="widgets__content-text widgets__content-text_personal">
       <app-error-popover :varError="mapErros['title']">
@@ -123,5 +124,3 @@ export default {
   }
 };
 </script>
-
-<style lang="scss" scoped></style>

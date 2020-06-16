@@ -50,7 +50,7 @@
                         }
                       })
                     "
-                    >{{ this.widget.data.title }}</a
+                    >{{ widget.data.title }}</a
                   >
                 </div>
                 <div class="widgets__items widgets__items_places">
@@ -60,9 +60,9 @@
                     class="widgets__items_draggable"
                   >
                     <template v-for="(item, index) in widget.data.rows">
-                      <app-widget-item-places
+                      <app-widget-item-groups
                         v-model="widget.data.rows[index]"
-                        :prename-validation="`data.tiles.${index}.`"
+                        :prename-validation="`data.rows.${index}.`"
                         :validation-errors="validationErrors"
                         :key="index"
                         @remove:item="removeItem(widget.data.rows, index)"
@@ -77,9 +77,27 @@
                     </button>
                   </draggable>
                 </div>
-                <button class="widgets__content-add" @click.prevent>
-                  + Добавить подвал виджета
-                </button>
+                <div class="widgets__content-add">
+                  <a
+                    href="#"
+                    @click.prevent="
+                      $emit('edit:element', {
+                        typeModal: 'modal-widget-title-link',
+                        map: {
+                          title: {
+                            fieldName: 'more',
+                            value: widget.data.more || ''
+                          },
+                          link: {
+                            fieldName: 'more_url',
+                            value: widget.data.more_url || ''
+                          }
+                        }
+                      })
+                    "
+                    >{{ widget.data.more ? widget.data.more : "+ добавить" }}</a
+                  >
+                </div>
               </div>
               <div class="widgets__save">
                 <button class="gen-btn">Сохранить</button>
@@ -111,13 +129,13 @@
         @close="clear"
       />
     </div>
-  </form> </template
->s
+  </form>
+</template>
 
 <script>
 import Widgets from "@/mixins/widgets";
 import AppWidgetForm from "@/components/setup/AppWidgetFormComponent";
-import AppWidgetItemPlaces from "@/components/setup/widgets/AppWidgetItemPlacesComponent";
+import AppWidgetItemGroups from "@/components/setup/widgets/AppWidgetItemGroupsComponent";
 import AppModalWidgetText from "@/components/modal/widgets/AppModalWidgetTextComponent";
 import AppModalWidgetTitleLink from "@/components/modal/widgets/AppModalWidgetTitleLinkComponent";
 
@@ -125,24 +143,24 @@ export default {
   data() {
     return {
       widget: {
-        type_name: "Точки продаж",
-        type_link: "/setup/list/places?category=sales&edit=true",
+        type_name: "Меню сообщества",
+        type_link: "/setup/compactlist/groups?category=nav&edit=true",
         data: {
           more: "",
           more_url: "",
-          title: "{firstname}, ближайшие к вам магазины сети",
+          title: "Меню сообщества",
           title_counter: "",
           title_url: "",
           rows: [
             {
-              address: "ул. Советская, 33",
-              button: "Связаться",
-              button_url: "https://vk.com/apps?act=manage",
-              descr: "Более 3000 пар обуви в одном месте",
+              address: null,
+              button: "Перейти",
+              button_url: "",
+              descr: "",
               icon_id: "",
               text: null,
-              time: "8:00-20:00(без выходных)",
-              title: "Магазин «Дом обуви»",
+              time: null,
+              title: "Бесплатное занятие",
               title_url: ""
             }
           ]
@@ -164,21 +182,21 @@ export default {
           groups_exclude: [],
           groups: []
         },
-        type: "list",
-        sc_type: "places"
+        type: "compact_list",
+        sc_type: "groups"
       }
     };
   },
   methods: {
     addItem(arr) {
       arr.push({
-        address: "",
+        address: null,
         button: "",
         button_url: "",
         descr: "",
         icon_id: "",
         text: null,
-        time: "",
+        time: null,
         title: "",
         title_url: ""
       });
@@ -187,7 +205,7 @@ export default {
   mixins: [Widgets],
   components: {
     AppWidgetForm,
-    AppWidgetItemPlaces,
+    AppWidgetItemGroups,
     AppModalWidgetText,
     AppModalWidgetTitleLink
   }

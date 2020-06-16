@@ -77,9 +77,27 @@
                     </button>
                   </draggable>
                 </div>
-                <button class="widgets__content-add" @click.prevent>
-                  + Добавить подвал виджета
-                </button>
+                <div class="widgets__content-add">
+                  <a
+                    href="#"
+                    @click.prevent="
+                      $emit('edit:element', {
+                        typeModal: 'modal-widget-title-link',
+                        map: {
+                          title: {
+                            fieldName: 'more',
+                            value: widget.data.more || ''
+                          },
+                          link: {
+                            fieldName: 'more_url',
+                            value: widget.data.more_url || ''
+                          }
+                        }
+                      })
+                    "
+                    >{{ widget.data.more ? widget.data.more : "+ добавить" }}</a
+                  >
+                </div>
               </div>
               <div class="widgets__save">
                 <button class="gen-btn">Сохранить</button>
@@ -165,7 +183,7 @@ export default {
           groups: []
         },
         type: "compact_list",
-        sc_type: "subscriptions"
+        sc_type: "subscribe"
       }
     };
   },

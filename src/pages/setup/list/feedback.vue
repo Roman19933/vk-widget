@@ -32,9 +32,10 @@
             <div class="widgets__content">
               <div class="widgets__content-wrapper">
                 <div class="widgets__content-title">
-                  <img src="/img/fire.png" alt />
+                  <img src="/img/heart.png" alt />
                   <a
                     href="#"
+                    v-b-modal.default
                     @click.prevent="
                       $emit('edit:element', {
                         typeModal: 'modal-widget-title-link',
@@ -53,33 +54,62 @@
                     >{{ widget.data.title }}</a
                   >
                 </div>
-                <div class="widgets__items widgets__items_places">
+                <!-- <div class="widgets__items widgets__items_product">
+                <button class="add-item">+ Добавить элемент</button>
+              </div> -->
+                <div class="widgets__items widgets__items_feedback">
                   <draggable
                     v-model="widget.data.rows"
-                    group="product"
-                    class="widgets__items_draggable"
+                    group="feedback"
+                    class="widgets__items_draggable "
                   >
                     <template v-for="(item, index) in widget.data.rows">
-                      <app-widget-item-groups
+                      <app-widget-item-personal
                         v-model="widget.data.rows[index]"
-                        :prename-validation="`data.rows.${index}.`"
-                        :validation-errors="validationErrors"
                         :key="index"
                         @remove:item="removeItem(widget.data.rows, index)"
                       />
                     </template>
                     <button
+                      v-if="widget.data.rows.length < 3 && !this.switch"
                       class="add-item"
-                      @click.prevent="addItem(widget.data.rows)"
-                      v-if="widget.data.rows.length < 6 && !this.switch"
+                      @click.prevent="
+                        $emit('edit:element', {
+                          typeModal: 'modal-widget-client',
+                          map: {
+                            title: {
+                              fieldName: '',
+                              value: ''
+                            }
+                          }
+                        })
+                      "
                     >
                       + Добавить элемент
                     </button>
                   </draggable>
                 </div>
-                <button class="widgets__content-add" @click.prevent>
-                  + Добавить подвал виджета
-                </button>
+                <div class="widgets__content-add">
+                  <a
+                    href="#"
+                    @click.prevent="
+                      $emit('edit:element', {
+                        typeModal: 'modal-widget-title-link',
+                        map: {
+                          title: {
+                            fieldName: 'more',
+                            value: widget.data.more || ''
+                          },
+                          link: {
+                            fieldName: 'more_url',
+                            value: widget.data.more_url || ''
+                          }
+                        }
+                      })
+                    "
+                    >{{ widget.data.more ? widget.data.more : "+ добавить" }}</a
+                  >
+                </div>
               </div>
               <div class="widgets__save">
                 <button class="gen-btn">Сохранить</button>
@@ -93,7 +123,6 @@
                   <a href="#">правил ВКонтакте!</a>
                 </p>
               </div>
-              <!-- <app-widget-error v-if="error" @close="error = !error" /> -->
             </div>
           </app-loader>
         </div>
@@ -108,6 +137,7 @@
         :map-data="mapData"
         :other="other"
         @saved="handlerSaved"
+        @savedClients="groupLink"
         @close="clear"
       />
     </div>
@@ -117,35 +147,24 @@
 <script>
 import Widgets from "@/mixins/widgets";
 import AppWidgetForm from "@/components/setup/AppWidgetFormComponent";
-import AppWidgetItemGroups from "@/components/setup/widgets/AppWidgetItemGroupsComponent";
+import AppWidgetItemPersonal from "@/components/setup/widgets/AppWidgetItemPersonalComponent";
 import AppModalWidgetText from "@/components/modal/widgets/AppModalWidgetTextComponent";
+import AppModalWidgetClient from "@/components/modal/widgets/AppModalWidgetClientsComponent";
 import AppModalWidgetTitleLink from "@/components/modal/widgets/AppModalWidgetTitleLinkComponent";
 
 export default {
   data() {
     return {
       widget: {
-        type_name: "Меню сообщества",
-        type_link: "/setup/coverlist/groups?category=nav&edit=true",
+        type_name: "Отзывы",
+        type_link: "/setup/list/feedback?category=sales&edit=true",
         data: {
           more: "",
           more_url: "",
-          title: "Меню сообщества",
+          title: "Отзывы наших клиентов",
           title_counter: "",
           title_url: "",
-          rows: [
-            {
-              address: null,
-              button: "Перейти",
-              button_url: "",
-              descr: "",
-              icon_id: "",
-              text: null,
-              time: null,
-              title: "Бесплатное занятие",
-              title_url: ""
-            }
-          ]
+          rows: []
         },
         is_active: false,
         name: "",
@@ -164,34 +183,57 @@ export default {
           groups_exclude: [],
           groups: []
         },
-        type: "cover_list",
-        sc_type: "peoples"
-      }
+        type: "list",
+        sc_type: "feedback"
+      },
+      groupId: this.$store.getters["server/token/vkQuery"].vk_group_id
     };
   },
   methods: {
-    addItem(arr) {
-      arr.push({
-        address: null,
-        button: "",
-        button_url: "",
-        descr: "",
-        icon_id: "",
-        text: null,
-        time: null,
-        title: "",
-        title_url: ""
-      });
+    async groupLink(e) {
+      try {
+        let obj = {
+          group_id: +this.groupId,
+          link: e
+        };
+        let { data } = await this.$store.dispatch(
+          "server/group/getInfoForComments",
+          obj
+        );
+        console.log(data);
+        this.widget.data.rows.push({
+          text: data.data.items[0].text,
+          time: "",
+          descr: "",
+          title:
+            data.data.profiles[0].first_name +
+            " " +
+            data.data.profiles[0].last_name,
+          button: "Читать отзыв",
+          address: "",
+          icon_id: data.data.profiles[0].screen_name,
+          icon_url: data.data.profiles[0].photo_50,
+          title_url: "https://vk.com/" + data.data.profiles[0].screen_name,
+          button_url: e
+        });
+      } catch (e) {
+        console.log(e);
+        this.$bvToast.toast(`${e.data.url}`, {
+          title: "Ошибка",
+          variant: "danger",
+          toaster: "b-toaster-top-center",
+          solid: true
+        });
+      }
     }
   },
   mixins: [Widgets],
   components: {
     AppWidgetForm,
-    AppWidgetItemGroups,
     AppModalWidgetText,
-    AppModalWidgetTitleLink
+    AppModalWidgetTitleLink,
+    AppWidgetItemPersonal,
+    AppModalWidgetClient
   }
 };
 </script>
-
-<style lang="scss" scoped></style>

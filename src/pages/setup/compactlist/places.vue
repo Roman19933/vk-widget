@@ -77,9 +77,27 @@
                     </button>
                   </draggable>
                 </div>
-                <button class="widgets__content-add" @click.prevent>
-                  + Добавить подвал виджета
-                </button>
+                <div class="widgets__content-add">
+                  <a
+                    href="#"
+                    @click.prevent="
+                      $emit('edit:element', {
+                        typeModal: 'modal-widget-title-link',
+                        map: {
+                          title: {
+                            fieldName: 'more',
+                            value: widget.data.more || ''
+                          },
+                          link: {
+                            fieldName: 'more_url',
+                            value: widget.data.more_url || ''
+                          }
+                        }
+                      })
+                    "
+                    >{{ widget.data.more ? widget.data.more : "+ добавить" }}</a
+                  >
+                </div>
               </div>
               <div class="widgets__save">
                 <button class="gen-btn">Сохранить</button>
@@ -111,8 +129,7 @@
         @close="clear"
       />
     </div>
-  </form>
-</template>
+  </form> </template>
 
 <script>
 import Widgets from "@/mixins/widgets";
@@ -125,12 +142,12 @@ export default {
   data() {
     return {
       widget: {
-        type_name: "Мероприятия",
-        type_link: "/setup/list/events?category=sales&edit=true",
+        type_name: "Точки продаж",
+        type_link: "/setup/compactlist/places?category=sales&edit=true",
         data: {
           more: "",
           more_url: "",
-          title: "{firstname}, время поднять навык в SMM",
+          title: "{firstname}, ближайшие к вам магазины сети",
           title_counter: "",
           title_url: "",
           rows: [
@@ -142,7 +159,7 @@ export default {
               icon_id: "",
               text: null,
               time: "8:00-20:00(без выходных)",
-              title: "Онлайн",
+              title: "Магазин «Дом обуви»",
               title_url: ""
             }
           ]
@@ -164,8 +181,8 @@ export default {
           groups_exclude: [],
           groups: []
         },
-        type: "list",
-        sc_type: "events"
+        type: "compact_list",
+        sc_type: "places"
       }
     };
   },
@@ -194,4 +211,3 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>

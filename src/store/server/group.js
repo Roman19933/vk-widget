@@ -17,6 +17,9 @@ export const actions = {
   },
   getInfoForGroupToUrl({commit},link) {
     return Api[`groups?url=${link}`]()
+  },
+  getInfoForComments({commit},{group_id,link}) {
+    return Api[`comments?group_id=${group_id}&url=${link}`]()
   }
 }
 
