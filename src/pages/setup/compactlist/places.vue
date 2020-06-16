@@ -62,7 +62,7 @@
                     <template v-for="(item, index) in widget.data.rows">
                       <app-widget-item-places
                         v-model="widget.data.rows[index]"
-                        :prename-validation="`data.tiles.${index}.`"
+                        :prename-validation="`data.rows.${index}.`"
                         :validation-errors="validationErrors"
                         :key="index"
                         @remove:item="removeItem(widget.data.rows, index)"

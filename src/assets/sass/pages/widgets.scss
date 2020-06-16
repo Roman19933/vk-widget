@@ -209,6 +209,16 @@
       &_client {
         background-color: initial;
       }
+      .item__popover {
+        position: absolute !important;
+        left: 8px;
+        bottom: 65px;
+      }
+      &_groups {
+        .item__popover {
+          bottom: 31px;
+        }
+      }
       // img {
       //     width: 31px;
       // }
@@ -254,6 +264,9 @@
         .gen-btn {
           width: 150px;
         }
+        // .item-popover {
+        //   position: absolute;
+        // }
         .places-content {
           display: flex;
           flex-direction: column;
