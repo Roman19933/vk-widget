@@ -10,7 +10,7 @@
               Дружище, оплата прошла успешно!
               Благодарим за осознаность=)
             </p>
-            <nuxt-link to="/main" class="vidget-none__link gen-btn"
+            <nuxt-link to="/main" @click="checkToken" class="vidget-none__link gen-btn"
               >Перейти на главною</nuxt-link
             >
           </div>
@@ -28,6 +28,15 @@ export default {
   //     groupId: this.$store.getters["server/token/vkQuery"].vk_group_id
   //   }
   // },
+  methods: {
+    async checkToken () {
+      const groupId = this.$store.getters["server/token/vkQuery"].vk_group_id
+      let check = await this.$store.dispatch(
+        "server/token/checkToken",
+        groupId
+      )
+    }
+  }
   // mounted() {
   //   console.log(this.groupId)
   // }
