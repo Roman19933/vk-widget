@@ -50,19 +50,33 @@
                         }
                       })
                     "
-                    >{{ widget.data.title }}</a
+                    >{{ this.widget.data.title }}</a
                   >
                 </div>
-                <template v-for="(item, index) in widget.data.rows">
-                  <app-widget-item-personal
-                    v-model="widget.data.rows[index]"
-                    :prename-validation="`data.rows.${index}.`"
-                    :validation-errors="validationErrors"
-                    :key="index"
-                    :userPhoto="userFoto"
-                    @remove:item="removeItem(widget.data.rows, index)"
-                  />
-                </template>
+                <div class="widgets__items widgets__items_places">
+                  <draggable
+                    v-model="widget.data.rows"
+                    group="product"
+                    class="widgets__items_draggable"
+                  >
+                    <template v-for="(item, index) in widget.data.rows">
+                      <app-widget-item-places
+                        v-model="widget.data.rows[index]"
+                        :prename-validation="`data.tiles.${index}.`"
+                        :validation-errors="validationErrors"
+                        :key="index"
+                        @remove:item="removeItem(widget.data.rows, index)"
+                      />
+                    </template>
+                    <button
+                      class="add-item"
+                      @click.prevent="addItem(widget.data.rows)"
+                      v-if="widget.data.rows.length < 6 && !this.switch"
+                    >
+                      + Добавить элемент
+                    </button>
+                  </draggable>
+                </div>
                 <div class="widgets__content-add">
                   <a
                     href="#"
@@ -121,7 +135,7 @@
 <script>
 import Widgets from "@/mixins/widgets";
 import AppWidgetForm from "@/components/setup/AppWidgetFormComponent";
-import AppWidgetItemPersonal from "@/components/setup/widgets/AppWidgetItemPersonalComponent";
+import AppWidgetItemPlaces from "@/components/setup/widgets/AppWidgetItemPlacesComponent";
 import AppModalWidgetText from "@/components/modal/widgets/AppModalWidgetTextComponent";
 import AppModalWidgetTitleLink from "@/components/modal/widgets/AppModalWidgetTitleLinkComponent";
 
@@ -129,25 +143,24 @@ export default {
   data() {
     return {
       widget: {
-        type_name: "Персональное предложение",
-        type_link: "/setup/list/personal?category=sales&edit=true",
+        type_name: "Мероприятия",
+        type_link: "/setup/compactlist/events?category=sales&edit=true",
         data: {
           more: "",
           more_url: "",
-          title: "{firstname}, у нас для тебя спецпредложение!",
+          title: "{firstname}, время поднять навык в SMM",
           title_counter: "",
           title_url: "",
           rows: [
             {
-              address: "",
-              button: "Оставить заявку",
-              button_url: "vk.me/club195259137",
-              descr: "",
-              icon_id: "{userAvatar}",
-              text:
-                "Все просто, жми на кнопку ниже, оставь заявку и мы свяжемся с тобой в считанные секунды",
-              time: "",
-              title: "Получи бесплатную консультацию!",
+              address: "ул. Советская, 33",
+              button: "Связаться",
+              button_url: "https://vk.com/apps?act=manage",
+              descr: "Более 3000 пар обуви в одном месте",
+              icon_id: "",
+              text: null,
+              time: "8:00-20:00(без выходных)",
+              title: "Онлайн",
               title_url: ""
             }
           ]
@@ -169,15 +182,30 @@ export default {
           groups_exclude: [],
           groups: []
         },
-        type: "list",
-        sc_type: "personal_offer"
+        type: "compact_list",
+        sc_type: "events"
       }
     };
+  },
+  methods: {
+    addItem(arr) {
+      arr.push({
+        address: "",
+        button: "",
+        button_url: "",
+        descr: "",
+        icon_id: "",
+        text: null,
+        time: "",
+        title: "",
+        title_url: ""
+      });
+    }
   },
   mixins: [Widgets],
   components: {
     AppWidgetForm,
-    AppWidgetItemPersonal,
+    AppWidgetItemPlaces,
     AppModalWidgetText,
     AppModalWidgetTitleLink
   }
