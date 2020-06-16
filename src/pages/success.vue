@@ -5,7 +5,7 @@
       <div class="vidget-page__wrapper">
         <div class="vidget-none">
           <div class="vidget-none__wrapper">
-            <img src="img/PIT.svg" alt="" class="vidget-none__img" />
+            <img src="/img/PIT.svg" alt="" class="vidget-none__img" />
             <p class="vidget-none__text">
               Дружище, оплата прошла успешно!
               Благодарим за осознаность=)
