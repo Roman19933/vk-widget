@@ -80,46 +80,56 @@
         >
         <div class="places-content__info">
           <div class="places-content__location">
-            <img src="/img/marker.png" alt />
-            <a
-              href="#"
-              class="places-content__text"
-              @click.prevent="
-                $emit('edit:element', {
-                  typeModal: 'modal-widget-text',
-                  map: {
-                    title: {
-                      fieldName: 'address',
-                      value: value.address
-                    }
-                  }
-                })
-              "
-              >{{ !!value.address ? value.address : "+ добавить" }}</a
-            >
+            <app-error-popover :varError="mapErros['address']">
+              <template v-slot:varName>
+                <img src="/img/marker.png" alt />
+                <a
+                  href="#"
+                  class="places-content__text"
+                  @click.prevent="
+                    $emit('edit:element', {
+                      typeModal: 'modal-widget-text',
+                      map: {
+                        title: {
+                          fieldName: 'address',
+                          value: value.address
+                        }
+                      }
+                    })
+                  "
+                  >{{ !!value.address ? value.address : "+ добавить" }}</a
+                >
+              </template>
+            </app-error-popover>
           </div>
           <div class="places-content__location">
-            <img src="/img/time.png" alt />
-            <a
-              href="#"
-              class="places-content__text"
-              @click.prevent="
-                $emit('edit:element', {
-                  typeModal: 'modal-widget-text',
-                  map: {
-                    title: {
-                      fieldName: 'time',
-                      value: value.time
-                    }
-                  }
-                })
-              "
-              >{{ !!value.time ? value.time : "+ добавить" }}</a
-            >
+            <app-error-popover :varError="mapErros['time']">
+              <template v-slot:varName>
+                <img src="/img/time.png" alt />
+                <a
+                  href="#"
+                  class="places-content__text"
+                  @click.prevent="
+                    $emit('edit:element', {
+                      typeModal: 'modal-widget-text',
+                      map: {
+                        title: {
+                          fieldName: 'time',
+                          value: value.time
+                        }
+                      }
+                    })
+                  "
+                  >{{ !!value.time ? value.time : "+ добавить" }}</a
+                >
+              </template>
+            </app-error-popover>
           </div>
         </div>
       </div>
-      <app-error-popover :varError="mapErros['button'] || mapErros['button_url']">
+      <app-error-popover
+        :varError="mapErros['button'] || mapErros['button_url']"
+      >
         <template v-slot:varName>
           <a
             href="#"
