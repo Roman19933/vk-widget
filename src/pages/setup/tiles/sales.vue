@@ -121,7 +121,7 @@
             </app-loader>
           </div>
           <div class="widgets__right">
-            <app-widget-form v-model="widget.segmentation" />
+            <app-widget-form v-model="formSegmentation" />
           </div>
         </div>
         <component

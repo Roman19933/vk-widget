@@ -115,7 +115,7 @@ export default {
             },
             {
               text: "Информационные",
-              to: "/catalog/nav"
+              to: "/catalog/info"
             }
           ]
         },
@@ -135,7 +135,8 @@ export default {
   mounted() {
     if (
       this.$route.name === "catalog-sales" ||
-      this.$route.name === "catalog-nav"
+      this.$route.name === "catalog-nav" ||
+      this.$route.name === "catalog-info"
     ) {
       this.collaps = true;
     }

@@ -10,12 +10,11 @@
               Дружище, произошла ошибка, сделка не состоялась!
             </p>
             <p class="vidget-none__text">
-              Попробуй еще
-              раз=)
+              Попробуй еще раз=)
             </p>
-            <nuxt-link to="/main" class="vidget-none__link gen-btn"
-              >Перейти на главною</nuxt-link
-            >
+            <button @click="checkToken" class="vidget-none__link gen-btn">
+              Перейти на главною
+            </button>
           </div>
         </div>
       </div>
@@ -26,14 +25,13 @@
 
 <script>
 export default {
-  // data() {
-  //   return {
-  //     groupId: this.$store.getters["server/token/vkQuery"].vk_group_id
-  //   }
-  // },
-  // mounted() {
-  //   console.log(this.groupId)
-  // }
-  // layout: 'main',
+  methods: {
+    async checkToken() {
+      const groupId = this.$store.getters["server/token/vkQuery"].vk_group_id;
+      await this.$store.dispatch("server/token/checkToken", groupId);
+      this.$router.push("/main");
+      console.log("okcheck");
+    }
+  }
 };
 </script>
