@@ -9,11 +9,9 @@
             <p class="vidget-none__text">
               Дружище, оплата прошла успешно! Благодарим за осознаность=)
             </p>
-            <button
-              @click="checkToken"
-              class="vidget-none__link gen-btn"
-              >Перейти на главною</button
-            >
+            <button @click="checkToken" class="vidget-none__link gen-btn">
+              Перейти на главною
+            </button>
           </div>
         </div>
       </div>
@@ -24,21 +22,13 @@
 
 <script>
 export default {
-  //  data() {
-  //   return {
-  //     groupId: this.$store.getters["server/token/vkQuery"].vk_group_id
-  //   }
-  // },
   methods: {
     async checkToken() {
-      const groupId = this.$store.getters["server/token/vkQuery"].vk_group_id
-      await this.$store.dispatch("server/token/checkToken", groupId)
-      this.$router.push('/main')
-      console.log('okcheck')
+      const groupId = this.$store.getters["server/token/vkQuery"].vk_group_id;
+      await this.$store.dispatch("server/token/checkToken", groupId);
+      this.$router.push("/main");
+      console.log("okcheck");
     }
   }
-  // mounted() {
-  //   console.log(this.groupId)
-  // }
 };
 </script>

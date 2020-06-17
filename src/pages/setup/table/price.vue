@@ -32,9 +32,10 @@
             <div class="widgets__content">
               <div class="widgets__content-wrapper">
                 <div class="widgets__content-title">
-                  <img src="/img/fire.png" alt />
+                  <img src="/img/heart.png" alt />
                   <a
                     href="#"
+                    v-b-modal.default
                     @click.prevent="
                       $emit('edit:element', {
                         typeModal: 'modal-widget-title-link',
@@ -53,29 +54,24 @@
                     >{{ widget.data.title }}</a
                   >
                 </div>
-                <div class="widgets__items widgets__items_places">
-                  <draggable
-                    v-model="widget.data.rows"
-                    group="product"
-                    class="widgets__items_draggable"
-                  >
-                    <template v-for="(item, index) in widget.data.rows">
-                      <app-widget-item-groups
-                        v-model="widget.data.rows[index]"
-                        :prename-validation="`data.rows.${index}.`"
-                        :validation-errors="validationErrors"
+                <div class="widgets__items widgets__items_client">
+                  <!-- <draggable
+                    v-model="widget.data.body"
+                    group="client"
+                    class="widgets__items_draggable "
+                  > -->
+                    <template v-for="(item, index) in widget.data.body">
+                      <app-widget-item-table
+                        v-model="widget.data.body[index]"
                         :key="index"
-                        @remove:item="removeItem(widget.data.rows, index)"
+                        :index="index"
+                        @remove:item="removeItem(widget.data.body, index)"
                       />
                     </template>
-                    <button
-                      class="add-item"
-                      @click.prevent="addItem(widget.data.rows)"
-                      v-if="widget.data.rows.length < 6 && !this.switch"
-                    >
+                    <button class="add-item" @click.prevent="addItemTable">
                       + Добавить элемент
                     </button>
-                  </draggable>
+                  <!-- </draggable> -->
                 </div>
                 <div class="widgets__content-add">
                   <a
@@ -111,7 +107,6 @@
                   <a href="#">правил ВКонтакте!</a>
                 </p>
               </div>
-              <!-- <app-widget-error v-if="error" @close="error = !error" /> -->
             </div>
           </app-loader>
         </div>
@@ -126,6 +121,7 @@
         :map-data="mapData"
         :other="other"
         @saved="handlerSaved"
+        @savedClients="groupLink"
         @close="clear"
       />
     </div>
@@ -135,33 +131,78 @@
 <script>
 import Widgets from "@/mixins/widgets";
 import AppWidgetForm from "@/components/setup/AppWidgetFormComponent";
-import AppWidgetItemGroups from "@/components/setup/widgets/AppWidgetItemGroupsComponent";
+import AppWidgetItemTable from "@/components/setup/widgets/AppWidgetItemTableComponent";
 import AppModalWidgetText from "@/components/modal/widgets/AppModalWidgetTextComponent";
+import AppModalWidgetClient from "@/components/modal/widgets/AppModalWidgetClientsComponent";
 import AppModalWidgetTitleLink from "@/components/modal/widgets/AppModalWidgetTitleLinkComponent";
 
 export default {
   data() {
     return {
       widget: {
-        type_name: "Подписка и рассылки",
-        type_link: "/setup/compactlist/subscriptions?category=nav&edit=true",
+        type_name: "Наши клиенты",
+        type_link: "/setup/table/clients?category=sales&edit=true",
         data: {
           more: "",
           more_url: "",
-          title: "Рассылка с акциями",
+          title:
+            "{firstname}, Спасибо, что подписался! Твои друзья уже с нами!",
           title_counter: "",
           title_url: "",
-          rows: [
+          body: [
+            [
+              {
+                text: "Россия",
+                icon_id: "3484735_23434324"
+              },
+              {
+                text: "1 строка",
+                url: "https://vk.com/wall-12345_542321"
+              },
+              {
+                text: "1 строка",
+                url: "https://vk.com/wall-12345_542321"
+              },
+              {
+                text: "1 строка",
+                url: "https://vk.com/wall-12345_542321"
+              },
+            ],
+            [
+              {
+                text: "USA",
+                icon_id: "3484735_23434324"
+              },
+              {
+                text: "2 строка",
+                url: "https://vk.com/wall-12345_542321"
+              },
+              {
+                text: "2 строка",
+                url: "https://vk.com/wall-12345_542321"
+              },
+              {
+                text: "2 строка",
+                url: "https://vk.com/wall-12345_542321"
+              },
+            ]
+          ],
+          head: [
             {
-              address: null,
-              button: "Подписаться",
-              button_url: "https://vk.com/apps?act=manage",
-              descr: "Запишись на первую бесплатную тренировку!",
-              icon_id: "",
-              text: null,
-              time: null,
-              title: "Бесплатное занятие",
-              title_url: ""
+              text: "Страна",
+              align: "left"
+            },
+            {
+              text: "Золото",
+              align: "left"
+            },
+            {
+              text: "Серебро",
+              align: "left"
+            },
+            {
+              text: "Бронза",
+              align: "left"
             }
           ]
         },
@@ -182,34 +223,23 @@ export default {
           groups_exclude: [],
           groups: []
         },
-        type: "compact_list",
-        sc_type: "subscribe"
+        type: "table",
+        sc_type: "client"
       }
     };
   },
   methods: {
-    addItem(arr) {
-      arr.push({
-        address: null,
-        button: "",
-        button_url: "",
-        descr: "",
-        icon_id: "",
-        text: null,
-        time: null,
-        title: "",
-        title_url: ""
-      });
+    addItemTable() {
+      console.log("ok");
     }
   },
   mixins: [Widgets],
   components: {
     AppWidgetForm,
-    AppWidgetItemGroups,
     AppModalWidgetText,
-    AppModalWidgetTitleLink
+    AppModalWidgetTitleLink,
+    AppWidgetItemTable,
+    AppModalWidgetClient
   }
 };
 </script>
-
-<style lang="scss" scoped></style>

@@ -68,6 +68,9 @@ export default {
         case "catalog-sales":
           return 'Каталог "для продаж"';
           break;
+        case "catalog-info":
+          return 'Каталог "информационные"';
+          break;
         default:
           return "Мои виджеты";
       }

@@ -117,7 +117,7 @@
           </app-loader>
         </div>
         <div class="widgets__right">
-          <app-widget-form v-model="widget.segmentation" />
+          <app-widget-form v-model="formSegmentation" />
         </div>
       </div>
       <component
@@ -143,6 +143,7 @@ import AppModalWidgetTitleLink from "@/components/modal/widgets/AppModalWidgetTi
 export default {
   data() {
     return {
+      // formSegmentation: {},
       widget: {
         type_name: "Акционные товары",
         type_link: "/setup/tiles/actions?category=sales&edit=true",
@@ -203,6 +204,39 @@ export default {
         sc_type: "sales"
       }
     };
+  },
+  // created() {
+  //   this.formSegmentation = JSON.parse(JSON.stringify(this.widget.segmentation));
+  // },
+  // watch: {
+  //   formSegmentation: {
+  //     handler(bef) {
+  //       console.log(bef)
+  //       let segment = this.widget.segmentation;
+  //       let clone = {
+  //         sex: bef.sex ? bef.sex.id : [],
+  //         age: { from: bef.age.from, to: bef.age.to },
+  //         bdate: bef.bdate ? bef.bdate : [],
+  //         relation: bef.relation ? bef.relation.id : [],
+  //         city: bef.city ? bef.city.id : [],
+  //         devices: bef.devices ? bef.devices.screen_name : [],
+  //         userSurname: bef.userSurname ? this.splitStr(`${bef.userSurname}`) : [],
+  //         userName: bef.userName ? this.splitStr(`${bef.userName}`) : [],
+  //         userInterests: bef.userInterests ? this.splitStr(`${bef.userInterests}`) : [],
+  //         relationGroups: bef.relationGroups ? this.splitStr(`${bef.relationGroups}`) : [],
+  //         users: bef.users ? this.splitStr(`${bef.users}`) : [],
+  //         groups_exclude: bef.groups_exclude ? this.splitStr(`${bef.groups_exclude}`) : [],
+  //         groups: bef.groups ? this.splitStr(`${bef.groups}`) : []
+  //       };
+  //       Object.assign(segment, clone);
+  //     },
+  //     deep: true
+  //   }
+  // },
+  methods: {
+    // splitStr(str) {
+    //   return str.split("\n")
+    // }
   },
   mixins: [Widgets],
   components: {
