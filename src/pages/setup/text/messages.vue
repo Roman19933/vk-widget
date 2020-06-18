@@ -19,7 +19,8 @@
                       }
                     })
                   "
-                >{{ widget.name || defaultName }}</a>
+                  >{{ widget.name || defaultName }}</a
+                >
               </div>
               <div class="widgets__switch">
                 <span>Режим просмотра</span>
@@ -49,7 +50,8 @@
                         }
                       })
                     "
-                  >{{ widget.data.title }}</a>
+                    >{{ widget.data.title }}</a
+                  >
                 </div>
                 <app-widget-messages
                   v-model="widget.data"
@@ -74,7 +76,8 @@
                         }
                       })
                     "
-                  >{{ widget.data.more ? widget.data.more : "+ добавить" }}</a>
+                    >{{ widget.data.more ? widget.data.more : "+ добавить" }}</a
+                  >
                 </div>
               </div>
               <div class="widgets__save">
@@ -86,9 +89,9 @@
                 <p>
                   В виджетах запрещено размещение сторонней коммерческой и
                   политической рекламы! Подробнее в п.5.13.4.1.
-                  <a
-                    href="#"
-                  >правил ВКонтакте!</a>
+                  <a href="https://vk.com/terms" target="_blank"
+                    >правил ВКонтакте!</a
+                  >
                 </p>
               </div>
               <!-- <app-widget-error v-if="error" @close="error = !error" /> -->
