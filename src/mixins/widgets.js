@@ -26,15 +26,15 @@ export default {
           relation: bef.relation ? bef.relation.id : [],
           city: bef.city ? bef.city.id : [],
           devices: bef.devices ? bef.devices.screen_name : [],
-          userSurname: bef.userSurname
-            ? this.splitStr(`${bef.userSurname}`)
+          user_surname: bef.user_surname
+            ? this.splitStr(`${bef.user_surname}`)
             : [],
-          userName: bef.userName ? this.splitStr(`${bef.userName}`) : [],
-          userInterests: bef.userInterests
-            ? this.splitStr(`${bef.userInterests}`)
+          user_name: bef.user_name ? this.splitStr(`${bef.user_name}`) : [],
+          user_interests: bef.user_interests
+            ? this.splitStr(`${bef.user_interests}`)
             : [],
-          relationGroups: bef.relationGroups
-            ? this.splitStr(`${bef.relationGroups}`)
+          relation_groups: bef.relation_groups
+            ? this.splitStr(`${bef.relation_groups}`)
             : [],
           users: bef.users ? this.splitStr(`${bef.users}`) : [],
           groups_exclude: bef.groups_exclude
