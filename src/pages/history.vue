@@ -17,53 +17,35 @@
               <p class="history__title">Статус</p>
               <p class="history__title">Тип платежа</p>
             </li>
-            <li
-              v-for="(his, index) in historyData"
-              :key="index"
-              class="history__block"
-              :class="{ history__block_inner: !(index % 2) }"
-            >
-              <p class="history__info">{{ his.date }}</p>
-              <p class="history__info">{{ his.price }}</p>
-              <p class="history__info">{{ his.rate }}</p>
-              <p class="history__info">
-                <span>{{ his.period }}</span>
-                <span>{{ his.periodTo }}</span>
-              </p>
-              <p class="history__info">
-                <img v-if="his.status" src="img/tarif-ok-yellow.png" alt />
-                <img v-else src="img/tarif-close.png" alt />
-              </p>
-              <p class="history__info">{{ his.payment }}</p>
-            </li>
-            <!-- <li class="history__block">
-              <p class="history__info">26.11.2019</p>
-              <p class="history__info">8880</p>
-              <p class="history__info">Для бизнеса</p>
-              <p class="history__info">
-                <span>26.11.2019</span>
-                <span>26.11.2020</span>
-              </p>
-              <p class="history__info">
-                <img src="img/tarif-ok-yellow.png" alt />
-              </p>
-              <p class="history__info">Наличные</p>
-            </li>
-            <li class="history__block history__block_inner">
-              <p class="history__info">26.11.2019</p>
-              <p class="history__info">8880</p>
-              <p class="history__info">Для бизнеса</p>
-              <p class="history__info">
-                <span>26.11.2019</span>
-                <span>26.11.2020</span>
-              </p>
-              <p class="history__info">
-                <img src="img/tarif-close.png" alt />
-              </p>
-              <p class="history__info">Банк</p>
-            </li>-->
+            <template v-for="(item, index) in historyData">
+              <li
+                v-if="historyData.length"
+                :key="index"
+                class="history__block"
+                :class="{ history__block_inner: !(index % 2) }"
+              >
+                <p class="history__info">{{ item.created_at | dateFilter }}</p>
+                <p class="history__info">{{ item.amounth }}</p>
+                <p class="history__info">{{ item.subscribe_title.tariff }}</p>
+                <p class="history__info">
+                  <span>{{ item.started_at | dateFilter }}</span>
+                  <span>{{ item.expired_at | dateFilter }}</span>
+                </p>
+                <p class="history__info">
+                  <img
+                    v-if="item.status === 2"
+                    src="img/tarif-ok-yellow.png"
+                    alt
+                  />
+                  <img v-else src="img/tarif-close.png" alt />
+                </p>
+                <p class="history__info">{{ item.options.curr_label }}</p>
+              </li>
+            </template>
           </ul>
-          <nuxt-link to="/tarif" class="history__link gen-btn">Назад к тарифам</nuxt-link>
+          <nuxt-link to="/tarif" class="history__link gen-btn"
+            >Назад к тарифам</nuxt-link
+          >
         </div>
       </div>
     </div>
@@ -81,61 +63,64 @@ export default {
     return {
       historyData: [
         {
-          date: "26.11.2019",
-          price: 8880,
-          rate: "Для бизнеса",
-          period: "26.11.2019",
-          periodTo: "26.11.2020",
-          status: true,
-          payment: "Банк"
+          amounth: 2500,
+          status: 2,
+          options: {
+            days: "360",
+            group: "195259137",
+            price: "2500",
+            tariff: "1",
+            curr_label: "BANKOCEAN3R"
+          },
+          created_at: "2020-06-18T10:12:02+00:00",
+          started_at: "2020-06-18T10:12:02+00:00",
+          expired_at: "2021-06-13T10:12:02+00:00",
+          subscribe_title: {
+            tariff: "ПРОСТО ВИДЖЕТ"
+          }
         },
         {
-          date: "26.11.2019",
-          price: 8880,
-          rate: "Для бизнеса",
-          period: "26.11.2019",
-          periodTo: "26.11.2020",
-          status: true,
-          payment: "Банк"
-        },
-        {
-          date: "26.11.2019",
-          price: 8880,
-          rate: "Для бизнеса",
-          period: "26.11.2019",
-          periodTo: "26.11.2020",
-          status: true,
-          payment: "Банк"
-        },
-        {
-          date: "26.11.2019",
-          price: 8880,
-          rate: "Для бизнеса",
-          period: "26.11.2019",
-          periodTo: "26.11.2020",
-          status: true,
-          payment: "Банк"
-        },
-        {
-          date: "26.11.2019",
-          price: 8880,
-          rate: "Для бизнеса",
-          period: "26.11.2019",
-          periodTo: "26.11.2020",
-          status: true,
-          payment: "Банк"
-        },
-        {
-          date: "26.11.2019",
-          price: 8880,
-          rate: "Для бизнеса",
-          period: "26.11.2019",
-          periodTo: "26.11.2020",
-          status: false,
-          payment: "Банк"
+          amounth: 2500,
+          status: 2,
+          options: {
+            days: "360",
+            group: "195259137",
+            price: "2500",
+            tariff: "1",
+            curr_label: "BANKOCEAN3R"
+          },
+          created_at: "2020-06-18T10:12:21+00:00",
+          started_at: "2020-06-18T10:12:02+00:00",
+          expired_at: "2022-06-08T10:12:02+00:00",
+          subscribe_title: {
+            tariff: "ПРОСТО ВИДЖЕТ"
+          }
         }
-      ]
+      ],
+      groupId: this.$store.getters["server/token/vkQuery"].vk_group_id
     };
   },
+  methods: {
+    async getHistory() {
+      try {
+        let { data } = await this.$store.dispatch(
+          "server/payments/getHistory",
+          this.groupId
+        );
+        this.historyData = data.data;
+      } catch (e) {
+        console.log(e);
+      }
+    }
+  },
+  mounted() {
+    this.getHistory();
+  },
+  filters: {
+    dateFilter(val) {
+      let date = new Date(val);
+      return date.toLocaleDateString("ru-Ru");
+    }
+  }
 };
 </script>

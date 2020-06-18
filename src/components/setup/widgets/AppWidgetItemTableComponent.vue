@@ -24,9 +24,11 @@
         <div class="widgets__content-avatar widgets__content-avatar_client">
           <img src="" alt />
         </div>
-        <div class="widgets__content-text">
-          <a href="#" class="text">{{ item.text }}</a>
+        <template v-for="(children, index) in item">
+        <div class="widgets__content-text" :key="`children-${index}`">
+          <a href="#" class="text">{{ children.text }}</a>
         </div>
+        </template>
       </div>
     </template>
   </div>

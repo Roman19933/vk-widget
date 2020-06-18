@@ -3,8 +3,12 @@
     <app-navigation-menu />
     <div class="vidget-page__wrapper">
       <div class="vidget-page__head">
-        <h1 class="vidget-page__title">выберите подходящий тариф для сообщества</h1>
-        <button v-b-modal="'modal-promocode'" class="vidget-page__promocode">Ввести промокод</button>
+        <h1 class="vidget-page__title">
+          выберите подходящий тариф для сообщества
+        </h1>
+        <button v-b-modal="'modal-promocode'" class="vidget-page__promocode">
+          Ввести промокод
+        </button>
       </div>
       <div class="tarif">
         <div class="tarif__wrapper">
@@ -17,9 +21,9 @@
                   <span class="tarif-price__currency">₽</span>
                   <p class="tarif-price__old active">
                     {{
-                    dateTarif
-                    ? item.tariff_periods[1].old_price
-                    : item.tariff_periods[0].old_price
+                      dateTarif
+                        ? item.tariff_periods[1].old_price
+                        : item.tariff_periods[0].old_price
                     }}
                   </p>
                 </div>
@@ -27,17 +31,23 @@
                   <div class="tarif-price__block">
                     <p class="tarif-price__price">
                       {{
-                      dateTarif
-                      ? item.tariff_periods[1].price
-                      : item.tariff_periods[0].price
+                        dateTarif
+                          ? item.tariff_periods[1].price
+                          : item.tariff_periods[0].price
                       }}
                     </p>
-                    <span class="tarif-price__house">/ {{ dateTarif ? "год" : "месяц" }}</span>
+                    <span class="tarif-price__house"
+                      >/ {{ dateTarif ? "год" : "месяц" }}</span
+                    >
                   </div>
                   <span class="tarif-price__info">за 1 сообщество</span>
                 </div>
               </div>
-              <ul v-for="(a, index) in item.tariff_items" :key="index" class="tarif__items">
+              <ul
+                v-for="(a, index) in item.tariff_items"
+                :key="index"
+                class="tarif__items"
+              >
                 <li class="tarif__item">
                   <span class="tarif__icon">
                     <img
@@ -50,14 +60,22 @@
                   <span class="tarif__item-text">{{ a.desc }}</span>
                 </li>
               </ul>
-              <a
-                :href="
-                  dateTarif
-                    ? item.tariff_periods[1].payment_link
-                    : item.tariff_periods[0].payment_link
-                "
-                class="tarif__btn gen-btn"
-              >Оплатить</a>
+              <div class="btn-wrapper">
+                <a
+                  :href="
+                    dateTarif
+                      ? item.tariff_periods[1].payment_link
+                      : item.tariff_periods[0].payment_link
+                  "
+                  :class="{ pen: !agree }"
+                  class="tarif__btn gen-btn"
+                >
+                  Оплатить
+                </a>
+                <span v-show="!agree" class="popover"
+                  >Сначала нужно принять условия договора!</span
+                >
+              </div>
             </div>
           </div>
           <div class="tarif-payment">
@@ -67,15 +85,16 @@
                 <app-switch @switch-val="dateTarifSwitch" />
                 <span class="tarif-payment__switch-name active">год</span>
               </div>
-              <nuxt-link to="/history" class="tarif-payment__history">история платежей</nuxt-link>
+              <nuxt-link to="/history" class="tarif-payment__history"
+                >история платежей</nuxt-link
+              >
             </div>
             <p class="tarif-payment__info">
               * Чтобы получить счет для юридического лица, напишите нам в
               сообщения сообщества:
-              <a
-                href="https://vk.com/kowalskiwidget"
-                target="_blank"
-              >vk.com/kowalskiwidget</a>
+              <a href="https://vk.com/kowalskiwidget" target="_blank"
+                >vk.com/kowalskiwidget</a
+              >
             </p>
             <div class="tarif-payment__checkbox">
               <label>
@@ -86,11 +105,18 @@
             </div>
             <div class="tarif-payment__checkbox">
               <label>
-                <input class="checkbox" type="checkbox" name="policy" />
+                <input
+                  class="checkbox"
+                  type="checkbox"
+                  name="policy"
+                  v-model="agree"
+                />
                 <span class="checkbox-custom"></span>
                 <p class="label">
                   Я принимаю условия
-                  <a href="#" rel="nofollow" v-b-modal="'modal-contract'">договора</a>
+                  <a href="#" rel="nofollow" v-b-modal="'modal-contract'"
+                    >договора</a
+                  >
                 </p>
               </label>
             </div>
@@ -116,6 +142,8 @@ export default {
     return {
       dateTarif: false,
       val: false,
+      auto: false,
+      agree: false,
       groupId: this.$store.getters["server/token/vkQuery"].vk_group_id,
       tarif: [],
       tarifYear: [],
@@ -144,3 +172,31 @@ export default {
   }
 };
 </script>
+<style lang="scss">
+.pen {
+  pointer-events: none;
+  background-color: #a2a2ad;
+}
+.btn-wrapper {
+  position: relative;
+  &:hover {
+    .popover {
+      display: flex;
+    }
+  }
+  .popover {
+    top: -45px;
+    right: -3px;
+    font-size: 12px;
+    &:before {
+      bottom: -22px;
+      top: initial;
+      transform: translateY(-84%);
+      right: initial;
+      border: 5px solid transparent;
+      border-top: 7px solid #21203d;
+      left: 50%;
+    }
+  }
+}
+</style>

@@ -135,8 +135,8 @@ export default {
   mounted() {
     if (
       this.$route.name === "catalog-sales" ||
-      this.$route.name === "catalog-nav" ||
-      this.$route.name === "catalog-info"
+      this.$route.name === "catalog-nav"
+      // this.$route.name === "catalog-info"
     ) {
       this.collaps = true;
     }
