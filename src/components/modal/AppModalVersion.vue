@@ -7,7 +7,7 @@
       <div class="widget-version">
         <div class="widget-version__wrapper">
           <h2 class="modal__title">Приобретите полную версию приложения</h2>
-          <p class="modal__text">3 причины по которым Spycat уже выбрало более 10 000 сообществ</p>
+          <p class="modal__text">3 причины по которым Ковальский Виджет уже выбрало более 10 000 сообществ</p>
           <div class="widget-version__blocks">
             <div class="widget-version__block">
               <img src="img/modal-rich.png" alt class="widget-version__img" />
@@ -16,7 +16,7 @@
                 бюджета до 35%
               </h3>
               <p class="widget-version__text">
-                Виджет Spycat привлекает
+                Виджет Ковальский Виджет привлекает
                 больше внимания и повышает
                 конверсию сообщества. Это
                 позволяет снизить стоимость

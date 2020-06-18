@@ -86,9 +86,27 @@
                     </button>
                   </draggable>
                 </div>
-                <button class="widgets__content-add">
-                  + Добавить подвал виджета
-                </button>
+                <div class="widgets__content-add">
+                  <a
+                    href="#"
+                    @click.prevent="
+                      $emit('edit:element', {
+                        typeModal: 'modal-widget-title-link',
+                        map: {
+                          title: {
+                            fieldName: 'more',
+                            value: widget.data.more || ''
+                          },
+                          link: {
+                            fieldName: 'more_url',
+                            value: widget.data.more_url || ''
+                          }
+                        }
+                      })
+                    "
+                    >{{ widget.data.more ? widget.data.more : "+ добавить" }}</a
+                  >
+                </div>
               </div>
               <div class="widgets__save">
                 <button class="gen-btn">Сохранить</button>
@@ -106,7 +124,7 @@
           </app-loader>
         </div>
         <div class="widgets__right">
-          <app-widget-form v-model="widget.segmentation" />
+          <app-widget-form v-model="formSegmentation" />
         </div>
       </div>
       <component
@@ -175,19 +193,29 @@ export default {
   },
   methods: {
     async groupLink(e) {
-      let link = e;
-      let { data } = await this.$store.dispatch(
-        "server/group/getInfoForGroupToUrl",
-        link
-      );
-      this.widget.data.body.push([
-        {
-          url: e,
-          text: data.data[0].name,
-          icon_id: "club" + data.data[0].id,
-          icon_url: data.data[0].photo_50
-        }
-      ]);
+      try {
+        let link = e;
+        let { data } = await this.$store.dispatch(
+          "server/group/getInfoForGroupToUrl",
+          link
+        );
+        this.widget.data.body.push([
+          {
+            url: e,
+            text: data.data[0].name,
+            icon_id: "club" + data.data[0].id,
+            icon_url: data.data[0].photo_50
+          }
+        ]);
+      } catch (e) {
+        console.log(e);
+        this.$bvToast.toast(`${e.data.url}`, {
+          title: "Ошибка",
+          variant: "danger",
+          toaster: "b-toaster-top-center",
+          solid: true
+        });
+      }
     }
   },
   mixins: [Widgets],

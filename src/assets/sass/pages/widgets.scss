@@ -58,6 +58,13 @@
               margin-top: 16px;
               padding-right: 43px;
             }
+            // &_one {
+            //   .item {
+            //     // flex-grow: 1;
+            //     width: 49%;
+            //     margin-bottom: 0;
+            //   }
+            // }
           }
           .form-group {
             height: 34px;
@@ -133,6 +140,9 @@
               margin-top: 0;
               height: 100%;
             }
+            // .vs__actions {
+            //   padding-right: 5px;
+            // }
             .vs__search {
               margin: 0;
               height: 100%;
@@ -209,6 +219,16 @@
       &_client {
         background-color: initial;
       }
+      .item__popover {
+        position: absolute !important;
+        left: 8px;
+        bottom: 65px;
+      }
+      &_groups {
+        .item__popover {
+          bottom: 31px;
+        }
+      }
       // img {
       //     width: 31px;
       // }
@@ -254,6 +274,9 @@
         .gen-btn {
           width: 150px;
         }
+        // .item-popover {
+        //   position: absolute;
+        // }
         .places-content {
           display: flex;
           flex-direction: column;
@@ -339,6 +362,12 @@
       color: #fff;
       font-size: 13px;
       margin-top: 17px;
+      display: flex;
+      justify-content: center;
+      a {
+        color: #a2a2ad;
+        text-decoration: underline;
+      }
     }
     &-wrapper {
       border-radius: 6px;
@@ -382,6 +411,11 @@
       display: flex;
       width: 100%;
       flex-wrap: wrap;
+    }
+    &_feedback {
+      .widgets__content-personal {
+        width: 100%;
+      }
     }
     &_client {
       .widgets__items_draggable {
@@ -441,11 +475,14 @@
         }
       }
       &__title {
-        margin-bottom: 5px;
+        // margin-bottom: 5px;
         color: #fff;
       }
+      &__price {
+        margin: 5px 0;
+      }
       &__sales {
-        margin-top: 5px;
+        // margin-top: 5px;
       }
       &:hover {
         .item__menu {
@@ -501,7 +538,7 @@
         }
         .item__popover {
           position: absolute;
-          top: 0px;
+          top: 5px;
           //   bottom: 5px;
           left: 5px;
         }
@@ -512,7 +549,7 @@
         position: relative;
         &-info {
           display: flex;
-          margin-top: 8px;
+          // margin-top: 8px;
           // &:hover {
           //   cursor: pointer;
           //   .popover {

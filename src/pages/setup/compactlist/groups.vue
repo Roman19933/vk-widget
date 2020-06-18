@@ -143,20 +143,20 @@ export default {
   data() {
     return {
       widget: {
-        type_name: "Подписка и рассылки",
-        type_link: "/setup/compactlist/subscriptions?category=nav&edit=true",
+        type_name: "Меню сообщества",
+        type_link: "/setup/compactlist/groups?category=nav&edit=true",
         data: {
           more: "",
           more_url: "",
-          title: "Рассылка с акциями",
+          title: "Меню сообщества",
           title_counter: "",
           title_url: "",
           rows: [
             {
               address: null,
-              button: "Подписаться",
-              button_url: "https://vk.com/apps?act=manage",
-              descr: "Запишись на первую бесплатную тренировку!",
+              button: "Перейти",
+              button_url: "",
+              descr: "",
               icon_id: "",
               text: null,
               time: null,
@@ -183,7 +183,7 @@ export default {
           groups: []
         },
         type: "compact_list",
-        sc_type: "subscribe"
+        sc_type: "groups"
       }
     };
   },

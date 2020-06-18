@@ -36,7 +36,7 @@
       <app-error-popover :varError="mapErros['icon_id']"></app-error-popover>
     </div>
     <div class="item__info">
-      <app-error-popover :varError="mapErros['title']">
+      <app-error-popover :varError="mapErros['title'] || mapErros['url']">
         <template v-slot:varName>
           <a
             href="#"

@@ -314,7 +314,7 @@
           <p
             class="catalog-sales__settings-text"
           >Опубликуйте лучшие отзывы клиентов на самом видном месте сообщества и повышайте доверие аудитории</p>
-          <nuxt-link class="gen-btn" tag="button" to="/setup/table/feedback?category=sale">Выбрать</nuxt-link>
+          <nuxt-link class="gen-btn" tag="button" to="/setup/list/feedback?category=sale">Выбрать</nuxt-link>
         </div>
       </section>
       <section class="catalog-sales__row">

@@ -7,14 +7,14 @@ module.exports = {
   ** Headers of the page
   */
   head: {
-    title: 'vk_widgets',
+    title: 'Ковальский для рекламы Вконтакте',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Nuxt.js project' }
+      { hid: 'description', name: 'description', content: 'Ковальский для рекламы Вконтакте. 19 виджетов для любых целей и задач - установите приложение в сообщество, выберите подходящий виджет из списка и настройте его всего за 5 минут!' }
     ],
     link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+      { rel: 'icon', type: 'image/x-icon', href: '/favicon.png' }
     ]
   },
   css: [
@@ -53,6 +53,7 @@ module.exports = {
     { src: '~plugins/vue-select', ssr: false },
     { src: '~plugins/vuedraggable', ssr: false },
     { src: '~plugins/vk-bridge', ssr: false },
+    { src: '~plugins/vuex-persistedstate', ssr: false },
   ],
   router: {
     prefetchLinks: process.env.NUXT_APP_MODE === 'production',

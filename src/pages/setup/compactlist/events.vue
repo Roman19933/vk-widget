@@ -50,7 +50,7 @@
                         }
                       })
                     "
-                    >{{ widget.data.title }}</a
+                    >{{ this.widget.data.title }}</a
                   >
                 </div>
                 <div class="widgets__items widgets__items_places">
@@ -60,7 +60,7 @@
                     class="widgets__items_draggable"
                   >
                     <template v-for="(item, index) in widget.data.rows">
-                      <app-widget-item-groups
+                      <app-widget-item-places
                         v-model="widget.data.rows[index]"
                         :prename-validation="`data.rows.${index}.`"
                         :validation-errors="validationErrors"
@@ -77,9 +77,27 @@
                     </button>
                   </draggable>
                 </div>
-                <button class="widgets__content-add" @click.prevent>
-                  + Добавить подвал виджета
-                </button>
+                <div class="widgets__content-add">
+                  <a
+                    href="#"
+                    @click.prevent="
+                      $emit('edit:element', {
+                        typeModal: 'modal-widget-title-link',
+                        map: {
+                          title: {
+                            fieldName: 'more',
+                            value: widget.data.more || ''
+                          },
+                          link: {
+                            fieldName: 'more_url',
+                            value: widget.data.more_url || ''
+                          }
+                        }
+                      })
+                    "
+                    >{{ widget.data.more ? widget.data.more : "+ добавить" }}</a
+                  >
+                </div>
               </div>
               <div class="widgets__save">
                 <button class="gen-btn">Сохранить</button>
@@ -98,7 +116,7 @@
           </app-loader>
         </div>
         <div class="widgets__right">
-          <app-widget-form v-model="widget.segmentation" />
+          <app-widget-form v-model="formSegmentation" />
         </div>
       </div>
       <component
@@ -117,7 +135,7 @@
 <script>
 import Widgets from "@/mixins/widgets";
 import AppWidgetForm from "@/components/setup/AppWidgetFormComponent";
-import AppWidgetItemGroups from "@/components/setup/widgets/AppWidgetItemGroupsComponent";
+import AppWidgetItemPlaces from "@/components/setup/widgets/AppWidgetItemPlacesComponent";
 import AppModalWidgetText from "@/components/modal/widgets/AppModalWidgetTextComponent";
 import AppModalWidgetTitleLink from "@/components/modal/widgets/AppModalWidgetTitleLinkComponent";
 
@@ -125,24 +143,24 @@ export default {
   data() {
     return {
       widget: {
-        type_name: "Меню сообщества",
-        type_link: "/setup/coverlist/groups?category=nav&edit=true",
+        type_name: "Мероприятия",
+        type_link: "/setup/compactlist/events?category=sales&edit=true",
         data: {
           more: "",
           more_url: "",
-          title: "Меню сообщества",
+          title: "{firstname}, время поднять навык в SMM",
           title_counter: "",
           title_url: "",
           rows: [
             {
-              address: null,
-              button: "Перейти",
-              button_url: "",
-              descr: "",
+              address: "ул. Советская, 33",
+              button: "Связаться",
+              button_url: "https://vk.com/apps?act=manage",
+              descr: "Более 3000 пар обуви в одном месте",
               icon_id: "",
               text: null,
-              time: null,
-              title: "Бесплатное занятие",
+              time: "8:00-20:00(без выходных)",
+              title: "Онлайн",
               title_url: ""
             }
           ]
@@ -164,21 +182,21 @@ export default {
           groups_exclude: [],
           groups: []
         },
-        type: "cover_list",
-        sc_type: "peoples"
+        type: "compact_list",
+        sc_type: "events"
       }
     };
   },
   methods: {
     addItem(arr) {
       arr.push({
-        address: null,
+        address: "",
         button: "",
         button_url: "",
         descr: "",
         icon_id: "",
         text: null,
-        time: null,
+        time: "",
         title: "",
         title_url: ""
       });
@@ -187,7 +205,7 @@ export default {
   mixins: [Widgets],
   components: {
     AppWidgetForm,
-    AppWidgetItemGroups,
+    AppWidgetItemPlaces,
     AppModalWidgetText,
     AppModalWidgetTitleLink
   }

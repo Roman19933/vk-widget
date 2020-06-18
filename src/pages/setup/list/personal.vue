@@ -63,9 +63,27 @@
                     @remove:item="removeItem(widget.data.rows, index)"
                   />
                 </template>
-                <button class="widgets__content-add" @click.prevent>
-                  + Добавить подвал виджета
-                </button>
+                <div class="widgets__content-add">
+                  <a
+                    href="#"
+                    @click.prevent="
+                      $emit('edit:element', {
+                        typeModal: 'modal-widget-title-link',
+                        map: {
+                          title: {
+                            fieldName: 'more',
+                            value: widget.data.more || ''
+                          },
+                          link: {
+                            fieldName: 'more_url',
+                            value: widget.data.more_url || ''
+                          }
+                        }
+                      })
+                    "
+                    >{{ widget.data.more ? widget.data.more : "+ добавить" }}</a
+                  >
+                </div>
               </div>
               <div class="widgets__save">
                 <button class="gen-btn">Сохранить</button>
@@ -84,7 +102,7 @@
           </app-loader>
         </div>
         <div class="widgets__right">
-          <app-widget-form v-model="widget.segmentation" />
+          <app-widget-form v-model="formSegmentation" />
         </div>
       </div>
       <component

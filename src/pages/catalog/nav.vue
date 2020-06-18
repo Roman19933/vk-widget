@@ -79,7 +79,7 @@
           <p
             class="catalog-nav__settings-text"
           >Сообщите посетителям сообщества о местоположении и времени работы ваших магазинов.</p>
-          <nuxt-link class="gen-btn" tag="button" to="/setup/list/places?category=nav">Выбрать</nuxt-link>
+          <nuxt-link class="gen-btn" tag="button" to="/setup/compactlist/places?category=nav">Выбрать</nuxt-link>
         </div>
       </section>
       <section class="catalog-nav__row">
@@ -134,7 +134,7 @@
           <p
             class="catalog-nav__settings-text"
           >Расскажите аудитории про ваши мероприятия, времени начала и месте проведения.</p>
-          <nuxt-link class="gen-btn" tag="button" to="/setup/list/events?category=nav">Выбрать</nuxt-link>
+          <nuxt-link class="gen-btn" tag="button" to="/setup/compactlist/events?category=nav">Выбрать</nuxt-link>
         </div>
       </section>
       <section class="catalog-nav__row">
@@ -210,7 +210,7 @@
           <p
             class="catalog-nav__settings-text"
           >Опубликуйте самые важные разделы сообщества в виджете: расписания, статьи, обсуждения, лид-формы и т.д.</p>
-          <nuxt-link class="gen-btn" tag="button" to="/setup/coverlist/groups?category=nav">Выбрать</nuxt-link>
+          <nuxt-link class="gen-btn" tag="button" to="/setup/compactlist/groups?category=nav">Выбрать</nuxt-link>
         </div>
       </section>
       <section class="catalog-nav__row">
@@ -265,7 +265,7 @@
           <h4 class="catalog-nav__settings-title">Подписка на рассылки</h4>
           <p
             class="catalog-nav__settings-text"
-          >Используйте возможности Spycat для увеличения подписчиков в рассылки сторонних сервисов.</p>
+          >Используйте возможности Ковальский Виджет для увеличения подписчиков в рассылки сторонних сервисов.</p>
           <p
             class="catalog-nav__settings-text"
           >Создайте рассылку в стороннем приложении и вставьте ссылку на подписку в виджет сообщества.</p>

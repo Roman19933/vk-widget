@@ -62,7 +62,7 @@
                     <template v-for="(item, index) in widget.data.rows">
                       <app-widget-item-places
                         v-model="widget.data.rows[index]"
-                        :prename-validation="`data.tiles.${index}.`"
+                        :prename-validation="`data.rows.${index}.`"
                         :validation-errors="validationErrors"
                         :key="index"
                         @remove:item="removeItem(widget.data.rows, index)"
@@ -77,9 +77,27 @@
                     </button>
                   </draggable>
                 </div>
-                <button class="widgets__content-add" @click.prevent>
-                  + Добавить подвал виджета
-                </button>
+                <div class="widgets__content-add">
+                  <a
+                    href="#"
+                    @click.prevent="
+                      $emit('edit:element', {
+                        typeModal: 'modal-widget-title-link',
+                        map: {
+                          title: {
+                            fieldName: 'more',
+                            value: widget.data.more || ''
+                          },
+                          link: {
+                            fieldName: 'more_url',
+                            value: widget.data.more_url || ''
+                          }
+                        }
+                      })
+                    "
+                    >{{ widget.data.more ? widget.data.more : "+ добавить" }}</a
+                  >
+                </div>
               </div>
               <div class="widgets__save">
                 <button class="gen-btn">Сохранить</button>
@@ -98,7 +116,7 @@
           </app-loader>
         </div>
         <div class="widgets__right">
-          <app-widget-form v-model="widget.segmentation" />
+          <app-widget-form v-model="formSegmentation" />
         </div>
       </div>
       <component
@@ -111,8 +129,8 @@
         @close="clear"
       />
     </div>
-  </form> </template
->s
+  </form>
+</template>
 
 <script>
 import Widgets from "@/mixins/widgets";
@@ -126,7 +144,7 @@ export default {
     return {
       widget: {
         type_name: "Точки продаж",
-        type_link: "/setup/list/places?category=sales&edit=true",
+        type_link: "/setup/compactlist/places?category=sales&edit=true",
         data: {
           more: "",
           more_url: "",
@@ -164,7 +182,7 @@ export default {
           groups_exclude: [],
           groups: []
         },
-        type: "list",
+        type: "compact_list",
         sc_type: "places"
       }
     };
@@ -193,5 +211,3 @@ export default {
   }
 };
 </script>
-
-<style lang="scss" scoped></style>

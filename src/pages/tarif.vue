@@ -87,7 +87,7 @@
             <p class="tarif-payment__info">
               * Чтобы получить счет для юридического лица, напишите нам в
               сообщения сообщества:
-              <a href="#">vk.me/spycat</a>
+              <a href="#">vk.me/Ковальский Виджет</a>
             </p>
             <div class="tarif-payment__checkbox">
               <label>

@@ -13,7 +13,7 @@
             <div class="contract__head-left">
               <img src="img/tarif-modal.png" alt />
               <div class="contract__head-info">
-                <p class="contract__head-name">Spycat для рекламы ВКонтакте</p>
+                <p class="contract__head-name">Ковальский Виджет для рекламы ВКонтакте</p>
                 <span class="contract__head-date">29 сентября 2016 в 7:52</span>
               </div>
             </div>
@@ -49,11 +49,8 @@
               </li>
               <li>
                 <strong>Веб-сервис</strong>
-                программное обеспечение «Spycat», расположенное в сети интернет по адресу
-                <a
-                  href="#"
-                >https://socialcats.ru</a> и
-                <a href="#">https://spycat.ru</a>
+                программное обеспечение «Ковальский Виджет», расположенное в сети интернет по адресу
+                <a href="https://mykowalski.ru/">mykowalski.ru</a>
                 , а также иное программное обеспечение, которое может быть предусмотрено Тарифом.
               </li>
               <li>
@@ -67,9 +64,9 @@
               <li>
                 <strong>Информационные ресурсы</strong>
                 — интернет-сайт Исполнителя
-                <a href="#">https://spycat.ru</a>
+                <a href="https://mykowalski.ru/">mykowalski.ru</a>
                 и сообщество ВКонтакте
-                <a href="#">http://vk.com/spycat</a>
+                <a href="https://vk.com/kowalskiwidget">https://vk.com/kowalskiwidget</a>
               </li>
             </ul>
             <h3>2. ОБЩИЕ ПОЛОЖЕНИЯ</h3>
@@ -100,7 +97,7 @@
               <li>7.1. Договор вступает в силу в момент оплаты Заказчиком Услуг согласно выбранного им Тарифа и действует в течение всего срока, когда Исполнитель предоставляет Услуги, а Заказчик их оплачивает, но в любом случае до полного выполнения Сторонами своих обязательств по Договору.</li>
               <li>7.2. Действие Договора прекращается в случае расторжения Договора по соглашению Сторон или по инициативе одной из Сторон в случае грубого и/или систематического нарушения другой Стороной условий Договора.Услуг.</li>
             </ul>
-            <h3>8. РЕКВИЗИТЫ</h3>
+            <!-- <h3>8. РЕКВИЗИТЫ</h3>
             <ul>
               <li>ИП Горбунов Артем Владимирович</li>
               <li>РФ, 426053, Удмуртская Республика, г. Ижевск, ул. Ворошилова, 1</li>
@@ -111,7 +108,7 @@
               <li>Корр. счет Банка 30101810145250000974</li>
               <li>ИНН Банка 7710140679</li>
               <li>БИК Банка 044525974</li>
-            </ul>
+            </ul> -->
             <button class="gen-btn">
               <img src="img/tarif-heart.png" alt />
               <span>Нравится</span>
@@ -120,8 +117,8 @@
           </div>
         </div>
         <div class="contract__bottom">
-          <a href class="contract__bottom-link">Перейти к сообществу Spycat для рекламы ВКонтакте</a>
-          <p class="contract__bottom-text">1 856 просмотров</p>
+          <a href="https://vk.com/kowalskiwidget" class="contract__bottom-link">Перейти к сообществу Ковальский Виджет для рекламы ВКонтакте</a>
+          <!-- <p class="contract__bottom-text">1 856 просмотров</p> -->
         </div>
       </div>
     </div>
