@@ -31,8 +31,5 @@ export default {
       }
     }
   },
-  // mounted() {
-  //   console.log(this.value[0]);
-  // }
 };
 </script>

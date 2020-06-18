@@ -6,7 +6,7 @@ export default {
   },
   methods: {
     change(str, variable) {
-      if(str !== null) {
+      if (str !== null) {
         let word = str.split(" ");
         for (let i in word) {
           if (word[i] === "[") {

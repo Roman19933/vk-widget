@@ -1,11 +1,7 @@
 <template>
   <div class="widgets__content-places">
     <div class="item__menu">
-      <a
-        href="#"
-        class="item__menu-close"
-        @click.prevent="$emit('remove:item')"
-      >
+      <a href="#" class="item__menu-close" @click.prevent="$emit('remove:item')">
         <img src="/img/close-error.png" alt />
       </a>
       <div class="item__menu-burger">
@@ -58,8 +54,7 @@
                   }
                 })
               "
-              >{{ !!value.title ? value.title : "+ добавить" }}</a
-            >
+            >{{ !!value.title ? value.title : "+ добавить" }}</a>
           </template>
         </app-error-popover>
         <a
@@ -76,8 +71,7 @@
               }
             })
           "
-          >{{ !!value.descr ? value.descr : "+ добавить" }}</a
-        >
+        >{{ !!value.descr ? value.descr : "+ добавить" }}</a>
       </div>
       <app-error-popover :varError="mapErros['button'] || mapErros['button_url']">
         <template v-slot:varName>
@@ -99,8 +93,7 @@
                 }
               })
             "
-            >{{ !!value.button ? value.button : "+ добавить" }}</a
-          >
+          >{{ !!value.button ? value.button : "+ добавить" }}</a>
         </template>
       </app-error-popover>
     </div>

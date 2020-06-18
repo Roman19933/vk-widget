@@ -4,23 +4,14 @@
     <div class="vidget-page__wrapper">
       <div class="vidget-page__head">
         <h1 class="vidget-page__title">Мои виджеты</h1>
-        <nuxt-link to="/catalog/sales" class="vidget-page__add gen-btn"
-          >Создать виджет</nuxt-link
-        >
+        <nuxt-link to="/catalog/sales" class="vidget-page__add gen-btn">Создать виджет</nuxt-link>
       </div>
       <!-- <button @click="vidgets.splice(5, 1)">del</button> -->
-      <div
-        class="vidget-none"
-        v-if="vidgets.length === 0 && vidgetLoad === false"
-      >
+      <div class="vidget-none" v-if="vidgets.length === 0 && vidgetLoad === false">
         <div class="vidget-none__wrapper">
-          <img src="img/PIT.svg" alt="" class="vidget-none__img" />
-          <p class="vidget-none__text">
-            Дружище, у тебя еще нет виджетов. Не пора ли их создать?
-          </p>
-          <nuxt-link to="/catalog/sales" class="vidget-none__link gen-btn"
-            >Создать виджет</nuxt-link
-          >
+          <img src="img/PIT.svg" alt class="vidget-none__img" />
+          <p class="vidget-none__text">Дружище, у тебя еще нет виджетов. Не пора ли их создать?</p>
+          <nuxt-link to="/catalog/sales" class="vidget-none__link gen-btn">Создать виджет</nuxt-link>
         </div>
       </div>
       <div class="home" v-else>
@@ -29,15 +20,11 @@
             <!-- <ul class="home__blocks"> -->
             <draggable v-model="vidgets">
               <transition-group name="list-animation" tag="ul">
-                <li
-                  v-for="vidget in vidgets"
-                  :key="vidget.id"
-                  class="home-block"
-                >
+                <li v-for="vidget in vidgets" :key="vidget.id" class="home-block">
                   <div class="home-block__title">
                     <div class="home-block__icon">
                       <!-- @mousedown="sortList"
-                      @mousemove="sortListMove" -->
+                      @mousemove="sortListMove"-->
                       <div class="popover">
                         <div class="popover__wrapper">
                           <span>Сортировать</span>
@@ -53,14 +40,9 @@
                           $bvModal.show('modal-edit-name')
                       "
                     >
-                      <span class="home-block__name-title">
-                        {{ vidget.name }}
-                      </span>
+                      <span class="home-block__name-title">{{ vidget.name }}</span>
                       <div class="home-block__name-edit">
-                        <app-svg-icon
-                          name="pencil-edit-button"
-                          class="home-block__name-icon"
-                        />
+                        <app-svg-icon name="pencil-edit-button" class="home-block__name-icon" />
                         <div class="popover">
                           <div class="popover__wrapper">
                             <span>Переименовать Виджет</span>
@@ -83,7 +65,7 @@
                         v-b-modal="'modal-timer'"
                       >
                         <app-switch/>
-                      </div> -->
+                      </div>-->
                       <div
                         :class="'switch__disabled-wrapper'"
                         @click="
@@ -113,16 +95,11 @@
                           <span>Возраст: от 15 до 66</span>
                           <span>Пол: женский</span>
                           <span>ДР: сегодня</span>
-                          <span>
-                            Семейное положение: не женат/не замужем
-                          </span>
+                          <span>Семейное положение: не женат/не замужем</span>
                         </div>
                       </div>
                     </a>
-                    <button
-                      @click="edit(vidget.id, vidget.type_link)"
-                      class="home-block__edit"
-                    >
+                    <button @click="edit(vidget.id, vidget.type_link)" class="home-block__edit">
                       <img src="img/home-register.png" alt />
                       <div class="popover">
                         <div class="popover__wrapper">
@@ -248,7 +225,6 @@ export default {
       let sa = this.switchActive,
         index = this.vidgets.findIndex(e => e.id === sa),
         vid = this.vidgets[index];
-      console.log("publick false");
       let { data } = await this.$store.dispatch("server/sales/disable", {
         groupId: this.groupId,
         vidId: vid.id
@@ -272,7 +248,6 @@ export default {
         "server/token/checkToken",
         groupId
       );
-      console.log(check);
       !check && this.updateTokenGroup();
       return check;
     },

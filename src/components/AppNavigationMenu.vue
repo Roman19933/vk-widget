@@ -113,10 +113,10 @@ export default {
               text: "Для навигации",
               to: "/catalog/nav"
             },
-            {
+            /* {
               text: "Информационные",
               to: "/catalog/info"
-            }
+            } */
           ]
         },
         {
@@ -144,5 +144,3 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-</style>

@@ -1,0 +1,15 @@
+.main__footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 35px;
+  padding: 25px;
+  background: #3A3B5E;
+  box-shadow: 0px -2px 5px rgba(10, 10, 10, 0.4);
+  font-size: 14px;
+  font-family: 'RobotoLight';
+  line-height: calc(14*1.2px);
+  color: #fff;
+  a {
+    color: #FFC25E;
+  }
+}

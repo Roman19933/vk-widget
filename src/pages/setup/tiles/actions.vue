@@ -19,8 +19,7 @@
                       }
                     })
                   "
-                  >{{ widget.name || defaultName }}</a
-                >
+                >{{ widget.name || defaultName }}</a>
               </div>
               <div class="widgets__switch">
                 <span>Режим просмотра</span>
@@ -50,8 +49,7 @@
                         }
                       })
                     "
-                    >{{ widget.data.title }}</a
-                  >
+                  >{{ widget.data.title }}</a>
                 </div>
                 <div class="widgets__items widgets__items_product">
                   <draggable
@@ -73,9 +71,7 @@
                       class="add-item"
                       @click.prevent="addItem(widget.data.tiles)"
                       v-if="widget.data.tiles.length < 10 && !this.switch"
-                    >
-                      + Добавить элемент
-                    </button>
+                    >+ Добавить элемент</button>
                   </draggable>
                 </div>
                 <div class="widgets__content-add">
@@ -96,8 +92,7 @@
                         }
                       })
                     "
-                    >{{ widget.data.more ? widget.data.more : "+ добавить" }}</a
-                  >
+                  >{{ widget.data.more ? widget.data.more : "+ добавить" }}</a>
                 </div>
               </div>
               <div class="widgets__save">
@@ -109,7 +104,9 @@
                 <p>
                   В виджетах запрещено размещение сторонней коммерческой и
                   политической рекламы! Подробнее в п.5.13.4.1.
-                  <a href="#">правил ВКонтакте!</a>
+                  <a
+                    href="#"
+                  >правил ВКонтакте!</a>
                 </p>
               </div>
               <!-- <app-widget-error v-if="error" @close="error = !error" /> -->
@@ -204,39 +201,6 @@ export default {
         sc_type: "sales"
       }
     };
-  },
-  // created() {
-  //   this.formSegmentation = JSON.parse(JSON.stringify(this.widget.segmentation));
-  // },
-  // watch: {
-  //   formSegmentation: {
-  //     handler(bef) {
-  //       console.log(bef)
-  //       let segment = this.widget.segmentation;
-  //       let clone = {
-  //         sex: bef.sex ? bef.sex.id : [],
-  //         age: { from: bef.age.from, to: bef.age.to },
-  //         bdate: bef.bdate ? bef.bdate : [],
-  //         relation: bef.relation ? bef.relation.id : [],
-  //         city: bef.city ? bef.city.id : [],
-  //         devices: bef.devices ? bef.devices.screen_name : [],
-  //         userSurname: bef.userSurname ? this.splitStr(`${bef.userSurname}`) : [],
-  //         userName: bef.userName ? this.splitStr(`${bef.userName}`) : [],
-  //         userInterests: bef.userInterests ? this.splitStr(`${bef.userInterests}`) : [],
-  //         relationGroups: bef.relationGroups ? this.splitStr(`${bef.relationGroups}`) : [],
-  //         users: bef.users ? this.splitStr(`${bef.users}`) : [],
-  //         groups_exclude: bef.groups_exclude ? this.splitStr(`${bef.groups_exclude}`) : [],
-  //         groups: bef.groups ? this.splitStr(`${bef.groups}`) : []
-  //       };
-  //       Object.assign(segment, clone);
-  //     },
-  //     deep: true
-  //   }
-  // },
-  methods: {
-    // splitStr(str) {
-    //   return str.split("\n")
-    // }
   },
   mixins: [Widgets],
   components: {

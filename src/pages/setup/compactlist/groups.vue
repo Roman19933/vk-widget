@@ -19,8 +19,7 @@
                       }
                     })
                   "
-                  >{{ widget.name || defaultName }}</a
-                >
+                >{{ widget.name || defaultName }}</a>
               </div>
               <div class="widgets__switch">
                 <span>Режим просмотра</span>
@@ -50,8 +49,7 @@
                         }
                       })
                     "
-                    >{{ widget.data.title }}</a
-                  >
+                  >{{ widget.data.title }}</a>
                 </div>
                 <div class="widgets__items widgets__items_places">
                   <draggable
@@ -72,9 +70,7 @@
                       class="add-item"
                       @click.prevent="addItem(widget.data.rows)"
                       v-if="widget.data.rows.length < 6 && !this.switch"
-                    >
-                      + Добавить элемент
-                    </button>
+                    >+ Добавить элемент</button>
                   </draggable>
                 </div>
                 <div class="widgets__content-add">
@@ -95,8 +91,7 @@
                         }
                       })
                     "
-                    >{{ widget.data.more ? widget.data.more : "+ добавить" }}</a
-                  >
+                  >{{ widget.data.more ? widget.data.more : "+ добавить" }}</a>
                 </div>
               </div>
               <div class="widgets__save">
@@ -108,7 +103,9 @@
                 <p>
                   В виджетах запрещено размещение сторонней коммерческой и
                   политической рекламы! Подробнее в п.5.13.4.1.
-                  <a href="#">правил ВКонтакте!</a>
+                  <a
+                    href="#"
+                  >правил ВКонтакте!</a>
                 </p>
               </div>
               <!-- <app-widget-error v-if="error" @close="error = !error" /> -->
@@ -211,5 +208,3 @@ export default {
   }
 };
 </script>
-
-<style lang="scss" scoped></style>

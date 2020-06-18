@@ -2,11 +2,7 @@
   <header class="header">
     <div class="header__wrapper">
       <div class="header__title">
-        <a
-          href="#"
-          v-if="this.$route.query.category"
-          v-b-modal="'modal-wrapper'"
-        >
+        <a href="#" v-if="this.$route.query.category" v-b-modal="'modal-wrapper'">
           <!-- :to="this.$route.query.category === 'nav' ? '/catalog/nav' : '/catalog/sales'" -->
           <img src="/img/arrow.png" alt />
           Назад
@@ -23,17 +19,25 @@
         </div>
       </div>
     </div>
-    <b-toast id="update-toast" variant="primary" toaster="b-toaster-bottom-right" class="toast-all-app" solid>
-      <template v-slot:toast-title>
-        Обновление виджета
-      </template>
-        Виджет успешно оновлен
+    <b-toast
+      id="update-toast"
+      variant="primary"
+      toaster="b-toaster-bottom-right"
+      class="toast-all-app"
+      solid
+    >
+      <template v-slot:toast-title>Обновление виджета</template>
+      Виджет успешно оновлен
     </b-toast>
-    <b-toast id="create-toast" variant="primary" toaster="b-toaster-bottom-right" class="toast-all-app" solid>
-      <template v-slot:toast-title>
-        Создание виджета
-      </template>
-        Виджет успешно добавлен
+    <b-toast
+      id="create-toast"
+      variant="primary"
+      toaster="b-toaster-bottom-right"
+      class="toast-all-app"
+      solid
+    >
+      <template v-slot:toast-title>Создание виджета</template>
+      Виджет успешно добавлен
     </b-toast>
     <app-modal-wrapper
       title="Выйти без сохранения?"
@@ -75,23 +79,30 @@ export default {
           return "Мои виджеты";
       }
     },
-    linkBack () {
-      console.log(this.$route.query)
+    linkBack() {
+      console.log(this.$route.query);
       if (this.$route.query.edit) {
-        this.$router.push('/main')
+        this.$router.push("/main");
       } else {
-        this.$router.push(this.$route.query.category === 'nav' ? '/catalog/nav' : '/catalog/sales')
+        this.$router.push(
+          this.$route.query.category === "nav"
+            ? "/catalog/nav"
+            : "/catalog/sales"
+        );
       }
     }
   },
   async mounted() {
     this.headerTitle = this.headerName(this.$route.name);
     try {
-      const group_id = this.$store.getters['server/token/vkQuery'].vk_group_id
-      let response = await this.$store.dispatch("server/group/getGroup", group_id);
-      this.groupInfo = response[0]
-    } catch(e) {
-      console.log(e)
+      const group_id = this.$store.getters["server/token/vkQuery"].vk_group_id;
+      let response = await this.$store.dispatch(
+        "server/group/getGroup",
+        group_id
+      );
+      this.groupInfo = response[0];
+    } catch (e) {
+      console.log(e);
     }
   },
   watch: {

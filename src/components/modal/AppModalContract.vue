@@ -9,18 +9,18 @@
       </button>
       <div class="contract">
         <div class="contract__wrapper">
-          <div class="contract__head">
+          <!-- <div class="contract__head">
             <div class="contract__head-left">
               <img src="img/tarif-modal.png" alt />
               <div class="contract__head-info">
-                <p class="contract__head-name">Spycat для рекламы ВКонтакте</p>
-                <span class="contract__head-date">29 сентября 2016 в 7:52</span>
+                <p class="contract__head-name">Ковальский Виджет для рекламы ВКонтакте</p>
+                <span class="contract__head-date">18 июня 2020 в 11:39</span>
               </div>
             </div>
             <div class="contract__head-right">
               <button class="gen-btn">Подписаться</button>
             </div>
-          </div>
+          </div> -->
           <div class="contract__content">
             <div class="contract__content-top">
               <h2>Публичный договор-оферта</h2>
@@ -49,11 +49,8 @@
               </li>
               <li>
                 <strong>Веб-сервис</strong>
-                программное обеспечение «Spycat», расположенное в сети интернет по адресу
-                <a
-                  href="#"
-                >https://socialcats.ru</a> и
-                <a href="#">https://spycat.ru</a>
+                программное обеспечение «Ковальский Виджет», расположенное в сети интернет по адресу
+                <a href="https://mykowalski.ru/" target="_blank">mykowalski.ru</a>
                 , а также иное программное обеспечение, которое может быть предусмотрено Тарифом.
               </li>
               <li>
@@ -67,9 +64,9 @@
               <li>
                 <strong>Информационные ресурсы</strong>
                 — интернет-сайт Исполнителя
-                <a href="#">https://spycat.ru</a>
+                <a href="https://mykowalski.ru/" target="_blank">mykowalski.ru</a>
                 и сообщество ВКонтакте
-                <a href="#">http://vk.com/spycat</a>
+                <a href="https://vk.com/kowalskiwidget" target="_blank">https://vk.com/kowalskiwidget</a>
               </li>
             </ul>
             <h3>2. ОБЩИЕ ПОЛОЖЕНИЯ</h3>
@@ -102,26 +99,25 @@
             </ul>
             <h3>8. РЕКВИЗИТЫ</h3>
             <ul>
-              <li>ИП Горбунов Артем Владимирович</li>
-              <li>РФ, 426053, Удмуртская Республика, г. Ижевск, ул. Ворошилова, 1</li>
-              <li>ИНН 182704771487</li>
-              <li>ОГРН 317183200054815</li>
-              <li>Расчетный счет 40802810900000223511</li>
-              <li>Банк АО «Тинькофф Банк»</li>
-              <li>Корр. счет Банка 30101810145250000974</li>
-              <li>ИНН Банка 7710140679</li>
-              <li>БИК Банка 044525974</li>
+              <li>ИП Романов Сергей Евгеневич</li>
+              <li>ИНН 344691287230</li>
+              <li>ОГРН 319784700029340</li>
+              <li>Расчетный счет 40802810332230002232</li>
+              <li>Банк АО «Альфа-Банк»</li>
+              <li>Корр. счет Банка 30101810600000000786</li>
+              <li>ИНН Банка 344691287230</li>
+              <li>БИК Банка 044030786</li>
             </ul>
-            <button class="gen-btn">
+            <!-- <button class="gen-btn">
               <img src="img/tarif-heart.png" alt />
               <span>Нравится</span>
               <span>24</span>
-            </button>
+            </button> -->
           </div>
         </div>
         <div class="contract__bottom">
-          <a href class="contract__bottom-link">Перейти к сообществу Spycat для рекламы ВКонтакте</a>
-          <p class="contract__bottom-text">1 856 просмотров</p>
+          <a href="https://vk.com/kowalskiwidget" target="_blank" class="contract__bottom-link">Перейти к сообществу Ковальский Виджет для рекламы ВКонтакте</a>
+          <!-- <p class="contract__bottom-text">1 856 просмотров</p> -->
         </div>
       </div>
     </div>
