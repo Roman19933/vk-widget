@@ -17,7 +17,7 @@
           <button @click="toPlug" class="gen-btn">Подключить себе</button>
           <button @click="toPlug" class="gen-btn">Подключить клиенту</button>
           <!-- <nuxt-link to="/catalog/sales" class="gen-btn">Подключить себе</nuxt-link>
-          <nuxt-link to="/catalog/sales" class="gen-btn">Подключить клиенту</nuxt-link> -->
+          <nuxt-link to="/catalog/sales" class="gen-btn">Подключить клиенту</nuxt-link>-->
         </div>
         <div class="main__head-footer">
           <img src="/img/scroll.png" alt />
@@ -117,7 +117,7 @@
           <button @click="toPlug" class="gen-btn">Подключить себе</button>
           <button @click="toPlug" class="gen-btn">Подключить клиенту</button>
           <!-- <nuxt-link to="/catalog/sales" tag="button" class="gen-btn">Подключить себе</nuxt-link>
-          <nuxt-link to="/catalog/sales" tag="button" class="gen-btn">Подключить клиенту</nuxt-link> -->
+          <nuxt-link to="/catalog/sales" tag="button" class="gen-btn">Подключить клиенту</nuxt-link>-->
         </div>
         <div class="main__options-items" style="width: 100%">
           <div id="vk_groups"></div>
@@ -125,43 +125,53 @@
       </div>
 
       <footer class="main__footer">
-        <div class="main__footer-left">Пользовательское соглашение <a href="mailto:action@mykowalski.ru">action@mykowalski.ru</a></div>
+        <div class="main__footer-left"><a href="#" rel="nofollow" v-b-modal="'modal-contract'">Пользовательское соглашение</a> action@mykowalski.ru</div>
         <div class="main__footer-right">ИП Романов Сергей Евгеньевич, ИНН 344691287230</div>
       </footer>
     </div>
 
-    <img class="main__cloudlet" src="img/cloudlet.svg" alt>
-    <img class="main__cloudlet1" src="img/cloudlet8.svg" alt>
-    <img class="main__cloudlet2" src="img/cloudlet1.svg" alt>
-    <img class="main__cloudlet3" src="img/cloudlet2.svg" alt>
-    <img class="main__cloudlet4" src="img/cloudlet3.svg" alt>
-    <img class="main__cloudlet5" src="img/cloudlet4.svg" alt>
-    <img class="main__cloudlet6" src="img/cloudlet5.svg" alt>
-    <img class="main__cloudlet7" src="img/cloudlet6.svg" alt>
-    <img class="main__cloudlet8" src="img/cloudlet7.svg" alt>
-    <img class="main__cloudlet9" src="img/cloudlet8.svg" alt>
+    <img class="main__cloudlet" src="img/cloudlet.svg" alt />
+    <img class="main__cloudlet1" src="img/cloudlet8.svg" alt />
+    <img class="main__cloudlet2" src="img/cloudlet1.svg" alt />
+    <img class="main__cloudlet3" src="img/cloudlet2.svg" alt />
+    <img class="main__cloudlet4" src="img/cloudlet3.svg" alt />
+    <img class="main__cloudlet5" src="img/cloudlet4.svg" alt />
+    <img class="main__cloudlet6" src="img/cloudlet5.svg" alt />
+    <img class="main__cloudlet7" src="img/cloudlet6.svg" alt />
+    <img class="main__cloudlet8" src="img/cloudlet7.svg" alt />
+    <img class="main__cloudlet9" src="img/cloudlet8.svg" alt />
 
-
+    <app-modal-contract />
   </main>
 </template>
 
 <script>
+import AppModalContract from "@/components/modal/AppModalContract.vue";
 export default {
-  head: {
-    script: [
-
-    ]
+  components: {
+    AppModalContract
   },
-  mounted () {
-    const groupId = this.$store.getters['server/token/vkQuery'].vk_group_id
-    this.$store.dispatch('vk/bridge/updateTokenGroup', groupId)
+  mounted() {
+    const groupId = this.$store.getters["server/token/vkQuery"].vk_group_id;
+    this.$store.dispatch("vk/bridge/updateTokenGroup", groupId);
   },
-  created () {
-    if (typeof VK === 'object') {
-      VK.Widgets.Group("vk_groups", {mode: 3, width: "900px", no_cover: 1, color1: '21203D', color2: 'FFFFFF', color3: 'F53180'}, 182894787);
+  created() {
+    if (typeof VK === "object") {
+      VK.Widgets.Group(
+        "vk_groups",
+        {
+          mode: 3,
+          width: "900px",
+          no_cover: 1,
+          color1: "21203D",
+          color2: "FFFFFF",
+          color3: "F53180"
+        },
+        182894787
+      );
     }
   },
-  layout: 'main',
+  layout: "main",
   methods: {
     async toPlug() {
       try {
@@ -171,7 +181,7 @@ export default {
           "_blank"
         );
       } catch (e) {
-        console.log(e)
+        console.log(e);
       }
     }
   }
