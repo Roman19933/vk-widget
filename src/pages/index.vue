@@ -28,7 +28,7 @@
         <div class="main__info-wrapper wrapper">
           <h4>ДЛЯ ЧЕГО НУЖЕН SPYCAT?</h4>
           <div class="main__info-content">
-            <img src="/img/logo_widgets.png" alt />
+            <img src="/img/logo_a.gif" alt />
             <div class="main__info-p">
               <p>
                 Вы сделали дизайн сообщества, публикуете посты, настроили

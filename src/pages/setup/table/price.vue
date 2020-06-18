@@ -60,17 +60,14 @@
                     group="client"
                     class="widgets__items_draggable "
                   > -->
-                    <template v-for="(item, index) in widget.data.body">
-                      <app-widget-item-table
-                        v-model="widget.data.body[index]"
-                        :key="index"
-                        :index="index"
-                        @remove:item="removeItem(widget.data.body, index)"
-                      />
-                    </template>
-                    <button class="add-item" @click.prevent="addItemTable">
-                      + Добавить элемент
-                    </button>
+                  <template>
+                    <app-widget-item-table
+                      v-model="widget.data"
+                    />
+                  </template>
+                  <button class="add-item" @click.prevent="addItemTable">
+                    + Добавить элемент
+                  </button>
                   <!-- </draggable> -->
                 </div>
                 <div class="widgets__content-add">
@@ -166,7 +163,7 @@ export default {
               {
                 text: "1 строка",
                 url: "https://vk.com/wall-12345_542321"
-              },
+              }
             ],
             [
               {
@@ -184,7 +181,7 @@ export default {
               {
                 text: "2 строка",
                 url: "https://vk.com/wall-12345_542321"
-              },
+              }
             ]
           ],
           head: [

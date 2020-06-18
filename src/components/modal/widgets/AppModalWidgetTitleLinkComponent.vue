@@ -14,7 +14,7 @@
         <div class="widgets-setting__input">
           <span class="modal__title">ссылка</span>
           <div class="form-group">
-            <input type="text" placeholder="ссылка" v-model="form.link" />
+            <input type="text" placeholder="ссылка" v-model="form.link" @/>
           </div>
         </div>
         <div class="widgets-setting__btn">
@@ -98,6 +98,9 @@ export default {
         link: ""
       }
     };
+  },
+  methods: {
+
   }
 };
 </script>
