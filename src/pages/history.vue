@@ -31,12 +31,8 @@
                 <span>{{ his.periodTo }}</span>
               </p>
               <p class="history__info">
-                <img
-                  v-if="his.status"
-                  src="img/tarif-ok-yellow.png" alt />
-                <img
-                  v-else
-                  src="img/tarif-close.png" alt />
+                <img v-if="his.status" src="img/tarif-ok-yellow.png" alt />
+                <img v-else src="img/tarif-close.png" alt />
               </p>
               <p class="history__info">{{ his.payment }}</p>
             </li>
@@ -65,7 +61,7 @@
                 <img src="img/tarif-close.png" alt />
               </p>
               <p class="history__info">Банк</p>
-            </li> -->
+            </li>-->
           </ul>
           <nuxt-link to="/tarif" class="history__link gen-btn">Назад к тарифам</nuxt-link>
         </div>
@@ -75,7 +71,7 @@
 </template>
 
 <script>
-import AppNavigationMenu from "@/components/AppNavigationMenu.vue"
+import AppNavigationMenu from "@/components/AppNavigationMenu.vue";
 
 export default {
   components: {
@@ -85,65 +81,61 @@ export default {
     return {
       historyData: [
         {
-          date: '26.11.2019',
+          date: "26.11.2019",
           price: 8880,
-          rate: 'Для бизнеса',
-          period: '26.11.2019',
-          periodTo: '26.11.2020',
+          rate: "Для бизнеса",
+          period: "26.11.2019",
+          periodTo: "26.11.2020",
           status: true,
-          payment: 'Банк'
+          payment: "Банк"
         },
         {
-          date: '26.11.2019',
+          date: "26.11.2019",
           price: 8880,
-          rate: 'Для бизнеса',
-          period: '26.11.2019',
-          periodTo: '26.11.2020',
+          rate: "Для бизнеса",
+          period: "26.11.2019",
+          periodTo: "26.11.2020",
           status: true,
-          payment: 'Банк'
+          payment: "Банк"
         },
         {
-          date: '26.11.2019',
+          date: "26.11.2019",
           price: 8880,
-          rate: 'Для бизнеса',
-          period: '26.11.2019',
-          periodTo: '26.11.2020',
+          rate: "Для бизнеса",
+          period: "26.11.2019",
+          periodTo: "26.11.2020",
           status: true,
-          payment: 'Банк'
+          payment: "Банк"
         },
         {
-          date: '26.11.2019',
+          date: "26.11.2019",
           price: 8880,
-          rate: 'Для бизнеса',
-          period: '26.11.2019',
-          periodTo: '26.11.2020',
+          rate: "Для бизнеса",
+          period: "26.11.2019",
+          periodTo: "26.11.2020",
           status: true,
-          payment: 'Банк'
+          payment: "Банк"
         },
         {
-          date: '26.11.2019',
+          date: "26.11.2019",
           price: 8880,
-          rate: 'Для бизнеса',
-          period: '26.11.2019',
-          periodTo: '26.11.2020',
+          rate: "Для бизнеса",
+          period: "26.11.2019",
+          periodTo: "26.11.2020",
           status: true,
-          payment: 'Банк'
+          payment: "Банк"
         },
         {
-          date: '26.11.2019',
+          date: "26.11.2019",
           price: 8880,
-          rate: 'Для бизнеса',
-          period: '26.11.2019',
-          periodTo: '26.11.2020',
+          rate: "Для бизнеса",
+          period: "26.11.2019",
+          periodTo: "26.11.2020",
           status: false,
-          payment: 'Банк'
+          payment: "Банк"
         }
       ]
     };
   },
-  methods: {}
 };
 </script>
-
-<style lang="scss" scoped>
-</style>

@@ -11,7 +11,10 @@ module.exports = {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Ковальский для рекламы Вконтакте. 19 виджетов для любых целей и задач - установите приложение в сообщество, выберите подходящий виджет из списка и настройте его всего за 5 минут!' }
+      { hid: 'description', name: 'description', content: 'Ковальский для рекламы Вконтакте. 19 виджетов для любых целей и задач - установите приложение в сообщество, выберите подходящий виджет из списка и настройте его всего за 5 минут!' },
+    ],
+    script: [
+      { src: 'https://vk.com/js/api/openapi.js?168' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.png' }

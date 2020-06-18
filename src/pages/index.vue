@@ -119,8 +119,17 @@
           <!-- <nuxt-link to="/catalog/sales" tag="button" class="gen-btn">Подключить себе</nuxt-link>
           <nuxt-link to="/catalog/sales" tag="button" class="gen-btn">Подключить клиенту</nuxt-link> -->
         </div>
+        <div class="main__options-items" style="width: 100%">
+          <div id="vk_groups"></div>
+        </div>
       </div>
+
+      <footer class="main__footer">
+        <div class="main__footer-left">Пользовательское соглашение <a href="mailto:action@mykowalski.ru">action@mykowalski.ru</a></div>
+        <div class="main__footer-right">ИП Романов Сергей Евгеньевич, ИНН 344691287230</div>
+      </footer>
     </div>
+
     <img class="main__cloudlet" src="img/cloudlet.svg" alt>
     <img class="main__cloudlet1" src="img/cloudlet8.svg" alt>
     <img class="main__cloudlet2" src="img/cloudlet1.svg" alt>
@@ -131,14 +140,26 @@
     <img class="main__cloudlet7" src="img/cloudlet6.svg" alt>
     <img class="main__cloudlet8" src="img/cloudlet7.svg" alt>
     <img class="main__cloudlet9" src="img/cloudlet8.svg" alt>
+
+
   </main>
 </template>
 
 <script>
 export default {
+  head: {
+    script: [
+
+    ]
+  },
   mounted () {
     const groupId = this.$store.getters['server/token/vkQuery'].vk_group_id
     this.$store.dispatch('vk/bridge/updateTokenGroup', groupId)
+  },
+  created () {
+    if (typeof VK === 'object') {
+      VK.Widgets.Group("vk_groups", {mode: 3, width: "900px", no_cover: 1, color1: '21203D', color2: 'FFFFFF', color3: 'F53180'}, 182894787);
+    }
   },
   layout: 'main',
   methods: {

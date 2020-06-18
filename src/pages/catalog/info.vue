@@ -11,37 +11,26 @@
         <div class="catalog-sales__content">
           <div class="catalog-sales__content-header">
             <app-svg-icon name="gift" class="catalog-sales__content-icon" />
-            <h3 class="catalog-sales__content-text">
-              Артем, хочешь купон на скидку в подарок?
-            </h3>
+            <h3 class="catalog-sales__content-text">Артем, хочешь купон на скидку в подарок?</h3>
           </div>
           <div class="stock-discounts">
             <div class="stock-discounts__item">
               <div class="stock-discounts__img-wrapper">
-                <img
-                  class="stock-discounts__img"
-                  src="/img/catalog-sales-sale1.png"
-                />
+                <img class="stock-discounts__img" src="/img/catalog-sales-sale1.png" />
               </div>
               <div class="stock-discounts__header">Скидки до 70%</div>
               <a href="#" class="catalog-sales__link">Получить скидку</a>
             </div>
             <div class="stock-discounts__item">
               <div class="stock-discounts__img-wrapper">
-                <img
-                  class="stock-discounts__img"
-                  src="/img/catalog-sales-sale2.png"
-                />
+                <img class="stock-discounts__img" src="/img/catalog-sales-sale2.png" />
               </div>
               <div class="stock-discounts__header">Только сегодня</div>
               <a href="#" class="catalog-sales__link">Получить скидку</a>
             </div>
             <div class="stock-discounts__item">
               <div class="stock-discounts__img-wrapper">
-                <img
-                  class="stock-discounts__img"
-                  src="/img/catalog-sales-sale3.png"
-                />
+                <img class="stock-discounts__img" src="/img/catalog-sales-sale3.png" />
               </div>
               <div class="stock-discounts__header">Заполни анкету</div>
               <a href="#" class="catalog-sales__link">Получить скидку</a>
@@ -54,12 +43,7 @@
             Добавьте в сообщество от 3 до 10 баннеров, чтобы привлечь внимание к
             акциям и получить больше продажм
           </p>
-          <nuxt-link
-            class="gen-btn"
-            tag="button"
-            to="/setup/table/price?category=info"
-            >Выбрать</nuxt-link
-          >
+          <nuxt-link class="gen-btn" tag="button" to="/setup/table/price?category=info">Выбрать</nuxt-link>
         </div>
       </section>
     </main>
@@ -77,5 +61,3 @@ export default {
   }
 };
 </script>
-
-<style lang="scss" scoped></style>

@@ -1,11 +1,11 @@
 <template>
   <div class="widgets__content-text widgets__content-text_messages">
     <app-error-popover :varError="mapErros['text']">
-    <template v-slot:varName>
-    <a
-      href="#"
-      class="mess-text"
-      @click.prevent="$emit('edit:element', {
+      <template v-slot:varName>
+        <a
+          href="#"
+          class="mess-text"
+          @click.prevent="$emit('edit:element', {
               typeModal: 'modal-widget-text-area',
               map: {
                 title: {
@@ -14,8 +14,8 @@
                 }
               }
             })"
-    >{{!!value.text ? value.text : "+ добавить"}}</a>
-    </template>
+        >{{!!value.text ? value.text : "+ добавить"}}</a>
+      </template>
     </app-error-popover>
     <a
       href="#"
@@ -78,5 +78,3 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-</style>

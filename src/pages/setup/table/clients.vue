@@ -19,8 +19,7 @@
                       }
                     })
                   "
-                  >{{ widget.name || defaultName }}</a
-                >
+                >{{ widget.name || defaultName }}</a>
               </div>
               <div class="widgets__switch">
                 <span>Режим просмотра</span>
@@ -51,14 +50,13 @@
                         }
                       })
                     "
-                    >{{ widget.data.title }}</a
-                  >
+                  >{{ widget.data.title }}</a>
                 </div>
                 <div class="widgets__items widgets__items_client">
                   <draggable
                     v-model="widget.data.body"
                     group="client"
-                    class="widgets__items_draggable "
+                    class="widgets__items_draggable"
                   >
                     <template v-for="(item, index) in widget.data.body">
                       <app-widget-item-client
@@ -81,9 +79,7 @@
                         })
                       "
                       v-if="widget.data.body.length < 10 && !this.switch"
-                    >
-                      + Добавить элемент
-                    </button>
+                    >+ Добавить элемент</button>
                   </draggable>
                 </div>
                 <div class="widgets__content-add">
@@ -104,8 +100,7 @@
                         }
                       })
                     "
-                    >{{ widget.data.more ? widget.data.more : "+ добавить" }}</a
-                  >
+                  >{{ widget.data.more ? widget.data.more : "+ добавить" }}</a>
                 </div>
               </div>
               <div class="widgets__save">
@@ -117,7 +112,9 @@
                 <p>
                   В виджетах запрещено размещение сторонней коммерческой и
                   политической рекламы! Подробнее в п.5.13.4.1.
-                  <a href="#">правил ВКонтакте!</a>
+                  <a
+                    href="#"
+                  >правил ВКонтакте!</a>
                 </p>
               </div>
             </div>
@@ -228,5 +225,3 @@ export default {
   }
 };
 </script>
-
-<style lang="scss" scoped></style>

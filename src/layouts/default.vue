@@ -1,7 +1,7 @@
 <template>
   <div>
     <app-header />
-    <nuxt/>
+    <nuxt />
   </div>
 </template>
 
@@ -12,7 +12,7 @@ export default {
   components: {
     AppHeader
   }
-}
+};
 </script>
 
 
