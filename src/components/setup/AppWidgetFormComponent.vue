@@ -176,7 +176,7 @@
         <div class="form-group form-group_textarea">
           <textarea
             placeholder="Введите ID сообществ"
-            :value="value.relationGroups"
+            :value="value.relation_groups"
             @input="changeData('relationGroups', $event.target.value)"
           ></textarea>
           <span>Каждый номер с новой строки</span>
@@ -190,7 +190,7 @@
         <div class="form-group form-group_textarea">
           <textarea
             placeholder="Введите ID сообществ"
-            :value="value.userInterests"
+            :value="value.user_interests"
             @input="changeData('userInterests', $event.target.value)"
           ></textarea>
           <span>Каждый номер с новой строки</span>
@@ -204,7 +204,7 @@
         <div class="form-group form-group_textarea">
           <textarea
             placeholder="Введите ID сообществ"
-            :value="value.userName"
+            :value="value.user_name"
             @input="changeData('userName', $event.target.value)"
           ></textarea>
           <span>Каждый номер с новой строки</span>
@@ -218,7 +218,7 @@
         <div class="form-group form-group_textarea">
           <textarea
             placeholder="Введите ID сообществ"
-            :value="value.userSurname"
+            :value="value.user_surname"
             @input="changeData('userSurname', $event.target.value)"
           ></textarea>
           <span>Каждый номер с новой строки</span>
