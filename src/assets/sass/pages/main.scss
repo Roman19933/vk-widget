@@ -22,10 +22,13 @@
         justify-content: space-between;
         align-items: center;
         padding-bottom: 24px;
+        &-logo {
+          width: 150px;
+        }
         &-title {
             text-align: center;
             img {
-                margin-bottom: 79px;
+                margin-bottom: 55px;
             }
             h4 {
                 font-size: 35px;

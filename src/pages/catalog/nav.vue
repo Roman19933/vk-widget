@@ -11,7 +11,7 @@
         <div class="catalog-nav__content point-sale">
           <div class="catalog-nav__content-header">
             <app-svg-icon name="basket" class="catalog-nav__content-icon" />
-            <h3 class="catalog-nav__content-text">Артем, ближайшие к вам магазины сети</h3>
+            <h3 class="catalog-nav__content-text">Виктория, наши магазины совсем рядом с вами!</h3>
           </div>
           <div class="catalog-nav__item">
             <div class="catalog-nav__icon-wrapper">
@@ -21,9 +21,9 @@
               <div class="catalog-nav__item-title">Магазин Дом обуви</div>
               <div class="catalog-nav__item-content">
                 <div class="catalog-nav__item-text">
-                  <p class="catalog-nav__text">Более 3 000 пар обуви в одном месте</p>
+                  <p class="catalog-nav__text">Более 10 000 пар обуви в одном месте</p>
                   <p class="catalog-nav__text">
-                    <app-svg-icon name="pin" class="catalog-nav__item-icon" />ул. Советская, 33
+                    <app-svg-icon name="pin" class="catalog-nav__item-icon" />ул. Ленина, 12
                   </p>
                   <p class="catalog-nav__text">
                     <app-svg-icon name="time" class="catalog-nav__item-icon" />8:00 - 20:00 (без выходных)
@@ -38,15 +38,15 @@
               <app-svg-icon name="cubes" class="catalog-nav__icon" />
             </div>
             <div class="catalog-nav__item-wrapper">
-              <div class="catalog-nav__item-title">Магазин Бэбишоп</div>
+              <div class="catalog-nav__item-title">Магазин Человечек</div>
               <div class="catalog-nav__item-content">
                 <div class="catalog-nav__item-text">
                   <p class="catalog-nav__text">Детские игрушки</p>
                   <p class="catalog-nav__text">
-                    <app-svg-icon name="pin" class="catalog-nav__item-icon" />ул. Фрунзе, 17
+                    <app-svg-icon name="pin" class="catalog-nav__item-icon" />ул. Стрелкова, 23
                   </p>
                   <p class="catalog-nav__text">
-                    <app-svg-icon name="time" class="catalog-nav__item-icon" />8:00 - 19:00 (без выходных)
+                    <app-svg-icon name="time" class="catalog-nav__item-icon" />8:00 - 20:00 (без выходных)
                   </p>
                 </div>
                 <button class="gen-btn">Связаться</button>
@@ -58,12 +58,12 @@
               <app-svg-icon name="parka" class="catalog-nav__icon" />
             </div>
             <div class="catalog-nav__item-wrapper">
-              <div class="catalog-nav__item-title">Магазин Шуббервиль</div>
+              <div class="catalog-nav__item-title">Магазин Шубка</div>
               <div class="catalog-nav__item-content">
                 <div class="catalog-nav__item-text">
-                  <p class="catalog-nav__text">Шубы, дубленки, пуховики</p>
+                  <p class="catalog-nav__text">Шубы, дубленки, пуховики, куртки</p>
                   <p class="catalog-nav__text">
-                    <app-svg-icon name="pin" class="catalog-nav__item-icon" />ул. Пушкинская, 112
+                    <app-svg-icon name="pin" class="catalog-nav__item-icon" /> ул. Пшхтынская, 122
                   </p>
                   <p class="catalog-nav__text">
                     <app-svg-icon name="time" class="catalog-nav__item-icon" />8:00 - 20:00 (без выходных)
@@ -78,7 +78,7 @@
           <h4 class="catalog-nav__settings-title">Точки продаж</h4>
           <p
             class="catalog-nav__settings-text"
-          >Сообщите посетителям сообщества о местоположении и времени работы ваших магазинов.</p>
+          >Сообщите посетителям сообщества о местоположении и времени работы ваших магазинов или других заведений.</p>
           <nuxt-link
             class="gen-btn"
             tag="button"
@@ -90,22 +90,22 @@
         <div class="catalog-nav__content activity">
           <div class="catalog-nav__content-header">
             <app-svg-icon name="flag" class="catalog-nav__content-icon" />
-            <h3 class="catalog-nav__content-text">Артем, время поднять навык в SMM!</h3>
+            <h3 class="catalog-nav__content-text">Иван, время поднять навык в SMM!</h3>
           </div>
           <div class="catalog-nav__item">
             <div class="catalog-nav__icon-wrapper">
               <app-svg-icon name="image" class="catalog-nav__icon" />
             </div>
             <div class="catalog-nav__item-wrapper">
-              <div class="catalog-nav__item-title">Контент-маркетинг для чайников</div>
+              <div class="catalog-nav__item-title">Зарабатывайте на автоворонках</div>
               <div class="catalog-nav__item-content">
                 <div class="catalog-nav__item-text">
-                  <p class="catalog-nav__text">Продавайте при помощи уникального контента</p>
+                  <p class="catalog-nav__text">Создайте свою первую автоворонку и заработайте первые деньги</p>
                   <p class="catalog-nav__text">
                     <app-svg-icon name="pin" class="catalog-nav__item-icon" />Онлайн
                   </p>
                   <p class="catalog-nav__text">
-                    <app-svg-icon name="time" class="catalog-nav__item-icon" />14:00 - 17:00
+                    <app-svg-icon name="time" class="catalog-nav__item-icon" />11:00 - 18:00
                   </p>
                 </div>
                 <button class="gen-btn">Связаться</button>
@@ -117,15 +117,15 @@
               <app-svg-icon name="cubes" class="catalog-nav__icon" />
             </div>
             <div class="catalog-nav__item-wrapper">
-              <div class="catalog-nav__item-title">Таргетинг без правил</div>
+              <div class="catalog-nav__item-title">Профессия Таргетолога</div>
               <div class="catalog-nav__item-content">
                 <div class="catalog-nav__item-text">
-                  <p class="catalog-nav__text">Создавайте объявления с CTR от 3%</p>
+                  <p class="catalog-nav__text">Научитесь создавать эффективные объявления с CTR от 5%</p>
                   <p class="catalog-nav__text">
                     <app-svg-icon name="pin" class="catalog-nav__item-icon" />Онлайн
                   </p>
                   <p class="catalog-nav__text">
-                    <app-svg-icon name="shooter1" class="catalog-nav__item-icon" />11:00 - 13:00
+                    <app-svg-icon name="shooter1" class="catalog-nav__item-icon" />10:00 - 18:00
                   </p>
                 </div>
                 <button class="gen-btn">Связаться</button>
@@ -185,10 +185,10 @@
                 <app-svg-icon name="man" class="catalog-nav__icon" />
               </div>
               <div class="catalog-nav__item-wrapper">
-                <div class="catalog-nav__item-title">Для чего нужен фитнес-инструктор</div>
+                <div class="catalog-nav__item-title">Наши инструктора</div>
                 <div class="catalog-nav__item-content">
                   <div class="catalog-nav__item-text">
-                    <p class="catalog-nav__text">Как достигнуть максимума!</p>
+                    <p class="catalog-nav__text">Занимайтесь с инструктором!</p>
                   </div>
                   <button class="gen-btn">Перейти</button>
                 </div>
@@ -202,7 +202,7 @@
                 <div class="catalog-nav__item-title">Отзывы</div>
                 <div class="catalog-nav__item-content">
                   <div class="catalog-nav__item-text">
-                    <p class="catalog-nav__text">Более 150 отзывов довольных клиентов</p>
+                    <p class="catalog-nav__text">Более 1000 отзывов довольных клиентов</p>
                   </div>
                   <button class="gen-btn">Перейти</button>
                 </div>
