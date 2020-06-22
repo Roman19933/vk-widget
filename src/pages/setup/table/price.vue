@@ -55,18 +55,18 @@
                   >
                 </div>
                 <div class="widgets__items widgets__items_client">
-                  <!-- <draggable
-                    v-model="widget.data.body"
-                    group="client"
-                    class="widgets__items_draggable "
-                  > -->
                   <template>
-                    <app-widget-item-table v-model="widget.data" />
+                    <app-widget-item-table
+                      v-model="widget.data"
+                    />
                   </template>
-                  <button class="add-item" @click.prevent="addItemTable">
+                  <button
+                    class="add-item"
+                    @click.prevent="addItemTable"
+                    v-if="widget.data.body.length < 6 && !this.switch"
+                  >
                     + Добавить элемент
                   </button>
-                  <!-- </draggable> -->
                 </div>
                 <div class="widgets__content-add">
                   <a
@@ -108,7 +108,7 @@
           </app-loader>
         </div>
         <div class="widgets__right">
-          <app-widget-form v-model="formSegmentation" />
+          <!-- <app-widget-form v-model="formSegmentation" /> -->
         </div>
       </div>
       <component
@@ -118,7 +118,6 @@
         :map-data="mapData"
         :other="other"
         @saved="handlerSaved"
-        @savedClients="groupLink"
         @close="clear"
       />
     </div>
@@ -137,7 +136,7 @@ export default {
   data() {
     return {
       widget: {
-        type_name: "Наши клиенты",
+        type_name: "Таблица",
         type_link: "/setup/table/clients?category=sales&edit=true",
         data: {
           more: "",
@@ -227,7 +226,24 @@ export default {
   },
   methods: {
     addItemTable() {
-      console.log("ok");
+      this.widget.data.body.push([
+        {
+          text: "",
+          icon_id: ""
+        },
+        {
+          text: "",
+          url: ""
+        },
+        {
+          text: "",
+          url: ""
+        },
+        {
+          text: "",
+          url: ""
+        }
+      ]);
     }
   },
   mixins: [Widgets],

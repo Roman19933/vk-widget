@@ -25,7 +25,9 @@ export default {
     handlerSave() {
       let item = JSON.parse(JSON.stringify(this.value));
       _.forEach(this.mapData, (el, key) => {
-        item[el.fieldName] = this.form[key];
+        let form =  this.form[key]
+        let s = `item.${el.fieldName} = form`;
+        eval(s);
       });
       this.$emit("saved", item);
       this.show = false;
@@ -33,7 +35,7 @@ export default {
     handlerSaves() {
       this.$emit("savedClients", this.form.title);
       this.show = false;
-    }
+    },
   },
   watch: {
     show(newValue) {
