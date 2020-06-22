@@ -11,7 +11,7 @@
         <div class="catalog-sales__content">
           <div class="catalog-sales__content-header">
             <app-svg-icon name="gift" class="catalog-sales__content-icon" />
-            <h3 class="catalog-sales__content-text">Артем, хочешь купон на скидку в подарок?</h3>
+            <h3 class="catalog-sales__content-text">Виктория, как на счет скидки?</h3>
           </div>
           <div class="stock-discounts">
             <div class="stock-discounts__item">
@@ -49,7 +49,7 @@
         <div class="catalog-sales__content">
           <div class="catalog-sales__content-header">
             <app-svg-icon name="coconut-tree" class="catalog-sales__content-icon" />
-            <h3 class="catalog-sales__content-text">Артем, хватит работать, тебя ждут горячие туры.</h3>
+            <h3 class="catalog-sales__content-text">Виктория, может пора расслабится?</h3>
           </div>
           <div class="stock-promotions">
             <div
@@ -64,7 +64,7 @@
                 <span class="stock-promotions__star"></span>
               </div>
               <div class="stock-promotions__wrapper">
-                <h3 class="stock-promotions__title">Жаркое солнце в Майами</h3>
+                <h3 class="stock-promotions__title">Экзотический отдых в ОАЭ</h3>
                 <p class="stock-promotions__discount">30% скидка, 4 звезды</p>
               </div>
               <button class="gen-btn">Забронировать</button>
@@ -98,7 +98,7 @@
                 <span class="stock-promotions__star active"></span>
               </div>
               <div class="stock-promotions__wrapper">
-                <h3 class="stock-promotions__title">Пляжи на ГОА</h3>
+                <h3 class="stock-promotions__title">Пляжи на Бора-Бора</h3>
                 <p class="stock-promotions__discount">22 % скидка, 5 звезд</p>
               </div>
               <button class="gen-btn">Забронировать</button>
@@ -122,7 +122,7 @@
           <div class="mportant-message">
             <h3
               class="mportant-message__title"
-            >Каждый подписчик сообщества получает скидку 3% на все товары</h3>
+            >Каждый подписчик сообщества получает скидку 50% на все товары до конка недели</h3>
             <p class="mportant-message__text">Подпишитесь на сообщество и напишите нам</p>
           </div>
           <div class="catalog-sales__content-footer">
@@ -141,7 +141,7 @@
         <div class="catalog-sales__content catalog-sales__content_wFull">
           <div class="catalog-sales__content-header">
             <app-svg-icon name="fire" class="catalog-sales__content-icon" />
-            <h3 class="catalog-sales__content-text">Артем, у нас для тебя спецпредложение!</h3>
+            <h3 class="catalog-sales__content-text">Иван, у нас для тебя спецпредложение!</h3>
           </div>
           <div class="personal-offer">
             <div class="personal-offer__img-wrapper">
@@ -171,7 +171,7 @@
         <div class="catalog-sales__content catalog-sales__content_wFull">
           <div class="catalog-sales__content-header">
             <app-svg-icon name="heart" class="catalog-sales__content-icon" />
-            <h3 class="catalog-sales__content-text">Вероника, успей на распродажу!</h3>
+            <h3 class="catalog-sales__content-text">Виктория, успей на распродажу!</h3>
           </div>
           <div class="promotional-products">
             <div class="promotional-products__item">
@@ -183,7 +183,7 @@
                 </span>
               </div>
               <h4 class="promotional-products__name">Кольцо</h4>
-              <h3 class="promotional-products__price">3 900 руб.</h3>
+              <h3 class="promotional-products__price">7 300 руб.</h3>
               <a href="#" class="promotional-products__link">Написать</a>
             </div>
             <div class="promotional-products__item">
@@ -195,7 +195,7 @@
                 </span>
               </div>
               <h4 class="promotional-products__name">Браслет</h4>
-              <h3 class="promotional-products__price">4 200 руб.</h3>
+              <h3 class="promotional-products__price">4 999 руб.</h3>
               <a href="#" class="promotional-products__link">Написать</a>
             </div>
             <div class="promotional-products__item">
@@ -207,7 +207,7 @@
                 </span>
               </div>
               <h4 class="promotional-products__name">Серьги</h4>
-              <h3 class="promotional-products__price">15 400 руб.</h3>
+              <h3 class="promotional-products__price">5 100 руб.</h3>
               <a href="#" class="promotional-products__link">Написать</a>
             </div>
           </div>
@@ -227,28 +227,28 @@
         <div class="catalog-sales__content catalog-sales__content_wFull">
           <div class="catalog-sales__content-header">
             <app-svg-icon name="like" class="catalog-sales__content-icon" />
-            <h3 class="catalog-sales__content-text">Екатерина, эти товары для вас!</h3>
+            <h3 class="catalog-sales__content-text">Виктория, эти товары для вас!</h3>
           </div>
           <div class="featured-products">
             <div class="promotional-products__item">
               <div class="promotional-products__img-wrapper">
                 <img src="/img/featured-products-img1.png" />
               </div>
-              <h4 class="promotional-products__name">Camisetas Mujer</h4>
+              <h4 class="promotional-products__name">Gucci</h4>
               <a href="#" class="promotional-products__link">Узнать цену</a>
             </div>
             <div class="promotional-products__item">
               <div class="promotional-products__img-wrapper">
                 <img src="/img/featured-products-img2.png" />
               </div>
-              <h4 class="promotional-products__name">Boss Lady</h4>
+              <h4 class="promotional-products__name">Louis Vuitton</h4>
               <a href="#" class="promotional-products__link">Узнать цену</a>
             </div>
             <div class="promotional-products__item">
               <div class="promotional-products__img-wrapper">
                 <img src="/img/featured-products-img3.png" />
               </div>
-              <h4 class="promotional-products__name">Серьги</h4>
+              <h4 class="promotional-products__name">Swarovski</h4>
               <a href="#" class="promotional-products__link">Узнать цену</a>
             </div>
           </div>
@@ -273,10 +273,10 @@
                 <img src="/img/reviews-img1.png" />
               </div>
               <div class="personal-offer__wrapper">
-                <h3 class="personal-offer__title">Daria Ramazanova</h3>
+                <h3 class="personal-offer__title">Екатерина Леснова</h3>
                 <p
                   class="personal-offer__text"
-                >Это невероятно! Такой тех.поддержки я нигде и никогда не встречала! Сами написали и предложили помощь! Все пошаговое с картинками вместе со мно...</p>
+                >Ходим вместе с мамой уже года полтора, а может и больше. Попала по рекомендации. ОЧЕНЬ ХОРОШО носится покрытие, ничего не отходит и не отсливается...</p>
                 <button class="gen-btn">Читать отзыв</button>
               </div>
             </div>
@@ -285,10 +285,10 @@
                 <img src="/img/reviews-img2.png" />
               </div>
               <div class="personal-offer__wrapper">
-                <h3 class="personal-offer__title">Руслана Комлева-Крылова</h3>
+                <h3 class="personal-offer__title">Полинка Смирнова</h3>
                 <p
                   class="personal-offer__text"
-                >В полном восторге от простого виджета “текстовый”. Легко с вами контакировать, доступно ясно и радует ваша помощь! Это важно, особенно простым пользователям.</p>
+                >С мастером Викторией знакома уже больше 4х лет!Ни разу в жизни не встречала более аккуратного,внимательного и настолько любящего свое дело мастера!</p>
                 <button class="gen-btn">Читать отзыв</button>
               </div>
             </div>
@@ -297,10 +297,10 @@
                 <img src="/img/reviews-img3.png" />
               </div>
               <div class="personal-offer__wrapper">
-                <h3 class="personal-offer__title">Елена Прелестная</h3>
+                <h3 class="personal-offer__title">Марина Терешкова</h3>
                 <p
                   class="personal-offer__text"
-                >Плюсую к высокой оценке техподдержки! Ответили через 5 минут. Посоветовали как сделать лучше. Спасибо за такое удобное приложение. Пробую бесплатны...</p>
+                >Здравствуйте)) хожу к Виктории уже больше двух лет)) если не больше)) но лучшего мастера своего дела не встречала )))сразу чувствуется любит свою работу))</p>
                 <button class="gen-btn">Читать отзыв</button>
               </div>
             </div>
@@ -321,7 +321,7 @@
         <div class="catalog-sales__content">
           <div class="catalog-sales__content-header">
             <app-svg-icon name="star" class="catalog-sales__content-icon" />
-            <h3 class="catalog-sales__content-text">Артем, среди наших клиентов:</h3>
+            <h3 class="catalog-sales__content-text">Иван, среди наших клиентов:</h3>
           </div>
           <div class="our-clients">
             <div class="our-clients__item">
