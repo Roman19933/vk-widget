@@ -11,26 +11,37 @@
         <div class="catalog-sales__content">
           <div class="catalog-sales__content-header">
             <app-svg-icon name="gift" class="catalog-sales__content-icon" />
-            <h3 class="catalog-sales__content-text">Виктория, как на счет скидки?</h3>
+            <h3 class="catalog-sales__content-text">
+              Виктория, как на счет скидки?
+            </h3>
           </div>
           <div class="stock-discounts">
             <div class="stock-discounts__item">
               <div class="stock-discounts__img-wrapper">
-                <img class="stock-discounts__img" src="/img/catalog-sales-sale1.png" />
+                <img
+                  class="stock-discounts__img"
+                  src="/img/catalog-sales-sale1.png"
+                />
               </div>
               <div class="stock-discounts__header">Скидки до 70%</div>
               <a href="#" class="catalog-sales__link">Получить скидку</a>
             </div>
             <div class="stock-discounts__item">
               <div class="stock-discounts__img-wrapper">
-                <img class="stock-discounts__img" src="/img/catalog-sales-sale2.png" />
+                <img
+                  class="stock-discounts__img"
+                  src="/img/catalog-sales-sale2.png"
+                />
               </div>
               <div class="stock-discounts__header">Только сегодня</div>
               <a href="#" class="catalog-sales__link">Получить скидку</a>
             </div>
             <div class="stock-discounts__item">
               <div class="stock-discounts__img-wrapper">
-                <img class="stock-discounts__img" src="/img/catalog-sales-sale3.png" />
+                <img
+                  class="stock-discounts__img"
+                  src="/img/catalog-sales-sale3.png"
+                />
               </div>
               <div class="stock-discounts__header">Заполни анкету</div>
               <a href="#" class="catalog-sales__link">Получить скидку</a>
@@ -39,17 +50,28 @@
         </div>
         <div class="catalog-sales__settings">
           <h4 class="catalog-sales__settings-title">Акции и скидки</h4>
-          <p
-            class="catalog-sales__settings-text"
-          >Добавьте в сообщество от 3 до 10 баннеров, чтобы привлечь внимание к акциям и получить больше продажм</p>
-          <nuxt-link class="gen-btn" tag="button" to="/setup/tiles/sales?category=sale">Выбрать</nuxt-link>
+          <p class="catalog-sales__settings-text">
+            Добавьте в сообщество от 3 до 10 баннеров, чтобы привлечь внимание к
+            акциям и получить больше продажм
+          </p>
+          <nuxt-link
+            class="gen-btn"
+            tag="button"
+            to="/setup/tiles/sales?category=sale"
+            >Выбрать</nuxt-link
+          >
         </div>
       </section>
       <section class="catalog-sales__row">
         <div class="catalog-sales__content">
           <div class="catalog-sales__content-header">
-            <app-svg-icon name="coconut-tree" class="catalog-sales__content-icon" />
-            <h3 class="catalog-sales__content-text">Виктория, может пора расслабится?</h3>
+            <app-svg-icon
+              name="coconut-tree"
+              class="catalog-sales__content-icon"
+            />
+            <h3 class="catalog-sales__content-text">
+              Виктория, может пора расслабится?
+            </h3>
           </div>
           <div class="stock-promotions">
             <div
@@ -64,7 +86,9 @@
                 <span class="stock-promotions__star"></span>
               </div>
               <div class="stock-promotions__wrapper">
-                <h3 class="stock-promotions__title">Экзотический отдых в ОАЭ</h3>
+                <h3 class="stock-promotions__title">
+                  Экзотический отдых в ОАЭ
+                </h3>
                 <p class="stock-promotions__discount">30% скидка, 4 звезды</p>
               </div>
               <button class="gen-btn">Забронировать</button>
@@ -107,10 +131,22 @@
         </div>
         <div class="catalog-sales__settings">
           <h4 class="catalog-sales__settings-title">Акции в обложках</h4>
-          <p
-            class="catalog-sales__settings-text"
-          >Привлекайте внимание к акциям при помощи 3 больших баннеров с кнопками</p>
-          <nuxt-link class="gen-btn" tag="button" to="/setup/coverlist/cover?category=sale">Выбрать</nuxt-link>
+          <p class="catalog-sales__settings-text">
+            Привлекайте внимание к акциям при помощи 3 больших баннеров с
+            кнопками
+          </p>
+          <nuxt-link
+            class="gen-btn"
+            tag="button"
+            to="/setup/coverlist/cover?category=sale"
+            >Выбрать</nuxt-link
+          >
+        </div>
+        <div class="catalog-sales__settings">
+          asdasdasd
+          <nuxt-link class="gen-btn" tag="button" to="/setup/table/price"
+            >Выбрать</nuxt-link
+          >
         </div>
       </section>
       <section class="catalog-sales__row">
@@ -120,10 +156,13 @@
             <h3 class="catalog-sales__content-text">Важное сообщение!</h3>
           </div>
           <div class="mportant-message">
-            <h3
-              class="mportant-message__title"
-            >Каждый подписчик сообщества получает скидку 50% на все товары до конка недели</h3>
-            <p class="mportant-message__text">Подпишитесь на сообщество и напишите нам</p>
+            <h3 class="mportant-message__title">
+              Каждый подписчик сообщества получает скидку 50% на все товары до
+              конка недели
+            </h3>
+            <p class="mportant-message__text">
+              Подпишитесь на сообщество и напишите нам
+            </p>
           </div>
           <div class="catalog-sales__content-footer">
             <a class="catalog-sales__link" href="#">Подписаться</a>
@@ -131,27 +170,38 @@
         </div>
         <div class="catalog-sales__settings">
           <h4 class="catalog-sales__settings-title">Важное сообщение</h4>
-          <p
-            class="catalog-sales__settings-text"
-          >Привлекайте внимание к акциям при помощи 3 больших баннеров с кнопками</p>
-          <nuxt-link class="gen-btn" tag="button" to="/setup/text/messages?category=sale">Выбрать</nuxt-link>
+          <p class="catalog-sales__settings-text">
+            Привлекайте внимание к акциям при помощи 3 больших баннеров с
+            кнопками
+          </p>
+          <nuxt-link
+            class="gen-btn"
+            tag="button"
+            to="/setup/text/messages?category=sale"
+            >Выбрать</nuxt-link
+          >
         </div>
       </section>
       <section class="catalog-sales__row">
         <div class="catalog-sales__content catalog-sales__content_wFull">
           <div class="catalog-sales__content-header">
             <app-svg-icon name="fire" class="catalog-sales__content-icon" />
-            <h3 class="catalog-sales__content-text">Иван, у нас для тебя спецпредложение!</h3>
+            <h3 class="catalog-sales__content-text">
+              Иван, у нас для тебя спецпредложение!
+            </h3>
           </div>
           <div class="personal-offer">
             <div class="personal-offer__img-wrapper">
               <img src="/img/personal-offer-img.png" />
             </div>
             <div class="personal-offer__wrapper">
-              <h3 class="personal-offer__title">Получи бесплатную консультацию!</h3>
-              <p
-                class="personal-offer__text"
-              >Все просто - жми на кнопку ниже, оставь заявку и мы свяжемся с тобой в считанные секунды!</p>
+              <h3 class="personal-offer__title">
+                Получи бесплатную консультацию!
+              </h3>
+              <p class="personal-offer__text">
+                Все просто - жми на кнопку ниже, оставь заявку и мы свяжемся с
+                тобой в считанные секунды!
+              </p>
               <button class="gen-btn">Оставить заявку</button>
             </div>
           </div>
@@ -160,23 +210,36 @@
           </div>
         </div>
         <div class="catalog-sales__settings">
-          <h4 class="catalog-sales__settings-title">Персональное предложение</h4>
-          <p
-            class="catalog-sales__settings-text"
-          >Сделайте персональное предложение посетителю сообщества. В виджет автоматически добавится его аватарка</p>
-          <nuxt-link class="gen-btn" tag="button" to="/setup/list/personal?category=sale">Выбрать</nuxt-link>
+          <h4 class="catalog-sales__settings-title">
+            Персональное предложение
+          </h4>
+          <p class="catalog-sales__settings-text">
+            Сделайте персональное предложение посетителю сообщества. В виджет
+            автоматически добавится его аватарка
+          </p>
+          <nuxt-link
+            class="gen-btn"
+            tag="button"
+            to="/setup/list/personal?category=sale"
+            >Выбрать</nuxt-link
+          >
         </div>
       </section>
       <section class="catalog-sales__row">
         <div class="catalog-sales__content catalog-sales__content_wFull">
           <div class="catalog-sales__content-header">
             <app-svg-icon name="heart" class="catalog-sales__content-icon" />
-            <h3 class="catalog-sales__content-text">Виктория, успей на распродажу!</h3>
+            <h3 class="catalog-sales__content-text">
+              Виктория, успей на распродажу!
+            </h3>
           </div>
           <div class="promotional-products">
             <div class="promotional-products__item">
               <div class="promotional-products__img-wrapper">
-                <img class="promotional-products__img" src="/img/promotional-products-img1.png" />
+                <img
+                  class="promotional-products__img"
+                  src="/img/promotional-products-img1.png"
+                />
                 <span class="promotional-products__img-sales">
                   -15
                   <span class="promotional-products__procent">%</span>
@@ -188,7 +251,10 @@
             </div>
             <div class="promotional-products__item">
               <div class="promotional-products__img-wrapper">
-                <img class="promotional-products__img" src="/img/promotional-products-img2.png" />
+                <img
+                  class="promotional-products__img"
+                  src="/img/promotional-products-img2.png"
+                />
                 <span class="promotional-products__img-sales">
                   -20
                   <span class="promotional-products__procent">%</span>
@@ -200,7 +266,10 @@
             </div>
             <div class="promotional-products__item">
               <div class="promotional-products__img-wrapper">
-                <img class="promotional-products__img" src="/img/promotional-products-img3.png" />
+                <img
+                  class="promotional-products__img"
+                  src="/img/promotional-products-img3.png"
+                />
                 <span class="promotional-products__img-sales">
                   -12
                   <span class="promotional-products__procent">%</span>
@@ -217,17 +286,25 @@
         </div>
         <div class="catalog-sales__settings">
           <h4 class="catalog-sales__settings-title">Акционные товары</h4>
-          <p
-            class="catalog-sales__settings-text"
-          >Сделайте распродажу более эффективной со вторым товарным блоком в сообществе</p>
-          <nuxt-link class="gen-btn" tag="button" to="/setup/tiles/actions?category=sale">Выбрать</nuxt-link>
+          <p class="catalog-sales__settings-text">
+            Сделайте распродажу более эффективной со вторым товарным блоком в
+            сообществе
+          </p>
+          <nuxt-link
+            class="gen-btn"
+            tag="button"
+            to="/setup/tiles/actions?category=sale"
+            >Выбрать</nuxt-link
+          >
         </div>
       </section>
       <section class="catalog-sales__row">
         <div class="catalog-sales__content catalog-sales__content_wFull">
           <div class="catalog-sales__content-header">
             <app-svg-icon name="like" class="catalog-sales__content-icon" />
-            <h3 class="catalog-sales__content-text">Виктория, эти товары для вас!</h3>
+            <h3 class="catalog-sales__content-text">
+              Виктория, эти товары для вас!
+            </h3>
           </div>
           <div class="featured-products">
             <div class="promotional-products__item">
@@ -255,10 +332,16 @@
         </div>
         <div class="catalog-sales__settings">
           <h4 class="catalog-sales__settings-title">Рекомендованные товары</h4>
-          <p
-            class="catalog-sales__settings-text"
-          >Составляйте индивидуальные подборки товаров для пользователей по их интересам</p>
-          <nuxt-link class="gen-btn" tag="button" to="/setup/tiles/recomended?category=sale">Выбрать</nuxt-link>
+          <p class="catalog-sales__settings-text">
+            Составляйте индивидуальные подборки товаров для пользователей по их
+            интересам
+          </p>
+          <nuxt-link
+            class="gen-btn"
+            tag="button"
+            to="/setup/tiles/recomended?category=sale"
+            >Выбрать</nuxt-link
+          >
         </div>
       </section>
       <section class="catalog-sales__row">
@@ -274,9 +357,11 @@
               </div>
               <div class="personal-offer__wrapper">
                 <h3 class="personal-offer__title">Екатерина Леснова</h3>
-                <p
-                  class="personal-offer__text"
-                >Ходим вместе с мамой уже года полтора, а может и больше. Попала по рекомендации. ОЧЕНЬ ХОРОШО носится покрытие, ничего не отходит и не отсливается...</p>
+                <p class="personal-offer__text">
+                  Ходим вместе с мамой уже года полтора, а может и больше.
+                  Попала по рекомендации. ОЧЕНЬ ХОРОШО носится покрытие, ничего
+                  не отходит и не отсливается...
+                </p>
                 <button class="gen-btn">Читать отзыв</button>
               </div>
             </div>
@@ -286,9 +371,11 @@
               </div>
               <div class="personal-offer__wrapper">
                 <h3 class="personal-offer__title">Полинка Смирнова</h3>
-                <p
-                  class="personal-offer__text"
-                >С мастером Викторией знакома уже больше 4х лет!Ни разу в жизни не встречала более аккуратного,внимательного и настолько любящего свое дело мастера!</p>
+                <p class="personal-offer__text">
+                  С мастером Викторией знакома уже больше 4х лет!Ни разу в жизни
+                  не встречала более аккуратного,внимательного и настолько
+                  любящего свое дело мастера!
+                </p>
                 <button class="gen-btn">Читать отзыв</button>
               </div>
             </div>
@@ -298,9 +385,11 @@
               </div>
               <div class="personal-offer__wrapper">
                 <h3 class="personal-offer__title">Марина Терешкова</h3>
-                <p
-                  class="personal-offer__text"
-                >Здравствуйте)) хожу к Виктории уже больше двух лет)) если не больше)) но лучшего мастера своего дела не встречала )))сразу чувствуется любит свою работу))</p>
+                <p class="personal-offer__text">
+                  Здравствуйте)) хожу к Виктории уже больше двух лет)) если не
+                  больше)) но лучшего мастера своего дела не встречала )))сразу
+                  чувствуется любит свою работу))
+                </p>
                 <button class="gen-btn">Читать отзыв</button>
               </div>
             </div>
@@ -311,17 +400,25 @@
         </div>
         <div class="catalog-sales__settings">
           <h4 class="catalog-sales__settings-title">Отзывы</h4>
-          <p
-            class="catalog-sales__settings-text"
-          >Опубликуйте лучшие отзывы клиентов на самом видном месте сообщества и повышайте доверие аудитории</p>
-          <nuxt-link class="gen-btn" tag="button" to="/setup/list/feedback?category=sale">Выбрать</nuxt-link>
+          <p class="catalog-sales__settings-text">
+            Опубликуйте лучшие отзывы клиентов на самом видном месте сообщества
+            и повышайте доверие аудитории
+          </p>
+          <nuxt-link
+            class="gen-btn"
+            tag="button"
+            to="/setup/list/feedback?category=sale"
+            >Выбрать</nuxt-link
+          >
         </div>
       </section>
       <section class="catalog-sales__row">
         <div class="catalog-sales__content">
           <div class="catalog-sales__content-header">
             <app-svg-icon name="star" class="catalog-sales__content-icon" />
-            <h3 class="catalog-sales__content-text">Иван, среди наших клиентов:</h3>
+            <h3 class="catalog-sales__content-text">
+              Иван, среди наших клиентов:
+            </h3>
           </div>
           <div class="our-clients">
             <div class="our-clients__item">
@@ -338,11 +435,15 @@
             </div>
             <div class="our-clients__item">
               <img class="our-clients__img" src="/img/our-clients-img4.png" />
-              <h4 class="our-clients__title">EVA Коврики, Автоковрики ЕВА/Эва</h4>
+              <h4 class="our-clients__title">
+                EVA Коврики, Автоковрики ЕВА/Эва
+              </h4>
             </div>
             <div class="our-clients__item">
               <img class="our-clients__img" src="/img/our-clients-img5.png" />
-              <h4 class="our-clients__title">Школо танцев Social Dance Studio</h4>
+              <h4 class="our-clients__title">
+                Школо танцев Social Dance Studio
+              </h4>
             </div>
             <div class="our-clients__item">
               <img class="our-clients__img" src="/img/our-clients-img6.png" />
@@ -364,10 +465,16 @@
         </div>
         <div class="catalog-sales__settings">
           <h4 class="catalog-sales__settings-title">Наши клиенты</h4>
-          <p
-            class="catalog-sales__settings-text"
-          >Продемонстрируйте опыт работы с корпоративными клиентами в новом формате</p>
-          <nuxt-link class="gen-btn" tag="button" to="/setup/table/clients?category=sale">Выбрать</nuxt-link>
+          <p class="catalog-sales__settings-text">
+            Продемонстрируйте опыт работы с корпоративными клиентами в новом
+            формате
+          </p>
+          <nuxt-link
+            class="gen-btn"
+            tag="button"
+            to="/setup/table/clients?category=sale"
+            >Выбрать</nuxt-link
+          >
         </div>
       </section>
     </main>
@@ -385,4 +492,3 @@ export default {
   }
 };
 </script>
-

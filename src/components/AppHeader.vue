@@ -2,7 +2,11 @@
   <header class="header">
     <div class="header__wrapper">
       <div class="header__title">
-        <a href="#" v-if="this.$route.query.category" v-b-modal="'modal-wrapper'">
+        <a
+          href="#"
+          v-if="this.$route.query.category"
+          v-b-modal="'modal-wrapper'"
+        >
           <!-- :to="this.$route.query.category === 'nav' ? '/catalog/nav' : '/catalog/sales'" -->
           <img src="/img/arrow.png" alt />
           Назад
@@ -11,8 +15,8 @@
       </div>
       <div class="header-user">
         <div class="header-user__info">
-          <p class="header-user__name">{{ groupInfo.name }}</p>
-          <p class="header-user__text">Подписка закончилась</p>
+          <a :href="`http://vk.com/${groupInfo.screen_name}`" class="header-user__name">{{ groupInfo.name }}</a>
+          <p class="header-user__text">{{subs ? subs.title : 'Подписка закончилась'}}</p>
         </div>
         <div class="header-user__photo">
           <img :src="groupInfo.photo_50" alt />
@@ -47,12 +51,19 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   data() {
     return {
       headerTitle: "",
-      groupInfo: ""
+      groupInfo: "",
+      groupId: this.$store.getters["server/token/vkQuery"].vk_group_id
     };
+  },
+  computed:{
+    ...mapGetters({
+      subs: 'server/payments/subs'
+    })
   },
   methods: {
     headerName(name) {
@@ -104,6 +115,7 @@ export default {
     } catch (e) {
       console.log(e);
     }
+    await this.$store.dispatch("server/payments/getSubs", this.groupId);
   },
   watch: {
     $route: {

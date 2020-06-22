@@ -20,12 +20,12 @@ export default {
         console.log(bef);
         let segment = this.widget.segmentation;
         let clone = {
-          sex: bef.sex ? bef.sex.id : [],
+          sex: bef.sex ? bef.sex.id : null,
           age: { from: bef.age.from, to: bef.age.to },
-          bdate: bef.bdate ? bef.bdate : [],
-          relation: bef.relation ? bef.relation.id : [],
-          city: bef.city ? bef.city.id : [],
-          devices: bef.devices ? bef.devices.screen_name : [],
+          bdate: bef.bdate ? bef.bdate : null,
+          relation: bef.relation ? bef.relation.id : null,
+          city: bef.city ? bef.city.id : null,
+          devices: bef.devices ? bef.devices.screen_name : '',
           user_surname: bef.user_surname
             ? this.splitStr(`${bef.user_surname}`)
             : [],
@@ -75,10 +75,13 @@ export default {
   },
   methods: {
     splitStr(str) {
-      return str.split("\n");
+      if(str) {
+        return str.split("\n");
+      } else {
+        return []
+      }
     },
     handlerSaved(e) {
-      console.log(e);
       if (this.modal === "modal-widget-text") {
         this.widget = e;
       } else {
@@ -97,7 +100,6 @@ export default {
           this.user.first_name
         );
         this.userFoto = this.user.photo_100;
-        console.log(this.user);
       } else {
         this.widget.data.title = this.widget.data.title.replace(
           this.user.first_name,
