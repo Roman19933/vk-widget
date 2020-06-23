@@ -41,6 +41,7 @@
 
 <script>
 import modalWidgets from "@/mixins/modalWidgets";
+import Jimp from "jimp";
 import { mapGetters } from "vuex";
 const sizes = {
   cover: {

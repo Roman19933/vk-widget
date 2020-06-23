@@ -99,6 +99,19 @@
             >Выбрать</nuxt-link
           >
         </div>
+         <div class="catalog-sales__settings">
+          <h4 class="catalog-sales__settings-title">Прайс лист</h4>
+          <p class="catalog-sales__settings-text">
+            Добавьте в сообщество от 3 до 10 баннеров, чтобы привлечь внимание к
+            акциям и получить больше продажм
+          </p>
+          <nuxt-link
+            class="gen-btn"
+            tag="button"
+            to="/setup/table/price?category=nav"
+            >Выбрать</nuxt-link
+          >
+        </div>
       </section>
     </main>
   </div>
