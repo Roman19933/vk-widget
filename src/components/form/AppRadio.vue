@@ -5,6 +5,7 @@
       name="birth"
       class="radio__input"
       :value="item.id"
+      :disabled="disabled"
       @input="$emit('input', item.id)"
     />
     <span class="radio__custom"></span>
@@ -17,6 +18,10 @@ export default {
     item: {
       type: Object,
       required: true
+    },
+    disabled: {
+      type: Boolean,
+      required: false
     },
     data: {
       type: Object,
