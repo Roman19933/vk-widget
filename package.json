@@ -19,6 +19,7 @@
     "axios-rest-client": "^0.1.11",
     "bootstrap-vue": "^2.14.0",
     "browser-image-resizer": "^2.1.0",
+    "jimp": "^0.13.0",
     "js-cookie": "^2.2.1",
     "lodash": "^4.17.15",
     "nuxt": "^2.0.0",

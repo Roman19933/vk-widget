@@ -16,7 +16,7 @@
     <div
       class="item__img"
       @click.prevent="$emit('edit:element',{
-        typeModal:'modal-widget-upload-image',
+        typeModal:'modal-widget-upload-image-stars',
         map: {
             image: {
               fieldName: 'cover_id',
@@ -114,7 +114,7 @@
 import validateWidgetItem from "@/mixins/validateWidgetItem";
 import AppModalWidgetTitleLink from "@/components/modal/widgets/AppModalWidgetTitleLinkComponent.vue";
 import AppModalWidgetText from "@/components/modal/widgets/AppModalWidgetTextComponent.vue";
-import AppModalWidgetUploadImage from "@/components/modal/widgets/AppModalWidgetUploadImageComponent.vue";
+import AppModalWidgetUploadImageStars from "@/components/modal/widgets/AppModalWidgetUploadImageStarsComponent.vue";
 export default {
   data() {
     return {
@@ -149,7 +149,7 @@ export default {
   mixins: [validateWidgetItem],
   components: {
     AppModalWidgetTitleLink,
-    AppModalWidgetUploadImage,
+    AppModalWidgetUploadImageStars,
     AppModalWidgetText
   }
 };
