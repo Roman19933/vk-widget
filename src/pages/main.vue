@@ -4,27 +4,36 @@
     <div class="vidget-page__wrapper">
       <div class="vidget-page__head">
         <h1 class="vidget-page__title">Мои виджеты</h1>
-        <nuxt-link to="/catalog/sales" class="vidget-page__add gen-btn">Создать виджет</nuxt-link>
+        <nuxt-link to="/catalog/sales" class="vidget-page__add gen-btn"
+          >Создать виджет</nuxt-link
+        >
       </div>
-      <!-- <button @click="vidgets.splice(5, 1)">del</button> -->
-      <div class="vidget-none" v-if="vidgets.length === 0 && vidgetLoad === false">
+      <div
+        class="vidget-none"
+        v-if="vidgets.length === 0 && vidgetLoad === false"
+      >
         <div class="vidget-none__wrapper">
           <img src="img/PIT.svg" alt class="vidget-none__img" />
-          <p class="vidget-none__text">Дружище, у тебя еще нет виджетов. Не пора ли их создать?</p>
-          <nuxt-link to="/catalog/sales" class="vidget-none__link gen-btn">Создать виджет</nuxt-link>
+          <p class="vidget-none__text">
+            Дружище, у тебя еще нет виджетов. Не пора ли их создать?
+          </p>
+          <nuxt-link to="/catalog/sales" class="vidget-none__link gen-btn"
+            >Создать виджет</nuxt-link
+          >
         </div>
       </div>
       <div class="home" v-else>
         <app-loader v-model="vidgetLoad" class="top-center">
           <div class="home__wrapper">
-            <!-- <ul class="home__blocks"> -->
             <draggable v-model="vidgets">
               <transition-group name="list-animation" tag="ul">
-                <li v-for="vidget in vidgets" :key="vidget.id" class="home-block">
+                <li
+                  v-for="vidget in vidgets"
+                  :key="vidget.id"
+                  class="home-block"
+                >
                   <div class="home-block__title">
                     <div class="home-block__icon">
-                      <!-- @mousedown="sortList"
-                      @mousemove="sortListMove"-->
                       <div class="popover">
                         <div class="popover__wrapper">
                           <span>Сортировать</span>
@@ -40,9 +49,14 @@
                           $bvModal.show('modal-edit-name')
                       "
                     >
-                      <span class="home-block__name-title">{{ vidget.name }}</span>
+                      <span class="home-block__name-title">{{
+                        vidget.name
+                      }}</span>
                       <div class="home-block__name-edit">
-                        <app-svg-icon name="pencil-edit-button" class="home-block__name-icon" />
+                        <app-svg-icon
+                          name="pencil-edit-button"
+                          class="home-block__name-icon"
+                        />
                         <div class="popover">
                           <div class="popover__wrapper">
                             <span>Переименовать Виджет</span>
@@ -59,23 +73,18 @@
                           <span>Опубликовать виджет</span>
                         </div>
                       </div>
-                      <!-- <div
-                        class="switch__disabled-wrapper"
-                        v-if="disablePublick"
-                        v-b-modal="'modal-timer'"
-                      >
-                        <app-switch/>
-                      </div>-->
                       <div
                         :class="'switch__disabled-wrapper'"
                         @click="
                           (switchActive = vidget.id),
-                            !disablePublick
-                              ? vidget.is_active
-                                ? disableVidget()
-                                : modalPublic()
-                              : null,
-                            disablePublick && $bvModal.show('modal-timer')
+                            !subs
+                              ? modalVersion()
+                              : (!disablePublick
+                                  ? vidget.is_active
+                                    ? disableVidget()
+                                    : modalPublic()
+                                  : null,
+                                disablePublick && $bvModal.show('modal-timer'))
                         "
                       >
                         <app-switch
@@ -99,7 +108,10 @@
                         </div>
                       </div>
                     </a>
-                    <button @click="edit(vidget.id, vidget.type_link)" class="home-block__edit">
+                    <button
+                      @click="edit(vidget.id, vidget.type_link)"
+                      class="home-block__edit"
+                    >
                       <img src="img/home-register.png" alt />
                       <div class="popover">
                         <div class="popover__wrapper">
@@ -134,7 +146,6 @@
                 </li>
               </transition-group>
             </draggable>
-            <!-- </ul> -->
           </div>
         </app-loader>
       </div>
@@ -162,6 +173,7 @@ import AppModalVersion from "@/components/modal/AppModalVersion.vue";
 import AppModalEditName from "@/components/modal/AppModalEditName.vue";
 import AppModalPublic from "@/components/modal/AppModalPublic.vue";
 import AppModalTimer from "@/components/modal/AppModalTimer.vue";
+import { mapGetters } from "vuex";
 
 export default {
   components: {
@@ -169,6 +181,11 @@ export default {
     AppModalEditName,
     AppModalPublic,
     AppModalTimer
+  },
+  computed: {
+    ...mapGetters({
+      subs: "server/payments/subs"
+    })
   },
   data() {
     return {
@@ -200,6 +217,9 @@ export default {
     },
     async modalPublic() {
       this.$bvModal.show("modal-public");
+    },
+    async modalVersion() {
+      this.$bvModal.show("modal-version");
     },
     async publicVidget(e) {
       let sa = this.switchActive,

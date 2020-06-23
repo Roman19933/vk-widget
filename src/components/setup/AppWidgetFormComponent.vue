@@ -9,7 +9,7 @@
       <div class="item">
         <div class="item__title">
           <span>Пол</span>
-          <div class="item__img-wrapper" v-if="subs.title !== 'business'">
+          <div class="item__img-wrapper" v-if="!subs || subs.sys_name !== 'business'">
             <img src="/img/lock.png" alt />
             <div class="popover">
               <div class="popover__wrapper">
@@ -24,7 +24,7 @@
             placeholder="Выберите пол"
             :value="value.sex"
             label="title"
-            :disabled="subs.title !== 'business'"
+            :disabled="!subs || subs.sys_name !== 'business'"
             @input="changeData('sex', $event)"
           ></v-select>
         </div>
@@ -32,7 +32,7 @@
       <div class="item">
         <div class="item__title">
           <span>Возраст</span>
-          <div class="item__img-wrapper" v-if="subs.title !== 'business'">
+          <div class="item__img-wrapper" v-if="!subs || subs.sys_name !== 'business'">
             <img src="/img/lock.png" alt />
             <div class="popover">
               <div class="popover__wrapper">
@@ -48,7 +48,7 @@
               placeholder="От"
               :value="value.age.from"
               @input="changeData('age.from', $event)"
-              :disabled="subs.title !== 'business'"
+              :disabled="!subs || subs.sys_name !== 'business'"
             ></v-select>
           </div>
           <div class="form-group">
@@ -57,7 +57,7 @@
               placeholder="До"
               :value="value.age.to"
               @input="changeData('age.to', $event)"
-              :disabled="subs.title !== 'business'"
+              :disabled="!subs || subs.sys_name !== 'business'"
             ></v-select>
           </div>
         </div>
@@ -65,7 +65,7 @@
       <div class="item">
         <div class="item__title">
           <span>День рождения</span>
-          <div class="item__img-wrapper" v-if="subs.title !== 'business'">
+          <div class="item__img-wrapper" v-if="!subs || subs.sys_name !== 'business'">
             <img src="/img/lock.png" alt />
             <div class="popover">
               <div class="popover__wrapper">
@@ -81,7 +81,7 @@
             :item="item"
             :data="value"
             :value="value.bdate"
-            :disabled="subs.title !== 'business'"
+            :disabled="!subs || subs.sys_name !== 'business'"
             @input="changeData('bdate', $event)"
           />
         </div>
@@ -89,7 +89,7 @@
       <div class="item">
         <div class="item__title">
           <span>Семейное положение</span>
-          <div class="item__img-wrapper" v-if="subs.title !== 'business'">
+          <div class="item__img-wrapper" v-if="!subs || subs.sys_name !== 'business'">
             <img src="/img/lock.png" alt />
             <div class="popover">
               <div class="popover__wrapper">
@@ -105,14 +105,14 @@
             label="title"
             :value="value.relation"
             @input="changeData('relation', $event)"
-            :disabled="subs.title !== 'business'"
+            :disabled="!subs || subs.sys_name !== 'business'"
           ></v-select>
         </div>
       </div>
       <div class="item">
         <div class="item__title">
           <span>Город</span>
-          <div class="item__img-wrapper" v-if="subs.title !== 'business'">
+          <div class="item__img-wrapper" v-if="!subs || subs.sys_name !== 'business'">
             <img src="/img/lock.png" alt />
             <div class="popover">
               <div class="popover__wrapper">
@@ -130,7 +130,7 @@
             label="title"
             @search="onSearch"
             placeholder="Выберите город"
-            :disabled="subs.title !== 'business'"
+            :disabled="!subs || subs.sys_name !== 'business'"
           >
             <template slot="no-options"
               >Начните вводить название города</template
@@ -144,7 +144,7 @@
       <div class="item">
         <div class="item__title">
           <span>Устройство</span>
-          <div class="item__img-wrapper" v-if="subs.title !== 'business'">
+          <div class="item__img-wrapper" v-if="!subs || subs.sys_name !== 'business'">
             <img src="/img/lock.png" alt />
             <div class="popover">
               <div class="popover__wrapper">
@@ -160,14 +160,14 @@
             :value="value.devices"
             label="title"
             @input="changeData('devices', $event)"
-            :disabled="subs.title !== 'business'"
+            :disabled="!subs || subs.sys_name !== 'business'"
           ></v-select>
         </div>
       </div>
       <div class="item">
         <div class="item__title">
           <span>Состоит в сообществе</span>
-          <div class="item__img-wrapper" v-if="subs.title !== 'business'">
+          <div class="item__img-wrapper" v-if="!subs || subs.sys_name !== 'business'">
             <img src="/img/lock.png" alt />
             <div class="popover">
               <div class="popover__wrapper">
@@ -181,7 +181,7 @@
             placeholder="Введите ID сообществ"
             :value="value.groups"
             @input="changeData('groups', $event.target.value)"
-            :disabled="subs.title !== 'business'"
+            :disabled="!subs || subs.sys_name !== 'business'"
           ></textarea>
           <span>Каждый номер с новой строки</span>
         </div>
@@ -189,7 +189,7 @@
       <div class="item">
         <div class="item__title">
           <span>Не состоит в сообществе</span>
-          <div class="item__img-wrapper" v-if="subs.title !== 'business'">
+          <div class="item__img-wrapper" v-if="!subs || subs.sys_name !== 'business'">
             <img src="/img/lock.png" alt />
             <div class="popover">
               <div class="popover__wrapper">
@@ -203,7 +203,7 @@
             placeholder="Введите ID сообществ"
             :value="value.groups_exclude"
             @input="changeData('groups_exclude', $event.target.value)"
-            :disabled="subs.title !== 'business'"
+            :disabled="!subs || subs.sys_name !== 'business'"
           ></textarea>
           <span>Каждый номер с новой строки</span>
         </div>
@@ -211,7 +211,7 @@
       <div class="item">
         <div class="item__title">
           <span>ID пользователей</span>
-          <div class="item__img-wrapper" v-if="subs.title !== 'business'">
+          <div class="item__img-wrapper" v-if="!subs || subs.sys_name !== 'business'">
             <img src="/img/lock.png" alt />
             <div class="popover">
               <div class="popover__wrapper">
@@ -225,7 +225,7 @@
             placeholder="Введите ID пользователя"
             :value="value.users"
             @input="changeData('users', $event.target.value)"
-            :disabled="subs.title !== 'business'"
+            :disabled="!subs || subs.sys_name !== 'business'"
           ></textarea>
           <span>Каждый номер с новой строки</span>
         </div>
@@ -233,7 +233,7 @@
       <div class="item">
         <div class="item__title">
           <span>Интересы второй половинки</span>
-          <div class="item__img-wrapper" v-if="subs.title !== 'business'">
+          <div class="item__img-wrapper" v-if="!subs || subs.sys_name !== 'business'">
             <img src="/img/lock.png" alt />
             <div class="popover">
               <div class="popover__wrapper">
@@ -247,7 +247,7 @@
             placeholder="Введите интересы второй половинки"
             :value="value.relation_groups"
             @input="changeData('relation_groups', $event.target.value)"
-            :disabled="subs.title !== 'business'"
+            :disabled="!subs || subs.sys_name !== 'business'"
           ></textarea>
           <span>Каждое названия с новой строки</span>
         </div>
@@ -255,7 +255,7 @@
       <div class="item">
         <div class="item__title">
           <span>Интересы пользователя</span>
-          <div class="item__img-wrapper" v-if="subs.title !== 'business'">
+          <div class="item__img-wrapper" v-if="!subs || subs.sys_name !== 'business'">
             <img src="/img/lock.png" alt />
             <div class="popover">
               <div class="popover__wrapper">
@@ -269,7 +269,7 @@
             placeholder="Введите интересы пользователя"
             :value="value.user_interests"
             @input="changeData('user_interests', $event.target.value)"
-            :disabled="subs.title !== 'business'"
+            :disabled="!subs || subs.sys_name !== 'business'"
           ></textarea>
           <span>Каждое название с новой строки</span>
         </div>
@@ -277,7 +277,7 @@
       <div class="item">
         <div class="item__title">
           <span>Имя пользователя</span>
-          <div class="item__img-wrapper" v-if="subs.title !== 'business'">
+          <div class="item__img-wrapper" v-if="!subs || subs.sys_name !== 'business'">
             <img src="/img/lock.png" alt />
             <div class="popover">
               <div class="popover__wrapper">
@@ -291,7 +291,7 @@
             placeholder="Введите имя пользователя"
             :value="value.user_name"
             @input="changeData('user_name', $event.target.value)"
-            :disabled="subs.title !== 'business'"
+            :disabled="!subs || subs.sys_name !== 'business'"
           ></textarea>
           <span>Каждое Имя с новой строки</span>
         </div>
@@ -299,7 +299,7 @@
       <div class="item">
         <div class="item__title">
           <span>Фамилия пользователя</span>
-          <div class="item__img-wrapper" v-if="subs.title !== 'business'">
+          <div class="item__img-wrapper" v-if="!subs || subs.sys_name !== 'business'">
             <img src="/img/lock.png" alt />
             <div class="popover">
               <div class="popover__wrapper">
@@ -313,7 +313,7 @@
             placeholder="Введите фамилию пользователя"
             :value="value.user_surname"
             @input="changeData('user_surname', $event.target.value)"
-            :disabled="subs.title !== 'business'"
+            :disabled="!subs || subs.sys_name !== 'business'"
           ></textarea>
           <span>Каждая Фамилия с новой строки</span>
         </div>

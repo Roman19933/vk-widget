@@ -56,9 +56,7 @@
                 </div>
                 <div class="widgets__items widgets__items_client">
                   <template>
-                    <app-widget-item-table
-                      v-model="widget.data"
-                    />
+                    <app-widget-item-table v-model="widget.data" />
                   </template>
                   <button
                     class="add-item"
@@ -108,7 +106,7 @@
           </app-loader>
         </div>
         <div class="widgets__right">
-          <!-- <app-widget-form v-model="formSegmentation" /> -->
+          <app-widget-form v-model="formSegmentation" />
         </div>
       </div>
       <component
@@ -136,8 +134,8 @@ export default {
   data() {
     return {
       widget: {
-        type_name: "Таблица",
-        type_link: "/setup/table/clients?category=sales&edit=true",
+        type_name: "Прайс лист",
+        type_link: "/setup/table/price?category=nav&edit=true",
         data: {
           more: "",
           more_url: "",
@@ -148,56 +146,46 @@ export default {
           body: [
             [
               {
-                text: "Россия",
-                icon_id: "3484735_23434324"
+                text: "Стрижка бороды",
+                icon_id: "3484735_23434324",
+                icon_url: ""
               },
               {
-                text: "1 строка",
+                text: "Брутально",
                 url: "https://vk.com/wall-12345_542321"
               },
               {
-                text: "1 строка",
-                url: "https://vk.com/wall-12345_542321"
-              },
-              {
-                text: "1 строка",
+                text: "1500 руб.",
                 url: "https://vk.com/wall-12345_542321"
               }
             ],
             [
               {
-                text: "USA",
-                icon_id: "3484735_23434324"
+                text: "Стрижка усов",
+                icon_id: "3484735_23434324",
+                icon_url: ""
               },
               {
-                text: "2 строка",
+                text: "Брутально",
                 url: "https://vk.com/wall-12345_542321"
               },
               {
-                text: "2 строка",
-                url: "https://vk.com/wall-12345_542321"
-              },
-              {
-                text: "2 строка",
+                text: "1500 руб.",
                 url: "https://vk.com/wall-12345_542321"
               }
             ]
           ],
           head: [
             {
-              text: "Страна",
+              text: "Услуга",
               align: "left"
             },
             {
-              text: "Золото",
+              text: "Описание",
               align: "left"
             },
             {
-              text: "Серебро",
-              align: "left"
-            },
-            {
-              text: "Бронза",
+              text: "Цена",
               align: "left"
             }
           ]
@@ -205,19 +193,19 @@ export default {
         is_active: false,
         name: "",
         segmentation: {
-          sex: [],
+          sex: null,
           age: { from: "", to: "" },
-          bdate: [],
-          relation: [],
-          city: [],
-          devices: [],
-          user_surname: [],
-          user_name: [],
-          user_interests: [],
-          relation_groups: [],
-          users: [],
-          groups_exclude: [],
-          groups: []
+          bdate: null,
+          relation: null,
+          city: null,
+          devices: "",
+          user_surname: null,
+          user_name: null,
+          user_interests: null,
+          relation_groups: null,
+          users: null,
+          groups_exclude: null,
+          groups: null
         },
         type: "table",
         sc_type: "client"

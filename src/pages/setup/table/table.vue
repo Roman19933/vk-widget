@@ -32,9 +32,10 @@
             <div class="widgets__content">
               <div class="widgets__content-wrapper">
                 <div class="widgets__content-title">
-                  <img src="/img/idea.png" alt />
+                  <img src="/img/heart.png" alt />
                   <a
                     href="#"
+                    v-b-modal.default
                     @click.prevent="
                       $emit('edit:element', {
                         typeModal: 'modal-widget-title-link',
@@ -53,11 +54,18 @@
                     >{{ widget.data.title }}</a
                   >
                 </div>
-                <app-widget-messages
-                  v-model="widget.data"
-                  :prename-validation="`data.`"
-                  :validation-errors="validationErrors"
-                />
+                <div class="widgets__items widgets__items_client">
+                  <template>
+                    <app-widget-item-table v-model="widget.data" />
+                  </template>
+                  <button
+                    class="add-item"
+                    @click.prevent="addItemTable"
+                    v-if="widget.data.body.length < 6 && !this.switch"
+                  >
+                    + Добавить элемент
+                  </button>
+                </div>
                 <div class="widgets__content-add">
                   <a
                     href="#"
@@ -94,7 +102,6 @@
                   >
                 </p>
               </div>
-              <!-- <app-widget-error v-if="error" @close="error = !error" /> -->
             </div>
           </app-loader>
         </div>
@@ -118,26 +125,84 @@
 <script>
 import Widgets from "@/mixins/widgets";
 import AppWidgetForm from "@/components/setup/AppWidgetFormComponent";
+import AppWidgetItemTable from "@/components/setup/widgets/AppWidgetItemTableComponent";
 import AppModalWidgetText from "@/components/modal/widgets/AppModalWidgetTextComponent";
+import AppModalWidgetClient from "@/components/modal/widgets/AppModalWidgetClientsComponent";
 import AppModalWidgetTitleLink from "@/components/modal/widgets/AppModalWidgetTitleLinkComponent";
-import AppWidgetMessages from "@/components/setup/widgets/AppWidgetItemMessagesComponent";
 
 export default {
   data() {
     return {
       widget: {
-        type_name: "Важное сообщение",
-        type_link: "/setup/text/messages?category=info&edit=true",
-        is_active: false,
+        type_name: "Таблица",
+        type_link: "/setup/table/table?category=info&edit=true",
         data: {
-          descr: "Подпишитесь на сообщество и напишите нам",
           more: "",
           more_url: "",
-          text: "Каждый подписчик сообщества получает скидку 3% на все товары",
-          title: "Важное сообщение!",
+          title:
+            "{firstname}, Спасибо, что подписался! Твои друзья уже с нами!",
           title_counter: "",
-          title_url: ""
+          title_url: "",
+          body: [
+            [
+              {
+                text: "Россия",
+                icon_id: "3484735_23434324",
+                icon_url: ""
+              },
+              {
+                text: "1 строка",
+                url: "https://vk.com/wall-12345_542321"
+              },
+              {
+                text: "1 строка",
+                url: "https://vk.com/wall-12345_542321"
+              },
+              {
+                text: "1 строка",
+                url: "https://vk.com/wall-12345_542321"
+              }
+            ],
+            [
+              {
+                text: "USA",
+                icon_id: "3484735_23434324",
+                icon_url: ""
+              },
+              {
+                text: "2 строка",
+                url: "https://vk.com/wall-12345_542321"
+              },
+              {
+                text: "2 строка",
+                url: "https://vk.com/wall-12345_542321"
+              },
+              {
+                text: "2 строка",
+                url: "https://vk.com/wall-12345_542321"
+              }
+            ]
+          ],
+          head: [
+            {
+              text: "Страна",
+              align: "left"
+            },
+            {
+              text: "Золото",
+              align: "left"
+            },
+            {
+              text: "Серебро",
+              align: "left"
+            },
+            {
+              text: "Бронза",
+              align: "left"
+            }
+          ]
         },
+        is_active: false,
         name: "",
         segmentation: {
           sex: null,
@@ -145,7 +210,7 @@ export default {
           bdate: null,
           relation: null,
           city: null,
-          devices: '',
+          devices: "",
           user_surname: null,
           user_name: null,
           user_interests: null,
@@ -154,17 +219,40 @@ export default {
           groups_exclude: null,
           groups: null
         },
-        type: "text",
-        sc_type: "important_message"
+        type: "table",
+        sc_type: "client"
       }
     };
+  },
+  methods: {
+    addItemTable() {
+      this.widget.data.body.push([
+        {
+          text: "",
+          icon_id: ""
+        },
+        {
+          text: "",
+          url: ""
+        },
+        {
+          text: "",
+          url: ""
+        },
+        {
+          text: "",
+          url: ""
+        }
+      ]);
+    }
   },
   mixins: [Widgets],
   components: {
     AppWidgetForm,
-    AppWidgetMessages,
     AppModalWidgetText,
-    AppModalWidgetTitleLink
+    AppModalWidgetTitleLink,
+    AppWidgetItemTable,
+    AppModalWidgetClient
   }
 };
 </script>

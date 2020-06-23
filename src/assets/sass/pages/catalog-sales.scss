@@ -2,10 +2,61 @@
   background-color: #3a3b5e;
   padding: 22px 0 0;
   width: 100%;
+  &__table {
+    .head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-left: 45px;
+      margin-bottom: 15px;
+    }
+    .body {
+      &__item {
+        display: flex;
+        // justify-content: space-between;
+        margin-bottom: 15px;
+        align-items: center;
+        &_price {
+          font-size: 12px;
+        }
+        &-avatar {
+          min-width: 30px;
+          max-width: 30px;
+          height: 30px;
+          border-radius: 100%;
+          overflow: hidden;
+          margin-right: 17px;
+          &_price {
+            height: initial;
+            margin-right: 15px;
+          }
+          img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+          }
+        }
+        &-info {
+          margin-right: 39px;
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          min-width: 65px;
+          &:last-child {
+            margin-right: 0;
+          }
+          &_price {
+            min-width: 106px;
+            margin-right: 37px;
+          }
+        }
+      }
+    }
+  }
   &__bread-crumbs {
     margin: 0 14px;
     color: #8e8fbb;
-    font-family: 'RobotoMedium';
+    font-family: "RobotoMedium";
     font-size: 13px;
     line-height: 24px;
     text-transform: uppercase;
@@ -27,7 +78,7 @@
   }
   &__link {
     color: #a2a2ad;
-    font-family: 'RobotoLight';
+    font-family: "RobotoLight";
     font-size: 13.2px;
     line-height: 18px;
     text-decoration: underline;
@@ -62,7 +113,7 @@
       }
       &__header {
         color: #ffffff;
-        font-family: 'RobotoLight';
+        font-family: "RobotoLight";
         font-size: 12px;
       }
       &__img {
@@ -121,14 +172,14 @@
       }
       &__title {
         color: #ffffff;
-        font-family: 'DINPro-Bold';
+        font-family: "DINPro-Bold";
         font-size: 14px;
         align-self: flex-end;
         margin-bottom: 8px;
       }
       &__discount {
         color: #ffffff;
-        font-family: 'DINPro-Light';
+        font-family: "DINPro-Light";
         font-size: 12px;
         align-self: flex-end;
       }
@@ -136,7 +187,7 @@
     .mportant-message {
       &__title {
         color: #ffffff;
-        font-family: 'RobotoMedium';
+        font-family: "RobotoMedium";
         font-size: 14px;
         line-height: 20px;
         text-align: center;
@@ -145,7 +196,7 @@
       &__text {
         text-align: center;
         color: #a2a2ad;
-        font-family: 'RobotoLight';
+        font-family: "RobotoLight";
         font-size: 12px;
         line-height: 22px;
         padding: 0 30px;
@@ -170,14 +221,14 @@
       }
       &__title {
         color: #ffffff;
-        font-family: 'RobotoMedium';
+        font-family: "RobotoMedium";
         font-size: 14px;
         line-height: 14px;
         margin-bottom: 6px;
       }
       &__text {
         color: #a2a2ad;
-        font-family: 'RobotoLight';
+        font-family: "RobotoLight";
         font-size: 12px;
         line-height: 14px;
         margin-bottom: 10px;
@@ -221,7 +272,7 @@
           align-items: center;
           justify-content: flex-end;
           color: #ffffff;
-          font-family: 'DINProMedium';
+          font-family: "DINProMedium";
           font-size: 16px;
           text-transform: uppercase;
           letter-spacing: -0.57px;
@@ -232,18 +283,18 @@
       }
       &__name {
         color: #8e8fbb;
-        font-family: 'RobotoMedium';
+        font-family: "RobotoMedium";
         font-size: 12px;
         margin-bottom: 3px;
       }
       &__price {
         color: #ffffff;
-        font-family: 'RobotoLight';
+        font-family: "RobotoLight";
         font-size: 13px;
       }
       &__link {
         color: #a2a2ad;
-        font-family: 'RobotoLight';
+        font-family: "RobotoLight";
         font-size: 11px;
       }
     }
@@ -288,7 +339,7 @@
       }
       &__title {
         color: #a2a2ad;
-        font-family: 'RobotoLight';
+        font-family: "RobotoLight";
         font-size: 12px;
         line-height: 14px;
       }
@@ -300,9 +351,9 @@
     }
     &-text {
       color: #ffffff;
-      font-family: 'RobotoLight';
+      font-family: "RobotoLight";
       font-size: 12px;
-      letter-spacing: .1px;
+      letter-spacing: 0.1px;
     }
     &-icon {
       width: 14px;
@@ -314,7 +365,7 @@
   &__settings {
     &-title {
       color: #ffffff;
-      font-family: 'RobotoMedium';
+      font-family: "RobotoMedium";
       font-size: 18px;
       font-weight: 500;
       margin-bottom: 5px;
@@ -322,7 +373,7 @@
     }
     &-text {
       color: #a2a2ad;
-      font-family: 'RobotoLight';
+      font-family: "RobotoLight";
       font-size: 13px;
       font-weight: 300;
       line-height: 22px;
