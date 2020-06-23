@@ -17,7 +17,7 @@ export const actions = {
   async getSubs({ commit }, group_id) {
     try {
       let { data } = await Api[`subscription?group_id=${group_id}`]();
-      commit("GET_SUBS", data.data.tariff_info);
+      commit("GET_SUBS", data.data);
     } catch (e) {
       console.log(e);
     }
