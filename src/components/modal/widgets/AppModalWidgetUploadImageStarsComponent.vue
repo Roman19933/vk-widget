@@ -12,6 +12,24 @@
           <img src="/img/modal-close.png" alt />
         </button>
         <div class="widgets-setting__content">
+          <div class="widgets__right w-100 p-0" style="overflow: visible; background: none">
+            <div class="form__items">
+              <div class="item">
+                <div class="form-group">
+                  <v-select
+                    :options="starsOptions"
+                    :searchable="false"
+                    :clearable="false"
+                    label="text"
+                    :reduce="i => i.id"
+                    placeholder="К-во звезд"
+                    v-model="stars"
+                  ></v-select>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div class="widgets-setting__input">
             <span class="modal__title">загрузка изображения</span>
           </div>
@@ -42,6 +60,7 @@
 <script>
 import modalWidgets from "@/mixins/modalWidgets";
 import { readAndCompressImage } from "browser-image-resizer";
+import Jimp from "jimp";
 import { mapGetters } from "vuex";
 const sizes = {
   cover: {
@@ -73,6 +92,15 @@ const sizes = {
     debug: false
   }
 };
+const watermarkY = 5
+const watermarkX = 5
+const watermarks = [
+  "/favicon.png",
+  "/favicon.png",
+  "/favicon.png",
+  "/favicon.png",
+  "/favicon.png"
+];
 export default {
   mixins: [modalWidgets],
   data() {
@@ -81,9 +109,32 @@ export default {
         image: "",
         src: ""
       },
+      starsOptions: [
+        {
+          id: 1,
+          text: "Одна звезда"
+        },
+        {
+          id: 2,
+          text: "Две звезды"
+        },
+        {
+          id: 3,
+          text: "Три звезды"
+        },
+        {
+          id: 4,
+          text: "Четыре звезды"
+        },
+        {
+          id: 5,
+          text: "Пять звезд"
+        }
+      ],
       loading: false,
       file: null,
-      preview: ""
+      preview: "",
+      stars: 5
     };
   },
   computed: {
@@ -122,11 +173,35 @@ export default {
     },
     async changeImage(event) {
       const file = event.target.files[0];
+      let self = this;
       if (!!file && /\.(jpe?g|png)$/i.test(file.name)) {
         this.loading = true;
         try {
-          this.file = await readAndCompressImage(file, this.sizeImage);
-          this.preview = await this.convertToBase64(this.file);
+          let preview = await this.convertToBase64(file);
+          self.file = file;
+          try {
+            let image = await Jimp.read(preview);
+            let watermark = await Jimp.read(watermarks[self.stars - 1]);
+            try {
+              image
+                .contain(self.sizeImage.maxWidth, self.sizeImage.maxHeight)
+                .background(0xffffffff)
+                .composite(watermark, watermarkY, watermarkX);
+
+              self.preview = await image.getBase64Async(Jimp.MIME_JPEG);
+
+              let block = self.preview.split(";");
+              let contentType = block[0].split(":")[1];
+              let realData = block[1].split(",")[1];
+              let blob = self.b64toBlob(realData, contentType);
+
+              self.file = new File([blob], file.name, { type: blob.type });
+            } catch (e) {
+              console.log(e);
+            }
+          } catch (e) {
+            console.log(e);
+          }
         } catch (e) {
           console.log(e);
         } finally {
@@ -135,6 +210,7 @@ export default {
       }
     },
     convertToBase64(blob) {
+      let self = this;
       return new Promise(resolve => {
         let reader = new FileReader();
         reader.onload = function() {
@@ -142,6 +218,33 @@ export default {
         };
         reader.readAsDataURL(blob);
       });
+    },
+    b64toBlob(b64Data, contentType, sliceSize) {
+      contentType = contentType || "";
+      sliceSize = sliceSize || 512;
+
+      let byteCharacters = atob(b64Data);
+      let byteArrays = [];
+
+      for (
+        let offset = 0;
+        offset < byteCharacters.length;
+        offset += sliceSize
+      ) {
+        let slice = byteCharacters.slice(offset, offset + sliceSize);
+
+        let byteNumbers = new Array(slice.length);
+        for (let i = 0; i < slice.length; i++) {
+          byteNumbers[i] = slice.charCodeAt(i);
+        }
+
+        let byteArray = new Uint8Array(byteNumbers);
+
+        byteArrays.push(byteArray);
+      }
+
+      let blob = new Blob(byteArrays, { type: contentType });
+      return blob;
     }
   }
 };
