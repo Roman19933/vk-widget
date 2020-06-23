@@ -40,13 +40,56 @@
       &__items {
         .item {
           margin-bottom: 26px;
+          &__img {
+            &-wrapper {
+              position: relative;
+              .popover {
+                right: initial;
+                left: 0px;
+                top: -37px;
+                min-width: 143px;
+              }
+              &:hover {
+                .popover {
+                  display: flex;
+                  &:before {
+                    top: initial;
+                    transform: initial;
+                    right: initial;
+                    left: 0;
+                    position: absolute;
+                    content: "";
+                    border: 5px solid transparent;
+                    border-top: 7px solid #21203d;
+                    bottom: -12px;
+                  }
+                }
+              }
+            }
+          }
           &__title {
             display: flex;
             align-items: center;
             margin-bottom: 9px;
+            // position: relative;
             span {
               margin-right: 10px;
             }
+            // &:hover {
+            //   .popover {
+            //     display: flex;
+            //     &:before {
+            //       top: initial;
+            //       transform: initial;
+            //       right: 50%;
+            //       position: absolute;
+            //       content: "";
+            //       border: 5px solid transparent;
+            //       border-top: 7px solid #21203d;
+            //       bottom: -12px;
+            //     }
+            //   }
+            // }
           }
           &__double {
             display: flex;
@@ -84,6 +127,7 @@
               // padding: 7px 15px;
               color: #a2a2ad;
               width: 100%;
+              resize: none;
               &::placeholder {
                 font-family: "RobotoLight";
                 font-size: 13px;
@@ -108,6 +152,14 @@
               background-color: #2f304d;
               // color: #a2a2ad;
               outline: none;
+            }
+            .vs--disabled .vs__clear,
+            .vs--disabled .vs__dropdown-toggle,
+            .vs--disabled .vs__open-indicator,
+            .vs--disabled .vs__search,
+            .vs--disabled .vs__selected {
+              cursor: not-allowed;
+              background-color: initial;
             }
             .vs__open-indicator,
             .vs__clear {
@@ -463,6 +515,63 @@
       position: relative;
       &.sortable-ghost {
         opacity: 0.5;
+      }
+      &__table {
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0;
+        margin-right: 16px;
+        .head {
+          display: flex;
+          width: 100%;
+          padding-left: 63px;
+          justify-content: space-between;
+          &__wrapper {
+            width: 100%;
+            .widgets__content-text {
+              // width: 110.4px;
+              width: 100%;
+              border: 1px dashed #8e8fbb;
+              border-right: 0;
+              border-bottom: 0;
+              padding: 8px;
+            }
+            &:last-child {
+              border-right: 1px dashed #8e8fbb;
+            }
+          }
+        }
+        .body {
+          display: flex;
+          flex-direction: column;
+          width: 100%;
+          &__wrapper {
+            display: flex;
+            // align-items: center;
+            border: 1px dashed #8e8fbb;
+            border-bottom: 0;
+            position: relative;
+            .widgets__content-text {
+              // width: 118px;
+              width: 100%;
+              border: 1px dashed #8e8fbb;
+              border-right: 0;
+              border-bottom: 0;
+              border-top: 0;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            }
+            .widgets__content-avatar {
+              margin: 6px;
+              cursor: pointer;
+            }
+            &:last-child {
+              border-bottom: 1px dashed #8e8fbb;
+            }
+          }
+        }
       }
       &__personal {
         position: relative;

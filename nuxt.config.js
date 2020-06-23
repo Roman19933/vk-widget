@@ -57,6 +57,7 @@ module.exports = {
     { src: '~plugins/vuedraggable', ssr: false },
     { src: '~plugins/vk-bridge', ssr: false },
     { src: '~plugins/vuex-persistedstate', ssr: false },
+    { src: '~plugins/helpers', ssr: false },
   ],
   router: {
     prefetchLinks: process.env.NUXT_APP_MODE === 'production',

@@ -9,7 +9,14 @@
       <div class="item">
         <div class="item__title">
           <span>Пол</span>
-          <img src="/img/lock.png" alt />
+          <div class="item__img-wrapper" v-if="subs.title !== 'business'">
+            <img src="/img/lock.png" alt />
+            <div class="popover">
+              <div class="popover__wrapper">
+                <span>Не доступно на Вашем тарифе!</span>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="form-group">
           <v-select
@@ -17,6 +24,7 @@
             placeholder="Выберите пол"
             :value="value.sex"
             label="title"
+            :disabled="subs.title !== 'business'"
             @input="changeData('sex', $event)"
           ></v-select>
         </div>
@@ -24,7 +32,14 @@
       <div class="item">
         <div class="item__title">
           <span>Возраст</span>
-          <img src="/img/lock.png" alt />
+          <div class="item__img-wrapper" v-if="subs.title !== 'business'">
+            <img src="/img/lock.png" alt />
+            <div class="popover">
+              <div class="popover__wrapper">
+                <span>Не доступно на Вашем тарифе!</span>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="item__double">
           <div class="form-group">
@@ -33,6 +48,7 @@
               placeholder="От"
               :value="value.age.from"
               @input="changeData('age.from', $event)"
+              :disabled="subs.title !== 'business'"
             ></v-select>
           </div>
           <div class="form-group">
@@ -41,6 +57,7 @@
               placeholder="До"
               :value="value.age.to"
               @input="changeData('age.to', $event)"
+              :disabled="subs.title !== 'business'"
             ></v-select>
           </div>
         </div>
@@ -48,26 +65,23 @@
       <div class="item">
         <div class="item__title">
           <span>День рождения</span>
-          <img src="/img/lock.png" alt />
+          <div class="item__img-wrapper" v-if="subs.title !== 'business'">
+            <img src="/img/lock.png" alt />
+            <div class="popover">
+              <div class="popover__wrapper">
+                <span>Не доступно на Вашем тарифе!</span>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="item__double item__double_radio">
-          <!-- <label v-for="(item, index) in birthData" :key="index" class="radio">
-            <input
-              type="radio"
-              name="birth"
-              class="radio__input"
-              :value="value.bdate"
-              @input="changeData('bdate', $event)"
-            />
-            <span class="radio__custom"></span>
-            <span class="radio__text">{{ item.title }}</span>
-          </label> -->
           <app-radio
             v-for="(item, index) in birthData"
             :key="index"
             :item="item"
             :data="value"
             :value="value.bdate"
+            :disabled="subs.title !== 'business'"
             @input="changeData('bdate', $event)"
           />
         </div>
@@ -75,7 +89,14 @@
       <div class="item">
         <div class="item__title">
           <span>Семейное положение</span>
-          <img src="/img/lock.png" alt />
+          <div class="item__img-wrapper" v-if="subs.title !== 'business'">
+            <img src="/img/lock.png" alt />
+            <div class="popover">
+              <div class="popover__wrapper">
+                <span>Не доступно на Вашем тарифе!</span>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="form-group">
           <v-select
@@ -84,13 +105,21 @@
             label="title"
             :value="value.relation"
             @input="changeData('relation', $event)"
+            :disabled="subs.title !== 'business'"
           ></v-select>
         </div>
       </div>
       <div class="item">
         <div class="item__title">
           <span>Город</span>
-          <img src="/img/lock.png" alt />
+          <div class="item__img-wrapper" v-if="subs.title !== 'business'">
+            <img src="/img/lock.png" alt />
+            <div class="popover">
+              <div class="popover__wrapper">
+                <span>Не доступно на Вашем тарифе!</span>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="form-group">
           <v-select
@@ -101,6 +130,7 @@
             label="title"
             @search="onSearch"
             placeholder="Выберите город"
+            :disabled="subs.title !== 'business'"
           >
             <template slot="no-options"
               >Начните вводить название города</template
@@ -114,7 +144,14 @@
       <div class="item">
         <div class="item__title">
           <span>Устройство</span>
-          <img src="/img/lock.png" alt />
+          <div class="item__img-wrapper" v-if="subs.title !== 'business'">
+            <img src="/img/lock.png" alt />
+            <div class="popover">
+              <div class="popover__wrapper">
+                <span>Не доступно на Вашем тарифе!</span>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="form-group">
           <v-select
@@ -123,19 +160,28 @@
             :value="value.devices"
             label="title"
             @input="changeData('devices', $event)"
+            :disabled="subs.title !== 'business'"
           ></v-select>
         </div>
       </div>
       <div class="item">
         <div class="item__title">
           <span>Состоит в сообществе</span>
-          <img src="/img/lock.png" alt />
+          <div class="item__img-wrapper" v-if="subs.title !== 'business'">
+            <img src="/img/lock.png" alt />
+            <div class="popover">
+              <div class="popover__wrapper">
+                <span>Не доступно на Вашем тарифе!</span>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="form-group form-group_textarea">
           <textarea
             placeholder="Введите ID сообществ"
             :value="value.groups"
             @input="changeData('groups', $event.target.value)"
+            :disabled="subs.title !== 'business'"
           ></textarea>
           <span>Каждый номер с новой строки</span>
         </div>
@@ -143,13 +189,21 @@
       <div class="item">
         <div class="item__title">
           <span>Не состоит в сообществе</span>
-          <img src="/img/lock.png" alt />
+          <div class="item__img-wrapper" v-if="subs.title !== 'business'">
+            <img src="/img/lock.png" alt />
+            <div class="popover">
+              <div class="popover__wrapper">
+                <span>Не доступно на Вашем тарифе!</span>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="form-group form-group_textarea">
           <textarea
             placeholder="Введите ID сообществ"
             :value="value.groups_exclude"
             @input="changeData('groups_exclude', $event.target.value)"
+            :disabled="subs.title !== 'business'"
           ></textarea>
           <span>Каждый номер с новой строки</span>
         </div>
@@ -157,13 +211,21 @@
       <div class="item">
         <div class="item__title">
           <span>ID пользователей</span>
-          <img src="/img/lock.png" alt />
+          <div class="item__img-wrapper" v-if="subs.title !== 'business'">
+            <img src="/img/lock.png" alt />
+            <div class="popover">
+              <div class="popover__wrapper">
+                <span>Не доступно на Вашем тарифе!</span>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="form-group form-group_textarea">
           <textarea
-            placeholder="Введите ID сообществ"
+            placeholder="Введите ID пользователя"
             :value="value.users"
             @input="changeData('users', $event.target.value)"
+            :disabled="subs.title !== 'business'"
           ></textarea>
           <span>Каждый номер с новой строки</span>
         </div>
@@ -171,57 +233,89 @@
       <div class="item">
         <div class="item__title">
           <span>Интересы второй половинки</span>
-          <img src="/img/lock.png" alt />
+          <div class="item__img-wrapper" v-if="subs.title !== 'business'">
+            <img src="/img/lock.png" alt />
+            <div class="popover">
+              <div class="popover__wrapper">
+                <span>Не доступно на Вашем тарифе!</span>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="form-group form-group_textarea">
           <textarea
-            placeholder="Введите ID сообществ"
+            placeholder="Введите интересы второй половинки"
             :value="value.relation_groups"
-            @input="changeData('relationGroups', $event.target.value)"
+            @input="changeData('relation_groups', $event.target.value)"
+            :disabled="subs.title !== 'business'"
           ></textarea>
-          <span>Каждый номер с новой строки</span>
+          <span>Каждое названия с новой строки</span>
         </div>
       </div>
       <div class="item">
         <div class="item__title">
           <span>Интересы пользователя</span>
-          <img src="/img/lock.png" alt />
+          <div class="item__img-wrapper" v-if="subs.title !== 'business'">
+            <img src="/img/lock.png" alt />
+            <div class="popover">
+              <div class="popover__wrapper">
+                <span>Не доступно на Вашем тарифе!</span>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="form-group form-group_textarea">
           <textarea
-            placeholder="Введите ID сообществ"
+            placeholder="Введите интересы пользователя"
             :value="value.user_interests"
-            @input="changeData('userInterests', $event.target.value)"
+            @input="changeData('user_interests', $event.target.value)"
+            :disabled="subs.title !== 'business'"
           ></textarea>
-          <span>Каждый номер с новой строки</span>
+          <span>Каждое название с новой строки</span>
         </div>
       </div>
       <div class="item">
         <div class="item__title">
           <span>Имя пользователя</span>
-          <img src="/img/lock.png" alt />
+          <div class="item__img-wrapper" v-if="subs.title !== 'business'">
+            <img src="/img/lock.png" alt />
+            <div class="popover">
+              <div class="popover__wrapper">
+                <span>Не доступно на Вашем тарифе!</span>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="form-group form-group_textarea">
           <textarea
-            placeholder="Введите ID сообществ"
+            placeholder="Введите имя пользователя"
             :value="value.user_name"
-            @input="changeData('userName', $event.target.value)"
+            @input="changeData('user_name', $event.target.value)"
+            :disabled="subs.title !== 'business'"
           ></textarea>
-          <span>Каждый номер с новой строки</span>
+          <span>Каждое Имя с новой строки</span>
         </div>
       </div>
       <div class="item">
         <div class="item__title">
           <span>Фамилия пользователя</span>
-          <img src="/img/lock.png" alt />
+          <div class="item__img-wrapper" v-if="subs.title !== 'business'">
+            <img src="/img/lock.png" alt />
+            <div class="popover">
+              <div class="popover__wrapper">
+                <span>Не доступно на Вашем тарифе!</span>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="form-group form-group_textarea">
           <textarea
-            placeholder="Введите ID сообществ"
+            placeholder="Введите фамилию пользователя"
             :value="value.user_surname"
-            @input="changeData('userSurname', $event.target.value)"
+            @input="changeData('user_surname', $event.target.value)"
+            :disabled="subs.title !== 'business'"
           ></textarea>
-          <span>Каждый номер с новой строки</span>
+          <span>Каждая Фамилия с новой строки</span>
         </div>
       </div>
     </div>
@@ -230,6 +324,7 @@
 
 <script>
 import AppRadio from "@/components/form/AppRadio";
+import { mapGetters } from "vuex";
 import _ from "lodash";
 export default {
   data() {
@@ -406,6 +501,11 @@ export default {
         }
       ]
     };
+  },
+  computed: {
+    ...mapGetters({
+      subs: "server/payments/subs"
+    })
   },
   methods: {
     changeData(name, event) {

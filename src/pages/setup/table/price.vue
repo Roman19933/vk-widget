@@ -55,18 +55,16 @@
                   >
                 </div>
                 <div class="widgets__items widgets__items_client">
-                  <!-- <draggable
-                    v-model="widget.data.body"
-                    group="client"
-                    class="widgets__items_draggable "
-                  > -->
                   <template>
                     <app-widget-item-table v-model="widget.data" />
                   </template>
-                  <button class="add-item" @click.prevent="addItemTable">
+                  <button
+                    class="add-item"
+                    @click.prevent="addItemTable"
+                    v-if="widget.data.body.length < 6 && !this.switch"
+                  >
                     + Добавить элемент
                   </button>
-                  <!-- </draggable> -->
                 </div>
                 <div class="widgets__content-add">
                   <a
@@ -118,7 +116,6 @@
         :map-data="mapData"
         :other="other"
         @saved="handlerSaved"
-        @savedClients="groupLink"
         @close="clear"
       />
     </div>
@@ -137,8 +134,8 @@ export default {
   data() {
     return {
       widget: {
-        type_name: "Наши клиенты",
-        type_link: "/setup/table/clients?category=sales&edit=true",
+        type_name: "Прайс лист",
+        type_link: "/setup/table/price?category=nav&edit=true",
         data: {
           more: "",
           more_url: "",
@@ -149,56 +146,46 @@ export default {
           body: [
             [
               {
-                text: "Россия",
-                icon_id: "3484735_23434324"
+                text: "Стрижка бороды",
+                icon_id: "3484735_23434324",
+                icon_url: ""
               },
               {
-                text: "1 строка",
+                text: "Брутально",
                 url: "https://vk.com/wall-12345_542321"
               },
               {
-                text: "1 строка",
-                url: "https://vk.com/wall-12345_542321"
-              },
-              {
-                text: "1 строка",
+                text: "1500 руб.",
                 url: "https://vk.com/wall-12345_542321"
               }
             ],
             [
               {
-                text: "USA",
-                icon_id: "3484735_23434324"
+                text: "Стрижка усов",
+                icon_id: "3484735_23434324",
+                icon_url: ""
               },
               {
-                text: "2 строка",
+                text: "Брутально",
                 url: "https://vk.com/wall-12345_542321"
               },
               {
-                text: "2 строка",
-                url: "https://vk.com/wall-12345_542321"
-              },
-              {
-                text: "2 строка",
+                text: "1500 руб.",
                 url: "https://vk.com/wall-12345_542321"
               }
             ]
           ],
           head: [
             {
-              text: "Страна",
+              text: "Услуга",
               align: "left"
             },
             {
-              text: "Золото",
+              text: "Описание",
               align: "left"
             },
             {
-              text: "Серебро",
-              align: "left"
-            },
-            {
-              text: "Бронза",
+              text: "Цена",
               align: "left"
             }
           ]
@@ -206,19 +193,19 @@ export default {
         is_active: false,
         name: "",
         segmentation: {
-          sex: [],
+          sex: null,
           age: { from: "", to: "" },
-          bdate: [],
-          relation: [],
-          city: [],
-          devices: [],
-          user_surname: [],
-          user_name: [],
-          user_interests: [],
-          relation_groups: [],
-          users: [],
-          groups_exclude: [],
-          groups: []
+          bdate: null,
+          relation: null,
+          city: null,
+          devices: "",
+          user_surname: null,
+          user_name: null,
+          user_interests: null,
+          relation_groups: null,
+          users: null,
+          groups_exclude: null,
+          groups: null
         },
         type: "table",
         sc_type: "client"
@@ -227,7 +214,24 @@ export default {
   },
   methods: {
     addItemTable() {
-      console.log("ok");
+      this.widget.data.body.push([
+        {
+          text: "",
+          icon_id: ""
+        },
+        {
+          text: "",
+          url: ""
+        },
+        {
+          text: "",
+          url: ""
+        },
+        {
+          text: "",
+          url: ""
+        }
+      ]);
     }
   },
   mixins: [Widgets],
