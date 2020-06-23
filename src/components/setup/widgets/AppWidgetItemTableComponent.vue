@@ -14,7 +14,7 @@
                     title: {
                       fieldName: `head[${index}].text`,
                       value: item.text
-                    },
+                    }
                   }
                 })
               "
@@ -25,12 +25,12 @@
       </template>
     </div>
     <div class="body">
-      <draggable v-model="body" group="table">
+      <draggable v-model="value.body" group="table">
         <template v-for="(item, index) in value.body">
           <div class="body__wrapper" :key="`item-${index}`">
             <div class="item__menu">
               <a
-                v-if="body.length >= 3"
+                v-if="value.body.length >= 3"
                 href="#"
                 class="item__menu-close"
                 @click.prevent="removeItem(index)"
@@ -41,14 +41,54 @@
                 <img src="/img/burger.png" alt />
               </div>
             </div>
-            <div class="widgets__content-avatar">
-              <img src="/img/photo.png" alt class="photo" />
+            <div
+              class="widgets__content-avatar"
+              @click.prevent="
+                $emit('edit:element', {
+                  typeModal: 'modal-widget-upload-image',
+                  map: {
+                    image: {
+                      fieldName: `body[${index}][0].icon_id`,
+                      value: ''
+                    },
+                    src: {
+                      fieldName: `body[${index}][0].icon_url`,
+                      value: ''
+                    },
+                    other: {
+                      sizeImage: 'small'
+                    }
+                  }
+                })
+              "
+            >
+              <img
+                :src="item[0].icon_url || `/img/photo.png`"
+                class="photo"
+              />
             </div>
-            <template v-for="(children, index) in item">
-              <div class="widgets__content-text" :key="`children-${index}`">
-                <a href="#" class="text">{{
-                  !!children.text ? children.text : "+ добавить"
-                }}</a>
+            <template v-for="(children, idx) in item">
+              <div class="widgets__content-text" :key="`children-${idx}`">
+                <a
+                  href="#"
+                  class="text"
+                  @click.prevent="
+                    $emit('edit:element', {
+                      typeModal: 'modal-widget-title-link',
+                      map: {
+                        title: {
+                          fieldName: `body[${index}][${idx}].text`,
+                          value: children.text
+                        },
+                        link: {
+                          fieldName: `body[${index}].url`,
+                          value: children.url
+                        }
+                      }
+                    })
+                  "
+                  >{{ !!children.text ? children.text : "+ добавить" }}</a
+                >
               </div>
             </template>
           </div>
@@ -92,7 +132,7 @@ export default {
   },
   methods: {
     removeItem(index) {
-      this.body.splice(index, 1);
+      this.value.body.splice(index, 1);
     },
     clear() {
       this.mapData = "";
@@ -104,8 +144,6 @@ export default {
     }
   },
   mounted() {
-    // this.head = this.value.head;
-    // this.body = this.value.body;
     let self = this;
     this.$on("edit:element", e => {
       self.modal = e.typeModal;
