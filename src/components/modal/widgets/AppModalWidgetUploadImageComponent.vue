@@ -41,7 +41,6 @@
 
 <script>
 import modalWidgets from "@/mixins/modalWidgets";
-import { readAndCompressImage } from "browser-image-resizer";
 import { mapGetters } from "vuex";
 const sizes = {
   cover: {
@@ -122,11 +121,33 @@ export default {
     },
     async changeImage(event) {
       const file = event.target.files[0];
+      let self = this
       if (!!file && /\.(jpe?g|png)$/i.test(file.name)) {
         this.loading = true;
         try {
-          this.file = await readAndCompressImage(file, this.sizeImage);
-          this.preview = await this.convertToBase64(this.file);
+          let preview = await this.$convertToBase64(file);
+          self.file = file;
+          try {
+            let image = await Jimp.read(preview);
+            try {
+              image
+                .contain(self.sizeImage.maxWidth, self.sizeImage.maxHeight)
+                .background(0xffffffff)
+
+              self.preview = await image.getBase64Async(Jimp.MIME_JPEG);
+
+              let block = self.preview.split(";");
+              let contentType = block[0].split(":")[1];
+              let realData = block[1].split(",")[1];
+              let blob = self.$b64toBlob(realData, contentType);
+
+              self.file = new File([blob], file.name, { type: blob.type });
+            } catch (e) {
+              console.log(e);
+            }
+          } catch (e) {
+            console.log(e);
+          }
         } catch (e) {
           console.log(e);
         } finally {
@@ -134,15 +155,6 @@ export default {
         }
       }
     },
-    convertToBase64(blob) {
-      return new Promise(resolve => {
-        let reader = new FileReader();
-        reader.onload = function() {
-          resolve(reader.result);
-        };
-        reader.readAsDataURL(blob);
-      });
-    }
   }
 };
 </script>
