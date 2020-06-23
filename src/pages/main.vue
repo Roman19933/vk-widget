@@ -77,13 +77,14 @@
                         :class="'switch__disabled-wrapper'"
                         @click="
                           (switchActive = vidget.id),
-                          subs.length === 0 ? modalVersion() :(
-                            !disablePublick
-                              ? vidget.is_active
-                                ? disableVidget()
-                                : modalPublic()
-                              : null,
-                            disablePublick && $bvModal.show('modal-timer'))
+                            !subs
+                              ? modalVersion()
+                              : (!disablePublick
+                                  ? vidget.is_active
+                                    ? disableVidget()
+                                    : modalPublic()
+                                  : null,
+                                disablePublick && $bvModal.show('modal-timer'))
                         "
                       >
                         <app-switch
