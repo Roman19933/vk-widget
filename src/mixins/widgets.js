@@ -28,19 +28,19 @@ export default {
           devices: bef.devices ? bef.devices.screen_name : '',
           user_surname: bef.user_surname
             ? this.splitStr(`${bef.user_surname}`)
-            : [],
-          user_name: bef.user_name ? this.splitStr(`${bef.user_name}`) : [],
+            : null,
+          user_name: bef.user_name ? this.splitStr(`${bef.user_name}`) : null,
           user_interests: bef.user_interests
             ? this.splitStr(`${bef.user_interests}`)
-            : [],
+            : null,
           relation_groups: bef.relation_groups
             ? this.splitStr(`${bef.relation_groups}`)
-            : [],
-          users: bef.users ? this.splitStr(`${bef.users}`) : [],
+            : null,
+          users: bef.users ? this.splitStr(`${bef.users}`) : null,
           groups_exclude: bef.groups_exclude
             ? this.splitStr(`${bef.groups_exclude}`)
-            : [],
-          groups: bef.groups ? this.splitStr(`${bef.groups}`) : []
+            : null,
+          groups: bef.groups ? this.splitStr(`${bef.groups}`) : null
         };
         Object.assign(segment, clone);
       },

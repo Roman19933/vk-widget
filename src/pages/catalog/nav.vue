@@ -11,7 +11,9 @@
         <div class="catalog-nav__content point-sale">
           <div class="catalog-nav__content-header">
             <app-svg-icon name="basket" class="catalog-nav__content-icon" />
-            <h3 class="catalog-nav__content-text">Виктория, наши магазины совсем рядом с вами!</h3>
+            <h3 class="catalog-nav__content-text">
+              Виктория, наши магазины совсем рядом с вами!
+            </h3>
           </div>
           <div class="catalog-nav__item">
             <div class="catalog-nav__icon-wrapper">
@@ -21,12 +23,20 @@
               <div class="catalog-nav__item-title">Магазин Дом обуви</div>
               <div class="catalog-nav__item-content">
                 <div class="catalog-nav__item-text">
-                  <p class="catalog-nav__text">Более 10 000 пар обуви в одном месте</p>
                   <p class="catalog-nav__text">
-                    <app-svg-icon name="pin" class="catalog-nav__item-icon" />ул. Ленина, 12
+                    Более 10 000 пар обуви в одном месте
                   </p>
                   <p class="catalog-nav__text">
-                    <app-svg-icon name="time" class="catalog-nav__item-icon" />8:00 - 20:00 (без выходных)
+                    <app-svg-icon
+                      name="pin"
+                      class="catalog-nav__item-icon"
+                    />ул. Ленина, 12
+                  </p>
+                  <p class="catalog-nav__text">
+                    <app-svg-icon
+                      name="time"
+                      class="catalog-nav__item-icon"
+                    />8:00 - 20:00 (без выходных)
                   </p>
                 </div>
                 <button class="gen-btn">Связаться</button>
@@ -43,10 +53,16 @@
                 <div class="catalog-nav__item-text">
                   <p class="catalog-nav__text">Детские игрушки</p>
                   <p class="catalog-nav__text">
-                    <app-svg-icon name="pin" class="catalog-nav__item-icon" />ул. Стрелкова, 23
+                    <app-svg-icon
+                      name="pin"
+                      class="catalog-nav__item-icon"
+                    />ул. Стрелкова, 23
                   </p>
                   <p class="catalog-nav__text">
-                    <app-svg-icon name="time" class="catalog-nav__item-icon" />8:00 - 20:00 (без выходных)
+                    <app-svg-icon
+                      name="time"
+                      class="catalog-nav__item-icon"
+                    />8:00 - 20:00 (без выходных)
                   </p>
                 </div>
                 <button class="gen-btn">Связаться</button>
@@ -61,12 +77,18 @@
               <div class="catalog-nav__item-title">Магазин Шубка</div>
               <div class="catalog-nav__item-content">
                 <div class="catalog-nav__item-text">
-                  <p class="catalog-nav__text">Шубы, дубленки, пуховики, куртки</p>
                   <p class="catalog-nav__text">
-                    <app-svg-icon name="pin" class="catalog-nav__item-icon" /> ул. Пшхтынская, 122
+                    Шубы, дубленки, пуховики, куртки
                   </p>
                   <p class="catalog-nav__text">
-                    <app-svg-icon name="time" class="catalog-nav__item-icon" />8:00 - 20:00 (без выходных)
+                    <app-svg-icon name="pin" class="catalog-nav__item-icon" />
+                    ул. Пшхтынская, 122
+                  </p>
+                  <p class="catalog-nav__text">
+                    <app-svg-icon
+                      name="time"
+                      class="catalog-nav__item-icon"
+                    />8:00 - 20:00 (без выходных)
                   </p>
                 </div>
                 <button class="gen-btn">Связаться</button>
@@ -76,36 +98,50 @@
         </div>
         <div class="catalog-nav__settings">
           <h4 class="catalog-nav__settings-title">Точки продаж</h4>
-          <p
-            class="catalog-nav__settings-text"
-          >Сообщите посетителям сообщества о местоположении и времени работы ваших магазинов или других заведений.</p>
+          <p class="catalog-nav__settings-text">
+            Сообщите посетителям сообщества о местоположении и времени работы
+            ваших магазинов или других заведений.
+          </p>
           <nuxt-link
             class="gen-btn"
             tag="button"
             to="/setup/compactlist/places?category=nav"
-          >Выбрать</nuxt-link>
+            >Выбрать</nuxt-link
+          >
         </div>
       </section>
       <section class="catalog-nav__row">
         <div class="catalog-nav__content activity">
           <div class="catalog-nav__content-header">
             <app-svg-icon name="flag" class="catalog-nav__content-icon" />
-            <h3 class="catalog-nav__content-text">Иван, время поднять навык в SMM!</h3>
+            <h3 class="catalog-nav__content-text">
+              Иван, время поднять навык в SMM!
+            </h3>
           </div>
           <div class="catalog-nav__item">
             <div class="catalog-nav__icon-wrapper">
               <app-svg-icon name="image" class="catalog-nav__icon" />
             </div>
             <div class="catalog-nav__item-wrapper">
-              <div class="catalog-nav__item-title">Зарабатывайте на автоворонках</div>
+              <div class="catalog-nav__item-title">
+                Зарабатывайте на автоворонках
+              </div>
               <div class="catalog-nav__item-content">
                 <div class="catalog-nav__item-text">
-                  <p class="catalog-nav__text">Создайте свою первую автоворонку и заработайте первые деньги</p>
                   <p class="catalog-nav__text">
-                    <app-svg-icon name="pin" class="catalog-nav__item-icon" />Онлайн
+                    Создайте свою первую автоворонку и заработайте первые деньги
                   </p>
                   <p class="catalog-nav__text">
-                    <app-svg-icon name="time" class="catalog-nav__item-icon" />11:00 - 18:00
+                    <app-svg-icon
+                      name="pin"
+                      class="catalog-nav__item-icon"
+                    />Онлайн
+                  </p>
+                  <p class="catalog-nav__text">
+                    <app-svg-icon
+                      name="time"
+                      class="catalog-nav__item-icon"
+                    />11:00 - 18:00
                   </p>
                 </div>
                 <button class="gen-btn">Связаться</button>
@@ -120,12 +156,20 @@
               <div class="catalog-nav__item-title">Профессия Таргетолога</div>
               <div class="catalog-nav__item-content">
                 <div class="catalog-nav__item-text">
-                  <p class="catalog-nav__text">Научитесь создавать эффективные объявления с CTR от 5%</p>
                   <p class="catalog-nav__text">
-                    <app-svg-icon name="pin" class="catalog-nav__item-icon" />Онлайн
+                    Научитесь создавать эффективные объявления с CTR от 5%
                   </p>
                   <p class="catalog-nav__text">
-                    <app-svg-icon name="shooter1" class="catalog-nav__item-icon" />10:00 - 18:00
+                    <app-svg-icon
+                      name="pin"
+                      class="catalog-nav__item-icon"
+                    />Онлайн
+                  </p>
+                  <p class="catalog-nav__text">
+                    <app-svg-icon
+                      name="shooter1"
+                      class="catalog-nav__item-icon"
+                    />10:00 - 18:00
                   </p>
                 </div>
                 <button class="gen-btn">Связаться</button>
@@ -135,14 +179,16 @@
         </div>
         <div class="catalog-nav__settings">
           <h4 class="catalog-nav__settings-title">Мероприятия</h4>
-          <p
-            class="catalog-nav__settings-text"
-          >Расскажите аудитории про ваши мероприятия, времени начала и месте проведения.</p>
+          <p class="catalog-nav__settings-text">
+            Расскажите аудитории про ваши мероприятия, времени начала и месте
+            проведения.
+          </p>
           <nuxt-link
             class="gen-btn"
             tag="button"
             to="/setup/compactlist/events?category=nav"
-          >Выбрать</nuxt-link>
+            >Выбрать</nuxt-link
+          >
         </div>
       </section>
       <section class="catalog-nav__row">
@@ -160,7 +206,9 @@
                 <div class="catalog-nav__item-title">Бесплатное занятие</div>
                 <div class="catalog-nav__item-content">
                   <div class="catalog-nav__item-text">
-                    <p class="catalog-nav__text">Запишись на первую бесплатную тренировку</p>
+                    <p class="catalog-nav__text">
+                      Запишись на первую бесплатную тренировку
+                    </p>
                   </div>
                   <button class="gen-btn">Перейти</button>
                 </div>
@@ -174,7 +222,9 @@
                 <div class="catalog-nav__item-title">Расписание тренировок</div>
                 <div class="catalog-nav__item-content">
                   <div class="catalog-nav__item-text">
-                    <p class="catalog-nav__text">Выбери удобное время для занятий</p>
+                    <p class="catalog-nav__text">
+                      Выбери удобное время для занятий
+                    </p>
                   </div>
                   <button class="gen-btn">Перейти</button>
                 </div>
@@ -202,7 +252,9 @@
                 <div class="catalog-nav__item-title">Отзывы</div>
                 <div class="catalog-nav__item-content">
                   <div class="catalog-nav__item-text">
-                    <p class="catalog-nav__text">Более 1000 отзывов довольных клиентов</p>
+                    <p class="catalog-nav__text">
+                      Более 1000 отзывов довольных клиентов
+                    </p>
                   </div>
                   <button class="gen-btn">Перейти</button>
                 </div>
@@ -215,54 +267,74 @@
         </div>
         <div class="catalog-nav__settings">
           <h4 class="catalog-nav__settings-title">Меню сообщества</h4>
-          <p
-            class="catalog-nav__settings-text"
-          >Опубликуйте самые важные разделы сообщества в виджете: расписания, статьи, обсуждения, лид-формы и т.д.</p>
+          <p class="catalog-nav__settings-text">
+            Опубликуйте самые важные разделы сообщества в виджете: расписания,
+            статьи, обсуждения, лид-формы и т.д.
+          </p>
           <nuxt-link
             class="gen-btn"
             tag="button"
             to="/setup/compactlist/groups?category=nav"
-          >Выбрать</nuxt-link>
+            >Выбрать</nuxt-link
+          >
         </div>
       </section>
       <section class="catalog-nav__row">
         <div class="catalog-nav__content">
           <div class="catalog-nav__content-header">
-            <app-svg-icon name="paper-plane" class="catalog-nav__content-icon" />
+            <app-svg-icon
+              name="paper-plane"
+              class="catalog-nav__content-icon"
+            />
             <h3 class="catalog-nav__content-text">Рассылки с акциями</h3>
           </div>
           <div class="subscription">
             <div class="catalog-nav__item">
-              <app-svg-icon name="discount" class="catalog-nav__icon catalog-nav__icon_red" />
+              <app-svg-icon
+                name="discount"
+                class="catalog-nav__icon catalog-nav__icon_red"
+              />
               <div class="catalog-nav__item-wrapper">
                 <div class="catalog-nav__item-title">Распродажи</div>
                 <div class="catalog-nav__item-content">
                   <div class="catalog-nav__item-text">
-                    <p class="catalog-nav__text">Только самые горячие скидки до 60%</p>
+                    <p class="catalog-nav__text">
+                      Только самые горячие скидки до 60%
+                    </p>
                   </div>
                   <button class="gen-btn">Подписаться</button>
                 </div>
               </div>
             </div>
             <div class="catalog-nav__item">
-              <app-svg-icon name="new" class="catalog-nav__icon catalog-nav__icon_blue" />
+              <app-svg-icon
+                name="new"
+                class="catalog-nav__icon catalog-nav__icon_blue"
+              />
               <div class="catalog-nav__item-wrapper">
                 <div class="catalog-nav__item-title">Новые поступления</div>
                 <div class="catalog-nav__item-content">
                   <div class="catalog-nav__item-text">
-                    <p class="catalog-nav__text">Узнавай о новинках сезона первым!</p>
+                    <p class="catalog-nav__text">
+                      Узнавай о новинках сезона первым!
+                    </p>
                   </div>
                   <button class="gen-btn">Подписаться</button>
                 </div>
               </div>
             </div>
             <div class="catalog-nav__item">
-              <app-svg-icon name="favorite" class="catalog-nav__icon catalog-nav__icon_green" />
+              <app-svg-icon
+                name="favorite"
+                class="catalog-nav__icon catalog-nav__icon_green"
+              />
               <div class="catalog-nav__item-wrapper">
                 <div class="catalog-nav__item-title">Секретные акции</div>
                 <div class="catalog-nav__item-content">
                   <div class="catalog-nav__item-text">
-                    <p class="catalog-nav__text">Скидки, о которых знаешь только ты!</p>
+                    <p class="catalog-nav__text">
+                      Скидки, о которых знаешь только ты!
+                    </p>
                   </div>
                   <button class="gen-btn">Подписаться</button>
                 </div>
@@ -275,17 +347,92 @@
         </div>
         <div class="catalog-nav__settings">
           <h4 class="catalog-nav__settings-title">Подписка на рассылки</h4>
-          <p
-            class="catalog-nav__settings-text"
-          >Используйте возможности Ковальский Виджет для увеличения подписчиков в рассылки сторонних сервисов.</p>
-          <p
-            class="catalog-nav__settings-text"
-          >Создайте рассылку в стороннем приложении и вставьте ссылку на подписку в виджет сообщества.</p>
+          <p class="catalog-nav__settings-text">
+            Используйте возможности Ковальский Виджет для увеличения подписчиков
+            в рассылки сторонних сервисов.
+          </p>
+          <p class="catalog-nav__settings-text">
+            Создайте рассылку в стороннем приложении и вставьте ссылку на
+            подписку в виджет сообщества.
+          </p>
           <nuxt-link
             class="gen-btn"
             tag="button"
             to="/setup/compactlist/subscriptions?category=nav"
-          >Выбрать</nuxt-link>
+            >Выбрать</nuxt-link
+          >
+        </div>
+      </section>
+      <section class="catalog-sales__row">
+        <div class="catalog-sales__content">
+          <div class="catalog-sales__content-header">
+            <app-svg-icon name="gift" class="catalog-sales__content-icon" />
+            <h3 class="catalog-sales__content-text">
+              Артем, Спасибо, что подписался! Твои друзья уже с нами!
+            </h3>
+          </div>
+          <div class="catalog-sales__table">
+            <div class="head">
+              <div class="head__item">Услуга</div>
+              <div class="head__item">Описание</div>
+              <div class="head__item">Цена</div>
+            </div>
+            <div class="body">
+              <div class="body__item body__item_price">
+                <div class="body__item-avatar body__item-avatar_price">
+                  <img src="/img/bor2.png" alt="" />
+                </div>
+                <div class="body__item-info body__item-info_price">
+                  Стрижка бороды
+                </div>
+                <div class="body__item-info body__item-info_price">
+                  Брутально и сочно
+                </div>
+                <div class="body__item-info body__item-info_price">
+                  1500 руб.
+                </div>
+              </div>
+              <div class="body__item body__item_price">
+                <div class="body__item-avatar body__item-avatar_price">
+                  <img src="/img/ys1.png" alt="" />
+                </div>
+                <div class="body__item-info body__item-info_price">
+                  Стрижка усов
+                </div>
+                <div class="body__item-info body__item-info_price">
+                  Утонченно
+                </div>
+                <div class="body__item-info body__item-info_price">
+                  1250 руб.
+                </div>
+              </div>
+              <div class="body__item body__item_price">
+                <div class="body__item-avatar body__item-avatar_price">
+                  <img src="/img/vol.png" alt="" />
+                </div>
+                <div class="body__item-info body__item-info_price">
+                  Стрижка волос
+                </div>
+                <div class="body__item-info body__item-info_price">Стильно</div>
+                <div class="body__item-info body__item-info_price">
+                  1100 руб.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="catalog-sales__settings">
+          <h4 class="catalog-sales__settings-title">Прайс лист</h4>
+          <p class="catalog-sales__settings-text">
+            Добавьте в сообщество от 3 до 10 баннеров, чтобы привлечь внимание к
+            акциям и получить больше продажм
+          </p>
+          <nuxt-link
+            class="gen-btn"
+            tag="button"
+            to="/setup/table/price?category=nav"
+            >Выбрать</nuxt-link
+          >
         </div>
       </section>
     </main>
@@ -303,4 +450,3 @@ export default {
   }
 };
 </script>
-

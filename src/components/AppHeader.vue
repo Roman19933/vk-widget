@@ -15,8 +15,14 @@
       </div>
       <div class="header-user">
         <div class="header-user__info">
-          <a :href="`http://vk.com/${groupInfo.screen_name}`" class="header-user__name">{{ groupInfo.name }}</a>
-          <p class="header-user__text">{{subs ? subs.title : 'Подписка закончилась'}}</p>
+          <a
+            :href="`http://vk.com/${groupInfo.screen_name}`"
+            class="header-user__name"
+            >{{ groupInfo.name }}</a
+          >
+          <p class="header-user__text">
+            {{ subs ? subs.title : "Подписка закончилась" }}
+          </p>
         </div>
         <div class="header-user__photo">
           <img :src="groupInfo.photo_50" alt />
@@ -60,9 +66,9 @@ export default {
       groupId: this.$store.getters["server/token/vkQuery"].vk_group_id
     };
   },
-  computed:{
+  computed: {
     ...mapGetters({
-      subs: 'server/payments/subs'
+      subs: "server/payments/subs"
     })
   },
   methods: {
@@ -91,9 +97,10 @@ export default {
       }
     },
     linkBack() {
-      console.log(this.$route.query);
       if (this.$route.query.edit) {
         this.$router.push("/main");
+      } else if (this.$route.query.category === "info") {
+        this.$router.push("/catalog/info");
       } else {
         this.$router.push(
           this.$route.query.category === "nav"

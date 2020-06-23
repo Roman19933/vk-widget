@@ -142,45 +142,6 @@
             >Выбрать</nuxt-link
           >
         </div>
-        <div class="catalog-sales__settings">
-          asdasdasd
-          <nuxt-link class="gen-btn" tag="button" to="/setup/table/price"
-            >Выбрать</nuxt-link
-          >
-        </div>
-      </section>
-      <section class="catalog-sales__row">
-        <div class="catalog-sales__content catalog-sales__content_wFull">
-          <div class="catalog-sales__content-header">
-            <app-svg-icon name="idea" class="catalog-sales__content-icon" />
-            <h3 class="catalog-sales__content-text">Важное сообщение!</h3>
-          </div>
-          <div class="mportant-message">
-            <h3 class="mportant-message__title">
-              Каждый подписчик сообщества получает скидку 50% на все товары до
-              конка недели
-            </h3>
-            <p class="mportant-message__text">
-              Подпишитесь на сообщество и напишите нам
-            </p>
-          </div>
-          <div class="catalog-sales__content-footer">
-            <a class="catalog-sales__link" href="#">Подписаться</a>
-          </div>
-        </div>
-        <div class="catalog-sales__settings">
-          <h4 class="catalog-sales__settings-title">Важное сообщение</h4>
-          <p class="catalog-sales__settings-text">
-            Привлекайте внимание к акциям при помощи 3 больших баннеров с
-            кнопками
-          </p>
-          <nuxt-link
-            class="gen-btn"
-            tag="button"
-            to="/setup/text/messages?category=sale"
-            >Выбрать</nuxt-link
-          >
-        </div>
       </section>
       <section class="catalog-sales__row">
         <div class="catalog-sales__content catalog-sales__content_wFull">
