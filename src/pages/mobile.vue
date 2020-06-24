@@ -1,7 +1,7 @@
 <template>
   <div class="mobile-version">
-    <img src="img/PIT.svg" alt class="vidget-none__img" />
-    <p class="vidget-none__text">
+    <img src="img/PIT.svg" alt class="widget-none__img" />
+    <p class="widget-none__text">
       Виджеты можно редактировать
       только в десктоп-версии сайта
     </p>

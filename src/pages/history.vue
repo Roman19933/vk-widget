@@ -1,9 +1,9 @@
 <template>
-  <div class="vidget-page">
+  <div class="widget-page">
     <app-navigation-menu />
-    <div class="vidget-page__wrapper">
-      <div class="vidget-page__head">
-        <h1 class="vidget-page__title">история платежей</h1>
+    <div class="widget-page__wrapper">
+      <div class="widget-page__head">
+        <h1 class="widget-page__title">история платежей</h1>
         <p class="history__payment">Автоплатеж отключен</p>
       </div>
       <div class="history">

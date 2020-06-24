@@ -1,5 +1,5 @@
 <template>
-  <div class="vidget-page">
+  <div class="widget-page">
     <app-navigation-menu />
     <main class="catalog-nav">
       <div class="catalog-sales__bread-crumbs">

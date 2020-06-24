@@ -1,11 +1,11 @@
 <template>
   <form action="#" @submit.prevent="create">
-    <div class="widgets vidget-page">
-      <div class="widgets__wrapper vidget-page__wrapper">
+    <div class="widgets widget-page">
+      <div class="widgets__wrapper widget-page__wrapper">
         <div class="widgets__left feedback">
           <app-loader v-model="loading">
-            <div class="widgets__header vidget-page__head">
-              <div class="widgets__header-title vidget-page__title">
+            <div class="widgets__header widget-page__head">
+              <div class="widgets__header-title widget-page__title">
                 <a
                   href="#"
                   @click.prevent="
@@ -175,14 +175,15 @@ export default {
           bdate: null,
           relation: null,
           city: null,
-          devices: '',
+          devices: "",
           user_surname: null,
           user_name: null,
           user_interests: null,
           relation_groups: null,
           users: null,
           groups_exclude: null,
-          groups: null
+          groups: null,
+          other: {}
         },
         type: "compact_list",
         sc_type: "subscribe"
