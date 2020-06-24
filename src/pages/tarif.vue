@@ -61,7 +61,7 @@
                     <span class="tarif__item-text">{{ a.desc }}</span>
                   </li>
                 </ul>
-                <form action="https://vkwb.demka.online/api/v1/subscription" method="POST" target="_blank">
+                <form :action="`${pay}/subscription`" method="POST" target="_blank">
                 <div>
                   <input
                     type="hidden"
@@ -186,7 +186,8 @@ export default {
       groupId: this.$store.getters["server/token/vkQuery"].vk_group_id,
       tarif: [],
       tarifYear: [],
-      tarifMoon: []
+      tarifMoon: [],
+      pay:process.env.NUXT_APP_API_URL
     };
   },
   methods: {
