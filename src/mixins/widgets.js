@@ -40,7 +40,7 @@ export default {
           groups_exclude: bef.groups_exclude
             ? this.splitStr(`${bef.groups_exclude}`,"\n")
             : null,
-          groups: bef.groups ? this.splitStr(`${bef.groups}`,"\n") : null
+          groups: this.$route.query.edit ? this.splitStr(`${bef.groups}`,",").join("\n") : this.splitStr(`${bef.groups}`,"\n")
         };
         console.log(clone.groups)
         Object.assign(segment, clone);
