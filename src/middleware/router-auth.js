@@ -15,5 +15,5 @@ async function validToken(store) {
 }
 async function resizeWindow(store) {
   let windowHeight = window.outerHeight
-  store.dispatch("vk/bridge/resizeWindow", { "width": 1000, "height": windowHeight })
+  store.dispatch("vk/bridge/resizeWindow", { "width": 1000, "height": 600 })
 }

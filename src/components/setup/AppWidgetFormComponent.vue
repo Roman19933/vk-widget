@@ -9,7 +9,10 @@
       <div class="item">
         <div class="item__title">
           <span>Пол</span>
-          <div class="item__img-wrapper" v-if="!subs || subs.sys_name !== 'business'">
+          <div
+            class="item__img-wrapper"
+            v-if="!subs || subs.sys_name !== 'business'"
+          >
             <img src="/img/lock.png" alt />
             <div class="popover">
               <div class="popover__wrapper">
@@ -32,7 +35,10 @@
       <div class="item">
         <div class="item__title">
           <span>Возраст</span>
-          <div class="item__img-wrapper" v-if="!subs || subs.sys_name !== 'business'">
+          <div
+            class="item__img-wrapper"
+            v-if="!subs || subs.sys_name !== 'business'"
+          >
             <img src="/img/lock.png" alt />
             <div class="popover">
               <div class="popover__wrapper">
@@ -65,7 +71,10 @@
       <div class="item">
         <div class="item__title">
           <span>День рождения</span>
-          <div class="item__img-wrapper" v-if="!subs || subs.sys_name !== 'business'">
+          <div
+            class="item__img-wrapper"
+            v-if="!subs || subs.sys_name !== 'business'"
+          >
             <img src="/img/lock.png" alt />
             <div class="popover">
               <div class="popover__wrapper">
@@ -89,7 +98,10 @@
       <div class="item">
         <div class="item__title">
           <span>Семейное положение</span>
-          <div class="item__img-wrapper" v-if="!subs || subs.sys_name !== 'business'">
+          <div
+            class="item__img-wrapper"
+            v-if="!subs || subs.sys_name !== 'business'"
+          >
             <img src="/img/lock.png" alt />
             <div class="popover">
               <div class="popover__wrapper">
@@ -112,7 +124,10 @@
       <div class="item">
         <div class="item__title">
           <span>Город</span>
-          <div class="item__img-wrapper" v-if="!subs || subs.sys_name !== 'business'">
+          <div
+            class="item__img-wrapper"
+            v-if="!subs || subs.sys_name !== 'business'"
+          >
             <img src="/img/lock.png" alt />
             <div class="popover">
               <div class="popover__wrapper">
@@ -144,7 +159,10 @@
       <div class="item">
         <div class="item__title">
           <span>Устройство</span>
-          <div class="item__img-wrapper" v-if="!subs || subs.sys_name !== 'business'">
+          <div
+            class="item__img-wrapper"
+            v-if="!subs || subs.sys_name !== 'business'"
+          >
             <img src="/img/lock.png" alt />
             <div class="popover">
               <div class="popover__wrapper">
@@ -167,7 +185,10 @@
       <div class="item">
         <div class="item__title">
           <span>Состоит в сообществе</span>
-          <div class="item__img-wrapper" v-if="!subs || subs.sys_name !== 'business'">
+          <div
+            class="item__img-wrapper"
+            v-if="!subs || subs.sys_name !== 'business'"
+          >
             <img src="/img/lock.png" alt />
             <div class="popover">
               <div class="popover__wrapper">
@@ -189,7 +210,10 @@
       <div class="item">
         <div class="item__title">
           <span>Не состоит в сообществе</span>
-          <div class="item__img-wrapper" v-if="!subs || subs.sys_name !== 'business'">
+          <div
+            class="item__img-wrapper"
+            v-if="!subs || subs.sys_name !== 'business'"
+          >
             <img src="/img/lock.png" alt />
             <div class="popover">
               <div class="popover__wrapper">
@@ -211,7 +235,10 @@
       <div class="item">
         <div class="item__title">
           <span>ID пользователей</span>
-          <div class="item__img-wrapper" v-if="!subs || subs.sys_name !== 'business'">
+          <div
+            class="item__img-wrapper"
+            v-if="!subs || subs.sys_name !== 'business'"
+          >
             <img src="/img/lock.png" alt />
             <div class="popover">
               <div class="popover__wrapper">
@@ -233,7 +260,10 @@
       <div class="item">
         <div class="item__title">
           <span>Интересы второй половинки</span>
-          <div class="item__img-wrapper" v-if="!subs || subs.sys_name !== 'business'">
+          <div
+            class="item__img-wrapper"
+            v-if="!subs || subs.sys_name !== 'business'"
+          >
             <img src="/img/lock.png" alt />
             <div class="popover">
               <div class="popover__wrapper">
@@ -255,7 +285,10 @@
       <div class="item">
         <div class="item__title">
           <span>Интересы пользователя</span>
-          <div class="item__img-wrapper" v-if="!subs || subs.sys_name !== 'business'">
+          <div
+            class="item__img-wrapper"
+            v-if="!subs || subs.sys_name !== 'business'"
+          >
             <img src="/img/lock.png" alt />
             <div class="popover">
               <div class="popover__wrapper">
@@ -277,7 +310,10 @@
       <div class="item">
         <div class="item__title">
           <span>Имя пользователя</span>
-          <div class="item__img-wrapper" v-if="!subs || subs.sys_name !== 'business'">
+          <div
+            class="item__img-wrapper"
+            v-if="!subs || subs.sys_name !== 'business'"
+          >
             <img src="/img/lock.png" alt />
             <div class="popover">
               <div class="popover__wrapper">
@@ -299,7 +335,10 @@
       <div class="item">
         <div class="item__title">
           <span>Фамилия пользователя</span>
-          <div class="item__img-wrapper" v-if="!subs || subs.sys_name !== 'business'">
+          <div
+            class="item__img-wrapper"
+            v-if="!subs || subs.sys_name !== 'business'"
+          >
             <img src="/img/lock.png" alt />
             <div class="popover">
               <div class="popover__wrapper">
@@ -507,7 +546,15 @@ export default {
       subs: "server/payments/subs"
     })
   },
+  // mounted(){
+  //   console.log(this.joinStr(this.value.groups))
+  // },
   methods: {
+    // joinStr(str) {
+    //   if(str) {
+    //     return str.join("\n");
+    //   }
+    // },
     changeData(name, event) {
       console.log(event);
       let data = JSON.parse(JSON.stringify(this.value));

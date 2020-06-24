@@ -135,7 +135,7 @@ export default {
     return {
       widget: {
         type_name: "Прайс лист",
-        type_link: "/setup/table/price?category=nav&edit=true",
+        type_link: "/setup/table/price?category=info&edit=true",
         data: {
           more: "",
           more_url: "",

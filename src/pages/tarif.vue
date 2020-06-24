@@ -12,72 +12,109 @@
       </div>
       <div class="tarif">
         <div class="tarif__wrapper">
-          <div class="tarif__blocks">
-            <div v-for="item in tarif" :key="item.id" class="tarif__block">
-              <h3 class="tarif__name">{{ item.title }}</h3>
-              <p class="tarif__text">{{ item.descr }}</p>
-              <div class="tarif-price">
-                <div class="tarif-price__left">
-                  <span class="tarif-price__currency">₽</span>
-                  <p class="tarif-price__old active">
-                    {{
-                      dateTarif
-                        ? item.tariff_periods[1].old_price
-                        : item.tariff_periods[0].old_price
-                    }}
-                  </p>
-                </div>
-                <div class="tarif-price__right">
-                  <div class="tarif-price__block">
-                    <p class="tarif-price__price">
+          <form action="https://vkwb.demka.online/api/v1/subscription" method="POST" target="_blank">
+            <div class="tarif__blocks">
+              <div v-for="item in tarif" :key="item.id" class="tarif__block">
+                <h3 class="tarif__name">{{ item.title }}</h3>
+                <p class="tarif__text">{{ item.descr }}</p>
+                <div class="tarif-price">
+                  <div class="tarif-price__left">
+                    <span class="tarif-price__currency">₽</span>
+                    <p class="tarif-price__old active">
                       {{
                         dateTarif
-                          ? item.tariff_periods[1].price
-                          : item.tariff_periods[0].price
+                          ? item.tariff_periods[1].old_price
+                          : item.tariff_periods[0].old_price
                       }}
                     </p>
-                    <span class="tarif-price__house"
-                      >/ {{ dateTarif ? "год" : "месяц" }}</span
-                    >
                   </div>
-                  <span class="tarif-price__info">за 1 сообщество</span>
+                  <div class="tarif-price__right">
+                    <div class="tarif-price__block">
+                      <p class="tarif-price__price">
+                        {{
+                          dateTarif
+                            ? item.tariff_periods[1].price
+                            : item.tariff_periods[0].price
+                        }}
+                      </p>
+                      <span class="tarif-price__house"
+                        >/ {{ dateTarif ? "год" : "месяц" }}</span
+                      >
+                    </div>
+                    <span class="tarif-price__info">за 1 сообщество</span>
+                  </div>
+                </div>
+                <ul
+                  v-for="(a, index) in item.tariff_items"
+                  :key="index"
+                  class="tarif__items"
+                >
+                  <li class="tarif__item">
+                    <span class="tarif__icon">
+                      <img
+                        :src="
+                          a.enable ? 'img/tarif-ok.png' : 'img/tarif-close.png'
+                        "
+                        alt
+                      />
+                    </span>
+                    <span class="tarif__item-text">{{ a.desc }}</span>
+                  </li>
+                </ul>
+                <div>
+                  <input
+                    type="hidden"
+                    name="group_id"
+                    :value="
+                      dateTarif
+                        ? item.tariff_periods[1].payment_data.group_id
+                        : item.tariff_periods[0].payment_data.group_id
+                    "
+                  />
+                  <input
+                    type="hidden"
+                    name="tariff"
+                    :value="
+                      dateTarif
+                        ? item.tariff_periods[1].payment_data.tariff
+                        : item.tariff_periods[0].payment_data.tariff
+                    "
+                  />
+                  <input
+                    type="hidden"
+                    name="day"
+                    :value="
+                      dateTarif
+                        ? item.tariff_periods[1].payment_data.day
+                        : item.tariff_periods[0].payment_data.day
+                    "
+                  />
+                  <input
+                    type="hidden"
+                    name="price"
+                    :value="
+                      dateTarif
+                        ? item.tariff_periods[1].payment_data.price
+                        : item.tariff_periods[0].payment_data.price
+                    "
+                  />
+                  <input
+                    type="hidden"
+                    name="recurrent"
+                    :value="auto"
+                  />
+                </div>
+                <div class="btn-wrapper">
+                  <button :class="{ pen: !agree }" class="tarif__btn gen-btn" type="submit">
+                    Оплатить
+                  </button>
+                  <span v-show="!agree" class="popover"
+                    >Сначала нужно принять условия договора!</span
+                  >
                 </div>
               </div>
-              <ul
-                v-for="(a, index) in item.tariff_items"
-                :key="index"
-                class="tarif__items"
-              >
-                <li class="tarif__item">
-                  <span class="tarif__icon">
-                    <img
-                      :src="
-                        a.enable ? 'img/tarif-ok.png' : 'img/tarif-close.png'
-                      "
-                      alt
-                    />
-                  </span>
-                  <span class="tarif__item-text">{{ a.desc }}</span>
-                </li>
-              </ul>
-              <div class="btn-wrapper">
-                <a
-                  :href="
-                    dateTarif
-                      ? item.tariff_periods[1].payment_link
-                      : item.tariff_periods[0].payment_link
-                  "
-                  :class="{ pen: !agree }"
-                  class="tarif__btn gen-btn"
-                >
-                  Оплатить
-                </a>
-                <span v-show="!agree" class="popover"
-                  >Сначала нужно принять условия договора!</span
-                >
-              </div>
             </div>
-          </div>
+          </form>
           <div class="tarif-payment">
             <div class="tarif-payment__head">
               <div class="tarif-payment__switch">
@@ -98,7 +135,7 @@
             </p>
             <div class="tarif-payment__checkbox">
               <label>
-                <input class="checkbox" type="checkbox" checked />
+                <input class="checkbox" type="checkbox" v-model="auto" />
                 <span class="checkbox-custom"></span>
                 <p class="label">Автоматический платеж</p>
               </label>
@@ -142,7 +179,7 @@ export default {
     return {
       dateTarif: false,
       val: false,
-      auto: false,
+      auto: true,
       agree: false,
       groupId: this.$store.getters["server/token/vkQuery"].vk_group_id,
       tarif: [],
