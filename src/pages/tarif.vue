@@ -12,7 +12,7 @@
       </div>
       <div class="tarif">
         <div class="tarif__wrapper">
-          <form action="https://vkwb.demka.online/api/v1/subscription" method="POST" target="_blank">
+          <!-- <form action="https://vkwb.demka.online/api/v1/subscription" method="POST" target="_blank"> -->
             <div class="tarif__blocks">
               <div v-for="item in tarif" :key="item.id" class="tarif__block">
                 <h3 class="tarif__name">{{ item.title }}</h3>
@@ -61,6 +61,7 @@
                     <span class="tarif__item-text">{{ a.desc }}</span>
                   </li>
                 </ul>
+                <form action="https://vkwb.demka.online/api/v1/subscription" method="POST" target="_blank">
                 <div>
                   <input
                     type="hidden"
@@ -112,9 +113,10 @@
                     >Сначала нужно принять условия договора!</span
                   >
                 </div>
+                </form>
               </div>
             </div>
-          </form>
+          <!-- </form> -->
           <div class="tarif-payment">
             <div class="tarif-payment__head">
               <div class="tarif-payment__switch">
