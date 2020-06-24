@@ -546,9 +546,10 @@ export default {
       subs: "server/payments/subs"
     })
   },
-  // mounted(){
-  //   console.log(this.joinStr(this.value.groups))
-  // },
+  mounted(){
+    // this.value.groups.join("\n")
+    // console.log(this.value.groups.join("\n"))
+  },
   methods: {
     // joinStr(str) {
     //   if(str) {
@@ -556,7 +557,7 @@ export default {
     //   }
     // },
     changeData(name, event) {
-      console.log(event);
+      console.log(event.split(",").join("\n"));
       let data = JSON.parse(JSON.stringify(this.value));
       if (name === "age.from") {
         data.age.from = event;
