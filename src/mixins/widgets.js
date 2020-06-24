@@ -25,23 +25,24 @@ export default {
           bdate: bef.bdate ? bef.bdate : null,
           relation: bef.relation ? bef.relation.id : null,
           city: bef.city ? bef.city.id : null,
-          devices: bef.devices ? bef.devices.screen_name : '',
+          devices: bef.devices ? bef.devices.screen_name : "",
           user_surname: bef.user_surname
-            ? this.splitStr(`${bef.user_surname}`)
+            ? this.splitStr(`${bef.user_surname}`,"\n")
             : null,
-          user_name: bef.user_name ? this.splitStr(`${bef.user_name}`) : null,
+          user_name: bef.user_name ? this.splitStr(`${bef.user_name}`,"\n") : null,
           user_interests: bef.user_interests
-            ? this.splitStr(`${bef.user_interests}`)
+            ? this.splitStr(`${bef.user_interests}`,"\n")
             : null,
           relation_groups: bef.relation_groups
-            ? this.splitStr(`${bef.relation_groups}`)
+            ? this.splitStr(`${bef.relation_groups}`,"\n")
             : null,
-          users: bef.users ? this.splitStr(`${bef.users}`) : null,
+          users: bef.users ? this.splitStr(`${bef.users}`,"\n") : null,
           groups_exclude: bef.groups_exclude
-            ? this.splitStr(`${bef.groups_exclude}`)
+            ? this.splitStr(`${bef.groups_exclude}`,"\n")
             : null,
-          groups: bef.groups ? this.splitStr(`${bef.groups}`) : null
+          groups: bef.groups ? this.splitStr(`${bef.groups}`,"\n") : null
         };
+        console.log(clone.groups)
         Object.assign(segment, clone);
       },
       deep: true
@@ -53,6 +54,15 @@ export default {
     })
   },
   created() {
+    if (this.$route.query.edit) {
+      this.widgetEdit = JSON.parse(
+        JSON.stringify(this.$store.getters["server/sales/item"])
+      );
+      Object.assign(this.widget, this.widgetEdit);
+      // this.formSegmentation = JSON.parse(
+      //   JSON.stringify(this.widgetEdit.segmentation)
+      // );
+    }
     this.formSegmentation = JSON.parse(
       JSON.stringify(this.widget.segmentation)
     );
@@ -66,19 +76,29 @@ export default {
       self.other = e.other || null;
     });
     await this.$store.dispatch("vk/bridge/getUser");
-    if (this.$route.query.edit) {
-      this.widgetEdit = JSON.parse(
-        JSON.stringify(this.$store.getters["server/sales/item"])
-      );
-      Object.assign(this.widget, this.widgetEdit);
-    }
+    // if (this.$route.query.edit) {
+    //   this.widgetEdit = JSON.parse(
+    //     JSON.stringify(this.$store.getters["server/sales/item"])
+    //   );
+    //   Object.assign(this.widget, this.widgetEdit);
+    //   // this.formSegmentation = JSON.parse(
+    //   //   JSON.stringify(this.widgetEdit.segmentation)
+    //   // );
+    // }
   },
   methods: {
-    splitStr(str) {
-      if(str) {
-        return str.split("\n");
+    splitStr(str,i) {
+      if (str) {
+        return str.split(i);
       } else {
-        return []
+        return null;
+      }
+    },
+    joinStr(arr) {
+      if (str) {
+        return arr.join("\n");
+      } else {
+        return null;
       }
     },
     handlerSaved(e) {

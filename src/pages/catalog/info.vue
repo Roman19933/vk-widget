@@ -167,7 +167,7 @@
           <nuxt-link
             class="gen-btn"
             tag="button"
-            to="/setup/table/price?category=nav"
+            to="/setup/table/price?category=info"
             >Выбрать</nuxt-link
           >
         </div>

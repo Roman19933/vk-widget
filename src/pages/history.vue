@@ -61,42 +61,7 @@ export default {
   },
   data() {
     return {
-      historyData: [
-        {
-          amounth: 2500,
-          status: 2,
-          options: {
-            days: "360",
-            group: "195259137",
-            price: "2500",
-            tariff: "1",
-            curr_label: "BANKOCEAN3R"
-          },
-          created_at: "2020-06-18T10:12:02+00:00",
-          started_at: "2020-06-18T10:12:02+00:00",
-          expired_at: "2021-06-13T10:12:02+00:00",
-          subscribe_title: {
-            tariff: "ПРОСТО ВИДЖЕТ"
-          }
-        },
-        {
-          amounth: 2500,
-          status: 2,
-          options: {
-            days: "360",
-            group: "195259137",
-            price: "2500",
-            tariff: "1",
-            curr_label: "BANKOCEAN3R"
-          },
-          created_at: "2020-06-18T10:12:21+00:00",
-          started_at: "2020-06-18T10:12:02+00:00",
-          expired_at: "2022-06-08T10:12:02+00:00",
-          subscribe_title: {
-            tariff: "ПРОСТО ВИДЖЕТ"
-          }
-        }
-      ],
+      historyData: [],
       groupId: this.$store.getters["server/token/vkQuery"].vk_group_id
     };
   },
