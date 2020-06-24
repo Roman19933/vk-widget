@@ -61,7 +61,7 @@
                     <span class="tarif__item-text">{{ a.desc }}</span>
                   </li>
                 </ul>
-                <form :action="`${pay}/subscription`" method="POST" target="_blank">
+                <form :action="`${pay}subscription`" method="POST" target="_blank">
                 <div>
                   <input
                     type="hidden"

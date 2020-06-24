@@ -547,7 +547,8 @@ export default {
     })
   },
   mounted(){
-    // console.log(this.joinStr(this.value.groups))
+    // this.value.groups.join("\n")
+    // console.log(this.value.groups.join("\n"))
   },
   methods: {
     // joinStr(str) {
