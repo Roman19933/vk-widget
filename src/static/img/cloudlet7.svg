@@ -6,9 +6,9 @@
 	</defs>
 	<style>
 		tspan { white-space:pre }
-		.shp0 { opacity: 0.502;fill: #373657 } 
+		.shp0 { opacity: 0.502;fill: #373657 }
 	</style>
-	<g id="25.05_Vidget" clip-path="url(#cp1)">
+	<g id="25.05_widget" clip-path="url(#cp1)">
 		<g id="1_Blok">
 			<g id="BG">
 				<g id="33">

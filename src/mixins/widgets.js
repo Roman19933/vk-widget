@@ -14,32 +14,6 @@ export default {
       userFoto: ""
     };
   },
-  watch: {
-    formSegmentation: {
-      handler(bef) {
-        console.log(bef);
-        let segment = this.widget.segmentation;
-        let clone = {
-          sex: bef.sex ? bef.sex.id : null,
-          age: { from: bef.age.from, to: bef.age.to },
-          bdate: bef.bdate ? bef.bdate : null,
-          relation: bef.relation ? bef.relation.id : null,
-          city: bef.city ? bef.city.id : null,
-          devices: bef.devices ? bef.devices.screen_name : "",
-          user_surname: bef.user_surname ? bef.user_surname : null,
-          user_name: bef.user_name ? bef.user_name : null,
-          user_interests: bef.user_interests ? bef.user_interests : null,
-          relation_groups: bef.relation_groups ? bef.relation_groups : null,
-          users: bef.users ? bef.users : null,
-          groups_exclude: bef.groups_exclude ? bef.groups_exclude : null,
-          groups: bef.groups ? bef.groups : null
-        };
-        console.log(clone.groups);
-        Object.assign(segment, clone);
-      },
-      deep: true
-    }
-  },
   computed: {
     ...mapGetters({
       user: "vk/bridge/user"
@@ -51,13 +25,20 @@ export default {
         JSON.stringify(this.$store.getters["server/sales/item"])
       );
       Object.assign(this.widget, this.widgetEdit);
-      // this.formSegmentation = JSON.parse(
-      //   JSON.stringify(this.widgetEdit.segmentation)
-      // );
     }
     this.formSegmentation = JSON.parse(
       JSON.stringify(this.widget.segmentation)
     );
+  },
+  watch: {
+    formSegmentation: {
+      handler(bef) {
+        if (bef) {
+          this.widget.segmentation = bef;
+        }
+      },
+      deep: true
+    }
   },
   async mounted() {
     this.widget.name = this.defaultName;
@@ -68,31 +49,8 @@ export default {
       self.other = e.other || null;
     });
     await this.$store.dispatch("vk/bridge/getUser");
-    // if (this.$route.query.edit) {
-    //   this.widgetEdit = JSON.parse(
-    //     JSON.stringify(this.$store.getters["server/sales/item"])
-    //   );
-    //   Object.assign(this.widget, this.widgetEdit);
-    //   // this.formSegmentation = JSON.parse(
-    //   //   JSON.stringify(this.widgetEdit.segmentation)
-    //   // );
-    // }
   },
   methods: {
-    splitStr(str, i) {
-      if (str) {
-        return str.split(i);
-      } else {
-        return null;
-      }
-    },
-    joinStr(arr) {
-      if (str) {
-        return arr.join("\n");
-      } else {
-        return null;
-      }
-    },
     handlerSaved(e) {
       if (this.modal === "modal-widget-text") {
         this.widget = e;

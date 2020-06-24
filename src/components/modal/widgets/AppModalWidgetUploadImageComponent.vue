@@ -67,8 +67,8 @@ const sizes = {
   },
   small: {
     quality: 0.7,
-    maxWidth: 50,
-    maxHeight: 50,
+    maxWidth: 24,
+    maxHeight: 24,
     mimeType: "image/jpeg",
     debug: false
   }

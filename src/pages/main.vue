@@ -1,35 +1,35 @@
 <template>
-  <div class="vidget-page">
+  <div class="widget-page">
     <app-navigation-menu />
-    <div class="vidget-page__wrapper">
-      <div class="vidget-page__head">
-        <h1 class="vidget-page__title">Мои виджеты</h1>
-        <nuxt-link to="/catalog/sales" class="vidget-page__add gen-btn"
+    <div class="widget-page__wrapper">
+      <div class="widget-page__head">
+        <h1 class="widget-page__title">Мои виджеты</h1>
+        <nuxt-link to="/catalog/sales" class="widget-page__add gen-btn"
           >Создать виджет</nuxt-link
         >
       </div>
       <div
-        class="vidget-none"
-        v-if="vidgets.length === 0 && vidgetLoad === false"
+        class="widget-none"
+        v-if="widgets.length === 0 && widgetLoad === false"
       >
-        <div class="vidget-none__wrapper">
-          <img src="img/PIT.svg" alt class="vidget-none__img" />
-          <p class="vidget-none__text">
-            Дружище, у тебя еще нет виджетов. Не пора ли их создать?
+        <div class="widget-none__wrapper">
+          <img src="img/PIT.svg" alt class="widget-none__img" />
+          <p class="widget-none__text">
+            Шкипер, у тебя еще нет виджетов. Не пора ли их создать?
           </p>
-          <nuxt-link to="/catalog/sales" class="vidget-none__link gen-btn"
+          <nuxt-link to="/catalog/sales" class="widget-none__link gen-btn"
             >Создать виджет</nuxt-link
           >
         </div>
       </div>
       <div class="home" v-else>
-        <app-loader v-model="vidgetLoad" class="top-center">
+        <app-loader v-model="widgetLoad" class="top-center">
           <div class="home__wrapper">
-            <draggable v-model="vidgets">
+            <draggable v-model="widgets">
               <transition-group name="list-animation" tag="ul">
                 <li
-                  v-for="vidget in vidgets"
-                  :key="vidget.id"
+                  v-for="widget in widgets"
+                  :key="widget.id"
                   class="home-block"
                 >
                   <div class="home-block__title">
@@ -44,13 +44,13 @@
                     <div
                       class="home-block__name"
                       @click="
-                        (modalEditMame = vidget.name),
-                          (modalEditId = vidget.id),
+                        (modalEditMame = widget.name),
+                          (modalEditId = widget.id),
                           $bvModal.show('modal-edit-name')
                       "
                     >
                       <span class="home-block__name-title">{{
-                        vidget.name
+                        widget.name
                       }}</span>
                       <div class="home-block__name-edit">
                         <app-svg-icon
@@ -65,7 +65,7 @@
                       </div>
                     </div>
                   </div>
-                  <p class="home-block__text">{{ vidget.type_name }}</p>
+                  <p class="home-block__text">{{ widget.type_name }}</p>
                   <div class="home-block__events">
                     <div class="home-block__switch">
                       <div class="popover">
@@ -76,40 +76,40 @@
                       <div
                         :class="'switch__disabled-wrapper'"
                         @click="
-                          (switchActive = vidget.id),
+                          (switchActive = widget.id),
                             !subs
                               ? modalVersion()
                               : (!disablePublick
-                                  ? vidget.is_active
-                                    ? disableVidget()
+                                  ? widget.is_active
+                                    ? disablewidget()
                                     : modalPublic()
                                   : null,
                                 disablePublick && $bvModal.show('modal-timer'))
                         "
                       >
                         <app-switch
-                          v-model="vidget.is_active"
+                          v-model="widget.is_active"
                           @switch-val="
-                            (switchActive = vidget.id),
-                              (vidget.is_active = $event)
+                            (switchActive = widget.id),
+                              (widget.is_active = $event)
                           "
                         />
                       </div>
                     </div>
                     <a href="#" class="home-block__user">
                       <img src="img/home-user.svg" alt />
-                      <div class="popover">
+                      <div v-if="widget.segmentation" class="popover">
                         <div class="popover__wrapper">
                           <span>Аудитория</span>
-                          <span>Возраст: от 15 до 66</span>
-                          <span>Пол: женский</span>
-                          <span>ДР: сегодня</span>
-                          <span>Семейное положение: не женат/не замужем</span>
+                          <span>Возраст: от {{widget.segmentation.age.from}} до {{widget.segmentation.age.to}}</span>
+                          <span>Пол: {{widget.segmentation.other.sex.title}}</span>
+                          <span>ДР: {{widget.segmentation.other.bdate.title}}</span>
+                          <span>Семейное положение: {{widget.segmentation.other.relation.title}}</span>
                         </div>
                       </div>
                     </a>
                     <button
-                      @click="edit(vidget.id, vidget.type_link)"
+                      @click="edit(widget.id, widget.type_link)"
                       class="home-block__edit"
                     >
                       <img src="img/home-register.png" alt />
@@ -119,7 +119,7 @@
                         </div>
                       </div>
                     </button>
-                    <button @click="clone(vidget.id)" class="home-block__look">
+                    <button @click="clone(widget.id)" class="home-block__look">
                       <img src="img/home-sheet.png" alt />
                       <div class="popover">
                         <div class="popover__wrapper">
@@ -130,8 +130,8 @@
                     <button
                       v-b-modal="'modal-wrapper'"
                       @click="
-                        (deleteVidgetId = vidget.id),
-                          (deleteVidgetName = vidget.name)
+                        (deletewidgetId = widget.id),
+                          (deletewidgetName = widget.name)
                       "
                       class="home-block__delete"
                     >
@@ -151,18 +151,18 @@
       </div>
     </div>
     <app-modal-edit-name
-      :vidget-name="modalEditMame"
-      :vidget-id="modalEditId"
-      @rename="getVidget()"
+      :widget-name="modalEditMame"
+      :widget-id="modalEditId"
+      @rename="getwidget()"
     ></app-modal-edit-name>
     <app-modal-wrapper
       title="Удаление виджета"
       :subtitle="
-        `Виджет «${deleteVidgetName}» будет удален, вы действительно этого хотите?`
+        `Виджет «${deletewidgetName}» будет удален, вы действительно этого хотите?`
       "
-      @input="$bvModal.hide('modal-wrapper'), $event && remove(deleteVidgetId)"
+      @input="$bvModal.hide('modal-wrapper'), $event && remove(deletewidgetId)"
     ></app-modal-wrapper>
-    <app-modal-public @public="publicVidget($event)" />
+    <app-modal-public @public="publicwidget($event)" />
     <app-modal-timer :timer-val="timerVal" />
     <app-modal-version />
   </div>
@@ -192,14 +192,14 @@ export default {
       appId: process.env.APP_ID,
       modalEditMame: null,
       modalEditId: null,
-      deleteVidgetName: null,
-      deleteVidgetId: null,
-      vidgetLoad: true,
+      deletewidgetName: null,
+      deletewidgetId: null,
+      widgetLoad: true,
       switchActive: null,
       disablePublick: false,
       timerVal: null,
       groupId: this.$store.getters["server/token/vkQuery"].vk_group_id,
-      vidgets: []
+      widgets: []
     };
   },
   methods: {
@@ -221,10 +221,10 @@ export default {
     async modalVersion() {
       this.$bvModal.show("modal-version");
     },
-    async publicVidget(e) {
+    async publicwidget(e) {
       let sa = this.switchActive,
-        index = this.vidgets.findIndex(e => e.id === sa),
-        vid = this.vidgets[index];
+        index = this.widgets.findIndex(e => e.id === sa),
+        vid = this.widgets[index];
       if (e && (await this.validToken())) {
         console.log("publick true");
         let { data } = await this.$store.dispatch("server/sales/enable", {
@@ -235,16 +235,16 @@ export default {
           this.disablePublick = true;
           this.startTimer(10);
         }
-        this.getVidget();
+        this.getwidget();
         this.$bvModal.hide("modal-public");
       } else {
         this.$bvModal.hide("modal-public");
       }
     },
-    async disableVidget() {
+    async disablewidget() {
       let sa = this.switchActive,
-        index = this.vidgets.findIndex(e => e.id === sa),
-        vid = this.vidgets[index];
+        index = this.widgets.findIndex(e => e.id === sa),
+        vid = this.widgets[index];
       let { data } = await this.$store.dispatch("server/sales/disable", {
         groupId: this.groupId,
         vidId: vid.id
@@ -253,7 +253,7 @@ export default {
         this.disablePublick = true;
         this.startTimer(10);
       }
-      this.getVidget();
+      this.getwidget();
     },
     async updateTokenGroup() {
       try {
@@ -271,18 +271,18 @@ export default {
       !check && this.updateTokenGroup();
       return check;
     },
-    async getVidget() {
-      this.vidgetLoad = true;
+    async getwidget() {
+      this.widgetLoad = true;
       try {
         let response = await this.$store.dispatch(
           "server/sales/getItems",
           this.groupId
         );
-        this.vidgets = JSON.parse(JSON.stringify(response));
+        this.widgets = JSON.parse(JSON.stringify(response));
       } catch (e) {
         console.log(e);
       } finally {
-        this.vidgetLoad = false;
+        this.widgetLoad = false;
       }
     },
     async clone(id) {
@@ -290,13 +290,13 @@ export default {
         group_id: this.groupId,
         id: id
       });
-      this.getVidget();
+      this.getwidget();
     },
     async remove(id) {
-      this.vidgetLoad = true;
+      this.widgetLoad = true;
       try {
         await this.$store.dispatch("server/sales/remove", id);
-        await this.getVidget();
+        await this.getwidget();
         this.$bvToast.toast("Виджет успешно удален.", {
           title: "Удаление",
           variant: "primary",
@@ -304,7 +304,7 @@ export default {
           solid: true
         });
       } catch (e) {
-        this.vidgetLoad = false;
+        this.widgetLoad = false;
         console.log(e);
       }
     },
@@ -314,7 +314,7 @@ export default {
     }
   },
   async mounted() {
-    this.getVidget();
+    this.getwidget();
     let timerStore = (new Date().getTime() - localStorage.timer) / 1000;
     if (timerStore <= 10) {
       this.startTimer(Math.ceil(timerStore));

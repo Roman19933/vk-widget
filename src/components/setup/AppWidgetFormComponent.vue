@@ -1,6 +1,11 @@
 <template>
   <div class="form">
-    <h4 class="vidget-page__title">аудитория</h4>
+    <div class="widgets__switch">
+      <h4 class="widget-page__title">аудитория</h4>
+      <div class="widgets__switch-btn">
+        <!-- <app-switch /> -->
+      </div>
+    </div>
     <p>
       Настройте показ виджета на свою целевую аудиторию, чтобы получить больше
       кликов по виджету и повысить конверсию
@@ -25,10 +30,10 @@
           <v-select
             :options="sexData"
             placeholder="Выберите пол"
-            :value="value.sex"
+            :value="value.other ? value.other.sex : value.sex"
             label="title"
             :disabled="!subs || subs.sys_name !== 'business'"
-            @input="changeData('sex', $event)"
+            @input="changeData('sex', 'select', $event)"
           ></v-select>
         </div>
       </div>
@@ -53,7 +58,7 @@
               :options="ageData"
               placeholder="От"
               :value="value.age.from"
-              @input="changeData('age.from', $event)"
+              @input="changeData('age.from', 'between', $event)"
               :disabled="!subs || subs.sys_name !== 'business'"
             ></v-select>
           </div>
@@ -62,7 +67,7 @@
               :options="ageData"
               placeholder="До"
               :value="value.age.to"
-              @input="changeData('age.to', $event)"
+              @input="changeData('age.to', 'between', $event)"
               :disabled="!subs || subs.sys_name !== 'business'"
             ></v-select>
           </div>
@@ -91,7 +96,7 @@
             :data="value"
             :value="value.bdate"
             :disabled="!subs || subs.sys_name !== 'business'"
-            @input="changeData('bdate', $event)"
+            @input="changeData('bdate', 'select', $event)"
           />
         </div>
       </div>
@@ -115,8 +120,8 @@
             :options="relationData"
             placeholder="Выберите семейное положение"
             label="title"
-            :value="value.relation"
-            @input="changeData('relation', $event)"
+            :value="value.other ? value.other.relation : value.relation"
+            @input="changeData('relation', 'select', $event)"
             :disabled="!subs || subs.sys_name !== 'business'"
           ></v-select>
         </div>
@@ -139,8 +144,8 @@
         <div class="form-group">
           <v-select
             :options="cityData"
-            :value="value.city"
-            @input="changeData('city', $event)"
+            :value="value.other ? value.other.city : value.city"
+            @input="changeData('city', 'select', $event)"
             :filterable="false"
             label="title"
             @search="onSearch"
@@ -175,9 +180,9 @@
           <v-select
             :options="deviceData"
             placeholder="Выберите устройство"
-            :value="value.devices"
+            :value="value.other ? value.other.devices : value.devices"
             label="title"
-            @input="changeData('devices', $event)"
+            @input="changeData('devices', 'select', $event)"
             :disabled="!subs || subs.sys_name !== 'business'"
           ></v-select>
         </div>
@@ -200,8 +205,8 @@
         <div class="form-group form-group_textarea">
           <textarea
             placeholder="Введите ID сообществ"
-            :value="value.groups"
-            @input="changeData('groups', $event.target.value)"
+            :value="value.other ? value.other.groups : value.groups"
+            @input="changeData('groups', 'textarea', $event.target.value)"
             :disabled="!subs || subs.sys_name !== 'business'"
           ></textarea>
           <span>Каждый номер с новой строки</span>
@@ -225,8 +230,12 @@
         <div class="form-group form-group_textarea">
           <textarea
             placeholder="Введите ID сообществ"
-            :value="value.groups_exclude"
-            @input="changeData('groups_exclude', $event.target.value)"
+            :value="
+              value.other ? value.other.groups_exclude : value.groups_exclude
+            "
+            @input="
+              changeData('groups_exclude', 'textarea', $event.target.value)
+            "
             :disabled="!subs || subs.sys_name !== 'business'"
           ></textarea>
           <span>Каждый номер с новой строки</span>
@@ -250,8 +259,8 @@
         <div class="form-group form-group_textarea">
           <textarea
             placeholder="Введите ID пользователя"
-            :value="value.users"
-            @input="changeData('users', $event.target.value)"
+            :value="value.other ? value.other.users : value.users"
+            @input="changeData('users', 'textarea', $event.target.value)"
             :disabled="!subs || subs.sys_name !== 'business'"
           ></textarea>
           <span>Каждый номер с новой строки</span>
@@ -275,8 +284,12 @@
         <div class="form-group form-group_textarea">
           <textarea
             placeholder="Введите интересы второй половинки"
-            :value="value.relation_groups"
-            @input="changeData('relation_groups', $event.target.value)"
+            :value="
+              value.other ? value.other.relation_groups : value.relation_groups
+            "
+            @input="
+              changeData('relation_groups', 'textarea', $event.target.value)
+            "
             :disabled="!subs || subs.sys_name !== 'business'"
           ></textarea>
           <span>Каждое названия с новой строки</span>
@@ -300,8 +313,12 @@
         <div class="form-group form-group_textarea">
           <textarea
             placeholder="Введите интересы пользователя"
-            :value="value.user_interests"
-            @input="changeData('user_interests', $event.target.value)"
+            :value="
+              value.other ? value.other.user_interests : value.user_interests
+            "
+            @input="
+              changeData('user_interests', 'textarea', $event.target.value)
+            "
             :disabled="!subs || subs.sys_name !== 'business'"
           ></textarea>
           <span>Каждое название с новой строки</span>
@@ -325,8 +342,8 @@
         <div class="form-group form-group_textarea">
           <textarea
             placeholder="Введите имя пользователя"
-            :value="value.user_name"
-            @input="changeData('user_name', $event.target.value)"
+            :value="value.other ? value.other.user_name : value.user_name"
+            @input="changeData('user_name', 'textarea', $event.target.value)"
             :disabled="!subs || subs.sys_name !== 'business'"
           ></textarea>
           <span>Каждое Имя с новой строки</span>
@@ -350,8 +367,8 @@
         <div class="form-group form-group_textarea">
           <textarea
             placeholder="Введите фамилию пользователя"
-            :value="value.user_surname"
-            @input="changeData('user_surname', $event.target.value)"
+            :value="value.other ? value.other.user_surname : value.user_surname"
+            @input="changeData('user_surname', 'textarea', $event.target.value)"
             :disabled="!subs || subs.sys_name !== 'business'"
           ></textarea>
           <span>Каждая Фамилия с новой строки</span>
@@ -366,6 +383,14 @@ import AppRadio from "@/components/form/AppRadio";
 import { mapGetters } from "vuex";
 import _ from "lodash";
 export default {
+  props: {
+    value: {
+      type: Object,
+      default: function() {
+        return {};
+      }
+    }
+  },
   data() {
     return {
       sexData: [
@@ -546,25 +571,35 @@ export default {
       subs: "server/payments/subs"
     })
   },
-  mounted(){
-    // this.value.groups.join("\n")
-    // console.log(this.value.groups.join("\n"))
-  },
   methods: {
-    // joinStr(str) {
-    //   if(str) {
-    //     return str.join("\n");
-    //   }
-    // },
-    changeData(name, event) {
-      console.log(event.split(",").join("\n"));
+    checkType(field) {
+      if (field || null) {
+        return typeof field === "string"
+          ? field.split("\n")
+          : field.join("\r\n");
+      }
+      return field;
+    },
+    changeData(name, type, v) {
+      console.log(v);
       let data = JSON.parse(JSON.stringify(this.value));
-      if (name === "age.from") {
-        data.age.from = event;
-      } else if (name === "age.to") {
-        data.age.to = event;
-      } else {
-        data[name] = event;
+      switch (type) {
+        case "select":
+          data[name] = v.id;
+          data.other[name] = v;
+          break;
+        case "textarea":
+          data[name] = this.checkType(v);
+          data.other[name] = v;
+          break;
+        case "between":
+          let command = `data.${name} = v`;
+          eval(command);
+          break;
+        case "linear":
+          data[name] = v.id;
+          data.other[name] = v;
+          break;
       }
       this.$emit("input", data);
     },
@@ -588,14 +623,6 @@ export default {
       }
       loading(false);
     }, 500)
-  },
-  props: {
-    value: {
-      type: Object,
-      default: function() {
-        return {};
-      }
-    }
   },
   components: {
     AppRadio
