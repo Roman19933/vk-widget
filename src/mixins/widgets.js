@@ -26,23 +26,15 @@ export default {
           relation: bef.relation ? bef.relation.id : null,
           city: bef.city ? bef.city.id : null,
           devices: bef.devices ? bef.devices.screen_name : "",
-          user_surname: bef.user_surname
-            ? this.splitStr(`${bef.user_surname}`,"\n")
-            : null,
-          user_name: bef.user_name ? this.splitStr(`${bef.user_name}`,"\n") : null,
-          user_interests: bef.user_interests
-            ? this.splitStr(`${bef.user_interests}`,"\n")
-            : null,
-          relation_groups: bef.relation_groups
-            ? this.splitStr(`${bef.relation_groups}`,"\n")
-            : null,
-          users: bef.users ? this.splitStr(`${bef.users}`,"\n") : null,
-          groups_exclude: bef.groups_exclude
-            ? this.splitStr(`${bef.groups_exclude}`,"\n")
-            : null,
-          groups: this.$route.query.edit ? this.splitStr(`${bef.groups}`,",").join("\n") : this.splitStr(`${bef.groups}`,"\n")
+          user_surname: bef.user_surname ? bef.user_surname : null,
+          user_name: bef.user_name ? bef.user_name : null,
+          user_interests: bef.user_interests ? bef.user_interests : null,
+          relation_groups: bef.relation_groups ? bef.relation_groups : null,
+          users: bef.users ? bef.users : null,
+          groups_exclude: bef.groups_exclude ? bef.groups_exclude : null,
+          groups: bef.groups ? bef.groups : null
         };
-        console.log(clone.groups)
+        console.log(clone.groups);
         Object.assign(segment, clone);
       },
       deep: true
@@ -87,7 +79,7 @@ export default {
     // }
   },
   methods: {
-    splitStr(str,i) {
+    splitStr(str, i) {
       if (str) {
         return str.split(i);
       } else {
