@@ -1,21 +1,21 @@
 <template>
   <main class="main">
-    <div class="vidget-page">
+    <div class="widget-page">
       <app-navigation-menu />
-      <div class="vidget-page__wrapper">
-        <div class="vidget-none">
-          <div class="vidget-none__wrapper">
-            <img src="/img/PIT.svg" alt class="vidget-none__img" />
-            <h1 v-if="error.statusCode === 404" class="vidget-none__text">
+      <div class="widget-page__wrapper">
+        <div class="widget-none">
+          <div class="widget-none__wrapper">
+            <img src="/img/PIT.svg" alt class="widget-none__img" />
+            <h1 v-if="error.statusCode === 404" class="widget-none__text">
               Страница не найдена
             </h1>
-            <h1 v-if="error.statusCode === 403" class="vidget-none__text">
+            <h1 v-if="error.statusCode === 403" class="widget-none__text">
               Доступ запрещен
             </h1>
-            <h1 v-if="error.statusCode === 500" class="vidget-none__text">
+            <h1 v-if="error.statusCode === 500" class="widget-none__text">
               Ошибка сервера
             </h1>
-            <button @click="checkToken" class="vidget-none__link gen-btn">
+            <button @click="checkToken" class="widget-none__link gen-btn">
               Перейти на главною
             </button>
           </div>

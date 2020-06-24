@@ -1,13 +1,13 @@
 <template>
   <main class="main">
-    <div class="vidget-page">
+    <div class="widget-page">
       <app-navigation-menu />
-      <div class="vidget-page__wrapper">
-        <div class="vidget-none">
-          <div class="vidget-none__wrapper">
-            <img src="/img/PIT.svg" alt class="vidget-none__img" />
-            <p class="vidget-none__text">Дружище, оплата прошла успешно! Благодарим за осознаность=)</p>
-            <button @click="checkToken" class="vidget-none__link gen-btn">Перейти на главною</button>
+      <div class="widget-page__wrapper">
+        <div class="widget-none">
+          <div class="widget-none__wrapper">
+            <img src="/img/PIT.svg" alt class="widget-none__img" />
+            <p class="widget-none__text">Дружище, оплата прошла успешно! Благодарим за осознаность=)</p>
+            <button @click="checkToken" class="widget-none__link gen-btn">Перейти на главною</button>
           </div>
         </div>
       </div>

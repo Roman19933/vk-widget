@@ -4,9 +4,10 @@
       type="radio"
       name="birth"
       class="radio__input"
-      :value="item.id"
+      :value="item"
+      :checked="item"
       :disabled="disabled"
-      @input="$emit('input', item.id)"
+      @input="$emit('input', item)"
     />
     <span class="radio__custom"></span>
     <span class="radio__text">{{ item.title }}</span>

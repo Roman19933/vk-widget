@@ -1,9 +1,9 @@
 <template>
-  <div class="vidget-page vidget-page_faq">
+  <div class="widget-page widget-page_faq">
     <app-navigation-menu />
-    <div class="vidget-page__wrapper">
-      <div class="vidget-page__head">
-        <h1 class="vidget-page__title">страница помощи</h1>
+    <div class="widget-page__wrapper">
+      <div class="widget-page__head">
+        <h1 class="widget-page__title">страница помощи</h1>
       </div>
       <div class="faq">
         <div class="faq__wrapper">

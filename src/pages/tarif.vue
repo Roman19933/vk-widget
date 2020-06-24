@@ -1,12 +1,12 @@
 <template>
-  <div class="vidget-page">
+  <div class="widget-page">
     <app-navigation-menu />
-    <div class="vidget-page__wrapper">
-      <div class="vidget-page__head">
-        <h1 class="vidget-page__title">
+    <div class="widget-page__wrapper">
+      <div class="widget-page__head">
+        <h1 class="widget-page__title">
           выберите подходящий тариф для сообщества
         </h1>
-        <button v-b-modal="'modal-promocode'" class="vidget-page__promocode">
+        <button v-b-modal="'modal-promocode'" class="widget-page__promocode">
           Ввести промокод
         </button>
       </div>
