@@ -12,6 +12,24 @@
           <img src="/img/modal-close.png" alt />
         </button>
         <div class="widgets-setting__content">
+          <div class="widgets__right w-100 p-0" style="overflow: visible; background: none">
+            <div class="form__items">
+              <div class="item">
+                <div class="form-group">
+                  <v-select
+                    :options="starsOptions"
+                    :searchable="false"
+                    :clearable="false"
+                    label="text"
+                    :reduce="i => i.id"
+                    placeholder="К-во звезд"
+                    v-model="stars"
+                  ></v-select>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div class="widgets-setting__input">
             <span class="modal__title">загрузка изображения</span>
           </div>
@@ -73,6 +91,15 @@ const sizes = {
     debug: false
   }
 };
+const watermarkY = 5
+const watermarkX = 5
+const watermarks = [
+  "/favicon.png",
+  "/favicon.png",
+  "/favicon.png",
+  "/favicon.png",
+  "/favicon.png"
+];
 export default {
   mixins: [modalWidgets],
   data() {
@@ -81,9 +108,32 @@ export default {
         image: "",
         src: ""
       },
+      starsOptions: [
+        {
+          id: 1,
+          text: "Одна звезда"
+        },
+        {
+          id: 2,
+          text: "Две звезды"
+        },
+        {
+          id: 3,
+          text: "Три звезды"
+        },
+        {
+          id: 4,
+          text: "Четыре звезды"
+        },
+        {
+          id: 5,
+          text: "Пять звезд"
+        }
+      ],
       loading: false,
       file: null,
-      preview: ""
+      preview: "",
+      stars: 5
     };
   },
   computed: {
@@ -122,7 +172,7 @@ export default {
     },
     async changeImage(event) {
       const file = event.target.files[0];
-      let self = this
+      let self = this;
       if (!!file && /\.(jpe?g|png)$/i.test(file.name)) {
         this.loading = true;
         try {
@@ -130,10 +180,12 @@ export default {
           self.file = file;
           try {
             let image = await Jimp.read(preview);
+            let watermark = await Jimp.read(watermarks[self.stars - 1]);
             try {
               image
                 .contain(self.sizeImage.maxWidth, self.sizeImage.maxHeight)
                 .background(0xffffffff)
+                .composite(watermark, watermarkY, watermarkX);
 
               self.preview = await image.getBase64Async(Jimp.MIME_JPEG);
 
@@ -155,7 +207,7 @@ export default {
           this.loading = false;
         }
       }
-    },
+    }
   }
 };
 </script>
