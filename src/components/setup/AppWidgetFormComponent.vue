@@ -1,16 +1,16 @@
 <template>
   <div class="form">
-    <div class="widgets__switch">
+    <div class="widgets__switch widgets__switch_form">
       <h4 class="widget-page__title">аудитория</h4>
       <div class="widgets__switch-btn">
-        <!-- <app-switch /> -->
+        <app-switch @switch-val="isSegment" />
       </div>
     </div>
     <p>
       Настройте показ виджета на свою целевую аудиторию, чтобы получить больше
       кликов по виджету и повысить конверсию
     </p>
-    <div class="form__items">
+    <div v-if="isSwitch" class="form__items">
       <div class="item">
         <div class="item__title">
           <span>Пол</span>
@@ -563,7 +563,8 @@ export default {
           title: "сегодня",
           id: 0
         }
-      ]
+      ],
+      isSwitch:false
     };
   },
   computed: {
@@ -572,6 +573,10 @@ export default {
     })
   },
   methods: {
+    isSegment(e) {
+      this.isSwitch = e
+      this.$emit("switch", e);
+    },
     checkType(field) {
       if (field || null) {
         return typeof field === "string"

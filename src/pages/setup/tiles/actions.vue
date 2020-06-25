@@ -119,7 +119,10 @@
           </app-loader>
         </div>
         <div class="widgets__right">
-          <app-widget-form v-model="formSegmentation" />
+          <app-widget-form
+            v-model="formSegmentation"
+            @switch="isSegmentation"
+          />
         </div>
       </div>
       <component
@@ -149,6 +152,7 @@ export default {
       widget: {
         type_name: "Акционные товары",
         type_link: "/setup/tiles/actions?category=sales&edit=true",
+        is_segmentation: false,
         data: {
           more: "",
           more_url: "",
