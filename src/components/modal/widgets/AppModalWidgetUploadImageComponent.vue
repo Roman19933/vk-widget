@@ -27,8 +27,11 @@
             <img src="/img/loading.png" alt v-if="!preview" />
             <img :src="preview" alt v-else class="preview" />
             <p v-if="!preview">
-              Рекомендуемое разрешение 480х720 рх. Изображение выровнено по
-              центру. Формат .png или .jpg
+              Рекомендуемое разрешение
+              {{
+                `${this.sizeImage.maxWidth * 3}x${this.sizeImage.maxHeight * 3}`
+              }}
+              рх. Изображение выровнено по центру. Формат .png или .jpg
             </p>
           </label>
           <div class="widgets-setting__btn">

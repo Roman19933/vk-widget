@@ -132,6 +132,7 @@
           <app-widget-form
             v-model="formSegmentation"
             @switch="isSegmentation"
+            :isSw="widget.is_segmentation"
           />
         </div>
       </div>

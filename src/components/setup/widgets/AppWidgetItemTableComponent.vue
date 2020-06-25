@@ -81,7 +81,7 @@
                           value: children.text
                         },
                         link: {
-                          fieldName: `body[${index}].url`,
+                          fieldName: `body[${index}][${idx}].url`,
                           value: children.url
                         }
                       }
