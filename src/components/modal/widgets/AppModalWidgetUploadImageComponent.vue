@@ -65,29 +65,29 @@ import { mapGetters } from "vuex";
 const sizes = {
   cover: {
     quality: 0.7,
-    maxWidth: 1530,
-    maxHeight: 384,
+    maxWidth: 510,
+    maxHeight: 128,
     mimeType: "image/jpeg",
     debug: false
   },
   large: {
     quality: 0.7,
-    maxWidth: 480,
-    maxHeight: 720,
+    maxWidth: 160,
+    maxHeight: 240,
     mimeType: "image/jpeg",
     debug: false
   },
   square: {
     quality: 0.7,
-    maxWidth: 480,
-    maxHeight: 480,
+    maxWidth: 160,
+    maxHeight: 160,
     mimeType: "image/jpeg",
     debug: false
   },
   small: {
     quality: 0.7,
-    maxWidth: 72,
-    maxHeight: 72,
+    maxWidth: 24,
+    maxHeight: 24,
     mimeType: "image/jpeg",
     debug: false
   }
@@ -151,7 +151,10 @@ export default {
             let image = await Jimp.read(preview);
             try {
               image
-                .contain(self.sizeImage.maxWidth, self.sizeImage.maxHeight)
+                .contain(
+                  self.sizeImage.maxWidth * 3,
+                  self.sizeImage.maxHeight * 3
+                )
                 .background(0xffffffff);
 
               self.preview = await image.getBase64Async(Jimp.MIME_JPEG);
