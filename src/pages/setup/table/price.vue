@@ -166,7 +166,7 @@ export default {
             [
               {
                 text: "Стрижка усов",
-                icon_id: "3484735_23434324",
+                icon_id: "",
                 icon_url: ""
               },
               {

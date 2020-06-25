@@ -86,29 +86,29 @@ import { mapGetters } from "vuex";
 const sizes = {
   cover: {
     quality: 0.7,
-    maxWidth: 1530,
-    maxHeight: 384,
+    maxWidth: 510,
+    maxHeight: 128,
     mimeType: "image/jpeg",
     debug: false
   },
   large: {
     quality: 0.7,
-    maxWidth: 480,
-    maxHeight: 720,
+    maxWidth: 160,
+    maxHeight: 240,
     mimeType: "image/jpeg",
     debug: false
   },
   square: {
     quality: 0.7,
-    maxWidth: 480,
-    maxHeight: 480,
+    maxWidth: 160,
+    maxHeight: 160,
     mimeType: "image/jpeg",
     debug: false
   },
   small: {
     quality: 0.7,
-    maxWidth: 72,
-    maxHeight: 72,
+    maxWidth: 24,
+    maxHeight: 24,
     mimeType: "image/jpeg",
     debug: false
   }
@@ -116,11 +116,11 @@ const sizes = {
 const watermarkY = 5;
 const watermarkX = 5;
 const watermarks = [
-  "/img/s1.png",
-  "/img/s2.png",
-  "/img/s3.png",
-  "/img/s4.png",
-  "/img/s5.png"
+  "/img/st1.png",
+  "/img/st2.png",
+  "/img/st3.png",
+  "/img/st4.png",
+  "/img/st5.png"
 ];
 export default {
   mixins: [modalWidgets],
@@ -205,7 +205,10 @@ export default {
             let watermark = await Jimp.read(watermarks[self.stars - 1]);
             try {
               image
-                .contain(self.sizeImage.maxWidth, self.sizeImage.maxHeight)
+                .contain(
+                  self.sizeImage.maxWidth * 3,
+                  self.sizeImage.maxHeight * 3
+                )
                 .background(0xffffffff)
                 .composite(watermark, watermarkY, watermarkX);
 

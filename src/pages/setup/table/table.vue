@@ -170,7 +170,7 @@ export default {
             [
               {
                 text: "USA",
-                icon_id: "3484735_23434324",
+                icon_id: "",
                 icon_url: ""
               },
               {
