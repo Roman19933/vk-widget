@@ -67,7 +67,7 @@
               typeModal: 'modal-widget-text',
               map: {
                 title: {
-                  fieldName: 'title',
+                  fieldName: 'descr',
                   value: value.descr
                 },
               }
