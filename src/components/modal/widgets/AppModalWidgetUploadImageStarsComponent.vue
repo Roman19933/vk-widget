@@ -48,8 +48,11 @@
             <img src="/img/loading.png" alt v-if="!preview" />
             <img :src="preview" alt v-else class="preview" />
             <p v-if="!preview">
-              Рекомендуемое разрешение 480х720 рх. Изображение выровнено по
-              центру. Формат .png или .jpg
+              Рекомендуемое разрешение
+              {{
+                `${this.sizeImage.maxWidth * 3}x${this.sizeImage.maxHeight * 3}`
+              }}
+              рх. Изображение выровнено по центру. Формат .png или .jpg
             </p>
           </label>
           <div class="widgets-setting__btn">
@@ -116,11 +119,11 @@ const sizes = {
 const watermarkY = 5;
 const watermarkX = 5;
 const watermarks = [
-  "/img/st1.png",
-  "/img/st2.png",
-  "/img/st3.png",
-  "/img/st4.png",
-  "/img/st5.png"
+  "/img/s1.png",
+  "/img/s2.png",
+  "/img/s3.png",
+  "/img/s4.png",
+  "/img/s5.png"
 ];
 export default {
   mixins: [modalWidgets],

@@ -11,12 +11,19 @@ export default {
     value: {
       type: Boolean,
       default: false
+    },
+    sw: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
     return {
       val: this.value
     };
+  },
+  mounted() {
+    this.val = this.sw
   },
   watch: {
     value: {
