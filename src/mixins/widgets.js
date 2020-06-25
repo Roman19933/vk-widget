@@ -51,6 +51,10 @@ export default {
     await this.$store.dispatch("vk/bridge/getUser");
   },
   methods: {
+    isSegmentation(e) {
+      this.widget.is_segmentation = e;
+      console.log(e);
+    },
     handlerSaved(e) {
       if (this.modal === "modal-widget-text") {
         this.widget = e;
