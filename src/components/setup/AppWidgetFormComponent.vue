@@ -3,7 +3,7 @@
     <div class="widgets__switch widgets__switch_form">
       <h4 class="widget-page__title">аудитория</h4>
       <div class="widgets__switch-btn">
-        <app-switch @switch-val="isSegment" />
+        <app-switch @switch-val="isSegment" :sw="isSwitch"/>
       </div>
     </div>
     <p>
@@ -389,6 +389,10 @@ export default {
       default: function() {
         return {};
       }
+    },
+    isSw: {
+      type: Boolean,
+      default: false
     }
   },
   data() {
@@ -563,18 +567,21 @@ export default {
           title: "сегодня",
           id: 0
         }
-      ],
-      isSwitch:false
+      ]
+      // isSwitch:false
     };
   },
   computed: {
     ...mapGetters({
       subs: "server/payments/subs"
-    })
+    }),
+    isSwitch() {
+      return this.isSw;
+    }
   },
   methods: {
     isSegment(e) {
-      this.isSwitch = e
+      // this.isSwitch = e
       this.$emit("switch", e);
     },
     checkType(field) {
