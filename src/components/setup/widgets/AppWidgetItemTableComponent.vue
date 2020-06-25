@@ -4,22 +4,26 @@
       <template v-for="(item, index) in value.head">
         <div class="head__wrapper" :key="index">
           <div class="widgets__content-text">
-            <a
-              href="#"
-              class="text"
-              @click.prevent="
-                $emit('edit:element', {
-                  typeModal: 'modal-widget-text',
-                  map: {
-                    title: {
-                      fieldName: `head[${index}].text`,
-                      value: item.text
-                    }
-                  }
-                })
-              "
-              >{{ !!item.text ? item.text : "+ добавить" }}</a
-            >
+            <app-error-popover :varError="mapErros['text']">
+              <template v-slot:varName>
+                <a
+                  href="#"
+                  class="text"
+                  @click.prevent="
+                    $emit('edit:element', {
+                      typeModal: 'modal-widget-text',
+                      map: {
+                        title: {
+                          fieldName: `head[${index}].text`,
+                          value: item.text
+                        }
+                      }
+                    })
+                  "
+                  >{{ !!item.text ? item.text : "+ добавить" }}</a
+                >
+              </template>
+            </app-error-popover>
           </div>
         </div>
       </template>
@@ -62,10 +66,7 @@
                 })
               "
             >
-              <img
-                :src="item[0].icon_url || `/img/photo.png`"
-                class="photo"
-              />
+              <img :src="item[0].icon_url || `/img/photo.png`" class="photo" />
             </div>
             <template v-for="(children, idx) in item">
               <div class="widgets__content-text" :key="`children-${idx}`">
@@ -108,19 +109,21 @@
 </template>
 
 <script>
+import validateWidgetItem from "@/mixins/validateWidgetItem";
 import AppModalWidgetTitleLink from "@/components/modal/widgets/AppModalWidgetTitleLinkComponent.vue";
 import AppModalWidgetText from "@/components/modal/widgets/AppModalWidgetTextComponent.vue";
 import AppModalWidgetUploadImage from "@/components/modal/widgets/AppModalWidgetUploadImageComponent.vue";
 
 export default {
-  props: {
-    value: {
-      type: Object,
-      default: function() {
-        return {};
-      }
-    }
-  },
+  mixins: [validateWidgetItem],
+  // props: {
+  //   value: {
+  //     type: Object,
+  //     default: function() {
+  //       return {};
+  //     }
+  //   }
+  // },
   data() {
     return {
       head: [],
@@ -144,6 +147,7 @@ export default {
     }
   },
   mounted() {
+    console.log(this.validationErrors)
     let self = this;
     this.$on("edit:element", e => {
       self.modal = e.typeModal;
@@ -154,7 +158,7 @@ export default {
   components: {
     AppModalWidgetTitleLink,
     AppModalWidgetUploadImage,
-    AppModalWidgetText
+    AppModalWidgetText,
   }
 };
 </script>
