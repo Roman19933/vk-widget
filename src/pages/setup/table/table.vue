@@ -106,7 +106,10 @@
           </app-loader>
         </div>
         <div class="widgets__right">
-          <app-widget-form v-model="formSegmentation" />
+          <app-widget-form
+            v-model="formSegmentation"
+            @switch="isSegmentation"
+          />
         </div>
       </div>
       <component
@@ -136,6 +139,7 @@ export default {
       widget: {
         type_name: "Таблица",
         type_link: "/setup/table/table?category=info&edit=true",
+        is_segmentation: false,
         data: {
           more: "",
           more_url: "",
@@ -147,7 +151,7 @@ export default {
             [
               {
                 text: "Россия",
-                icon_id: "3484735_23434324",
+                icon_id: "",
                 icon_url: ""
               },
               {

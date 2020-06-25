@@ -430,6 +430,9 @@
   &__switch {
     display: flex;
     align-items: center;
+    &_form {
+      justify-content: space-between;
+    }
     &-btn {
       .switch {
         width: 50px;

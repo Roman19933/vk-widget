@@ -99,7 +99,10 @@
           </app-loader>
         </div>
         <div class="widgets__right">
-          <app-widget-form v-model="formSegmentation" />
+          <app-widget-form
+            v-model="formSegmentation"
+            @switch="isSegmentation"
+          />
         </div>
       </div>
       <component
@@ -130,6 +133,7 @@ export default {
         type_name: "Важное сообщение",
         type_link: "/setup/text/messages?category=info&edit=true",
         is_active: false,
+        is_segmentation: false,
         data: {
           descr: "Подпишитесь на сообщество и напишите нам",
           more: "",

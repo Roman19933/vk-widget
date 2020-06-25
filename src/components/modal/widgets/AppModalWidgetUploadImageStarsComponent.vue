@@ -94,11 +94,11 @@ const sizes = {
 const watermarkY = 5
 const watermarkX = 5
 const watermarks = [
-  "/img/stars1.png",
-  "/img/stars2.png",
-  "/img/stars3.png",
-  "/img/stars4.png",
-  "/img/stars5.png"
+  "/img/s1.png",
+  "/img/s2.png",
+  "/img/s3.png",
+  "/img/s4.png",
+  "/img/s5.png"
 ];
 export default {
   mixins: [modalWidgets],
