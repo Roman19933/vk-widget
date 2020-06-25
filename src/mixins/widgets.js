@@ -26,9 +26,18 @@ export default {
       );
       Object.assign(this.widget, this.widgetEdit);
     }
-    this.formSegmentation = JSON.parse(
-      JSON.stringify(this.widget.segmentation)
-    );
+    // this.widget.segmentation === null ? this.widget.segmentation = { age: {from:null, to:null}} : this.widget.segmentation
+    // if (this.widget.segmentation === null) {
+    //   this.widget.segmentation = { age: {from:null, to:null}}
+    //   console.log(this.widget.segmentation);
+    // }
+    this.formSegmentation =
+      this.widget.segmentation !== null
+        ? JSON.parse(JSON.stringify(this.widget.segmentation))
+        : (this.widget.segmentation = {
+            age: { from: null, to: null },
+            other: {}
+          });
   },
   watch: {
     formSegmentation: {
