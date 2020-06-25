@@ -7,7 +7,9 @@
     dialog-class="modal-dialog__widgets_upload"
   >
     <app-loader v-model="loading" class="foto-load">
-      <div class="modal__wrapper modal__wrapper-widgets modal__wrapper-widgets_upload">
+      <div
+        class="modal__wrapper modal__wrapper-widgets modal__wrapper-widgets_upload"
+      >
         <button class="modal__close" @click.prevent="show = !show">
           <img src="/img/modal-close.png" alt />
         </button>
@@ -16,22 +18,39 @@
             <span class="modal__title">загрузка изображения</span>
           </div>
           <label class="label">
-            <input type="file" @change="changeImage" style="display: none" accept="image/*" />
+            <input
+              type="file"
+              @change="changeImage"
+              style="display: none"
+              accept="image/*"
+            />
             <img src="/img/loading.png" alt v-if="!preview" />
             <img :src="preview" alt v-else class="preview" />
             <p v-if="!preview">
-              Рекомендуемое разрешение 480х720 рх.
-              Изображение выровнено по центру. Формат .png или .jpg
+              Рекомендуемое разрешение 480х720 рх. Изображение выровнено по
+              центру. Формат .png или .jpg
             </p>
           </label>
           <div class="widgets-setting__btn">
             <div v-if="!file">
               <label for="upload">
-                <input type="file" id="upload" @change="changeImage" accept="image/*" />
+                <input
+                  type="file"
+                  id="upload"
+                  @change="changeImage"
+                  accept="image/*"
+                />
                 <span class="gen-btn">Загрузить</span>
               </label>
             </div>
-            <button type="submit" @click.prevent="onUploadImage" class="gen-btn" v-else>Принять</button>
+            <button
+              type="submit"
+              @click.prevent="onUploadImage"
+              class="gen-btn"
+              v-else
+            >
+              Принять
+            </button>
           </div>
         </div>
       </div>
@@ -46,29 +65,29 @@ import { mapGetters } from "vuex";
 const sizes = {
   cover: {
     quality: 0.7,
-    maxWidth: 510,
-    maxHeight: 128,
+    maxWidth: 1530,
+    maxHeight: 384,
     mimeType: "image/jpeg",
     debug: false
   },
   large: {
     quality: 0.7,
-    maxWidth: 160,
-    maxHeight: 240,
+    maxWidth: 480,
+    maxHeight: 720,
     mimeType: "image/jpeg",
     debug: false
   },
   square: {
     quality: 0.7,
-    maxWidth: 160,
-    maxHeight: 160,
+    maxWidth: 480,
+    maxHeight: 480,
     mimeType: "image/jpeg",
     debug: false
   },
   small: {
     quality: 0.7,
-    maxWidth: 24,
-    maxHeight: 24,
+    maxWidth: 72,
+    maxHeight: 72,
     mimeType: "image/jpeg",
     debug: false
   }
@@ -122,7 +141,7 @@ export default {
     },
     async changeImage(event) {
       const file = event.target.files[0];
-      let self = this
+      let self = this;
       if (!!file && /\.(jpe?g|png)$/i.test(file.name)) {
         this.loading = true;
         try {
@@ -133,7 +152,7 @@ export default {
             try {
               image
                 .contain(self.sizeImage.maxWidth, self.sizeImage.maxHeight)
-                .background(0xffffffff)
+                .background(0xffffffff);
 
               self.preview = await image.getBase64Async(Jimp.MIME_JPEG);
 
@@ -155,7 +174,7 @@ export default {
           this.loading = false;
         }
       }
-    },
+    }
   }
 };
 </script>

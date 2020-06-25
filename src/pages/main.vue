@@ -98,7 +98,7 @@
                     </div>
                     <a href="#" class="home-block__user">
                       <img src="img/home-user.svg" alt />
-                      <div v-if="widget.segmentation && widget.segmentation.other.length" class="popover">
+                      <div v-if="widget.segmentation && widget.segmentation.other.length || null" class="popover">
                         <div class="popover__wrapper">
                           <span>Аудитория</span>
                           <span>Возраст: от {{widget.segmentation.age.from}} до {{widget.segmentation.age.to}}</span>
