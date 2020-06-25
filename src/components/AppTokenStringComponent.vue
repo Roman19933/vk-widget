@@ -36,7 +36,7 @@ export default {
     return {
       tokens: {
         "{firstname}": "{firstname} - Иван",
-        "{firstname}": "{lovename} - Имя любимой",
+        "{lovename}": "{lovename} - Имя любимой",
         "{любимый(ая)}": "{любимый(ая)}",
         "{любимый(ая)}": "{любимый(ая)}",
         "{любимого(ой)}": "{любимого(ой)}",
