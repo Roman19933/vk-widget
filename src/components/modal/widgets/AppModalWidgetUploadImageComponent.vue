@@ -39,7 +39,7 @@
               <label for="upload">
                 <input
                   type="file"
-                  id="upload"
+                  style="display: none"
                   @change="changeImage"
                   accept="image/*"
                 />
