@@ -56,7 +56,10 @@
                 </div>
                 <div class="widgets__items widgets__items_client">
                   <template>
-                    <app-widget-item-table v-model="widget.data" />
+                    <app-widget-item-table
+                      v-model="widget.data"
+                      :validation-errors="validationErrors"
+                    />
                   </template>
                   <button
                     class="add-item"
