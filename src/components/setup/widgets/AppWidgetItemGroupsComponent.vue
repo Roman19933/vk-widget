@@ -1,7 +1,11 @@
 <template>
   <div class="widgets__content-places">
     <div class="item__menu">
-      <a href="#" class="item__menu-close" @click.prevent="$emit('remove:item')">
+      <a
+        href="#"
+        class="item__menu-close"
+        @click.prevent="$emit('remove:item')"
+      >
         <img src="/img/close-error.png" alt />
       </a>
       <div class="item__menu-burger">
@@ -30,11 +34,18 @@
       "
     >
       <img :src="value.icon_url || `/img/photo.png`" alt class="photo" />
-      <app-error-popover :varError="mapErros['icon_id']"></app-error-popover>
+      <app-error-popover
+        :prename-validation="`${prenameValidation}icon_id`"
+        :validation-errors="validationErrors"
+      ></app-error-popover>
     </div>
     <div class="widgets__content-text widgets__content-text_places">
       <div class="places-content">
-        <app-error-popover :varError="mapErros['title']">
+        <app-error-popover
+          :prename-validation="`${prenameValidation}title`"
+          :prename-validation2="`${prenameValidation}title_url`"
+          :validation-errors="validationErrors"
+        >
           <template v-slot:varName>
             <a
               href="#"
@@ -54,7 +65,8 @@
                   }
                 })
               "
-            >{{ !!value.title ? value.title : "+ добавить" }}</a>
+              >{{ !!value.title ? value.title : "+ добавить" }}</a
+            >
           </template>
         </app-error-popover>
         <a
@@ -71,9 +83,14 @@
               }
             })
           "
-        >{{ !!value.descr ? value.descr : "+ добавить" }}</a>
+          >{{ !!value.descr ? value.descr : "+ добавить" }}</a
+        >
       </div>
-      <app-error-popover :varError="mapErros['button'] || mapErros['button_url']">
+      <app-error-popover
+        :prename-validation="`${prenameValidation}button`"
+        :prename-validation2="`${prenameValidation}button_url`"
+        :validation-errors="validationErrors"
+      >
         <template v-slot:varName>
           <a
             href="#"
@@ -93,7 +110,8 @@
                 }
               })
             "
-          >{{ !!value.button ? value.button : "+ добавить" }}</a>
+            >{{ !!value.button ? value.button : "+ добавить" }}</a
+          >
         </template>
       </app-error-popover>
     </div>

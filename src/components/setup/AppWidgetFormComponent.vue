@@ -3,7 +3,7 @@
     <div class="widgets__switch widgets__switch_form">
       <h4 class="widget-page__title">аудитория</h4>
       <div class="widgets__switch-btn">
-        <app-switch @switch-val="isSegment" :sw="isSwitch"/>
+        <app-switch @switch-val="isSegment" :sw="isSwitch" />
       </div>
     </div>
     <p>
@@ -30,7 +30,7 @@
           <v-select
             :options="sexData"
             placeholder="Выберите пол"
-            :value="value.other ? value.other.sex : value.sex"
+            :value="value ? (value.other ? value.other.sex : value.sex) : null"
             label="title"
             :disabled="!subs || subs.sys_name !== 'business'"
             @input="changeData('sex', 'select', $event)"
@@ -57,7 +57,7 @@
             <v-select
               :options="ageData"
               placeholder="От"
-              :value="value.age.from"
+              :value="value ? value.age.from : null"
               @input="changeData('age.from', 'between', $event)"
               :disabled="!subs || subs.sys_name !== 'business'"
             ></v-select>
@@ -66,7 +66,7 @@
             <v-select
               :options="ageData"
               placeholder="До"
-              :value="value.age.to"
+              :value="value ? value.age.to : null"
               @input="changeData('age.to', 'between', $event)"
               :disabled="!subs || subs.sys_name !== 'business'"
             ></v-select>
@@ -93,8 +93,8 @@
             v-for="(item, index) in birthData"
             :key="index"
             :item="item"
-            :data="value"
-            :value="value.bdate"
+            :data="value ? value : {}"
+            :value="value ? value.bdate : {}"
             :disabled="!subs || subs.sys_name !== 'business'"
             @input="changeData('bdate', 'select', $event)"
           />
@@ -120,7 +120,7 @@
             :options="relationData"
             placeholder="Выберите семейное положение"
             label="title"
-            :value="value.other ? value.other.relation : value.relation"
+            :value="value ? (value.other ? value.other.relation : value.relation) : null"
             @input="changeData('relation', 'select', $event)"
             :disabled="!subs || subs.sys_name !== 'business'"
           ></v-select>
@@ -144,7 +144,7 @@
         <div class="form-group">
           <v-select
             :options="cityData"
-            :value="value.other ? value.other.city : value.city"
+            :value="value ? (value.other ? value.other.city : value.city) :null"
             @input="changeData('city', 'select', $event)"
             :filterable="false"
             label="title"
@@ -180,7 +180,7 @@
           <v-select
             :options="deviceData"
             placeholder="Выберите устройство"
-            :value="value.other ? value.other.devices : value.devices"
+            :value="value ? (value.other ? value.other.devices : value.devices) :null"
             label="title"
             @input="changeData('devices', 'select', $event)"
             :disabled="!subs || subs.sys_name !== 'business'"
@@ -205,7 +205,7 @@
         <div class="form-group form-group_textarea">
           <textarea
             placeholder="Введите ID сообществ"
-            :value="value.other ? value.other.groups : value.groups"
+            :value="value ? (value.other ? value.other.groups : value.groups) : null"
             @input="changeData('groups', 'textarea', $event.target.value)"
             :disabled="!subs || subs.sys_name !== 'business'"
           ></textarea>
@@ -231,7 +231,7 @@
           <textarea
             placeholder="Введите ID сообществ"
             :value="
-              value.other ? value.other.groups_exclude : value.groups_exclude
+              value ? (value.other ? value.other.groups_exclude : value.groups_exclude) :null
             "
             @input="
               changeData('groups_exclude', 'textarea', $event.target.value)
@@ -259,7 +259,7 @@
         <div class="form-group form-group_textarea">
           <textarea
             placeholder="Введите ID пользователя"
-            :value="value.other ? value.other.users : value.users"
+            :value="value ? (value.other ? value.other.users : value.users) : null"
             @input="changeData('users', 'textarea', $event.target.value)"
             :disabled="!subs || subs.sys_name !== 'business'"
           ></textarea>
@@ -285,7 +285,7 @@
           <textarea
             placeholder="Введите интересы второй половинки"
             :value="
-              value.other ? value.other.relation_groups : value.relation_groups
+              value ? (value.other ? value.other.relation_groups : value.relation_groups) : null
             "
             @input="
               changeData('relation_groups', 'textarea', $event.target.value)
@@ -314,7 +314,7 @@
           <textarea
             placeholder="Введите интересы пользователя"
             :value="
-              value.other ? value.other.user_interests : value.user_interests
+              value ? (value.other ? value.other.user_interests : value.user_interests) : null
             "
             @input="
               changeData('user_interests', 'textarea', $event.target.value)
@@ -342,7 +342,7 @@
         <div class="form-group form-group_textarea">
           <textarea
             placeholder="Введите имя пользователя"
-            :value="value.other ? value.other.user_name : value.user_name"
+            :value="value ? (value.other ? value.other.user_name : value.user_name) :null"
             @input="changeData('user_name', 'textarea', $event.target.value)"
             :disabled="!subs || subs.sys_name !== 'business'"
           ></textarea>
@@ -367,7 +367,7 @@
         <div class="form-group form-group_textarea">
           <textarea
             placeholder="Введите фамилию пользователя"
-            :value="value.other ? value.other.user_surname : value.user_surname"
+            :value="value ? (value.other ? value.other.user_surname : value.user_surname) : null"
             @input="changeData('user_surname', 'textarea', $event.target.value)"
             :disabled="!subs || subs.sys_name !== 'business'"
           ></textarea>

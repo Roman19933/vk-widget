@@ -555,7 +555,18 @@
             border: 1px dashed #8e8fbb;
             border-bottom: 0;
             position: relative;
+            .item {
+              &__popover {
+                position: initial;
+                &-info {
+                  position: absolute;
+                  top: 5px;
+                  left: 5px;
+                }
+              }
+            }
             .widgets__content-text {
+              position: relative;
               // width: 118px;
               width: 100%;
               border: 1px dashed #8e8fbb;

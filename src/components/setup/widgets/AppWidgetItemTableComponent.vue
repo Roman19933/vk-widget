@@ -4,22 +4,29 @@
       <template v-for="(item, index) in value.head">
         <div class="head__wrapper" :key="index">
           <div class="widgets__content-text">
-            <a
-              href="#"
-              class="text"
-              @click.prevent="
-                $emit('edit:element', {
-                  typeModal: 'modal-widget-text',
-                  map: {
-                    title: {
-                      fieldName: `head[${index}].text`,
-                      value: item.text
-                    }
-                  }
-                })
-              "
-              >{{ !!item.text ? item.text : "+ добавить" }}</a
+            <app-error-popover
+              :prename-validation="`data.head.${index}.text`"
+              :validation-err="validationErrors"
             >
+              <template v-slot:varName>
+                <a
+                  href="#"
+                  class="text"
+                  @click.prevent="
+                    $emit('edit:element', {
+                      typeModal: 'modal-widget-text',
+                      map: {
+                        title: {
+                          fieldName: `head[${index}].text`,
+                          value: item.text
+                        }
+                      }
+                    })
+                  "
+                  >{{ !!item.text ? item.text : "+ добавить" }}</a
+                >
+              </template>
+            </app-error-popover>
           </div>
         </div>
       </template>
@@ -41,54 +48,69 @@
                 <img src="/img/burger.png" alt />
               </div>
             </div>
-            <div
-              class="widgets__content-avatar"
-              @click.prevent="
-                $emit('edit:element', {
-                  typeModal: 'modal-widget-upload-image',
-                  map: {
-                    image: {
-                      fieldName: `body[${index}][0].icon_id`,
-                      value: ''
-                    },
-                    src: {
-                      fieldName: `body[${index}][0].icon_url`,
-                      value: ''
-                    },
-                    other: {
-                      sizeImage: 'small'
-                    }
-                  }
-                })
-              "
+            <app-error-popover
+              :prename-validation="`data.body.${index}.0.icon_id`"
+              :validation-errors="validationErrors"
             >
-              <img
-                :src="item[0].icon_url || `/img/photo.png`"
-                class="photo"
-              />
-            </div>
-            <template v-for="(children, idx) in item">
-              <div class="widgets__content-text" :key="`children-${idx}`">
-                <a
-                  href="#"
-                  class="text"
+              <template v-slot:varName>
+                <div
+                  class="widgets__content-avatar"
                   @click.prevent="
                     $emit('edit:element', {
-                      typeModal: 'modal-widget-title-link',
+                      typeModal: 'modal-widget-upload-image',
                       map: {
-                        title: {
-                          fieldName: `body[${index}][${idx}].text`,
-                          value: children.text
+                        image: {
+                          fieldName: `body[${index}][0].icon_id`,
+                          value: ''
                         },
-                        link: {
-                          fieldName: `body[${index}][${idx}].url`,
-                          value: children.url
+                        src: {
+                          fieldName: `body[${index}][0].icon_url`,
+                          value: ''
+                        },
+                        other: {
+                          sizeImage: 'small'
                         }
                       }
                     })
                   "
-                  >{{ !!children.text ? children.text : "+ добавить" }}</a
                 >
+                  <img
+                    :src="item[0].icon_url || `/img/photo.png`"
+                    class="photo"
+                  />
+                </div>
+              </template>
+            </app-error-popover>
+            <template v-for="(children, idx) in item">
+              <div class="widgets__content-text" :key="`children-${idx}`">
+                <app-error-popover
+                  :prename-validation="`data.body.${index}.${idx}.text`"
+                  :prename-validation2="`data.body.${index}.${idx}.url`"
+                  :validation-err="validationErrors"
+                >
+                  <template v-slot:varName>
+                    <a
+                      href="#"
+                      class="text"
+                      @click.prevent="
+                        $emit('edit:element', {
+                          typeModal: 'modal-widget-title-link',
+                          map: {
+                            title: {
+                              fieldName: `body[${index}][${idx}].text`,
+                              value: children.text
+                            },
+                            link: {
+                              fieldName: `body[${index}][${idx}].url`,
+                              value: children.url
+                            }
+                          }
+                        })
+                      "
+                      >{{ !!children.text ? children.text : "+ добавить" }}</a
+                    >
+                  </template>
+                </app-error-popover>
               </div>
             </template>
           </div>
@@ -108,19 +130,13 @@
 </template>
 
 <script>
+import validateWidgetItem from "@/mixins/validateWidgetItem";
 import AppModalWidgetTitleLink from "@/components/modal/widgets/AppModalWidgetTitleLinkComponent.vue";
 import AppModalWidgetText from "@/components/modal/widgets/AppModalWidgetTextComponent.vue";
 import AppModalWidgetUploadImage from "@/components/modal/widgets/AppModalWidgetUploadImageComponent.vue";
 
 export default {
-  props: {
-    value: {
-      type: Object,
-      default: function() {
-        return {};
-      }
-    }
-  },
+  mixins: [validateWidgetItem],
   data() {
     return {
       head: [],
@@ -144,6 +160,7 @@ export default {
     }
   },
   mounted() {
+    console.log(this.validationErrors);
     let self = this;
     this.$on("edit:element", e => {
       self.modal = e.typeModal;
