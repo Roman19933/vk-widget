@@ -29,7 +29,6 @@ export default {
         let s = `item.${el.fieldName} = form`;
         eval(s);
       });
-      console.log(item)
       this.$emit("saved", item);
       this.show = false;
     },
