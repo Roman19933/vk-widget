@@ -13,7 +13,7 @@
       </div>
     </div>
     <div
-      class="widgets__content-avatar"
+      class="widgets__content-avatar widgets__content-avatar_places"
       @click.prevent="
         $emit('edit:element', {
           typeModal: 'modal-widget-upload-image',
@@ -33,7 +33,12 @@
         })
       "
     >
-      <img :src="value.icon_url || `/img/photo.png`" alt class="photo" />
+      <div
+        class="widgets__content-avatar__wrapper"
+        :class="{ 'photo-url': value.icon_url }"
+      >
+        <img :src="value.icon_url || `/img/photo.png`" alt class="photo" />
+      </div>
       <app-error-popover
         :prename-validation="`${prenameValidation}icon_id`"
         :validation-errors="validationErrors"
