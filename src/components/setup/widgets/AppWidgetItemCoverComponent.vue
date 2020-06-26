@@ -15,9 +15,10 @@
     </div>
     <div
       class="item__img"
-      @click.prevent="$emit('edit:element',{
-        typeModal:'modal-widget-upload-image-stars',
-        map: {
+      @click.prevent="
+        $emit('edit:element', {
+          typeModal: 'modal-widget-upload-image-stars',
+          map: {
             image: {
               fieldName: 'cover_id',
               value: ''
@@ -29,78 +30,102 @@
             other: {
               sizeImage: 'cover'
             }
-        }
-    })"
+          }
+        })
+      "
     >
       <img :src="value.icon_url || `/img/photo.png`" alt class="photo" />
-      <app-error-popover :varError="mapErros['cover_id']"></app-error-popover>
+      <app-error-popover
+        :prename-validation="`${prenameValidation}cover_id`"
+        :validation-errors="validationErrors"
+      ></app-error-popover>
     </div>
     <div class="item__info">
       <div class="item__info-cover">
-        <app-error-popover :varError="mapErros['title']">
+        <app-error-popover
+          :prename-validation="`${prenameValidation}title`"
+          :prename-validation2="`${prenameValidation}title_url`"
+          :validation-errors="validationErrors"
+        >
           <template v-slot:varName>
             <a
               href="#"
               class="item__info-cover_title"
-              @click.prevent="$emit('edit:element', {
-              typeModal: 'modal-widget-title-link',
-              map: {
-                title: {
-                  fieldName: 'title',
-                  value: value.title
-                },
-                link: {
-                  fieldName: 'url',
-                  value: value.url
-                }
-              }
-            })"
-            >{{!!value.title ? value.title : "+ добавить"}}</a>
+              @click.prevent="
+                $emit('edit:element', {
+                  typeModal: 'modal-widget-title-link',
+                  map: {
+                    title: {
+                      fieldName: 'title',
+                      value: value.title
+                    },
+                    link: {
+                      fieldName: 'url',
+                      value: value.url
+                    }
+                  }
+                })
+              "
+              >{{ !!value.title ? value.title : "+ добавить" }}</a
+            >
           </template>
         </app-error-popover>
-        <app-error-popover :varError="mapErros['descr']">
+        <app-error-popover
+          :prename-validation="`${prenameValidation}descr`"
+          :validation-errors="validationErrors"
+        >
           <template v-slot:varName>
             <a
               href="#"
               class="item__info-cover_star"
-              @click.prevent="$emit('edit:element', {
-              typeModal: 'modal-widget-text',
-              map: {
-                title: {
-                  fieldName: 'descr',
-                  value: value.descr
-                },
-              }
-            })"
-            >{{!!value.descr ? value.descr : "+ добавить"}}</a>
+              @click.prevent="
+                $emit('edit:element', {
+                  typeModal: 'modal-widget-text',
+                  map: {
+                    title: {
+                      fieldName: 'descr',
+                      value: value.descr
+                    }
+                  }
+                })
+              "
+              >{{ !!value.descr ? value.descr : "+ добавить" }}</a
+            >
           </template>
         </app-error-popover>
       </div>
-      <app-error-popover :varError="mapErros['button_url']">
+      <app-error-popover
+        :prename-validation="`${prenameValidation}button`"
+        :prename-validation2="`${prenameValidation}button_url`"
+        :validation-errors="validationErrors"
+      >
         <template v-slot:varName>
           <a
             href="#"
             class="gen-btn"
-            @click.prevent="$emit('edit:element', {
-              typeModal: 'modal-widget-title-link',
-              map: {
-                title: {
-                  fieldName: 'button',
-                  value: value.button
-                },
-                link: {
-                  fieldName: 'button_url',
-                  value: value.button_url
+            @click.prevent="
+              $emit('edit:element', {
+                typeModal: 'modal-widget-title-link',
+                map: {
+                  title: {
+                    fieldName: 'button',
+                    value: value.button
+                  },
+                  link: {
+                    fieldName: 'button_url',
+                    value: value.button_url
+                  }
                 }
-              }
-            })"
-          >{{!!value.button ? value.button : "+ добавить"}}</a>
+              })
+            "
+            >{{ !!value.button ? value.button : "+ добавить" }}</a
+          >
         </template>
       </app-error-popover>
     </div>
     <component
       v-if="modal"
-      :is="`app-${ modal }`"
+      :is="`app-${modal}`"
       :value="value"
       :map-data="mapData"
       :other="other"

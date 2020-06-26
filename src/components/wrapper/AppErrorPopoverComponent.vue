@@ -1,10 +1,10 @@
 <template>
   <div class="item__popover">
-    <div v-if="varError" class="item__popover-info">
+    <div v-if="mapErrors" class="item__popover-info">
       <img src="/img/info.png" alt class="error" />
       <div class="popover popover_setup">
         <div class="popover__wrapper">
-          <span v-for="(e, idx) in varError" :key="idx">{{ e }}</span>
+          <span v-for="(e, idx) in mapErrors" :key="idx">{{ e }}</span>
         </div>
       </div>
     </div>
@@ -15,11 +15,30 @@
 <script>
 export default {
   props: {
-    varError: {
-      type: Array,
+    prenameValidation: {
+      type: String,
+      default: ""
+    },
+    prenameValidation2: {
+      type: String,
+      default: ""
+    },
+    validationErrors: {
+      type: Object,
       default: () => {
-        return [];
+        return {};
       }
+    }
+  },
+  computed: {
+    mapErrors() {
+      let obj = null;
+      _.forEach(this.validationErrors, (el, key) => {
+        obj =
+          this.validationErrors[`${this.prenameValidation}`] ||
+          this.validationErrors[`${this.prenameValidation2}`];
+      });
+      return obj;
     }
   }
 };

@@ -34,11 +34,18 @@
       "
     >
       <img :src="value.icon_url || `/img/photo.png`" alt class="photo" />
-      <app-error-popover :varError="mapErros['icon_id']"></app-error-popover>
+      <app-error-popover
+        :prename-validation="`${prenameValidation}icon_id`"
+        :validation-errors="validationErrors"
+      ></app-error-popover>
     </div>
     <div class="widgets__content-text widgets__content-text_places">
       <div class="places-content">
-        <app-error-popover :varError="mapErros['title']">
+        <app-error-popover
+          :prename-validation="`${prenameValidation}title`"
+          :prename-validation2="`${prenameValidation}title_url`"
+          :validation-errors="validationErrors"
+        >
           <template v-slot:varName>
             <a
               href="#"
@@ -80,7 +87,10 @@
         >
         <div class="places-content__info">
           <div class="places-content__location">
-            <app-error-popover :varError="mapErros['address']">
+            <app-error-popover
+              :prename-validation="`${prenameValidation}address`"
+              :validation-errors="validationErrors"
+            >
               <template v-slot:varName>
                 <img src="/img/marker.png" alt />
                 <a
@@ -103,7 +113,10 @@
             </app-error-popover>
           </div>
           <div class="places-content__location">
-            <app-error-popover :varError="mapErros['time']">
+            <app-error-popover
+              :prename-validation="`${prenameValidation}time`"
+              :validation-errors="validationErrors"
+            >
               <template v-slot:varName>
                 <img src="/img/time.png" alt />
                 <a
@@ -128,7 +141,9 @@
         </div>
       </div>
       <app-error-popover
-        :varError="mapErros['button'] || mapErros['button_url']"
+        :prename-validation="`${prenameValidation}button`"
+        :prename-validation2="`${prenameValidation}button_url`"
+        :validation-errors="validationErrors"
       >
         <template v-slot:varName>
           <a
