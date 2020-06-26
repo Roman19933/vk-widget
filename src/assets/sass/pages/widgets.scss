@@ -215,14 +215,31 @@
       max-width: 50px;
       min-height: 50px;
       max-height: 50px;
-      background-color: #474873;
-      border-radius: 100%;
       display: flex;
-      align-items: center;
       justify-content: center;
-      margin-right: 12px;
-      overflow: hidden;
-      cursor: pointer;
+      align-items: center;
+      &_places {
+        margin-right: 15px;
+      }
+      &__wrapper {
+        background-color: #474873;
+        border-radius: 100%;
+        min-width: 50px;
+        max-width: 50px;
+        min-height: 50px;
+        max-height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        cursor: pointer;
+        &.photo-url {
+          min-width: 24px;
+          max-width: 24px;
+          min-height: 24px;
+          max-height: 24px;
+        }
+      }
       &_client {
         background-color: initial;
       }
@@ -232,6 +249,7 @@
         bottom: 65px;
       }
       &_groups {
+        margin-right: 15px;
         .item__popover {
           bottom: 31px;
         }
