@@ -8,14 +8,3 @@
     </button>
   </div>
 </template>
-
-<script>
-export default {
-  // props: {
-  //   isError: {
-  //     type:Boolean,
-  //     default:false
-  //   }
-  // }
-};
-</script>

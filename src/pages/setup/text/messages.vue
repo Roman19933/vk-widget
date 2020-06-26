@@ -94,7 +94,6 @@
                   >
                 </p>
               </div>
-              <!-- <app-widget-error v-if="error" @close="error = !error" /> -->
             </div>
           </app-loader>
         </div>
@@ -172,15 +171,5 @@ export default {
     AppModalWidgetText,
     AppModalWidgetTitleLink
   }
-  // watch: {
-  //   formSegmentation: {
-  //     handler(bef) {
-  //       if(bef) {
-  //         this.widget.segmentation = bef
-  //       }
-  //     },
-  //     deep: true
-  //   }
-  // },
 };
 </script>

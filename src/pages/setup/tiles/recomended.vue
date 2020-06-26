@@ -114,7 +114,6 @@
                   >
                 </p>
               </div>
-              <!-- <app-widget-error v-if="error" @close="error = !error" /> -->
             </div>
           </app-loader>
         </div>

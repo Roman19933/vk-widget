@@ -28,33 +28,9 @@
     },
     data() {
       return {
-        // timer: null,
         val: this.timerVal
       }
     },
-    methods: {
-      // resetModal() {
-      //   this.startTimer()
-      // },
-      // startTimer() {
-      //   this.timer = setInterval(() => {
-      //     this.val--
-      //     console.log(this.val)
-      //     if (this.val <= 0) {
-      //       clearTimeout(this.timer)
-      //     }
-      //   }, 1000)
-      // },
-      // stopTimer() {
-      //   clearTimeout(this.timer)
-      // },
-    },
-    mounted() {
-      // this.startTimer()
-    },
-    // destroyed() {
-    //   this.stopTimer()
-    // },
     watch: {
       timerVal(time) {
         this.val = time

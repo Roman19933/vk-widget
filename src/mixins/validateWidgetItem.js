@@ -18,17 +18,4 @@ export default {
       default: null
     },
   },
-  // computed: {
-  //   mapErros() {
-  //     let obj = {};
-  //     _.forEach(this.value, (el, key) => {
-  //       obj = Object.assign(obj, {
-  //         [key]:
-  //           this.validationErrors[`${this.prenameValidation}${key}`] || null
-  //       });
-  //     });
-  //     return obj;
-  //   }
-  // },
-
 }

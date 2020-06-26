@@ -9,18 +9,6 @@
       </button>
       <div class="contract">
         <div class="contract__wrapper">
-          <!-- <div class="contract__head">
-            <div class="contract__head-left">
-              <img src="img/tarif-modal.png" alt />
-              <div class="contract__head-info">
-                <p class="contract__head-name">Ковальский Виджет для рекламы ВКонтакте</p>
-                <span class="contract__head-date">18 июня 2020 в 11:39</span>
-              </div>
-            </div>
-            <div class="contract__head-right">
-              <button class="gen-btn">Подписаться</button>
-            </div>
-          </div> -->
           <div class="contract__content">
             <div class="contract__content-top">
               <h2>Публичный договор-оферта</h2>
@@ -112,16 +100,10 @@
               <li>ИНН Банка 344691287230</li>
               <li>БИК Банка 044030786</li>
             </ul>
-            <!-- <button class="gen-btn">
-              <img src="img/tarif-heart.png" alt />
-              <span>Нравится</span>
-              <span>24</span>
-            </button> -->
           </div>
         </div>
         <div class="contract__bottom">
           <a href="https://vk.com/kowalskiwidget" target="_blank" class="contract__bottom-link">Перейти к сообществу Ковальский Виджет для рекламы ВКонтакте</a>
-          <!-- <p class="contract__bottom-text">1 856 просмотров</p> -->
         </div>
       </div>
     </div>

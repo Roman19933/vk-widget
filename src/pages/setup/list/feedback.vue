@@ -54,9 +54,6 @@
                     >{{ widget.data.title }}</a
                   >
                 </div>
-                <!-- <div class="widgets__items widgets__items_product">
-                <button class="add-item">+ Добавить элемент</button>
-                </div>-->
                 <div class="widgets__items widgets__items_feedback">
                   <draggable
                     v-model="widget.data.rows"
