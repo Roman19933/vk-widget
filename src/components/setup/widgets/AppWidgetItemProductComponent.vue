@@ -35,13 +35,13 @@
       "
     >
       <img :src="value.icon_url || `/img/photo.png`" alt class="photo" />
-    </div>
-
     <app-error-popover
       :prename-validation="`${prenameValidation}icon_id`"
       :validation-errors="validationErrors"
     >
     </app-error-popover>
+    </div>
+
     <div class="item__info">
       <app-error-popover
         :prename-validation="`${prenameValidation}title`"

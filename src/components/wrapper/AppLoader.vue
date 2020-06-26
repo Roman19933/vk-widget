@@ -36,9 +36,7 @@
         </g>
       </svg>
     </svg>
-    <!-- <div class="loader__content"> -->
       <slot></slot>
-    <!-- </div> -->
   </div>
 </template>
 <script>

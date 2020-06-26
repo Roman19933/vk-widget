@@ -94,10 +94,6 @@ body {
         font-size: 13px;
         font-family: 'RobotoLight';
         cursor: pointer;
-        // display: flex;
-        // align-items: center;
-        // justify-content: space-between;
-        // flex-wrap: wrap;
         &_col {
             display: flex;
             width: 100%;
@@ -133,7 +129,6 @@ body {
     }
     &__subitems {
         width: 100%;
-        // display: none;
     }
     &__subitem {
         display: block;
@@ -334,7 +329,6 @@ label {
 		z-index: 2;
 	}
 }
-//--mobile
 .mobile-version {
     width: 100vw;
     height: 100vh;
@@ -347,7 +341,6 @@ label {
         padding: 0 20px;
     }
 }
-//-- loader
 .loader {
 	width: 100%;
     position: relative;

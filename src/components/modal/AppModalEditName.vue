@@ -48,11 +48,6 @@
     methods: {
       async saveName () {
         this.loading = true
-          // .then((response) => {
-          //   console.log(response);
-          // }, (error) => {
-          //   console.log(error);
-          // });
         try {
           await axios.patch(
             process.env.NUXT_APP_API_URL + 'widgets/rename/' + this.widgetId,

@@ -29,9 +29,3 @@
     </div>
   </b-modal>
 </template>
-
-<script>
-  export default {
-    
-  }
-</script>

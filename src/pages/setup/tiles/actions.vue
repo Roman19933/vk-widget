@@ -114,7 +114,6 @@
                   >
                 </p>
               </div>
-              <!-- <app-widget-error v-if="error" @close="error = !error" /> -->
             </div>
           </app-loader>
         </div>
@@ -149,7 +148,6 @@ import AppModalWidgetTitleLink from "@/components/modal/widgets/AppModalWidgetTi
 export default {
   data() {
     return {
-      // formSegmentation: {},
       widget: {
         type_name: "Акционные товары",
         type_link: "/setup/tiles/actions?category=sales&edit=true",

@@ -235,10 +235,6 @@ export default {
         {
           text: "",
           url: ""
-        },
-        {
-          text: "",
-          url: ""
         }
       ]);
     }

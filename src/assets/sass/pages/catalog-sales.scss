@@ -13,7 +13,6 @@
     .body {
       &__item {
         display: flex;
-        // justify-content: space-between;
         margin-bottom: 15px;
         align-items: center;
         &_price {
@@ -86,7 +85,6 @@
   &__content {
     flex: 0;
     min-width: 415px;
-    // width: 442px;
     box-shadow: 0 2px 5px rgba(33, 32, 61, 0.4);
     border-radius: 6px;
     background-color: #474873;

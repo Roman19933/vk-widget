@@ -1,21 +1,8 @@
 .modal {
-    // display: none;
-    // position: absolute;
     width: 100%;
     height: 100%;
-    // top: 0;
-    // left: 0;
     justify-content: center;
     align-items: center;
-    // &-bg {
-        // position: absolute;
-        // width: 100%;
-        // height: 100%;
-        // background-color: #21203d;
-        // opacity: 0.8;
-        // top: 0;
-        // left: 0;
-    // }
     &__blocks {
         position: relative;
     }
@@ -80,7 +67,7 @@
                 }
             }
         }
-        
+
     }
     &__extra {
         position: absolute;
@@ -90,8 +77,6 @@
         padding-right: 0!important;
         width: 232px;
         &-content {
-            // height: 204px;
-            // padding-top: 32px;
             height: max-content;
             padding-top: 32px;
             padding-bottom: 32px;
@@ -257,9 +242,6 @@
 }
 
 .widgets-setting {
-    // .modal__title {
-    //     font-size: 13px;
-    // }
     &.widgets-sub {
         .widgets-setting__input {
             margin-bottom: 20px;
@@ -270,30 +252,6 @@
             margin-bottom: 20px;
         }
     }
-    // &.widgets-upload {
-    //     p {
-    //         width: 100%;
-    //         margin: 0;
-    //     }
-    //     .gen-btn {
-    //         width: 120px;
-    //     }
-    //     .modal__wrapper {
-    //         width: 320px;
-    //         padding: 31px 36px;
-    //         height: 274px;
-    //     }
-    //     .widgets-setting__content {
-    //         display: flex;
-    //         flex-direction: column;
-    //         align-items: center;
-    //         justify-content: space-between;
-    //         height: 100%;
-    //     }
-    //     .widgets-setting__input {
-    //         margin-bottom: 6px;
-    //     }
-    // }
     &__content {
         p {
             margin-top: 17px;
@@ -330,13 +288,6 @@
             }
         }
     }
-    // &__dialog {
-    //     max-width: 270px;
-    //     height: max-content;
-    //     &__wrapper {
-    //         padding: 31px 30px 17px 30px;
-    //     }
-    // }
 }
 .version {
     max-width: 890px;
@@ -351,7 +302,6 @@
     .form-group {
         display: flex;
         input {
-            // width: 250px;
             margin-right: 10px;
         }
         .gen-btn {
@@ -466,7 +416,6 @@
     .progress {
         margin-top: 15px;
         &-bar {
-            // background-color: #21203d;
             background-color: #2f304d;
         }
     }

@@ -7,7 +7,6 @@
           v-if="this.$route.query.category"
           v-b-modal="'modal-wrapper'"
         >
-          <!-- :to="this.$route.query.category === 'nav' ? '/catalog/nav' : '/catalog/sales'" -->
           <img src="/img/arrow.png" alt />
           Назад
         </a>

@@ -15,8 +15,6 @@
         <div class="main__head-btn">
           <button @click="toPlug" class="gen-btn">Подключить себе</button>
           <button @click="toPlug" class="gen-btn">Подключить клиенту</button>
-          <!-- <nuxt-link to="/catalog/sales" class="gen-btn">Подключить себе</nuxt-link>
-          <nuxt-link to="/catalog/sales" class="gen-btn">Подключить клиенту</nuxt-link>-->
         </div>
         <div class="main__head-footer">
           <img src="/img/scroll.png" alt />
@@ -106,8 +104,6 @@
         <div class="main__button">
           <button @click="toPlug" class="gen-btn">Подключить себе</button>
           <button @click="toPlug" class="gen-btn">Подключить клиенту</button>
-          <!-- <nuxt-link to="/catalog/sales" tag="button" class="gen-btn">Подключить себе</nuxt-link>
-          <nuxt-link to="/catalog/sales" tag="button" class="gen-btn">Подключить клиенту</nuxt-link>-->
         </div>
         <div class="main__options-items" style="width: 100%">
           <div id="vk_groups"></div>

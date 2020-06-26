@@ -26,11 +26,6 @@ export default {
       );
       Object.assign(this.widget, this.widgetEdit);
     }
-    // this.widget.segmentation === null ? this.widget.segmentation = { age: {from:null, to:null}} : this.widget.segmentation
-    // if (this.widget.segmentation === null) {
-    //   this.widget.segmentation = { age: {from:null, to:null}}
-    //   console.log(this.widget.segmentation);
-    // }
     this.formSegmentation =
       this.widget.segmentation !== null
         ? JSON.parse(JSON.stringify(this.widget.segmentation))
@@ -62,7 +57,6 @@ export default {
   methods: {
     isSegmentation(e) {
       this.widget.is_segmentation = e;
-      console.log(e);
     },
     handlerSaved(e) {
       if (this.modal === "modal-widget-text") {
@@ -95,7 +89,6 @@ export default {
       arr.push({
         descr: "",
         icon_id: "",
-        // icon_type: "",
         link: "",
         link_url: "",
         title: "",
@@ -112,12 +105,10 @@ export default {
         const groupId = this.$store.getters["server/token/vkQuery"].vk_group_id;
         payload.group_id = +groupId;
         if (payload.id || false) {
-          console.log("id");
           await this.$store.dispatch("server/sales/edit", payload);
           this.$bvToast.show("update-toast");
           this.$router.push("/main");
         } else {
-          console.log("no id");
           await this.$store.dispatch("server/sales/create", payload);
           this.$bvToast.show("create-toast");
           this.$router.push("/main");
@@ -134,7 +125,6 @@ export default {
             solid: true
           }
         );
-        console.log(data);
       } finally {
         this.loading = false;
       }
