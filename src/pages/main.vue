@@ -25,7 +25,7 @@
       <div class="home" v-else>
         <app-loader v-model="widgetLoad" class="top-center">
           <div class="home__wrapper">
-            <draggable v-model="widgets">
+            <draggable v-model="widgets" @change="handleChange">
               <transition-group name="list-animation" tag="ul">
                 <li
                   v-for="widget in widgets"
@@ -53,8 +53,8 @@
                         widget.name
                       }}</span>
                       <div class="home-block__name-edit">
-                        <app-svg-icon
-                          name="pencil-edit-button"
+                        <img
+                          src="img/pencil.png"
                           class="home-block__name-icon"
                         />
                         <div class="popover">
@@ -99,13 +99,43 @@
                     </div>
                     <a href="#" class="home-block__user">
                       <img src="img/home-user.svg" alt />
-                      <div v-if="widget.segmentation && widget.segmentation.other || null" class="popover">
+                      <div
+                        v-if="
+                          (widget.segmentation && widget.segmentation.other) ||
+                            null
+                        "
+                        class="popover"
+                      >
                         <div class="popover__wrapper">
                           <span>Аудитория</span>
-                          <span>Возраст: от {{widget.segmentation.age.from}} до {{widget.segmentation.age.to}}</span>
-                          <span>Пол: {{widget.segmentation.sex ? widget.segmentation.other.sex.title : null}}</span>
-                          <span>ДР: {{widget.segmentation.bdate ? widget.segmentation.other.bdate.title : null}}</span>
-                          <span>Семейное положение: {{widget.segmentation.relation ? widget.segmentation.other.relation.title : null}}</span>
+                          <span v-show="widget.segmentation.age.from"
+                            >Возраст: от {{ widget.segmentation.age.from }} до
+                            {{ widget.segmentation.age.to }}</span
+                          >
+                          <span v-show="widget.segmentation.sex"
+                            >Пол:
+                            {{
+                              widget.segmentation.sex
+                                ? widget.segmentation.other.sex.title
+                                : null
+                            }}</span
+                          >
+                          <span v-show="widget.segmentation.bdate"
+                            >ДР:
+                            {{
+                              widget.segmentation.bdate
+                                ? widget.segmentation.other.bdate.title
+                                : null
+                            }}</span
+                          >
+                          <span v-show="widget.segmentation.relation"
+                            >Семейное положение:
+                            {{
+                              widget.segmentation.relation
+                                ? widget.segmentation.other.relation.title
+                                : null
+                            }}</span
+                          >
                         </div>
                       </div>
                     </a>
@@ -177,17 +207,6 @@ import AppModalTimer from "@/components/modal/AppModalTimer.vue";
 import { mapGetters } from "vuex";
 
 export default {
-  components: {
-    AppModalVersion,
-    AppModalEditName,
-    AppModalPublic,
-    AppModalTimer
-  },
-  computed: {
-    ...mapGetters({
-      subs: "server/payments/subs"
-    })
-  },
   data() {
     return {
       appId: process.env.APP_ID,
@@ -203,7 +222,34 @@ export default {
       widgets: []
     };
   },
+  components: {
+    AppModalVersion,
+    AppModalEditName,
+    AppModalPublic,
+    AppModalTimer
+  },
+  computed: {
+    ...mapGetters({
+      subs: "server/payments/subs"
+    }),
+    widgetPos() {
+      let self = this;
+      let items = _.map(self.widgets, (el, index) => {
+        let dataItem = {
+          id: el.id,
+          position: index
+        };
+        return dataItem;
+      });
+      return items;
+    }
+  },
   methods: {
+    handleChange() {
+      this.$store.dispatch("server/sales/sortable", {
+        sortable: this.widgetPos
+      });
+    },
     startTimer(time) {
       localStorage.timer = new Date().getTime();
       this.timerVal = time;
@@ -325,6 +371,5 @@ export default {
       this.updateTokenGroup();
     }
   }
-  // }
 };
 </script>

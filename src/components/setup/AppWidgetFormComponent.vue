@@ -568,7 +568,6 @@ export default {
           id: 0
         }
       ]
-      // isSwitch:false
     };
   },
   computed: {
@@ -581,7 +580,6 @@ export default {
   },
   methods: {
     isSegment(e) {
-      // this.isSwitch = e
       this.$emit("switch", e);
     },
     checkType(field) {

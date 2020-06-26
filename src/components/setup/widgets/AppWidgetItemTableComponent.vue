@@ -6,7 +6,7 @@
           <div class="widgets__content-text">
             <app-error-popover
               :prename-validation="`data.head.${index}.text`"
-              :validation-err="validationErrors"
+              :validation-errors="validationErrors"
             >
               <template v-slot:varName>
                 <a
@@ -86,7 +86,7 @@
                 <app-error-popover
                   :prename-validation="`data.body.${index}.${idx}.text`"
                   :prename-validation2="`data.body.${index}.${idx}.url`"
-                  :validation-err="validationErrors"
+                  :validation-errors="validationErrors"
                 >
                   <template v-slot:varName>
                     <a
