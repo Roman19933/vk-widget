@@ -20,7 +20,7 @@
                 </template>
                 <template v-slot:content>
                   <div class="faq__hidden">
-                    <p class="faq__text">{{ item.descr }}</p>
+                    <p class="faq__text" v-html="item.descr">{{ item.descr }}</p>
                     <a v-if="item.link" href="#" class="catalog-sales__link">{{ item.link }}</a>
                     <button v-if="item.btn" class="gen-btn">{{ item.btn }}</button>
                   </div>

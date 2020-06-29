@@ -147,7 +147,7 @@ export default {
             {
               address: "",
               button: "Оставить заявку",
-              button_url: "vk.me/club195259137",
+              button_url: "",
               descr: "",
               icon_id: "{userAvatar}",
               text:

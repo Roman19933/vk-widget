@@ -154,19 +154,19 @@ export default {
         data: {
           more: "",
           more_url: "",
-          title: "{firstname}, ближайшие к вам магазины сети",
+          title: "{firstname}, наши магазины совсем рядом с вами!",
           title_counter: "",
           title_url: "",
           rows: [
             {
-              address: "ул. Советская, 33",
+              address: "",
               button: "Связаться",
-              button_url: "https://vk.com/apps?act=manage",
-              descr: "Более 3000 пар обуви в одном месте",
+              button_url: "",
+              descr: "",
               icon_id: "",
               text: null,
-              time: "8:00-20:00(без выходных)",
-              title: "Магазин «Дом обуви»",
+              time: "",
+              title: "",
               title_url: ""
             }
           ]

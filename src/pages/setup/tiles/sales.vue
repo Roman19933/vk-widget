@@ -160,7 +160,7 @@ export default {
         data: {
           more: "",
           more_url: "",
-          title: "{firstname}, хочешь купон на скидку в подарок?",
+          title: "{firstname}, как на счет скидки?",
           title_counter: null,
           title_url: "",
           tiles: [
@@ -170,7 +170,7 @@ export default {
               link_url: "",
               link: "Получить скидку",
               link_url: "",
-              title: "Скидки",
+              title: "Скидки до 70%",
               url: ""
             },
             {
@@ -179,7 +179,7 @@ export default {
               link_url: "",
               link: "Получить скидку",
               link_url: "",
-              title: "Скидки",
+              title: "Только сегодня",
               url: ""
             },
             {
@@ -188,7 +188,7 @@ export default {
               link_url: "",
               link: "Получить скидку",
               link_url: "",
-              title: "Скидки",
+              title: "Заполни анкету",
               url: ""
             }
           ]

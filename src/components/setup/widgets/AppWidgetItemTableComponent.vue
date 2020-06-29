@@ -74,10 +74,15 @@
                     })
                   "
                 >
-                  <img
-                    :src="item[0].icon_url || `/img/photo.png`"
-                    class="photo"
-                  />
+                  <div
+                    class="widgets__content-avatar__wrapper"
+                    :class="{ 'photo-url': item[0].icon_url }"
+                  >
+                    <img
+                      :src="item[0].icon_url || `/img/photo.png`"
+                      class="photo"
+                    />
+                  </div>
                 </div>
               </template>
             </app-error-popover>

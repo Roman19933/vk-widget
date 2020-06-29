@@ -155,7 +155,7 @@ export default {
         data: {
           more: "",
           more_url: "",
-          title: "{firstname},  хватит работать, тебя ждут горячие туры",
+          title: "{firstname}, может пора расслабится?",
           title_counter: "",
           title_url: "",
           rows: [

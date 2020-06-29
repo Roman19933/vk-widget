@@ -23,7 +23,7 @@
       </div>
       <div class="main__info">
         <div class="main__info-wrapper wrapper">
-          <h4>ДЛЯ ЧЕГО НУЖЕН Ковальский?</h4>
+          <h4>ДЛЯ ЧЕГО НУЖЕН КОВАЛЬСКИЙ?</h4>
           <div class="main__info-content">
             <img src="/img/logo_a.gif" alt />
             <div class="main__info-p">

@@ -33,7 +33,12 @@
         })
       "
     >
-      <img :src="value.icon_url || `/img/photo.png`" alt class="photo" />
+      <div
+        class="widgets__content-avatar__wrapper"
+        :class="{ 'photo-url': value.icon_url }"
+      >
+        <img :src="value.icon_url || `/img/photo.png`" alt class="photo" />
+      </div>
       <app-error-popover
         :prename-validation="`${prenameValidation}icon_id`"
         :validation-errors="validationErrors"
