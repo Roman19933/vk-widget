@@ -20,7 +20,7 @@ export default {
           width: 1000,
           height: height
         });
-      }, 600)
+      }, 300)
     }
   },
   destroyed () {
