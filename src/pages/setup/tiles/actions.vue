@@ -160,30 +160,30 @@ export default {
           title_url: "",
           tiles: [
             {
-              descr: "3 900 руб",
+              descr: "",
               icon_id: "",
               icon_url: "",
-              link: "Написать",
+              link: "",
               link_url: "",
-              title: "Кольцо",
+              title: "",
               url: ""
             },
             {
-              descr: "3 900 руб",
+              descr: "",
               icon_id: "",
               icon_url: "",
-              link: "Написать",
+              link: "",
               link_url: "",
-              title: "Кольцо",
+              title: "",
               url: ""
             },
             {
-              descr: "3 900 руб",
+              descr: "",
               icon_id: "",
               icon_url: "",
-              link: "Написать",
+              link: "",
               link_url: "",
-              title: "Кольцо",
+              title: "",
               url: ""
             }
           ]

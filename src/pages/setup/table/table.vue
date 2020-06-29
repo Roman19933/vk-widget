@@ -148,64 +148,64 @@ export default {
           more: "",
           more_url: "",
           title:
-            "{firstname}, Спасибо, что подписался! Твои друзья уже с нами!",
+            "{firstname}, следи за лигой чемпионов прям тут!",
           title_counter: "",
           title_url: "",
           body: [
             [
               {
-                text: "Россия",
+                text: "",
                 icon_id: "",
                 icon_url: ""
               },
               {
-                text: "1 строка",
-                url: "https://vk.com/wall-12345_542321"
+                text: "",
+                url: ""
               },
               {
-                text: "1 строка",
-                url: "https://vk.com/wall-12345_542321"
+                text: "",
+                url: ""
               },
               {
-                text: "1 строка",
-                url: "https://vk.com/wall-12345_542321"
+                text: "",
+                url: ""
               }
             ],
             [
               {
-                text: "USA",
+                text: "",
                 icon_id: "",
                 icon_url: ""
               },
               {
-                text: "2 строка",
-                url: "https://vk.com/wall-12345_542321"
+                text: "",
+                url: ""
               },
               {
-                text: "2 строка",
-                url: "https://vk.com/wall-12345_542321"
+                text: "",
+                url: ""
               },
               {
-                text: "2 строка",
-                url: "https://vk.com/wall-12345_542321"
+                text: "",
+                url: ""
               }
             ]
           ],
           head: [
             {
-              text: "Страна",
+              text: "",
               align: "left"
             },
             {
-              text: "Золото",
+              text: "",
               align: "left"
             },
             {
-              text: "Серебро",
+              text: "",
               align: "left"
             },
             {
-              text: "Бронза",
+              text: "",
               align: "left"
             }
           ]

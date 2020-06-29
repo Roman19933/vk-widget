@@ -1,5 +1,4 @@
 export default async function ({ store, redirect, route }) {
-  resizeWindow(store)
   if (route.query.vk_platform !== undefined && route.query.vk_platform !== 'desktop_web') {
     redirect({ path: "/mobile" })
   } else if (route.query.vk_group_id !== undefined) {
@@ -13,7 +12,4 @@ async function validToken(store) {
   const groupId = store.getters["server/token/vkQuery"].vk_group_id;
   return await store.dispatch("server/token/checkToken", groupId);
 }
-async function resizeWindow(store) {
-  let windowHeight = window.outerHeight
-  store.dispatch("vk/bridge/resizeWindow", { "width": 1000, "height": 600 })
-}
+

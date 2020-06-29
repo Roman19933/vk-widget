@@ -161,12 +161,12 @@ export default {
             {
               address: null,
               button: "Подписаться",
-              button_url: "https://vk.com/apps?act=manage",
-              descr: "Запишись на первую бесплатную тренировку!",
+              button_url: "",
+              descr: "",
               icon_id: "",
               text: null,
               time: null,
-              title: "Бесплатное занятие",
+              title: "",
               title_url: ""
             }
           ]

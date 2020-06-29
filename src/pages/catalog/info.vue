@@ -45,7 +45,7 @@
           <div class="catalog-sales__content-header">
             <app-svg-icon name="gift" class="catalog-sales__content-icon" />
             <h3 class="catalog-sales__content-text">
-              Артем, Спасибо, что подписался! Твои друзья уже с нами!
+              Иван, следи за лигой чемпионов прям тут!
             </h3>
           </div>
           <div class="catalog-sales__table">
@@ -89,8 +89,7 @@
         <div class="catalog-sales__settings">
           <h4 class="catalog-sales__settings-title">Таблица</h4>
           <p class="catalog-sales__settings-text">
-            Добавьте в сообщество от 3 до 10 баннеров, чтобы привлечь внимание к
-            акциям и получить больше продажм
+            Добавьте таблицу с данными и изображениями (4 столбца и до 10 строк). В первом столбце текст и ссылки могут сопровождаться иконками.
           </p>
           <nuxt-link
             class="gen-btn"
@@ -105,7 +104,7 @@
           <div class="catalog-sales__content-header">
             <app-svg-icon name="gift" class="catalog-sales__content-icon" />
             <h3 class="catalog-sales__content-text">
-              Артем, Спасибо, что подписался! Твои друзья уже с нами!
+              Иван, ознакомьтесь с ценами на наши услуги!
             </h3>
           </div>
           <div class="catalog-sales__table">
@@ -161,8 +160,7 @@
         <div class="catalog-sales__settings">
           <h4 class="catalog-sales__settings-title">Прайс лист</h4>
           <p class="catalog-sales__settings-text">
-            Добавьте в сообщество от 3 до 10 баннеров, чтобы привлечь внимание к
-            акциям и получить больше продажм
+            Добавьте таблицу с данными и изображениями (3 столбца и до 10 строк). В первом столбце текст и ссылки могут сопровождаться иконками.
           </p>
           <nuxt-link
             class="gen-btn"

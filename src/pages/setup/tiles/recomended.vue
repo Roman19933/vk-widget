@@ -155,35 +155,35 @@ export default {
         data: {
           more: "",
           more_url: "",
-          title: "{firstname}, ети товары для вас!",
+          title: "{firstname}, эти товары для вас!",
           title_counter: "",
           title_url: "",
           tiles: [
             {
-              descr: "5 500 руб",
+              descr: "",
               icon_id: "",
               link_url: "",
-              link: "Узнать цену",
+              link: "",
               link_url: "",
-              title: "Шорти",
+              title: "",
               url: ""
             },
             {
-              descr: "5 500 руб",
+              descr: "",
               icon_id: "",
               link_url: "",
-              link: "Узнать цену",
+              link: "",
               link_url: "",
-              title: "Шорти2",
+              title: "",
               url: ""
             },
             {
-              descr: "5 500 руб",
+              descr: "",
               icon_id: "",
               link_url: "",
-              link: "Узнать цену",
+              link: "",
               link_url: "",
-              title: "Шорти1",
+              title: "",
               url: ""
             }
           ]

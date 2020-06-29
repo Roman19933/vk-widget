@@ -135,10 +135,10 @@ export default {
         is_active: false,
         is_segmentation: false,
         data: {
-          descr: "Подпишитесь на сообщество и напишите нам",
+          descr: "",
           more: "",
           more_url: "",
-          text: "Каждый подписчик сообщества получает скидку 3% на все товары",
+          text: "",
           title: "Важное сообщение!",
           title_counter: "",
           title_url: ""

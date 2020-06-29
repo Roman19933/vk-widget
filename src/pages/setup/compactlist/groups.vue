@@ -166,7 +166,7 @@ export default {
               icon_id: "",
               text: null,
               time: null,
-              title: "Бесплатное занятие",
+              title: "",
               title_url: ""
             }
           ]

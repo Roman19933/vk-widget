@@ -148,52 +148,52 @@ export default {
           more: "",
           more_url: "",
           title:
-            "{firstname}, Спасибо, что подписался! Твои друзья уже с нами!",
+            "{firstname}, ознакомьтесь с ценами на наши услуги!",
           title_counter: "",
           title_url: "",
           body: [
             [
               {
-                text: "Стрижка бороды",
+                text: "",
                 icon_id: "",
                 icon_url: ""
               },
               {
-                text: "Брутально",
-                url: "https://vk.com/wall-12345_542321"
+                text: "",
+                url: ""
               },
               {
-                text: "1500 руб.",
-                url: "https://vk.com/wall-12345_542321"
+                text: "",
+                url: ""
               }
             ],
             [
               {
-                text: "Стрижка усов",
+                text: "",
                 icon_id: "",
                 icon_url: ""
               },
               {
-                text: "Брутально",
-                url: "https://vk.com/wall-12345_542321"
+                text: "",
+                url: ""
               },
               {
-                text: "1500 руб.",
-                url: "https://vk.com/wall-12345_542321"
+                text: "",
+                url: ""
               }
             ]
           ],
           head: [
             {
-              text: "Услуга",
+              text: "",
               align: "left"
             },
             {
-              text: "Описание",
+              text: "",
               align: "left"
             },
             {
-              text: "Цена",
+              text: "",
               align: "left"
             }
           ]
