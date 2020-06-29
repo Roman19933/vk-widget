@@ -12,15 +12,18 @@ export default {
   methods: {
     async resizeWindow() {
       let self = this
-      timer = setTimeout(() => {
-        let element = document.getElementsByClassName('main__wrapper')[0]
-        let width = element.scrollWidth;
-        let height = element.scrollHeight;
-        self.$store.dispatch("vk/bridge/resizeWindow", {
-          width: 1000,
-          height: height
-        });
-      }, 300)
+      if(height > 734) {
+        timer = setTimeout(() => {
+          let element = document.getElementsByClassName('main__wrapper')[0]
+          let width = element.scrollWidth;
+          let height = element.scrollHeight;
+
+          self.$store.dispatch("vk/bridge/resizeWindow", {
+            width: 1000,
+            height: height
+          });
+        }, 500)
+      }
     }
   },
   destroyed () {
