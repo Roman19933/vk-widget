@@ -14,7 +14,7 @@
             >Введите новое название для вашего виджета и нажмите на кнопку «сохранить»</p>
             <div class="widget-public__group">
               <div class="form-group">
-                <input v-model="nameVidget" type="text" placeholder="Название виджета" />
+                <input v-model="namewidget" type="text" placeholder="Название виджета" />
                 <app-loader v-model="loading">
                   <button @click.prevent="saveName" class="gen-btn">Сохранить</button>
                 </app-loader>
@@ -30,11 +30,11 @@
   import axios from "axios"
   export default {
     props: {
-      vidgetName: {
+      widgetName: {
         type: String,
         default: ''
       },
-      vidgetId: {
+      widgetId: {
         type: Number,
         default: null
       }
@@ -42,23 +42,18 @@
     data() {
       return {
         loading: false,
-        nameVidget: this.vidgetName
+        namewidget: this.widgetName
       }
     },
     methods: {
       async saveName () {
         this.loading = true
-          // .then((response) => {
-          //   console.log(response);
-          // }, (error) => {
-          //   console.log(error);
-          // });
         try {
           await axios.patch(
-            process.env.NUXT_APP_API_URL + 'widgets/rename/' + this.vidgetId,
+            process.env.NUXT_APP_API_URL + 'widgets/rename/' + this.widgetId,
             {
-                widget_id: this.vidgetId,
-                name: this.nameVidget
+                widget_id: this.widgetId,
+                name: this.namewidget
             }
           )
           this.$bvModal.hide('modal-edit-name')
@@ -71,9 +66,9 @@
       }
     },
     watch: {
-      vidgetName: {
+      widgetName: {
         handler(bef) {
-          this.nameVidget = bef
+          this.namewidget = bef
         }
       }
     }

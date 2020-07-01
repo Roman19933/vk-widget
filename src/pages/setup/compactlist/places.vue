@@ -1,11 +1,11 @@
 <template>
   <form action="#" @submit.prevent="create">
-    <div class="widgets vidget-page">
-      <div class="widgets__wrapper vidget-page__wrapper">
+    <div class="widgets widget-page">
+      <div class="widgets__wrapper widget-page__wrapper">
         <div class="widgets__left feedback">
           <app-loader v-model="loading">
-            <div class="widgets__header vidget-page__head">
-              <div class="widgets__header-title vidget-page__title">
+            <div class="widgets__header widget-page__head">
+              <div class="widgets__header-title widget-page__title">
                 <a
                   href="#"
                   @click.prevent="
@@ -62,7 +62,7 @@
                     <template v-for="(item, index) in widget.data.rows">
                       <app-widget-item-places
                         v-model="widget.data.rows[index]"
-                        :prename-validation="`data.tiles.${index}.`"
+                        :prename-validation="`data.rows.${index}.`"
                         :validation-errors="validationErrors"
                         :key="index"
                         @remove:item="removeItem(widget.data.rows, index)"
@@ -108,15 +108,20 @@
                 <p>
                   В виджетах запрещено размещение сторонней коммерческой и
                   политической рекламы! Подробнее в п.5.13.4.1.
-                  <a href="#">правил ВКонтакте!</a>
+                  <a href="https://vk.com/terms" target="_blank"
+                    >правил ВКонтакте!</a
+                  >
                 </p>
               </div>
-              <!-- <app-widget-error v-if="error" @close="error = !error" /> -->
             </div>
           </app-loader>
         </div>
         <div class="widgets__right">
-          <app-widget-form v-model="widget.segmentation" />
+          <app-widget-form
+            v-model="formSegmentation"
+            @switch="isSegmentation"
+            :isSw="widget.is_segmentation"
+          />
         </div>
       </div>
       <component
@@ -129,7 +134,8 @@
         @close="clear"
       />
     </div>
-  </form> </template>
+  </form>
+</template>
 
 <script>
 import Widgets from "@/mixins/widgets";
@@ -144,22 +150,23 @@ export default {
       widget: {
         type_name: "Точки продаж",
         type_link: "/setup/compactlist/places?category=sales&edit=true",
+        is_segmentation: false,
         data: {
           more: "",
           more_url: "",
-          title: "{firstname}, ближайшие к вам магазины сети",
+          title: "{firstname}, наши магазины совсем рядом с вами!",
           title_counter: "",
           title_url: "",
           rows: [
             {
-              address: "ул. Советская, 33",
+              address: "",
               button: "Связаться",
-              button_url: "https://vk.com/apps?act=manage",
-              descr: "Более 3000 пар обуви в одном месте",
+              button_url: "",
+              descr: "",
               icon_id: "",
               text: null,
-              time: "8:00-20:00(без выходных)",
-              title: "Магазин «Дом обуви»",
+              time: "",
+              title: "",
               title_url: ""
             }
           ]
@@ -167,19 +174,20 @@ export default {
         is_active: false,
         name: "",
         segmentation: {
-          sex: [],
+          sex: null,
           age: { from: "", to: "" },
-          bdate: [],
-          relation: [],
-          city: [],
-          devices: [],
-          userSurname: [],
-          userName: [],
-          userInterests: [],
-          relationGroups: [],
-          users: [],
-          groups_exclude: [],
-          groups: []
+          bdate: null,
+          relation: null,
+          city: null,
+          devices: "",
+          user_surname: null,
+          user_name: null,
+          user_interests: null,
+          relation_groups: null,
+          users: null,
+          groups_exclude: null,
+          groups: null,
+          other: {}
         },
         type: "compact_list",
         sc_type: "places"
@@ -210,4 +218,3 @@ export default {
   }
 };
 </script>
-

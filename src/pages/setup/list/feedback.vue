@@ -1,11 +1,11 @@
 <template>
   <form action="#" @submit.prevent="create">
-    <div class="widgets vidget-page">
-      <div class="widgets__wrapper vidget-page__wrapper">
+    <div class="widgets widget-page">
+      <div class="widgets__wrapper widget-page__wrapper">
         <div class="widgets__left feedback">
           <app-loader v-model="loading">
-            <div class="widgets__header vidget-page__head">
-              <div class="widgets__header-title vidget-page__title">
+            <div class="widgets__header widget-page__head">
+              <div class="widgets__header-title widget-page__title">
                 <a
                   href="#"
                   @click.prevent="
@@ -54,14 +54,11 @@
                     >{{ widget.data.title }}</a
                   >
                 </div>
-                <!-- <div class="widgets__items widgets__items_product">
-                <button class="add-item">+ Добавить элемент</button>
-              </div> -->
                 <div class="widgets__items widgets__items_feedback">
                   <draggable
                     v-model="widget.data.rows"
                     group="feedback"
-                    class="widgets__items_draggable "
+                    class="widgets__items_draggable"
                   >
                     <template v-for="(item, index) in widget.data.rows">
                       <app-widget-item-personal
@@ -120,14 +117,20 @@
                 <p>
                   В виджетах запрещено размещение сторонней коммерческой и
                   политической рекламы! Подробнее в п.5.13.4.1.
-                  <a href="#">правил ВКонтакте!</a>
+                  <a href="https://vk.com/terms" target="_blank"
+                    >правил ВКонтакте!</a
+                  >
                 </p>
               </div>
             </div>
           </app-loader>
         </div>
         <div class="widgets__right">
-          <app-widget-form v-model="widget.segmentation" />
+          <app-widget-form
+            v-model="formSegmentation"
+            @switch="isSegmentation"
+            :isSw="widget.is_segmentation"
+          />
         </div>
       </div>
       <component
@@ -158,6 +161,7 @@ export default {
       widget: {
         type_name: "Отзывы",
         type_link: "/setup/list/feedback?category=sales&edit=true",
+        is_segmentation: false,
         data: {
           more: "",
           more_url: "",
@@ -169,19 +173,20 @@ export default {
         is_active: false,
         name: "",
         segmentation: {
-          sex: [],
+          sex: null,
           age: { from: "", to: "" },
-          bdate: [],
-          relation: [],
-          city: [],
-          devices: [],
-          userSurname: [],
-          userName: [],
-          userInterests: [],
-          relationGroups: [],
-          users: [],
-          groups_exclude: [],
-          groups: []
+          bdate: null,
+          relation: null,
+          city: null,
+          devices: "",
+          user_surname: null,
+          user_name: null,
+          user_interests: null,
+          relation_groups: null,
+          users: null,
+          groups_exclude: null,
+          groups: null,
+          other: {}
         },
         type: "list",
         sc_type: "feedback"
@@ -200,7 +205,6 @@ export default {
           "server/group/getInfoForComments",
           obj
         );
-        console.log(data);
         this.widget.data.rows.push({
           text: data.data.items[0].text,
           time: "",

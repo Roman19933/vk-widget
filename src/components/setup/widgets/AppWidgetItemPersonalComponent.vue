@@ -1,11 +1,20 @@
 <template>
   <div class="widgets__content-personal">
-    <div class="widgets__content-avatar">
-      <img v-if="value.icon_url" :src="value.icon_url" alt />
-      <img v-else :src="userPhoto ? userPhoto : '/img/photo.png'" alt />
+    <div class="widgets__content-avatar widgets__content-avatar_places">
+      <div
+        class="widgets__content-avatar__wrapper"
+        :class="{ 'photo-url': value.icon_url }"
+      >
+        <img v-if="value.icon_url" :src="value.icon_url" alt />
+        <img v-else :src="userPhoto ? userPhoto : '/img/photo.png'" alt />
+      </div>
     </div>
     <div class="widgets__content-text widgets__content-text_personal">
-      <app-error-popover :varError="mapErros['title']">
+      <app-error-popover
+        :prename-validation="`${prenameValidation}title`"
+        :prename-validation2="`${prenameValidation}title_url`"
+        :validation-errors="validationErrors"
+      >
         <template v-slot:varName>
           <a
             href="#"
@@ -45,7 +54,11 @@
         "
         >{{ !!value.text ? value.text : "+ добавить" }}</a
       >
-      <app-error-popover :varError="mapErros['button_url']">
+      <app-error-popover
+        :prename-validation="`${prenameValidation}button`"
+        :prename-validation2="`${prenameValidation}button_url`"
+        :validation-errors="validationErrors"
+      >
         <template v-slot:varName>
           <a
             href="#"

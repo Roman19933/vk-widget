@@ -1,39 +1,84 @@
 <template>
   <div class="widgets__content-places">
     <div class="item__menu">
-      <a href="#" class="item__menu-close" @click.prevent="$emit('remove:item')">
+      <a
+        href="#"
+        class="item__menu-close"
+        @click.prevent="$emit('remove:item')"
+      >
         <img src="/img/close-error.png" alt />
       </a>
       <div class="item__menu-burger">
         <img src="/img/burger.png" alt />
       </div>
     </div>
-    <div class="widgets__content-avatar">
-      <img src="/img/photo.png" alt />
+    <div
+      class="widgets__content-avatar widgets__content-avatar_places"
+      @click.prevent="
+        $emit('edit:element', {
+          typeModal: 'modal-widget-upload-image',
+          map: {
+            image: {
+              fieldName: 'icon_id',
+              value: ''
+            },
+            src: {
+              fieldName: 'icon_url',
+              value: ''
+            },
+            other: {
+              sizeImage: 'small'
+            }
+          }
+        })
+      "
+    >
+      <div
+        class="widgets__content-avatar__wrapper"
+        :class="{ 'photo-url': value.icon_url }"
+      >
+        <img :src="value.icon_url || `/img/photo.png`" alt class="photo" />
+      </div>
+      <app-error-popover
+        :prename-validation="`${prenameValidation}icon_id`"
+        :validation-errors="validationErrors"
+      ></app-error-popover>
     </div>
     <div class="widgets__content-text widgets__content-text_places">
       <div class="places-content">
-        <a
-          href="#"
-          class="places-content__title"
-          @click.prevent="$emit('edit:element', {
-              typeModal: 'modal-widget-title-link',
-              map: {
-                title: {
-                  fieldName: 'title',
-                  value: value.title
-                },
-                link: {
-                  fieldName: 'title_url',
-                  value: value.title_url
-                }
-              }
-            })"
-        >{{!!value.title ? value.title : "+ добавить"}}</a>
+        <app-error-popover
+          :prename-validation="`${prenameValidation}title`"
+          :prename-validation2="`${prenameValidation}title_url`"
+          :validation-errors="validationErrors"
+        >
+          <template v-slot:varName>
+            <a
+              href="#"
+              class="places-content__title"
+              @click.prevent="
+                $emit('edit:element', {
+                  typeModal: 'modal-widget-title-link',
+                  map: {
+                    title: {
+                      fieldName: 'title',
+                      value: value.title
+                    },
+                    link: {
+                      fieldName: 'title_url',
+                      value: value.title_url
+                    }
+                  }
+                })
+              "
+              >{{ !!value.title ? value.title : "+ добавить" }}</a
+            >
+          </template>
+        </app-error-popover>
         <a
           href="#"
           class="places-content__text"
-          @click.prevent="$emit('edit:element', {
+          @click.prevent="
+            $emit('edit:element', {
               typeModal: 'modal-widget-text',
               map: {
                 title: {
@@ -41,64 +86,97 @@
                   value: value.descr
                 }
               }
-            })"
-        >{{!!value.descr ? value.descr : "+ добавить"}}</a>
+            })
+          "
+          >{{ !!value.descr ? value.descr : "+ добавить" }}</a
+        >
         <div class="places-content__info">
           <div class="places-content__location">
-            <img src="/img/marker.png" alt />
-            <a
-              href="#"
-              class="places-content__text"
-              @click.prevent="$emit('edit:element', {
-              typeModal: 'modal-widget-text',
-              map: {
-                title: {
-                  fieldName: 'address',
-                  value: value.address
-                }
-              }
-            })"
-            >{{!!value.address ? value.address : "+ добавить"}}</a>
+            <app-error-popover
+              :prename-validation="`${prenameValidation}address`"
+              :validation-errors="validationErrors"
+            >
+              <template v-slot:varName>
+                <img src="/img/marker.png" alt />
+                <a
+                  href="#"
+                  class="places-content__text"
+                  @click.prevent="
+                    $emit('edit:element', {
+                      typeModal: 'modal-widget-text',
+                      map: {
+                        title: {
+                          fieldName: 'address',
+                          value: value.address
+                        }
+                      }
+                    })
+                  "
+                  >{{ !!value.address ? value.address : "+ добавить" }}</a
+                >
+              </template>
+            </app-error-popover>
           </div>
           <div class="places-content__location">
-            <img src="/img/time.png" alt />
-            <a
-              href="#"
-              class="places-content__text"
-              @click.prevent="$emit('edit:element', {
-              typeModal: 'modal-widget-text',
-              map: {
-                title: {
-                  fieldName: 'time',
-                  value: value.time
-                }
-              }
-            })"
-            >{{!!value.time ? value.time : "+ добавить"}}</a>
+            <app-error-popover
+              :prename-validation="`${prenameValidation}time`"
+              :validation-errors="validationErrors"
+            >
+              <template v-slot:varName>
+                <img src="/img/time.png" alt />
+                <a
+                  href="#"
+                  class="places-content__text"
+                  @click.prevent="
+                    $emit('edit:element', {
+                      typeModal: 'modal-widget-text',
+                      map: {
+                        title: {
+                          fieldName: 'time',
+                          value: value.time
+                        }
+                      }
+                    })
+                  "
+                  >{{ !!value.time ? value.time : "+ добавить" }}</a
+                >
+              </template>
+            </app-error-popover>
           </div>
         </div>
       </div>
-      <a
-        href="#"
-        class="gen-btn"
-        @click.prevent="$emit('edit:element', {
-              typeModal: 'modal-widget-title-link',
-              map: {
-                title: {
-                  fieldName: 'button',
-                  value: value.button
-                },
-                link: {
-                  fieldName: 'button_url',
-                  value: value.button_url
+      <app-error-popover
+        :prename-validation="`${prenameValidation}button`"
+        :prename-validation2="`${prenameValidation}button_url`"
+        :validation-errors="validationErrors"
+      >
+        <template v-slot:varName>
+          <a
+            href="#"
+            class="gen-btn"
+            @click.prevent="
+              $emit('edit:element', {
+                typeModal: 'modal-widget-title-link',
+                map: {
+                  title: {
+                    fieldName: 'button',
+                    value: value.button
+                  },
+                  link: {
+                    fieldName: 'button_url',
+                    value: value.button_url
+                  }
                 }
-              }
-            })"
-      >{{!!value.button ? value.button : "+ добавить"}}</a>
+              })
+            "
+            >{{ !!value.button ? value.button : "+ добавить" }}</a
+          >
+        </template>
+      </app-error-popover>
     </div>
     <component
       v-if="modal"
-      :is="`app-${ modal }`"
+      :is="`app-${modal}`"
       :value="value"
       :map-data="mapData"
       :other="other"
@@ -148,5 +226,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

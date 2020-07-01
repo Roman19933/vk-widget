@@ -1,12 +1,12 @@
 <template>
   <client-only>
     <form action="#" @submit.prevent="create">
-      <div class="widgets vidget-page">
-        <div class="widgets__wrapper vidget-page__wrapper">
+      <div class="widgets widget-page">
+        <div class="widgets__wrapper widget-page__wrapper">
           <div class="widgets__left">
             <app-loader v-model="loading">
-              <div class="widgets__header vidget-page__head">
-                <div class="widgets__header-title vidget-page__title">
+              <div class="widgets__header widget-page__head">
+                <div class="widgets__header-title widget-page__title">
                   <a
                     href="#"
                     @click.prevent="
@@ -98,10 +98,9 @@
                           }
                         })
                       "
-                      >{{
-                        widget.data.more ? widget.data.more : "+ добавить"
-                      }}</a
                     >
+                      {{ widget.data.more ? widget.data.more : "+ добавить" }}
+                    </a>
                   </div>
                 </div>
                 <div class="widgets__save">
@@ -113,15 +112,20 @@
                   <p>
                     В виджетах запрещено размещение сторонней коммерческой и
                     политической рекламы! Подробнее в п.5.13.4.1.
-                    <a href="#">правил ВКонтакте!</a>
+                    <a href="https://vk.com/terms" target="_blank"
+                      >правил ВКонтакте!</a
+                    >
                   </p>
                 </div>
-                <!-- <app-widget-error v-if="error" @close="error = !error" /> -->
               </div>
             </app-loader>
           </div>
           <div class="widgets__right">
-            <app-widget-form v-model="widget.segmentation" />
+            <app-widget-form
+              v-model="formSegmentation"
+              @switch="isSegmentation"
+              :isSw="widget.is_segmentation"
+            />
           </div>
         </div>
         <component
@@ -152,10 +156,11 @@ export default {
         is_active: false,
         type_name: "Акции и скидки",
         type_link: "/setup/tiles/sales?category=sales&edit=true",
+        is_segmentation: false,
         data: {
           more: "",
           more_url: "",
-          title: "{firstname}, хочешь купон на скидку в подарок?",
+          title: "{firstname}, как на счет скидки?",
           title_counter: null,
           title_url: "",
           tiles: [
@@ -165,7 +170,7 @@ export default {
               link_url: "",
               link: "Получить скидку",
               link_url: "",
-              title: "Скидки",
+              title: "Скидки до 70%",
               url: ""
             },
             {
@@ -174,7 +179,7 @@ export default {
               link_url: "",
               link: "Получить скидку",
               link_url: "",
-              title: "Скидки",
+              title: "Только сегодня",
               url: ""
             },
             {
@@ -183,26 +188,27 @@ export default {
               link_url: "",
               link: "Получить скидку",
               link_url: "",
-              title: "Скидки",
+              title: "Заполни анкету",
               url: ""
             }
           ]
         },
         name: "",
         segmentation: {
-          sex: [],
+          sex: null,
           age: { from: "", to: "" },
-          bdate: [],
-          relation: [],
-          city: [],
-          devices: [],
-          userSurname: [],
-          userName: [],
-          userInterests: [],
-          relationGroups: [],
-          users: [],
-          groups_exclude: [],
-          groups: []
+          bdate: null,
+          relation: null,
+          city: null,
+          devices: "",
+          user_surname: null,
+          user_name: null,
+          user_interests: null,
+          relation_groups: null,
+          users: null,
+          groups_exclude: null,
+          groups: null,
+          other: {}
         },
         type: "tiles",
         sc_type: "discounts"

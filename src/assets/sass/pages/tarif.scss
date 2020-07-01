@@ -1,4 +1,4 @@
-.vidget-page__promocode {
+.widget-page__promocode {
 	color: #f53180;
 	background-color: transparent;
 	letter-spacing: 0.7px;
@@ -177,7 +177,10 @@
 		}
 		&__checkbox {
 			margin-left: 14px;
-			margin-bottom: 5px;
+      margin-bottom: 5px;
+      .label {
+        height: initial!important;
+      }
 		}
 	}
 }

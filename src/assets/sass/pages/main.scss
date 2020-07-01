@@ -1,11 +1,8 @@
 .main {
-    // background-image: url('/img/bg-main.png');
-    // background-repeat: no-repeat;
-    // background-size: 100% 100%;
     overflow-x: hidden;
     position: relative;
     width:100vw;
-    height: 100vh;
+    // height: 100vh;
     .gen-btn {
         width: 203px;
         height: 35px;
@@ -13,7 +10,6 @@
     &__wrapper {
         position: relative;
         padding-top: 60px;
-        padding-bottom: 60px;
         z-index: 2;
     }
     &__head {
@@ -22,17 +18,19 @@
         justify-content: space-between;
         align-items: center;
         padding-bottom: 24px;
+        &-logo {
+          width: 150px;
+        }
         &-title {
             text-align: center;
             img {
-                margin-bottom: 79px;
+                margin-bottom: 55px;
             }
             h4 {
                 font-size: 35px;
                 text-transform: uppercase;
                 font-family: 'RobotoMedium';
                 line-height: 47px;
-                // max-width: 926px;
                 display: flex;
                 flex-direction: column;
                 margin: 0;
@@ -75,6 +73,9 @@
             width: 100%;
             justify-content: space-between;
             padding: 0 102px 0 241px;
+            img {
+              width: 200px;
+            }
         }
         &-p {
             width: 550px;
@@ -133,7 +134,6 @@
             padding-right: 14px;
             .item {
                 display: flex;
-                // align-items: center;
                 width: 345px;
                 justify-content: space-between;
                 margin-bottom: 35px;
@@ -167,9 +167,7 @@
         justify-content: space-between;
         margin-top: 27px;
     }
-    //-- cloudlet
     &__cloudlet {
-        // width: 100%;
         left: 100%;
         top: 150px;
         position: absolute;
@@ -306,6 +304,5 @@
 }
 .wrapper {
     max-width: 1140px;
-    // width: (1140*100vw)/1920;
     margin: 0 auto;
 }

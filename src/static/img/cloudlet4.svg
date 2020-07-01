@@ -6,13 +6,13 @@
 	</defs>
 	<style>
 		tspan { white-space:pre }
-		.shp0 { fill: #373657 } 
-		.shp1 { fill: #5d5e93 } 
-		.shp2 { fill: #474873 } 
-		.shp3 { opacity: 0.502;fill: #373657 } 
-		.shp4 { opacity: 0.302;fill: #373657 } 
+		.shp0 { fill: #373657 }
+		.shp1 { fill: #5d5e93 }
+		.shp2 { fill: #474873 }
+		.shp3 { opacity: 0.502;fill: #373657 }
+		.shp4 { opacity: 0.302;fill: #373657 }
 	</style>
-	<g id="25.05_Vidget" clip-path="url(#cp1)">
+	<g id="25.05_widget" clip-path="url(#cp1)">
 		<g id="3_Blok">
 			<g id="bg">
 				<g id="44">

@@ -1,23 +1,33 @@
 <template>
   <label class="radio">
-    <input type="radio" name="birth" class="radio__input" :value="value" v-model="data.bdate" />
+    <input
+      type="radio"
+      name="birth"
+      class="radio__input"
+      :value="item"
+      :checked="item"
+      :disabled="disabled"
+      @input="$emit('input', item)"
+    />
     <span class="radio__custom"></span>
-    <span class="radio__text">{{this.value}}</span>
+    <span class="radio__text">{{ item.title }}</span>
   </label>
 </template>
-
 <script>
 export default {
   props: {
-    value: {
-      type: String
+    item: {
+      type: Object,
+      required: true
+    },
+    disabled: {
+      type: Boolean,
+      required: false
     },
     data: {
-      type: Object
+      type: Object,
+      required: true
     }
   }
 };
 </script>
-
-<style lang="scss" scoped>
-</style>

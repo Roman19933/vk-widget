@@ -13,7 +13,12 @@
       </div>
     </div>
     <div class="widgets__content-avatar widgets__content-avatar_client">
-      <img :src="value[0].icon_url" alt />
+      <div
+        class="widgets__content-avatar__wrapper"
+        :class="{ 'photo-url': value[0].icon_url }"
+      >
+        <img :src="value[0].icon_url" alt class="photo" />
+      </div>
     </div>
     <div class="widgets__content-text">
       <a href="#" class="text">{{ value[0].text }}</a>
@@ -30,9 +35,6 @@ export default {
         return [];
       }
     }
-  },
-  // mounted() {
-  //   console.log(this.value[0]);
-  // }
+  }
 };
 </script>

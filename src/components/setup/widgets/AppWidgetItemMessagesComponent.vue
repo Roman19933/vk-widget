@@ -1,11 +1,15 @@
 <template>
   <div class="widgets__content-text widgets__content-text_messages">
-    <app-error-popover :varError="mapErros['text']">
-    <template v-slot:varName>
-    <a
-      href="#"
-      class="mess-text"
-      @click.prevent="$emit('edit:element', {
+    <app-error-popover
+      :prename-validation="`${prenameValidation}text`"
+      :validation-errors="validationErrors"
+    >
+      <template v-slot:varName>
+        <a
+          href="#"
+          class="mess-text"
+          @click.prevent="
+            $emit('edit:element', {
               typeModal: 'modal-widget-text-area',
               map: {
                 title: {
@@ -13,27 +17,32 @@
                   value: value.text
                 }
               }
-            })"
-    >{{!!value.text ? value.text : "+ добавить"}}</a>
-    </template>
+            })
+          "
+          >{{ !!value.text ? value.text : "+ добавить" }}</a
+        >
+      </template>
     </app-error-popover>
     <a
       href="#"
       class="mt"
       v-b-modal.messages
-      @click.prevent="$emit('edit:element', {
-              typeModal: 'modal-widget-text-area',
-              map: {
-                title: {
-                  fieldName: 'descr',
-                  value: value.descr
-                }
-              }
-            })"
-    >{{!!value.descr ? value.descr : "+ добавить"}}</a>
+      @click.prevent="
+        $emit('edit:element', {
+          typeModal: 'modal-widget-text-area',
+          map: {
+            title: {
+              fieldName: 'descr',
+              value: value.descr
+            }
+          }
+        })
+      "
+      >{{ !!value.descr ? value.descr : "+ добавить" }}</a
+    >
     <component
       v-if="modal"
-      :is="`app-${ modal }`"
+      :is="`app-${modal}`"
       :value="value"
       :map-data="mapData"
       :other="other"
@@ -77,6 +86,3 @@ export default {
   }
 };
 </script>
-
-<style lang="scss" scoped>
-</style>

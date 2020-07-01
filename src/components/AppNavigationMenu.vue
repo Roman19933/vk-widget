@@ -37,31 +37,6 @@
                 </ul>
               </template>
             </app-collaps>
-            <!-- <li class="main-menu__item"
-              v-if="item.children"
-              :key="item.text"
-              @click="isShow=!isShow"
-              :class="{'show': isShow}"
-            >
-              <a href="#" class="main-menu__link">
-                <img class="main-menu__icon" :src="item.icon" alt="">
-                <span class="main-menu__link-text">{{ item.text }}</span>
-              </a>
-              <div class="main-menu__arrow"><img src="/img/arrow.png" alt=""></div>
-              <div class="main-menu__arrow main-menu__arrow_inner"><img src="img/arrow-yellow.png" alt=""></div>
-              <ul class="main-menu__subitems">
-                <nuxt-link
-                  class="main-menu__subitem"
-                   v-for="(child, i) in item.children"
-                  :key="i"
-                  :to="child.to"
-                >
-                  <p class="main-menu__sublink">
-                    {{ child.text }}
-                  </p>
-                </nuxt-link>
-              </ul>
-            </li>-->
             <nuxt-link
               v-else
               exact
@@ -115,7 +90,7 @@ export default {
             },
             {
               text: "Информационные",
-              to: "/catalog/nav"
+              to: "/catalog/info"
             }
           ]
         },
@@ -135,13 +110,11 @@ export default {
   mounted() {
     if (
       this.$route.name === "catalog-sales" ||
-      this.$route.name === "catalog-nav"
+      this.$route.name === "catalog-nav" ||
+      this.$route.name === "catalog-info"
     ) {
       this.collaps = true;
     }
   }
 };
 </script>
-
-<style lang="scss" scoped>
-</style>
