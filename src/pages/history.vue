@@ -4,7 +4,10 @@
     <div class="widget-page__wrapper">
       <div class="widget-page__head">
         <h1 class="widget-page__title">история платежей</h1>
-        <p class="history__payment">Автоплатеж отключен</p>
+        <div class="history__payment-wrapper">
+          <p class="history__payment">Автоплатеж {{ selfPayment ? 'включен' : 'отключен'}}</p>
+          <app-switch @switch-val="selfPayment = $event" />
+        </div>
       </div>
       <div class="history">
         <div class="history__wrapper">
@@ -32,20 +35,14 @@
                   <span>{{ item.expired_at | dateFilter }}</span>
                 </p>
                 <p class="history__info">
-                  <img
-                    v-if="item.status === 2"
-                    src="img/tarif-ok-yellow.png"
-                    alt
-                  />
+                  <img v-if="item.status === 2" src="img/tarif-ok-yellow.png" alt />
                   <img v-else src="img/tarif-close.png" alt />
                 </p>
                 <p class="history__info">{{ item.options.curr_label }}</p>
               </li>
             </template>
           </ul>
-          <nuxt-link to="/tarif" class="history__link gen-btn"
-            >Назад к тарифам</nuxt-link
-          >
+          <nuxt-link to="/tarif" class="history__link gen-btn">Назад к тарифам</nuxt-link>
         </div>
       </div>
     </div>
@@ -61,6 +58,7 @@ export default {
   },
   data() {
     return {
+      selfPayment: false,
       historyData: [],
       groupId: this.$store.getters["server/token/vkQuery"].vk_group_id
     };
