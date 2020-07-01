@@ -6,6 +6,12 @@
         font-size: 13px;
         color: #a2a2ad;
         font-family: 'RobotoLight';
+        &-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            min-width: 185px;
+        }
     }
     &__title {
         &:first-child {
