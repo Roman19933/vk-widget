@@ -38,6 +38,7 @@
             <div v-if="!file">
               <label for="upload">
                 <input
+                  id="upload"
                   type="file"
                   style="display: none"
                   @change="changeImage"

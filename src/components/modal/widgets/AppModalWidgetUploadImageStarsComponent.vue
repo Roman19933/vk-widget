@@ -38,8 +38,9 @@
           <div class="widgets-setting__input">
             <span class="modal__title">загрузка изображения</span>
           </div>
-          <label class="label">
+          <label for="upload" class="label">
             <input
+              id="upload"
               type="file"
               @change="changeImage"
               style="display: none"
