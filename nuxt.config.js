@@ -33,7 +33,7 @@ module.exports = {
     [
       '@nuxtjs/yandex-metrika',
       {
-        id: '65472262',
+        id: process.env.NUXT_YANDEX_METRIKA_ID,
         webvisor: true,
         clickmap:true,
         // useCDN:false,
