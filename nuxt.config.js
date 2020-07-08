@@ -29,8 +29,18 @@ module.exports = {
   modules: [
     '@nuxtjs/dotenv',
     ['@nuxtjs/dotenv', { path: '', systemvars: true }],
-    'bootstrap-vue/nuxt'
-
+    'bootstrap-vue/nuxt',
+    [
+      '@nuxtjs/yandex-metrika',
+      {
+        id: '65472262',
+        webvisor: true,
+        clickmap:true,
+        // useCDN:false,
+        trackLinks:true,
+        accurateTrackBounce:true,
+      }
+    ],
   ],
   /**
    * Plugins
